@@ -5,11 +5,11 @@ import {
 	createRoutesFromElements,
 } from "react-router-dom";
 
-import HomePage from "../pages/HomePage.js";
-import AboutPage from "../pages/AboutPage.js";
-import ExperiencePage from "../pages/ExperiencePage.js";
-import ProjectsPage from "../pages/ProjectsPage.js";
-import Layout from "../layouts/Layout.js";
+import HomePage from "../pages/HomePage.tsx";
+import AboutPage from "../pages/AboutPage.tsx";
+import ExperiencePage from "../pages/ExperiencePage.tsx";
+import ProjectsPage from "../pages/ProjectsPage.tsx";
+import Layout from "../layouts/Layout.tsx";
 
 export const router = createBrowserRouter(
 	createRoutesFromElements(

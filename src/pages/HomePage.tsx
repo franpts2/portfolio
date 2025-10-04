@@ -1,6 +1,4 @@
 import React from "react";
-import ThemeSwitcher from "../components/ThemeSwitcher.js";
-import { Outlet } from "react-router-dom";
 
 const HomePage = () => {
 	return (
