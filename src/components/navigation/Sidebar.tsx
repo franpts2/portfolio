@@ -48,7 +48,7 @@ const Sidebar = () => {
 	return (
 		<>
 			<div
-				className="fixed top-4 left-4 z-50 text-primary cursor-pointer"
+				className="fixed top-4 left-4 z-60 text-primary cursor-pointer pointer-events-auto"
 				onClick={() => setExpanded((prev) => !prev)}
 			>
 				<Icon
@@ -59,7 +59,7 @@ const Sidebar = () => {
 
 			<div
 				ref={sidebarRef}
-				className={`fixed flex flex-col justify-center h-screen px-3 py-6`}
+				className={`fixed flex flex-col justify-center h-screen px-3 py-6 z-50 pointer-events-auto`}
 				style={{
 					left: 0,
 					top: 0,
