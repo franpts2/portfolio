@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { ISDARK, _retrieveData, _storeData } from "./utils/localstorage.js";
+import { ISDARK, _retrieveData, _storeData } from "../utils/localstorage.js";
 
 export type ThemeContextType = {
 	isDark: boolean;

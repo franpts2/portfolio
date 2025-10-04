@@ -23,16 +23,24 @@
 }
 
 @layer base {
-	:root { /* light mode - beach */
+	:root {
+		/* light mode - beach */
 		--primary-bg: #faedcd;
 		--primary-accent: #457b9d;
-        --primary: #111113;
+		--primary: #111113;
+
+		--secondary-bg: #fff5e1;
+		--secondary-accent: #f4a261;
 	}
 
-    html.dark { /* dark mode - space */
-		--primary-bg: #000000;
+	html.dark {
+		/* dark mode - space */
+		--primary-bg: #121212;
 		--primary-accent: #ffffff;
-        --primary: #e5e5e5;
+		--primary: #e5e5e5;
+
+		--secondary-bg: #242527;
+		--secondary-accent: #7251b5;
 	}
 }
 
@@ -41,11 +49,19 @@
 		background-color: var(--primary-bg);
 	}
 
+	.bg-secondary {
+		background-color: var(--secondary-bg);
+	}
+
 	.text-primary-accent {
 		color: var(--primary-accent);
 	}
 
-    .text-primary {
+	.text-secondary-accent {
+		color: var(--secondary-accent);
+	}
+
+	.text-primary {
 		color: var(--primary);
 	}
 }
