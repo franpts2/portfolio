@@ -37,13 +37,13 @@ const HomePage = () => {
 				</div>
 
                 <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-6 justify-center text-primary">
-                    <a href="https://github.com/franpts2" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/franpts2" target="_blank" rel="noopener noreferrer" className="hover:scale-120">
                         <Icon icon={icons.github.outline} height={30}/>
                     </a>
-                    <a href="https://linkedin.com/in/franciscaportugal" target="_blank" rel="noopener noreferrer">
+                    <a href="https://linkedin.com/in/franciscaportugal" target="_blank" rel="noopener noreferrer" className="hover:scale-120">
                         <Icon icon={icons.linkedin.outline} height={30} />
                     </a>
-                    <a href="https://instagram.com/francisca._.portugal19" target="_blank" rel="noopener noreferrer">
+                    <a href="https://instagram.com/francisca._.portugal19" target="_blank" rel="noopener noreferrer" className="hover:scale-120">
                         <Icon icon={icons.instagram.outline} height={30} />
                     </a>
                 </div>
