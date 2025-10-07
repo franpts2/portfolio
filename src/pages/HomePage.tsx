@@ -36,7 +36,7 @@ const HomePage = () => {
 					</p>
 				</div>
 
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-6 justify-center">
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-6 justify-center text-primary">
                     <Icon icon={icons.github.outline} height={30} />
                     <Icon icon={icons.linkedin.outline} height={30} />
                     <Icon icon={icons.instagram.outline} height={30} />
