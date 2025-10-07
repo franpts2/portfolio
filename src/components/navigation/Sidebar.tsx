@@ -85,7 +85,7 @@ const Sidebar = () => {
 					>
 						{/* fixed-size icon container so icons keep consistent size when collapsed */}
 						<div className="w-10 flex-shrink-0 flex items-center justify-center">
-							<Icon icon={icon} height={22} />
+							<Icon icon={icon} height={24} />
 						</div>
 
 						<span

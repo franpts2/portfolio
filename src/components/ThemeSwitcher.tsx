@@ -13,9 +13,9 @@ const ThemeSwitcher = () => {
 			onClick={toggleTheme}
 		>
 			{isDark ? (
-				<Icon icon={icons.light.outline} height={20} />
+				<Icon icon={icons.light.outline} height={24} />
 			) : (
-				<Icon icon={icons.dark.outline} height={20} />
+				<Icon icon={icons.dark.outline} height={24} />
 			)}
 		</div>
 	);
