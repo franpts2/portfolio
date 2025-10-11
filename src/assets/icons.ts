@@ -6,33 +6,42 @@ export const icons = {
 		outline: "material-symbols:light-mode-outline",
 	},
 
-    home: {
-        fill: "material-symbols:home",
+	home: {
+		fill: "material-symbols:home",
 		outline: "material-symbols:home-outline",
 	},
-    about: {
-        fill: "material-symbols:person",
+	about: {
+		fill: "material-symbols:person",
 		outline: "material-symbols:person-outline",
 	},
-    experience: {
-        fill: "material-symbols:work",
+	experience: {
+		fill: "material-symbols:work",
 		outline: "material-symbols:work-outline",
 	},
-    projects: {
-        fill: "material-symbols:folder",
+	projects: {
+		fill: "material-symbols:folder",
 		outline: "material-symbols:folder-outline",
 	},
 
-    left: {
-        fill: "material-symbols:chevron-backward",
+	left: {
+		fill: "material-symbols:chevron-backward",
 		outline: "material-symbols:chevron-backward-outline",
 	},
-    right: {
-        fill: "material-symbols:chevron-forward",
+	right: {
+		fill: "material-symbols:chevron-forward",
 		outline: "material-symbols:chevron-forward-outline",
 	},
 
-    // Social Icons
+	menu: {
+		fill: "material-symbols:menu",
+		outline: "material-symbols:menu-outline",
+	},
+	close: {
+		fill: "material-symbols:close",
+		outline: "material-symbols:close-outline",
+	},
+
+	// Social Icons
 	github: {
 		outline: "mdi:github",
 	},
