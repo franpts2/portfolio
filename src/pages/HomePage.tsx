@@ -22,11 +22,11 @@ const HomePage = () => {
 					}}
 				/>
 
-				<h1 className="text-3xl sm:text-4xl md:text-5xl font-black font-family-heading text-primary-accent relative inline-block z-20 pointer-events-none select-none">
+				<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black font-family-heading text-primary-accent relative inline-block z-20 pointer-events-none select-none">
 					Francisca Portugal
 				</h1>
 
-				<p className="mt-4 text-sm sm:text-base md:text-lg font-family-body text-primary pointer-events-none select-none">
+				<p className="mt-2 sm:mt-4 text-sm sm:text-base md:text-lg lg:text-2xl font-family-body text-primary pointer-events-none select-none">
 					Building beautiful experiences on the web.
 				</p>
 			</div>
