@@ -13,9 +13,8 @@ const navItems = [
 
 const Sidebar = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
-	const [expanded, setExpanded] = useState(true);
 	const [hovered, setHovered] = useState(false);
-	const isOpen = expanded || hovered;
+	const isOpen = hovered;
 	const sidebarRef = React.useRef<HTMLDivElement>(null);
 	const navigate = useNavigate();
 
