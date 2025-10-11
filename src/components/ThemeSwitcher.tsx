@@ -9,13 +9,13 @@ const ThemeSwitcher = () => {
 
 	return (
 		<div
-			className="cursor-pointer mx-2 text-primary"
+			className="cursor-pointer mx-1 text-primary"
 			onClick={toggleTheme}
 		>
 			{isDark ? (
-				<Icon icon={icons.light.outline} height={20} />
+				<Icon icon={icons.light.outline} height={24} />
 			) : (
-				<Icon icon={icons.dark.outline} height={20} />
+				<Icon icon={icons.dark.outline} height={24} />
 			)}
 		</div>
 	);

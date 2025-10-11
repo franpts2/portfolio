@@ -31,4 +31,15 @@ export const icons = {
         fill: "material-symbols:chevron-forward",
 		outline: "material-symbols:chevron-forward-outline",
 	},
+
+    // Social Icons
+	github: {
+		outline: "mdi:github",
+	},
+	linkedin: {
+		outline: "mdi:linkedin",
+	},
+	instagram: {
+		outline: "mdi:instagram",
+	},
 };
