@@ -14,6 +14,8 @@ const navItems = [
 const Sidebar = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [expanded, setExpanded] = useState(true);
+	const [hovered, setHovered] = useState(false);
+	const isOpen = expanded || hovered;
 	const sidebarRef = React.useRef<HTMLDivElement>(null);
 	const navigate = useNavigate();
 
@@ -46,65 +48,55 @@ const Sidebar = () => {
 	}, []);
 
 	return (
-		<>
-			<div
-				className="fixed top-4 left-4 z-60 text-primary cursor-pointer pointer-events-auto"
-				onClick={() => setExpanded((prev) => !prev)}
-			>
-				<Icon
-					icon={expanded ? icons.left.fill : icons.right.fill}
-					height={24}
-				/>
-			</div>
+		<div
+			ref={sidebarRef}
+			className={`fixed flex flex-col justify-center h-screen px-3 py-6 z-50 pointer-events-auto`}
+			onMouseEnter={() => setHovered(true)}
+			onMouseLeave={() => setHovered(false)}
+			style={{
+				left: 0,
+				top: 0,
+				width: isOpen ? 200 : 56,
+				transition: "width 260ms cubic-bezier(.2,.8,.2,1)",
+			}}
+		>
+			{navItems.map(({ name, to, icon }, idx) => (
+				<NavLink
+					key={name}
+					to={to}
+					className={({ isActive }) => {
+						return `flex items-center gap-1 font-family-body text-lg py-2 ${
+							isActive || activeIndex === idx
+								? "text-secondary-accent"
+								: "text-primary"
+						}`;
+					}}
+					onClick={() => {
+						setActiveIndex(idx);
+						navigate(to);
+					}}
+				>
+					{/* fixed-size icon container so icons keep consistent size when collapsed */}
+					<div className="w-10 flex-shrink-0 flex items-center justify-center">
+						<Icon icon={icon} height={24} />
+					</div>
 
-			<div
-				ref={sidebarRef}
-				className={`fixed flex flex-col justify-center h-screen px-3 py-6 z-50 pointer-events-auto`}
-				style={{
-					left: 0,
-					top: 0,
-					width: expanded ? 200 : 56,
-					transition: "width 260ms cubic-bezier(.2,.8,.2,1)",
-				}}
-			>
-				{navItems.map(({ name, to, icon }, idx) => (
-					<NavLink
-						key={name}
-						to={to}
-						className={({ isActive }) => {
-							return `flex items-center gap-1 font-family-body text-lg py-2 ${
-								isActive || activeIndex === idx
-									? "text-secondary-accent"
-									: "text-primary"
-							}`;
-						}}
-						onClick={() => {
-							setActiveIndex(idx);
-							navigate(to);
+					<span
+						className="overflow-hidden block"
+						style={{
+							transition:
+								"opacity 220ms ease, transform 260ms cubic-bezier(.2,.8,.2,1)",
+							opacity: isOpen ? 1 : 0,
+							transform: isOpen ? "translateX(0)" : "translateX(-8px)",
+							whiteSpace: "nowrap",
+							marginLeft: 1,
 						}}
 					>
-						{/* fixed-size icon container so icons keep consistent size when collapsed */}
-						<div className="w-10 flex-shrink-0 flex items-center justify-center">
-							<Icon icon={icon} height={24} />
-						</div>
-
-						<span
-							className="overflow-hidden block"
-							style={{
-								transition:
-									"opacity 220ms ease, transform 260ms cubic-bezier(.2,.8,.2,1)",
-								opacity: expanded ? 1 : 0,
-								transform: expanded ? "translateX(0)" : "translateX(-8px)",
-								whiteSpace: "nowrap",
-								marginLeft: 1,
-							}}
-						>
-							{name}
-						</span>
-					</NavLink>
-				))}
-			</div>
-		</>
+						{name}
+					</span>
+				</NavLink>
+			))}
+		</div>
 	);
 };
 
