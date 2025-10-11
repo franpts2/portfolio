@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { icons } from "../../assets/icons.js";
 
@@ -17,9 +17,14 @@ const Sidebar = () => {
 	const isOpen = hovered;
 	const sidebarRef = React.useRef<HTMLDivElement>(null);
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	// keyboard shortcuts (ctrl+arrowUp and ctrl+arrowDown to move between pages)
 	React.useEffect(() => {
+		// sync activeIndex with current location so refresh highlights correct link
+		const idx = navItems.findIndex((item) => item.to === location.pathname);
+		if (idx !== -1) setActiveIndex(idx);
+
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.ctrlKey && e.key === "ArrowUp") {
 				setActiveIndex((prev) => {
