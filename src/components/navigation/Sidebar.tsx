@@ -55,10 +55,10 @@ const Sidebar = () => {
 			<div className="fixed top-4 left-4 z-60 px-1 rounded-md sm:hidden text-primary">
 				<Icon icon={icons.menu.fill} height={24} />
 			</div>
-            
+
 			<div
 				ref={sidebarRef}
-				className={`fixed flex flex-col justify-center h-screen px-3 py-6 z-50 pointer-events-auto`}
+				className={`hidden sm:flex fixed flex-col justify-center h-screen px-3 py-6 z-50 pointer-events-auto`}
 				onMouseEnter={() => setHovered(true)}
 				onMouseLeave={() => setHovered(false)}
 				style={{
@@ -84,7 +84,6 @@ const Sidebar = () => {
 							navigate(to);
 						}}
 					>
-						{/* fixed-size icon container so icons keep consistent size when collapsed */}
 						<div className="w-10 flex-shrink-0 flex items-center justify-center">
 							<Icon icon={icon} height={24} />
 						</div>
