@@ -54,12 +54,16 @@ const Sidebar = () => {
 	return (
 		<>
 			<button
-				className="fixed top-4 left-4 z-60 px-2 rounded-md sm:hidden text-primary"
+				className="fixed top-4 left-4 z-60 px-2 rounded-md sm:hidden text-primary transition-transform duration-300 ease-in-out"
 				onClick={() => setMobileOpen((prev) => !prev)}
 			>
 				<Icon
 					icon={mobileOpen ? icons.close.fill : icons.menu.fill}
 					height={24}
+					className="transition-transform duration-300 ease-in-out"
+					style={{
+						transform: mobileOpen ? "scale(1.2)" : "scale(1)",
+					}}
 				/>
 			</button>
 
