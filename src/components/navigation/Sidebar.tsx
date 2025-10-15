@@ -14,6 +14,7 @@ const navItems = [
 const Sidebar = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [hovered, setHovered] = useState(false);
+	const [mobileOpen, setMobileOpen] = useState(false); // Added mobileOpen state
 	const isOpen = hovered;
 	const sidebarRef = React.useRef<HTMLDivElement>(null);
 	const navigate = useNavigate();
@@ -52,9 +53,15 @@ const Sidebar = () => {
 
 	return (
 		<>
-			<div className="fixed top-4 left-4 z-60 px-1 rounded-md sm:hidden text-primary">
-				<Icon icon={icons.menu.fill} height={24} />
-			</div>
+			<button
+				className="fixed top-4 left-4 z-60 px-2 rounded-md sm:hidden text-primary"
+				onClick={() => setMobileOpen((prev) => !prev)}
+			>
+				<Icon
+					icon={mobileOpen ? icons.close.fill : icons.menu.fill}
+					height={24}
+				/>
+			</button>
 
 			<div
 				ref={sidebarRef}
