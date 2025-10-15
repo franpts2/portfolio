@@ -53,6 +53,45 @@ const Sidebar = () => {
 
 	return (
 		<>
+			{/* Blurred background overlay */}
+			{mobileOpen && (
+				<div
+					className="fixed inset-0 backdrop-blur-3xl z-50"
+					onClick={() => setMobileOpen(false)} // Close menu when clicking the overlay
+				>
+					<div className="relative min-h-screen flex items-center px-4 sm:px-6">
+						<div className="mx-auto text-center max-w-3xl relative">
+							{navItems.map(({ name, to, icon }, idx) => (
+								<NavLink
+									key={name}
+									to={to}
+									className={({ isActive }) => {
+										return `flex flex-col items-center justify-center gap-2 font-family-body text-xl py-2 ${
+											isActive || activeIndex === idx
+												? "text-secondary-accent"
+												: "text-primary"
+										}`;
+									}}
+									onClick={() => {
+										setActiveIndex(idx);
+										navigate(to);
+									}}
+								>
+									<span
+										className="block"
+										style={{
+											whiteSpace: "nowrap",
+										}}
+									>
+										{name}
+									</span>
+								</NavLink>
+							))}
+						</div>
+					</div>
+				</div>
+			)}
+
 			<button
 				className="fixed top-4 left-4 z-60 px-2 rounded-md sm:hidden text-primary transition-transform duration-300 ease-in-out"
 				onClick={() => setMobileOpen((prev) => !prev)}
