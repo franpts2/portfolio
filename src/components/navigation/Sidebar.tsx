@@ -14,6 +14,7 @@ const navItems = [
 const Sidebar = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [hovered, setHovered] = useState(false);
+	const [mobileOpen, setMobileOpen] = useState(false); // Added mobileOpen state
 	const isOpen = hovered;
 	const sidebarRef = React.useRef<HTMLDivElement>(null);
 	const navigate = useNavigate();
@@ -21,7 +22,6 @@ const Sidebar = () => {
 
 	// keyboard shortcuts (ctrl+arrowUp and ctrl+arrowDown to move between pages)
 	React.useEffect(() => {
-		// sync activeIndex with current location so refresh highlights correct link
 		const idx = navItems.findIndex((item) => item.to === location.pathname);
 		if (idx !== -1) setActiveIndex(idx);
 
@@ -52,55 +52,109 @@ const Sidebar = () => {
 	}, []);
 
 	return (
-		<div
-			ref={sidebarRef}
-			className={`fixed flex flex-col justify-center h-screen px-3 py-6 z-50 pointer-events-auto`}
-			onMouseEnter={() => setHovered(true)}
-			onMouseLeave={() => setHovered(false)}
-			style={{
-				left: 0,
-				top: 0,
-				width: isOpen ? 200 : 56,
-				transition: "width 260ms cubic-bezier(.2,.8,.2,1)",
-			}}
-		>
-			{navItems.map(({ name, to, icon }, idx) => (
-				<NavLink
-					key={name}
-					to={to}
-					className={({ isActive }) => {
-						return `flex items-center gap-1 font-family-body text-lg py-2 ${
-							isActive || activeIndex === idx
-								? "text-secondary-accent"
-								: "text-primary"
-						}`;
-					}}
-					onClick={() => {
-						setActiveIndex(idx);
-						navigate(to);
-					}}
+		<>
+			{/* Blurred background overlay */}
+			{mobileOpen && (
+				<div
+					className="fixed inset-0 backdrop-blur-3xl z-50"
+					onClick={() => setMobileOpen(false)} // Close menu when clicking the overlay
 				>
-					{/* fixed-size icon container so icons keep consistent size when collapsed */}
-					<div className="w-10 flex-shrink-0 flex items-center justify-center">
-						<Icon icon={icon} height={24} />
+					<div className="relative min-h-screen flex items-center px-4 sm:px-6">
+						<div className="mx-auto text-center max-w-3xl relative">
+							{navItems.map(({ name, to, icon }, idx) => (
+								<NavLink
+									key={name}
+									to={to}
+									className={({ isActive }) => {
+										return `flex flex-col items-center justify-center gap-2 font-family-body text-xl py-2 ${
+											isActive || activeIndex === idx
+												? "text-secondary-accent"
+												: "text-primary"
+										}`;
+									}}
+									onClick={() => {
+										setActiveIndex(idx);
+										navigate(to);
+									}}
+								>
+									<span
+										className="block"
+										style={{
+											whiteSpace: "nowrap",
+										}}
+									>
+										{name}
+									</span>
+								</NavLink>
+							))}
+						</div>
 					</div>
+				</div>
+			)}
 
-					<span
-						className="overflow-hidden block"
-						style={{
-							transition:
-								"opacity 220ms ease, transform 260ms cubic-bezier(.2,.8,.2,1)",
-							opacity: isOpen ? 1 : 0,
-							transform: isOpen ? "translateX(0)" : "translateX(-8px)",
-							whiteSpace: "nowrap",
-							marginLeft: 1,
+			<button
+				className="fixed top-4 left-4 z-60 px-2 rounded-md sm:hidden text-primary transition-transform duration-300 ease-in-out"
+				onClick={() => setMobileOpen((prev) => !prev)}
+			>
+				<Icon
+					icon={mobileOpen ? icons.close.fill : icons.menu.fill}
+					height={24}
+					className="transition-transform duration-300 ease-in-out"
+					style={{
+						transform: mobileOpen ? "scale(1.2)" : "scale(1)",
+					}}
+				/>
+			</button>
+
+			<div
+				ref={sidebarRef}
+				className={`hidden sm:flex fixed flex-col justify-center h-screen px-3 py-6 z-50 pointer-events-auto`}
+				onMouseEnter={() => setHovered(true)}
+				onMouseLeave={() => setHovered(false)}
+				style={{
+					left: 0,
+					top: 0,
+					width: isOpen ? 200 : 56,
+					transition: "width 260ms cubic-bezier(.2,.8,.2,1)",
+				}}
+			>
+				{navItems.map(({ name, to, icon }, idx) => (
+					<NavLink
+						key={name}
+						to={to}
+						className={({ isActive }) => {
+							return `flex items-center gap-1 font-family-body text-lg py-2 ${
+								isActive || activeIndex === idx
+									? "text-secondary-accent"
+									: "text-primary"
+							}`;
+						}}
+						onClick={() => {
+							setActiveIndex(idx);
+							navigate(to);
 						}}
 					>
-						{name}
-					</span>
-				</NavLink>
-			))}
-		</div>
+						<div className="w-10 flex-shrink-0 flex items-center justify-center">
+							<Icon icon={icon} height={24} />
+						</div>
+
+						<span
+							className="overflow-hidden block"
+							style={{
+								transition:
+									"opacity 220ms ease, transform 260ms cubic-bezier(.2,.8,.2,1)",
+								opacity: isOpen ? 1 : 0,
+								transform: isOpen ? "translateX(0)" : "translateX(-8px)",
+								whiteSpace: "nowrap",
+								marginLeft: 1,
+							}}
+						>
+							{name}
+						</span>
+					</NavLink>
+				))}
+			</div>
+		</>
 	);
 };
 
