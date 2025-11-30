@@ -1,4 +1,5 @@
 import React from "react";
+import Badge from "../components/Badge.tsx";
 
 const ProjectsPage = () => {
 	return (
@@ -10,6 +11,10 @@ const ProjectsPage = () => {
 				<p className="mt-2">
 					This area is under construction. Please come back later!
 				</p>
+				<div className="flex justify-center gap-4 mt-5">
+					<Badge variant="done" />
+					<Badge variant="in progress" />
+				</div>
 			</div>
 		</div>
 	);
