@@ -12,7 +12,7 @@ const variantStyles: Record<BadgeProps["variant"], string> = {
 const Badge: React.FC<BadgeProps> = ({ variant }) => {
 	return (
 		<div
-			className={`inline-block px-4 py-1 rounded-full font-bold text-lg text-center my-2 opacity-50 cursor-pointer hover:scale-105 ${variantStyles[variant]}`}
+			className={`inline-block px-4 py-1 rounded-full font-bold text-lg text-center my-2 opacity-50 ${variantStyles[variant]}`}
 		>
 			{variant}
 		</div>

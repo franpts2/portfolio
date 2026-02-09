@@ -41,6 +41,16 @@ export const icons = {
 		outline: "material-symbols:close-outline",
 	},
 
+    code: {
+		fill: "material-symbols:code",
+		outline: "material-symbols:code-outline",
+	},
+
+    group: {
+		fill: "material-symbols:diversity-3",
+		outline: "material-symbols:diversity-3-outline",
+	},
+
 	// Social Icons
 	github: {
 		outline: "mdi:github",
