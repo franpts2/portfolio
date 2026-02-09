@@ -8,7 +8,7 @@ const Layout = () => {
 		<div className="flex min-h-screen">
 			<Sidebar />
 			<div className="flex-1">
-				<div className="absolute top-4 right-4 z-60 pointer-events-auto">
+				<div className="fixed top-4 right-4 z-60 pointer-events-auto">
 					<ThemeSwitcher />
 				</div>
 				<Outlet />
