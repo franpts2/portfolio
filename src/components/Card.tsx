@@ -9,7 +9,7 @@ const Card = () => {
 			{/* header */}
 			<div className="flex flex-row justify-between items-center">
 				<h1 className="text-3xl text-primary-accent">Title</h1>
-				<Badge variant="in progress" />
+				<Badge variant="in progress"/>
 			</div>
 
 			{/* description */}
