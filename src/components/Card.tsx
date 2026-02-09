@@ -6,25 +6,34 @@ import { icons } from "../assets/icons.js";
 type CardProps = {
 	title: string;
 	description: string;
-    isCollab: boolean;
+	isDone: boolean;
+	isCollab: boolean;
 };
 
-const Card: React.FC<CardProps> = ({ title, description, isCollab }) => {
+const Card: React.FC<CardProps> = ({
+	title,
+	description,
+	isDone,
+	isCollab,
+}) => {
 	return (
 		<div className="bg-secondary-bg rounded-2xl p-8 flex flex-col w-xs gap-3 cursor-pointer hover:scale-105 shadow-lg">
 			{/* header */}
 			<div className="flex flex-row justify-between items-center">
 				<h1 className="text-2xl text-primary-accent">{title}</h1>
-				<Badge variant="in progress" />
+				<Badge variant={isDone ? "done" : "in progress"} />
 			</div>
 
 			{/* description */}
 			<p className="text-left">{description}</p>
 
 			{/* icons */}
-			<div className="flex flex-row justify-between items-center">
+			<div className="flex flex-row justify-between items-center mt-auto">
 				<Icon icon={icons.code.fill} height={24} />
-				<Icon icon={isCollab ? icons.group.fill : icons.about.fill} height={24} />
+				<Icon
+					icon={isCollab ? icons.group.fill : icons.about.fill}
+					height={24}
+				/>
 			</div>
 		</div>
 	);
