@@ -22,7 +22,7 @@ const Card: React.FC<CardProps> = ({
 	const { isDark } = useContext(ThemeContext);
 	const iconTheme = isDark ? "dark" : "light";
 	return (
-		<div className="bg-secondary-bg rounded-2xl p-8 flex flex-col w-xs gap-3 cursor-pointer hover:scale-105 shadow-lg">
+		<div className="bg-secondary-bg rounded-2xl p-8 flex flex-col w-xs gap-3 cursor-pointer shadow-lg transition-transform duration-300 ease-in-out hover:scale-105">
 			{/* header */}
 			<div className="flex flex-row justify-between items-center">
 				<h1 className="text-2xl text-primary-accent">{title}</h1>
