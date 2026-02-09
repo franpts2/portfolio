@@ -102,6 +102,13 @@ const projects = [
 		isDone: true,
 		isCollab: true,
 	},
+    {
+		title: "haskell & prolog exs and projects",
+		description: "Collection of exs and projects made in prolog and haskell",
+		tech: ["haskell"],
+		isDone: true,
+		isCollab: true,
+	},
 ];
 
 const CardList = () => {
