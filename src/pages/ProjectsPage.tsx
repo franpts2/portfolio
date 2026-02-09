@@ -6,7 +6,7 @@ const ProjectsPage = () => {
 	return (
 		<div className="relative min-h-screen flex items-center">
 			<div className="mx-auto text-center">
-                <Card/>
+                <Card title="Focusly" description="All-in-one study app" isCollab/>
 			</div>
 		</div>
 	);
