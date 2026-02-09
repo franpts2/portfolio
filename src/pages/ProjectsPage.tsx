@@ -1,5 +1,6 @@
 import React from "react";
 import Badge from "../components/Badge.tsx";
+import Card from "../components/Card.tsx";
 
 const ProjectsPage = () => {
 	return (
@@ -15,6 +16,7 @@ const ProjectsPage = () => {
 					<Badge variant="done" />
 					<Badge variant="in progress" />
 				</div>
+                <Card/>
 			</div>
 		</div>
 	);
