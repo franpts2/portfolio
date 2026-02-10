@@ -4,37 +4,38 @@
 @import "tailwindcss";
 
 @theme {
-    --font-family-heading: "Clash Display", sans-serif;
-    --font-family-body: "Archivo", sans-serif;
+	--font-family-heading: "Clash Display", sans-serif;
+	--font-family-body: "Archivo", sans-serif;
 
-    --font-size-xs: 0.75rem;
-    --font-size-sm: 0.875rem;
-    --font-size-base: 1rem;
-    --font-size-lg: 1.125rem;
-    --font-size-xl: 1.25rem;
-    --font-size-2xl: 1.5rem;
-    --font-size-3xl: 1.875rem;
-    --font-size-4xl: 2.25rem;
-    --font-size-5xl: 3rem;
-    --font-size-6xl: 3.75rem;
-    --font-size-7xl: 4.5rem;
-    --font-size-8xl: 6rem;
-    --font-size-9xl: 8rem;
+	--font-size-xs: 0.75rem;
+	--font-size-sm: 0.875rem;
+	--font-size-base: 1rem;
+	--font-size-lg: 1.125rem;
+	--font-size-xl: 1.25rem;
+	--font-size-2xl: 1.5rem;
+	--font-size-3xl: 1.875rem;
+	--font-size-4xl: 2.25rem;
+	--font-size-5xl: 3rem;
+	--font-size-6xl: 3.75rem;
+	--font-size-7xl: 4.5rem;
+	--font-size-8xl: 6rem;
+	--font-size-9xl: 8rem;
 
-    /* Background colors */
-    --color-primary-bg: light-dark(#faedcd, #121212);
-    --color-secondary-bg: light-dark(#fff5e1, #242527);
-    
-    /* Accent colors (for backgrounds or text) */
-    --color-primary-accent: light-dark(#457b9d, #ffffff);
-    --color-secondary-accent: light-dark(#f4a261, #7251b5);
-    
-    /* Text colors */
-    --color-primary: light-dark(#111113, #e5e5e5);
-    --color-secondary: light-dark(#9a8c98, #808080);
+	/* Background colors */
+	--color-primary-bg: light-dark(#faedcd, #121212);
+	--color-secondary-bg: light-dark(#fff5e1, #242527);
+	--color-tertiary-bg: light-dark(#f3dda6, #66666e);
+
+	/* Accent colors (for backgrounds or text) */
+	--color-primary-accent: light-dark(#457b9d, #ffffff);
+	--color-secondary-accent: light-dark(#f4a261, #7251b5);
+
+	/* Text colors */
+	--color-primary: light-dark(#111113, #e5e5e5);
+	--color-secondary: light-dark(#9a8c98, #808080);
 }
 
 body {
-    background-color: var(--color-primary-bg);
-    color: var(--color-primary);
+	background-color: var(--color-primary-bg);
+	color: var(--color-primary);
 }
