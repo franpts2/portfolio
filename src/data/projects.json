@@ -3,7 +3,7 @@
 		"id": "focusly",
 		"title": "focusly",
 		"description": "all-in-one study app",
-		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
+		"longDescription": "Focusly transforms the way you study by combining essential tools into one seamless experience. Create personalized quizzes and flashcards, boost focus with a built-in Pomodoro timer, and collaborate with peers through an interactive forum. Whether you're preparing for exams or just reviewing concepts, this app makes studying smarter, not harder. Join a community of learners and take your productivity to the next level!",
 		"tech": ["flutter", "dart", "firebase"],
 		"codeLink": "https://github.com/franpts2/focusly",
 		"isDone": true,
