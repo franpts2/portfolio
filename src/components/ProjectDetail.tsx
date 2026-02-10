@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import projectsData from "../data/projects.json" with { type: "json" };
 import Button from "./Button.tsx";
+import { icons } from "../assets/icons.ts";
 
 function ProjectDetail() {
 	const { projectId } = useParams();
@@ -18,7 +19,7 @@ function ProjectDetail() {
 					<h2 className="text-3xl font-light">{project.description}</h2>
 				</div>
 
-				<Button />
+				<Button text="Check it out!" icon={icons.arrowOutward.fill}/>
 			</div>
 		</div>
 	);
