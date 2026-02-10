@@ -55,6 +55,10 @@ export const icons = {
 		fill: "material-symbols:arrow-outward",
 		outline: "material-symbols:arrow-outward-outline",
 	},
+    arrowLeft: {
+		fill: "material-symbols:arrow-left-alt",
+		outline: "material-symbols:arrow-left-alt-outline",
+	},
 
 	// Social Icons
 	github: {
