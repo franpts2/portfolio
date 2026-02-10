@@ -10,7 +10,7 @@ import AboutPage from "../pages/AboutPage.tsx";
 import ExperiencePage from "../pages/ExperiencePage.tsx";
 import ProjectsPage from "../pages/ProjectsPage.tsx";
 import Layout from "../layouts/Layout.tsx";
-import ProjectDetail from "../components/ProjectDetail.tsx";
+import ProjectDetail from "../components/projects/ProjectDetail.tsx";
 
 export const router = createBrowserRouter(
 	createRoutesFromElements(

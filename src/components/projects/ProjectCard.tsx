@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
-import Badge from "./Badge.tsx";
+import Badge from "../Badge.tsx";
 import { Icon } from "@iconify/react";
-import { icons } from "../assets/icons.js";
-import { ThemeContext } from "./ThemeProvider.tsx";
+import { icons } from "../../assets/icons.ts";
+import { ThemeContext } from "../ThemeProvider.tsx";
 import { Link } from "react-router-dom";
 
 type Project = {
 	id: string;
 	title: string;
 	description: string;
-    longDescription: string;
+	longDescription: string;
 	tech: string[];
 	isDone: boolean;
 	isCollab: boolean;
