@@ -5,9 +5,9 @@
 		"description": "all-in-one study app",
 		"longDescription": "Focusly transforms the way you study by combining essential tools into one seamless experience. Create personalized quizzes and flashcards, boost focus with a built-in Pomodoro timer, and collaborate with peers through an interactive forum. Whether you're preparing for exams or just reviewing concepts, this app makes studying smarter, not harder. Join a community of learners and take your productivity to the next level!",
 		"tech": ["flutter", "dart", "firebase"],
+		"tags": ["university", "collaborative"],
 		"codeLink": "https://github.com/franpts2/focusly",
-		"isDone": true,
-		"isCollab": true
+		"isDone": true
 	},
 	{
 		"id": "junto",
@@ -15,9 +15,9 @@
 		"description": "Social platform for sharing music, films, and books",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["laravel", "php", "js", "tailwind", "postgres", "docker"],
-        "codeLink": "https://github.com/franpts2/junto.",
-		"isDone": true,
-		"isCollab": true
+		"tags": ["university", "collaborative"],
+		"codeLink": "https://github.com/franpts2/junto.",
+		"isDone": true
 	},
 	{
 		"id": "artflow",
@@ -25,9 +25,9 @@
 		"description": "Freelancing website dedicated to artists ",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["html", "css", "php", "js", "sqlite"],
+		"tags": ["university", "collaborative"],
 		"codeLink": "https://github.com/franpts2/artflow",
-		"isDone": true,
-		"isCollab": true
+		"isDone": true
 	},
 	{
 		"id": "portfolio",
@@ -35,9 +35,9 @@
 		"description": "this website!",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["react", "tailwind", "ts"],
+		"tags": ["personal"],
 		"codeLink": "https://github.com/franpts2/portfolio",
-		"isDone": false,
-		"isCollab": false
+		"isDone": false
 	},
 	{
 		"id": "tix",
@@ -45,9 +45,9 @@
 		"description": "Social media platform for concert tracking and stats",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["react", "tailwind", "js"],
+		"tags": ["personal"],
 		"codeLink": "https://github.com/franpts2/tix",
-		"isDone": false,
-		"isCollab": false
+		"isDone": false
 	},
 	{
 		"id": "space-wars",
@@ -55,9 +55,9 @@
 		"description": "A simple Space Invaders Java game using Lanterna.",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["java"],
+		"tags": ["university", "collaborative"],
 		"codeLink": "https://github.com/franpts2/space-wars",
-		"isDone": true,
-		"isCollab": true
+		"isDone": true
 	},
 	{
 		"id": "fernando-oceano-quest",
@@ -65,9 +65,9 @@
 		"description": "2D adventure game with time-tracking, collectibles and sound.",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["java"],
+		"tags": ["personal"],
 		"codeLink": "https://github.com/franpts2/fernando-oceano-quest",
-		"isDone": true,
-		"isCollab": false
+		"isDone": true
 	},
 	{
 		"id": "whack-a-diglett",
@@ -75,9 +75,9 @@
 		"description": "Whack-a-Mole inspired game in Minix ",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["c"],
+		"tags": ["university", "collaborative"],
 		"codeLink": "https://github.com/franpts2/whack-a-diglett",
-		"isDone": true,
-		"isCollab": true
+		"isDone": true
 	},
 	{
 		"id": "olympics-db",
@@ -85,9 +85,9 @@
 		"description": "2024 Olympics Database",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["sqlite"],
+		"tags": ["university", "collaborative"],
 		"codeLink": "https://github.com/franpts2/24olympics-db",
-		"isDone": true,
-		"isCollab": true
+		"isDone": true
 	},
 	{
 		"id": "route-planner",
@@ -95,9 +95,9 @@
 		"description": "Implementation of several route-planning algorithms",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["cpp"],
+		"tags": ["university", "collaborative"],
 		"codeLink": "https://github.com/franpts2/route-planner",
-		"isDone": true,
-		"isCollab": true
+		"isDone": true
 	},
 	{
 		"id": "knaptruck",
@@ -105,9 +105,9 @@
 		"description": "Solver for a packing/knapsack-style problem using several algorithmic approaches",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["cpp"],
+		"tags": ["university", "collaborative"],
 		"codeLink": "https://github.com/franpts2/knaptruck",
-		"isDone": true,
-		"isCollab": true
+		"isDone": true
 	},
 	{
 		"id": "serial-link",
@@ -115,9 +115,9 @@
 		"description": "Implementation of a serial-port-based file transfer protocol",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["c"],
+		"tags": ["university", "collaborative"],
 		"codeLink": "https://github.com/franpts2/serial-link",
-		"isDone": true,
-		"isCollab": true
+		"isDone": true
 	},
 	{
 		"id": "netfetch",
@@ -125,9 +125,9 @@
 		"description": "Lab project implementing a file-download client in C",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["c"],
+		"tags": ["university", "collaborative"],
 		"codeLink": "https://github.com/franpts2/netfetch",
-		"isDone": true,
-		"isCollab": true
+		"isDone": true
 	},
 	{
 		"id": "svgtopng",
@@ -135,9 +135,9 @@
 		"description": "Parser of simple SVG files, rendering them to PNG images",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["cpp"],
+		"tags": ["university", "collaborative"],
 		"codeLink": "https://github.com/franpts2/svgtopng",
-		"isDone": true,
-		"isCollab": true
+		"isDone": true
 	},
 	{
 		"id": "haskell-prolog",
@@ -145,8 +145,8 @@
 		"description": "Collection of exs and projects made in prolog and haskell",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["haskell"],
+		"tags": ["university", "personal"],
 		"codeLink": "https://github.com/franpts2/Y3S1_PFL",
-		"isDone": true,
-		"isCollab": true
+		"isDone": true
 	}
 ]

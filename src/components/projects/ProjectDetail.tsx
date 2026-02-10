@@ -51,8 +51,9 @@ function ProjectDetail() {
 						</div>
 
 						<div className="flex flex-row gap-2">
-							<Tag text="university" />
-							<Tag text="collaborative" />
+							{project.tags.map((tag, index) => (
+                                <Tag key={index} text={tag} />
+                            ))}
 						</div>
 					</div>
 				</div>
