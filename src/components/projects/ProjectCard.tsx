@@ -12,9 +12,9 @@ type Project = {
 	longDescription: string;
 	tech: string[];
 	tags: string[];
+    team: string[];
 	codeLink: string;
 	isDone: boolean;
-	isCollab: boolean;
 };
 
 type ProjectCardProps = {
@@ -26,7 +26,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 	const { isDark } = useContext(ThemeContext);
 	const iconTheme = isDark ? "dark" : "light";
 	const isCollab = tags.includes("collaborative");
-    
+
 	return (
 		<Link to={`/projects/${id}`} className="project-card">
 			<div className="bg-secondary-bg rounded-2xl p-8 flex flex-col w-xs h-full gap-3 cursor-pointer shadow-lg transition-transform duration-300 ease-in-out hover:scale-105">

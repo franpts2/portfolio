@@ -6,6 +6,12 @@
 		"longDescription": "Focusly transforms the way you study by combining essential tools into one seamless experience. Create personalized quizzes and flashcards, boost focus with a built-in Pomodoro timer, and collaborate with peers through an interactive forum. Whether you're preparing for exams or just reviewing concepts, this app makes studying smarter, not harder. Join a community of learners and take your productivity to the next level!",
 		"tech": ["flutter", "dart", "firebase"],
 		"tags": ["university", "collaborative"],
+		"team": [
+			"Francisca Portugal",
+			"Gabriela de Mattos",
+			"Maria Luiza Vieira",
+			"Sara García"
+		],
 		"codeLink": "https://github.com/franpts2/focusly",
 		"isDone": true
 	},
@@ -16,6 +22,12 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["laravel", "php", "js", "tailwind", "postgres", "docker"],
 		"tags": ["university", "collaborative"],
+		"team": [
+			"Francisca Portugal",
+			"Francisco Bandeira",
+			"Maria Luiza Vieira",
+			"Pedro Lunet"
+		],
 		"codeLink": "https://github.com/franpts2/junto.",
 		"isDone": true
 	},
@@ -26,6 +38,7 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["html", "css", "php", "js", "sqlite"],
 		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "Gabriela de Mattos", "Maria Luiza Vieira"],
 		"codeLink": "https://github.com/franpts2/artflow",
 		"isDone": true
 	},
@@ -36,6 +49,7 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["react", "tailwind", "ts"],
 		"tags": ["personal"],
+		"team": ["Francisca Portugal"],
 		"codeLink": "https://github.com/franpts2/portfolio",
 		"isDone": false
 	},
@@ -46,6 +60,7 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["react", "tailwind", "js"],
 		"tags": ["personal"],
+		"team": ["Francisca Portugal"],
 		"codeLink": "https://github.com/franpts2/tix",
 		"isDone": false
 	},
@@ -56,6 +71,7 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["java"],
 		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "João Lopes", "Pedro Monteiro"],
 		"codeLink": "https://github.com/franpts2/space-wars",
 		"isDone": true
 	},
@@ -66,6 +82,7 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["java"],
 		"tags": ["personal"],
+		"team": ["Francisca Portugal"],
 		"codeLink": "https://github.com/franpts2/fernando-oceano-quest",
 		"isDone": true
 	},
@@ -76,6 +93,12 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["c"],
 		"tags": ["university", "collaborative"],
+		"team": [
+			"Francisca Portugal",
+			"Gabriela de Mattos",
+			"Maria Luiza Vieira",
+			"Sara García"
+		],
 		"codeLink": "https://github.com/franpts2/whack-a-diglett",
 		"isDone": true
 	},
@@ -86,6 +109,7 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["sqlite"],
 		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "João Lopes", "Pedro Monteiro"],
 		"codeLink": "https://github.com/franpts2/24olympics-db",
 		"isDone": true
 	},
@@ -96,6 +120,7 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["cpp"],
 		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "Gabriela de Mattos", "Maria Luiza Vieira"],
 		"codeLink": "https://github.com/franpts2/route-planner",
 		"isDone": true
 	},
@@ -106,6 +131,7 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["cpp"],
 		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "Gabriela de Mattos", "Maria Luiza Vieira"],
 		"codeLink": "https://github.com/franpts2/knaptruck",
 		"isDone": true
 	},
@@ -116,6 +142,7 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["c"],
 		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "Maria Luiza Vieira"],
 		"codeLink": "https://github.com/franpts2/serial-link",
 		"isDone": true
 	},
@@ -126,6 +153,7 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["c"],
 		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "Maria Luiza Vieira"],
 		"codeLink": "https://github.com/franpts2/netfetch",
 		"isDone": true
 	},
@@ -136,6 +164,7 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["cpp"],
 		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "Iara Brás", "João Loução"],
 		"codeLink": "https://github.com/franpts2/svgtopng",
 		"isDone": true
 	},
@@ -146,6 +175,7 @@
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["haskell"],
 		"tags": ["university", "personal"],
+		"team": ["Francisca Portugal"],
 		"codeLink": "https://github.com/franpts2/Y3S1_PFL",
 		"isDone": true
 	}

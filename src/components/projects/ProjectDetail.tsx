@@ -17,9 +17,18 @@ function ProjectDetail() {
 
 	if (!project) return <div>Project not found</div>;
 
+	const normalizeName = (name: string) => {
+		return name
+			.toLowerCase()
+			.normalize("NFD")
+			.replace(/[\u0300-\u036f]/g, "")
+			.replace(/ç/g, "c")
+			.replace(/\s+/g, "-");
+	};
+
 	return (
 		<div className="project-detail relative min-h-screen flex flex-col items-center gap-10">
-			<div className="w-4xl mt-10 flex flex-col gap-10">
+			<div className="w-4xl mt-10 mb-10 flex flex-col gap-10">
 				<div className="flex flex-col gap-4">
 					<div className="flex flex-row justify-between">
 						{/* back button */}
@@ -35,8 +44,7 @@ function ProjectDetail() {
 							<p>Back to projects</p>
 						</div>
 
-						
-                        <Button
+						<Button
 							text="Check it out!"
 							icon={icons.arrowOutward.fill}
 							onClick={() => window.open(project.codeLink, "_blank")}
@@ -52,8 +60,8 @@ function ProjectDetail() {
 
 						<div className="flex flex-row gap-2">
 							{project.tags.map((tag, index) => (
-                                <Tag key={index} text={tag} />
-                            ))}
+								<Tag key={index} text={tag} />
+							))}
 						</div>
 					</div>
 				</div>
@@ -86,14 +94,14 @@ function ProjectDetail() {
 							Development Team
 						</h3>
 						<div className="flex flex-row gap-3">
-							{project.tech.map((t, index) => (
-								<img
-									key={index}
-									src={`https://skillicons.dev/icons?i=${t}&theme=${iconTheme}`}
-									alt={t}
-									width="60"
-									height="60"
-								/>
+							{project.team.map((t, index) => (
+								<div className="w-20 h-20 rounded-full shrink-0 overflow-hidden relative flex items-center justify-center">
+									<img
+										key={index}
+										src={`/data/images/people/${normalizeName(t)}.png`}
+										alt={t}
+									/>
+								</div>
 							))}
 						</div>
 					</div>
