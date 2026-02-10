@@ -6,6 +6,7 @@ import { icons } from "../../assets/icons.ts";
 import { Icon } from "@iconify/react";
 import { ThemeContext } from "../ThemeProvider.tsx";
 import Tag from "../ui/Tag.tsx";
+import CircleFlip from "../ui/CircleFlip.tsx";
 
 function ProjectDetail() {
 	const { projectId } = useParams();
@@ -95,13 +96,11 @@ function ProjectDetail() {
 						</h3>
 						<div className="flex flex-row gap-3">
 							{project.team.map((t, index) => (
-								<div className="w-20 h-20 rounded-full shrink-0 overflow-hidden relative flex items-center justify-center">
-									<img
-										key={index}
-										src={`/data/images/people/${normalizeName(t)}.png`}
-										alt={t}
-									/>
-								</div>
+								<CircleFlip
+									key={index}
+									src={`/data/images/people/${normalizeName(t)}.png`}
+									alt={t}
+								/>
 							))}
 						</div>
 					</div>
