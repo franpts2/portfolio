@@ -7,6 +7,7 @@ import { Icon } from "@iconify/react";
 import { ThemeContext } from "../ThemeProvider.tsx";
 import Tag from "../ui/Tag.tsx";
 import CircleFlip from "../ui/CircleFlip.tsx";
+import Gallery from "../ui/Gallery.tsx";
 
 function ProjectDetail() {
 	const { projectId } = useParams();
@@ -68,7 +69,7 @@ function ProjectDetail() {
 				</div>
 
 				{/* gallery */}
-				<div className="w-auto h-130 bg-secondary-accent rounded-4xl"></div>
+				<Gallery projectId={projectId} />
 
 				<p>{project.longDescription}</p>
 
