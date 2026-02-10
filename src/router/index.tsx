@@ -10,6 +10,7 @@ import AboutPage from "../pages/AboutPage.tsx";
 import ExperiencePage from "../pages/ExperiencePage.tsx";
 import ProjectsPage from "../pages/ProjectsPage.tsx";
 import Layout from "../layouts/Layout.tsx";
+import ProjectDetail from "../components/ProjectDetail.tsx";
 
 export const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -18,6 +19,7 @@ export const router = createBrowserRouter(
 			<Route path="about" element={<AboutPage />} />
 			<Route path="experience" element={<ExperiencePage />} />
 			<Route path="projects" element={<ProjectsPage />} />
-		</Route>
-	)
+			<Route path="/projects/:projectId" element={<ProjectDetail />} />
+		</Route>,
+	),
 );
