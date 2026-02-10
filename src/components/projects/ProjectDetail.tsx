@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import projectsData from "../../data/projects.json" with { type: "json" };
 import Button from "../ui/Button.tsx";
@@ -17,7 +17,37 @@ function ProjectDetail() {
 	const { isDark } = useContext(ThemeContext);
 	const iconTheme = isDark ? "dark" : "light";
 
+	const titleRef = useRef<HTMLHeadingElement>(null);
+	const descRef = useRef<HTMLHeadingElement>(null);
+	const [useColumnLayout, setUseColumnLayout] = useState(false);
+
 	if (!project || !projectId) return <div>Project not found</div>;
+
+	useEffect(() => {
+		const checkTextWrapping = () => {
+			if (!titleRef.current || !descRef.current) return;
+
+			// computed styles and line heights
+			const titleStyle = window.getComputedStyle(titleRef.current);
+			const descStyle = window.getComputedStyle(descRef.current);
+
+			const titleLineHeight = parseFloat(titleStyle.lineHeight);
+			const descLineHeight = parseFloat(descStyle.lineHeight);
+
+			// check if actual height is greater than single line height (with some tolerance)
+			const titleWrapped =
+				titleRef.current.offsetHeight > titleLineHeight * 1.1;
+			const descWrapped = descRef.current.offsetHeight > descLineHeight * 1.1;
+
+			setUseColumnLayout(titleWrapped || descWrapped);
+		};
+
+		// check after component mounts and on resize
+		checkTextWrapping();
+		window.addEventListener("resize", checkTextWrapping);
+
+		return () => window.removeEventListener("resize", checkTextWrapping);
+	}, [project?.title, project?.description]);
 
 	const normalizeName = (name: string) => {
 		return name
@@ -54,10 +84,16 @@ function ProjectDetail() {
 					</div>
 
 					{/* header */}
-					<div className="flex flex-row gap-30 w-4xl justify-between items-end">
-						<div className="flex flex-row gap-3 items-end text-primary-accent cursor-default">
-							<h1 className="text-6xl font-black">{project.title}</h1>
-							<h2 className="text-3xl font-light">{project.description}</h2>
+					<div className="flex flex-row w-4xl justify-between items-end">
+						<div
+							className={`flex gap-3 text-primary-accent cursor-default ${useColumnLayout ? "flex-col items-start" : "flex-row items-end"}`}
+						>
+							<h1 ref={titleRef} className="text-6xl font-black">
+								{project.title}
+							</h1>
+							<h2 ref={descRef} className="text-3xl font-light">
+								{project.description}
+							</h2>
 						</div>
 
 						<div className="flex flex-row gap-2">
@@ -76,7 +112,7 @@ function ProjectDetail() {
 				<div className="flex flex-row justify-between">
 					{/* tech */}
 					<div className="flex flex-col gap-2">
-						<h3 className="text-primary-accent font-bold text-lg">Tech</h3>
+						<h3 className="text-primary-accent font-bold text-lg">Tech Stack</h3>
 						<div className="flex flex-row gap-3">
 							{project.tech.map((t, index) => (
 								<img
