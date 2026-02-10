@@ -10,14 +10,14 @@ import CircleFlip from "../ui/CircleFlip.tsx";
 import Gallery from "../ui/Gallery.tsx";
 
 function ProjectDetail() {
-	const { projectId } = useParams();
+	const { projectId } = useParams<{ projectId: string }>();
 	const navigate = useNavigate();
 	const project = projectsData.find((p: { id: string }) => p.id === projectId);
 
 	const { isDark } = useContext(ThemeContext);
 	const iconTheme = isDark ? "dark" : "light";
 
-	if (!project) return <div>Project not found</div>;
+	if (!project || !projectId) return <div>Project not found</div>;
 
 	const normalizeName = (name: string) => {
 		return name

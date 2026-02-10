@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { icons } from "../../assets/icons.ts";
+import IconButton from "./IconButton.tsx";
 
 interface GalleryProps {
 	projectId: string;
@@ -6,6 +8,7 @@ interface GalleryProps {
 
 const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	const [images, setImages] = useState<string[]>([]);
+	const [currentIndex, setCurrentIndex] = useState(0);
 
 	const normalizeProjectId = (id: string) => {
 		return id
@@ -49,24 +52,42 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 		loadImages();
 	}, [projectId]);
 
+	const handlePrevious = () => {
+		setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+	};
+
+	const handleNext = () => {
+		setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+	};
+
 	if (images.length === 0) {
 		return null;
 	}
 
 	return (
-		<div className="w-auto grid grid-cols-2 gap-4">
-			{images.map((image, index) => (
-				<div
-					key={index}
-					className="rounded-2xl overflow-hidden bg-secondary-bg"
-				>
-					<img
-						src={image}
-						alt={`Project screenshot ${index + 1}`}
-						className="w-full h-auto object-cover"
-					/>
-				</div>
-			))}
+		<div className="w-auto relative rounded-2xl overflow-hidden">
+			{/* image display */}
+			<img
+				src={images[currentIndex]}
+				alt={`Project screenshot ${currentIndex + 1}`}
+				className="w-full h-auto object-cover"
+			/>
+
+			{/* left arrow */}
+			<IconButton
+				icon={icons.arrowLeft.fill}
+				onClick={handlePrevious}
+				hoverDirection="left"
+				className="absolute left-14 top-1/2 -translate-y-1/2"
+			/>
+
+			{/* right arrow */}
+			<IconButton
+				icon={icons.arrowRight.fill}
+				onClick={handleNext}
+				hoverDirection="right"
+				className="absolute right-14 top-1/2 -translate-y-1/2"
+			/>
 		</div>
 	);
 };
