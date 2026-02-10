@@ -11,7 +11,7 @@
 		"id": "junto",
 		"title": "junto.",
 		"description": "Social platform for sharing music, films, and books",
-		"tech": ["laravel", "php", "js", "tailwind", "postgres"],
+		"tech": ["laravel", "php", "js", "tailwind", "postgres", "docker"],
 		"isDone": true,
 		"isCollab": true
 	},

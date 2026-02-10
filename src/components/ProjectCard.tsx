@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Badge from "./Badge.tsx";
 import { Icon } from "@iconify/react";
-import { icons } from "../assets/icons.ts";
+import { icons } from "../assets/icons.js";
 import { ThemeContext } from "./ThemeProvider.tsx";
 import { Link } from "react-router-dom";
 
@@ -24,7 +24,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 	const iconTheme = isDark ? "dark" : "light";
 	return (
 		<Link to={`/projects/${id}`} className="project-card">
-			<div className="bg-secondary-bg rounded-2xl p-8 flex flex-col w-xs gap-3 cursor-pointer shadow-lg transition-transform duration-300 ease-in-out hover:scale-105">
+			<div className="bg-secondary-bg rounded-2xl p-8 flex flex-col w-xs h-full gap-3 cursor-pointer shadow-lg transition-transform duration-300 ease-in-out hover:scale-105">
 				{/* header */}
 				<div className="flex flex-row justify-between items-center">
 					<h1 className="text-2xl text-primary-accent">{title}</h1>
