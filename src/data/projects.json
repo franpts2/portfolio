@@ -32,7 +32,7 @@
 	{
 		"id": "portfolio",
 		"title": "portfolio",
-		"description": "This personal portfolio website!",
+		"description": "this website!",
 		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
 		"tech": ["react", "tailwind", "ts"],
 		"codeLink": "https://github.com/franpts2/portfolio",
