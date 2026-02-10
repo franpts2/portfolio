@@ -4,7 +4,8 @@ import { Icon } from "@iconify/react";
 import { icons } from "../assets/icons.js";
 import { ThemeContext } from "./ThemeProvider.tsx";
 
-type CardProps = {
+type Project = {
+	id: string;
 	title: string;
 	description: string;
 	tech: string[];
@@ -12,13 +13,12 @@ type CardProps = {
 	isCollab: boolean;
 };
 
-const Card: React.FC<CardProps> = ({
-	title,
-	description,
-	tech,
-	isDone,
-	isCollab,
-}) => {
+type CardProps = {
+	project: Project;
+};
+
+const Card: React.FC<CardProps> = ({ project }) => {
+	const { id, title, description, tech, isDone, isCollab } = project;
 	const { isDark } = useContext(ThemeContext);
 	const iconTheme = isDark ? "dark" : "light";
 	return (

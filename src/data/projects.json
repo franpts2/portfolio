@@ -1,0 +1,122 @@
+[
+	{
+		"id": "focusly",
+		"title": "focusly",
+		"description": "All-in-one study app",
+		"tech": ["flutter", "dart", "firebase"],
+		"isDone": true,
+		"isCollab": true
+	},
+	{
+		"id": "junto",
+		"title": "junto.",
+		"description": "Social platform for sharing music, films, and books",
+		"tech": ["laravel", "php", "js", "tailwind", "postgres"],
+		"isDone": true,
+		"isCollab": true
+	},
+	{
+		"id": "artflow",
+		"title": "artflow",
+		"description": "Freelancing website dedicated to artists ",
+		"tech": ["html", "css", "php", "js", "sqlite"],
+		"isDone": true,
+		"isCollab": true
+	},
+	{
+		"id": "portfolio",
+		"title": "portfolio",
+		"description": "This personal portfolio website!",
+		"tech": ["react", "tailwind", "ts"],
+		"isDone": false,
+		"isCollab": false
+	},
+	{
+		"id": "tix",
+		"title": "tix",
+		"description": "Social media platform for concert tracking and stats",
+		"tech": ["react", "tailwind", "js"],
+		"isDone": false,
+		"isCollab": false
+	},
+	{
+		"id": "space-wars",
+		"title": "space wars",
+		"description": "A simple Space Invaders Java game using Lanterna.",
+		"tech": ["java"],
+		"isDone": true,
+		"isCollab": true
+	},
+	{
+		"id": "fernando-oceano-quest",
+		"title": "fernando oceano's quest",
+		"description": "2D adventure game with time-tracking, collectibles and sound.",
+		"tech": ["java"],
+		"isDone": true,
+		"isCollab": false
+	},
+	{
+		"id": "whack-a-diglett",
+		"title": "whack-a-diglett",
+		"description": "Whack-a-Mole inspired game in Minix ",
+		"tech": ["c"],
+		"isDone": true,
+		"isCollab": true
+	},
+	{
+		"id": "olympics-db",
+		"title": "'24 olympics db",
+		"description": "2024 Olympics Database",
+		"tech": ["sqlite"],
+		"isDone": true,
+		"isCollab": true
+	},
+	{
+		"id": "route-planner",
+		"title": "route planner",
+		"description": "Implementation of several route-planning algorithms",
+		"tech": ["cpp"],
+		"isDone": true,
+		"isCollab": true
+	},
+	{
+		"id": "knaptruck",
+		"title": "knaptruck",
+		"description": "Solver for a packing/knapsack-style problem using several algorithmic approaches",
+		"tech": ["cpp"],
+		"isDone": true,
+		"isCollab": true
+	},
+	{
+		"id": "serial-link",
+		"title": "serial link",
+		"description": "Implementation of a serial-port-based file transfer protocol",
+		"tech": ["c"],
+		"isDone": true,
+		"isCollab": true
+	},
+	{
+		"id": "netfetch",
+		"title": "netfetch",
+		"description": "Lab project implementing a file-download client in C",
+		"tech": ["c"],
+		"isDone": true,
+		"isCollab": true
+	},
+	{
+		"id": "svgtopng",
+		"title": "svgtopng",
+		"description": "Parser of simple SVG files, rendering them to PNG images",
+		"tech": ["cpp"],
+		"isDone": true,
+		"isCollab": true
+	},
+	{
+		"id": "haskell-prolog",
+		"title": "haskell & prolog exs and projects",
+		"description": "Collection of exs and projects made in prolog and haskell",
+		"tech": ["haskell"],
+		"isDone": true,
+		"isCollab": true
+	}
+]
