@@ -98,8 +98,9 @@ function ProjectDetail() {
 							{project.team.map((t, index) => (
 								<CircleFlip
 									key={index}
-									src={`/data/images/people/${normalizeName(t)}.png`}
+									src={`/images/people/${normalizeName(t)}.png`}
 									alt={t}
+									fallbackSrc={`/images/people/default-${isDark ? "dark" : "light"}.png`}
 								/>
 							))}
 						</div>
