@@ -34,7 +34,11 @@ function ProjectDetail() {
 						<h2 className="text-3xl font-light">{project.description}</h2>
 					</div>
 
-					<Button text="Check it out!" icon={icons.arrowOutward.fill} />
+					<Button
+						text="Check it out!"
+						icon={icons.arrowOutward.fill}
+						onClick={() => window.open(project.codeLink, "_blank")}
+					/>
 				</div>
 			</div>
 		</div>

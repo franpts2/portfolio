@@ -11,6 +11,7 @@ type Project = {
 	description: string;
 	longDescription: string;
 	tech: string[];
+    codeLink: string;
 	isDone: boolean;
 	isCollab: boolean;
 };
