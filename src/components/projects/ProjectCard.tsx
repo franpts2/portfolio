@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Badge from "../Badge.tsx";
+import Badge from "../ui/Badge.tsx";
 import { Icon } from "@iconify/react";
 import { icons } from "../../assets/icons.ts";
 import { ThemeContext } from "../ThemeProvider.tsx";

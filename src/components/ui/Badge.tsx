@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "./ThemeProvider.tsx";
+import { ThemeContext } from "../ThemeProvider.tsx";
 
 type BadgeProps = {
 	variant: "done" | "in progress";
