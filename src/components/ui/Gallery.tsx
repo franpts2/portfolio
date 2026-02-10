@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { icons } from "../../assets/icons.ts";
 import IconButton from "./IconButton.tsx";
+import PaginationDots from "./PaginationDots.tsx";
 
 interface GalleryProps {
 	projectId: string;
@@ -65,7 +66,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	}
 
 	return (
-		<div className="w-auto relative rounded-2xl overflow-hidden">
+		<div className="w-auto relative overflow-hidden">
 			{/* image display */}
 			<img
 				src={images[currentIndex]}
@@ -87,6 +88,14 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 				onClick={handleNext}
 				hoverDirection="right"
 				className="absolute right-14 top-1/2 -translate-y-1/2"
+			/>
+
+			{/* Pagination Dots */}
+			<PaginationDots
+				totalDots={images.length}
+				currentIndex={currentIndex}
+				onDotClick={setCurrentIndex}
+				className="absolute bottom-4 left-1/2 -translate-x-1/2"
 			/>
 		</div>
 	);
