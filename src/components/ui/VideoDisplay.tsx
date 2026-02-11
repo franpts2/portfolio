@@ -24,11 +24,47 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 	const [isHoveringControls, setIsHoveringControls] = useState(false);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
+	const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
 	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-		setCursorPosition({ x: e.clientX, y: e.clientY });
+		if (!isMobileOrTablet) {
+			setCursorPosition({ x: e.clientX, y: e.clientY });
+		}
 		setShowControls(true);
 	};
+
+	// Update cursor position to center on mobile/tablet or when hovering
+	React.useEffect(() => {
+		const updateCursorPosition = () => {
+			const isMobile = window.innerWidth < 1024;
+			setIsMobileOrTablet(isMobile);
+
+			if (isMobile && containerRef.current) {
+				const rect = containerRef.current.getBoundingClientRect();
+				setCursorPosition({
+					x: rect.left + rect.width / 2,
+					y: rect.top + rect.height / 2,
+				});
+			}
+		};
+
+		updateCursorPosition();
+		window.addEventListener("resize", updateCursorPosition);
+
+		return () => {
+			window.removeEventListener("resize", updateCursorPosition);
+		};
+	}, [isHoveringVideo]);
+
+	React.useEffect(() => {
+		if (isMobileOrTablet && isHoveringVideo && containerRef.current) {
+			const rect = containerRef.current.getBoundingClientRect();
+			setCursorPosition({
+				x: rect.left + rect.width / 2,
+				y: rect.top + rect.height / 2,
+			});
+		}
+	}, [isMobileOrTablet, isHoveringVideo]);
 
 	React.useEffect(() => {
 		const handleFullscreenChange = () => {

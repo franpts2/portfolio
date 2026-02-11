@@ -12,6 +12,11 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	const [images, setImages] = useState<string[]>([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [videoPath, setVideoPath] = useState<string | null>(null);
+	const [touchStart, setTouchStart] = useState<number | null>(null);
+	const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+	// min swipe distance (in px) to trigger navigation
+	const minSwipeDistance = 50;
 
 	const normalizeProjectId = (id: string) => {
 		return id
@@ -81,6 +86,32 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 		setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 	};
 
+	const onTouchStart = (e: React.TouchEvent) => {
+		setTouchEnd(null);
+		if (e.targetTouches[0]) {
+			setTouchStart(e.targetTouches[0].clientX);
+		}
+	};
+
+	const onTouchMove = (e: React.TouchEvent) => {
+		if (e.targetTouches[0]) {
+			setTouchEnd(e.targetTouches[0].clientX);
+		}
+	};
+
+	const onTouchEnd = () => {
+		if (!touchStart || !touchEnd) return;
+		const distance = touchStart - touchEnd;
+		const isLeftSwipe = distance > minSwipeDistance;
+		const isRightSwipe = distance < -minSwipeDistance;
+
+		if (isLeftSwipe) {
+			handleNext();
+		} else if (isRightSwipe) {
+			handlePrevious();
+		}
+	};
+
 	if (!videoPath && images.length === 0) {
 		return null;
 	}
@@ -88,7 +119,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	return (
 		<div className="w-auto relative overflow-hidden">
 			{videoPath ? (
-                <VideoDisplay videoPath={videoPath} />
+				<VideoDisplay videoPath={videoPath} />
 			) : (
 				/* image gallery */
 				<>
@@ -96,6 +127,9 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 						src={images[currentIndex]}
 						alt={`Project screenshot ${currentIndex + 1}`}
 						className="w-full h-auto object-cover"
+						onTouchStart={onTouchStart}
+						onTouchMove={onTouchMove}
+						onTouchEnd={onTouchEnd}
 					/>
 
 					{/* left arrow */}
@@ -103,7 +137,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 						icon={icons.arrowLeft.fill}
 						onClick={handlePrevious}
 						hoverDirection="left"
-						className="absolute left-14 top-1/2 -translate-y-1/2"
+						className="hidden lg:block absolute left-14 top-1/2 -translate-y-1/2"
 					/>
 
 					{/* right arrow */}
@@ -111,7 +145,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 						icon={icons.arrowRight.fill}
 						onClick={handleNext}
 						hoverDirection="right"
-						className="absolute right-14 top-1/2 -translate-y-1/2"
+						className="hidden lg:block absolute right-14 top-1/2 -translate-y-1/2"
 					/>
 
 					<PaginationDots
