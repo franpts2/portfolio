@@ -35,36 +35,25 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 
 	// Update cursor position to center on mobile/tablet or when hovering
 	React.useEffect(() => {
-		const updateCursorPosition = () => {
+		const updateSettings = () => {
 			const isMobile = window.innerWidth < 1024;
 			setIsMobileOrTablet(isMobile);
-
-			if (isMobile && containerRef.current) {
-				const rect = containerRef.current.getBoundingClientRect();
-				setCursorPosition({
-					x: rect.left + rect.width / 2,
-					y: rect.top + rect.height / 2,
-				});
-			}
 		};
 
-		updateCursorPosition();
-		window.addEventListener("resize", updateCursorPosition);
+		updateSettings();
+		window.addEventListener("resize", updateSettings);
 
 		return () => {
-			window.removeEventListener("resize", updateCursorPosition);
+			window.removeEventListener("resize", updateSettings);
 		};
-	}, [isHoveringVideo]);
+	}, []);
 
 	React.useEffect(() => {
-		if (isMobileOrTablet && isHoveringVideo && containerRef.current) {
-			const rect = containerRef.current.getBoundingClientRect();
-			setCursorPosition({
-				x: rect.left + rect.width / 2,
-				y: rect.top + rect.height / 2,
-			});
+		if (isMobileOrTablet) {
+			// On mobile/tablet, always show controls
+			setShowControls(true);
 		}
-	}, [isMobileOrTablet, isHoveringVideo]);
+	}, [isMobileOrTablet]);
 
 	React.useEffect(() => {
 		const handleFullscreenChange = () => {
@@ -156,7 +145,7 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 			</video>
 
 			{/* custom controls */}
-			{showControls && isHoveringVideo && (
+			{(showControls && isHoveringVideo) || isMobileOrTablet ? (
 				<div
 					className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4"
 					onMouseEnter={() => setIsHoveringControls(true)}
@@ -202,22 +191,34 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 						</div>
 					</div>
 				</div>
-			)}
+			) : null}
 
-			<div
-				className={`fixed pointer-events-none z-50 flex items-center gap-2 bg-white text-black px-4 py-2 border-2 border-gray-300 rounded-full shadow-lg -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-out ${
-					isHoveringVideo && !isPlaying && !isHoveringControls
-						? "scale-100 opacity-100"
-						: "scale-50 opacity-0"
-				}`}
-				style={{
-					left: `${cursorPosition.x}px`,
-					top: `${cursorPosition.y}px`,
-				}}
-			>
-				<Icon icon={icons.play.outline} height={24} />
-				<p className="text-sm font-medium whitespace-nowrap">Play video</p>
-			</div>
+			{/* Play video cursor - absolute positioning for mobile, fixed for desktop */}
+			{isMobileOrTablet ? (
+				<div
+					className={`absolute pointer-events-none z-50 flex items-center gap-2 bg-white text-black px-4 py-2 border-2 border-gray-300 rounded-full shadow-lg left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-out ${
+						!isPlaying ? "scale-100 opacity-100" : "scale-50 opacity-0"
+					}`}
+				>
+					<Icon icon={icons.play.outline} height={24} />
+					<p className="text-sm font-medium whitespace-nowrap">Play video</p>
+				</div>
+			) : (
+				<div
+					className={`fixed pointer-events-none z-50 flex items-center gap-2 bg-white text-black px-4 py-2 border-2 border-gray-300 rounded-full shadow-lg -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-out ${
+						isHoveringVideo && !isPlaying && !isHoveringControls
+							? "scale-100 opacity-100"
+							: "scale-50 opacity-0"
+					}`}
+					style={{
+						left: `${cursorPosition.x}px`,
+						top: `${cursorPosition.y}px`,
+					}}
+				>
+					<Icon icon={icons.play.outline} height={24} />
+					<p className="text-sm font-medium whitespace-nowrap">Play video</p>
+				</div>
+			)}
 		</div>
 	);
 };
