@@ -21,7 +21,7 @@ const PaginationDots: React.FC<PaginationDotsProps> = ({
 					onClick={() => onDotClick(index)}
 					className={`w-2 h-2 cursor-pointer rounded-full transition-all duration-300 ${
 						index === currentIndex
-							? "bg-primary-accent w-6"
+							? "bg-secondary-accent w-6"
 							: "bg-secondary hover:bg-tertiary-bg"
 					}`}
 					aria-label={`Go to image ${index + 1}`}
