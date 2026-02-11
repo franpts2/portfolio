@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import { icons } from "../../assets/icons.ts";
 import { ThemeContext } from "../ThemeProvider.tsx";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 type Project = {
 	id: string;
@@ -12,7 +13,7 @@ type Project = {
 	longDescription: string;
 	tech: string[];
 	tags: string[];
-    team: string[];
+	team: string[];
 	codeLink: string;
 	isDone: boolean;
 };
@@ -29,7 +30,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
 	return (
 		<Link to={`/projects/${id}`} className="project-card">
-			<div className="bg-secondary-bg rounded-2xl p-8 flex flex-col w-xs h-full gap-3 cursor-pointer shadow-lg transition-transform duration-300 ease-in-out hover:scale-105">
+			<motion.div
+				layoutId={`card-container-${id}`}
+				transition={{
+					type: "spring",
+					stiffness: 300,
+					damping: 30,
+				}}
+				whileHover={{ scale: 1.05 }}
+				className="bg-secondary-bg rounded-2xl p-8 flex flex-col w-xs h-full gap-3 cursor-pointer shadow-lg"
+			>
 				{/* header */}
 				<div className="flex flex-row justify-between items-center">
 					<h1 className="text-2xl text-primary-accent">{title}</h1>
@@ -57,7 +67,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 						height={24}
 					/>
 				</div>
-			</div>
+			</motion.div>
 		</Link>
 	);
 };

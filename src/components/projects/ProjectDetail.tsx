@@ -8,6 +8,7 @@ import { ThemeContext } from "../ThemeProvider.tsx";
 import Tag from "../ui/Tag.tsx";
 import CircleFlip from "../ui/CircleFlip.tsx";
 import Gallery from "./Gallery.tsx";
+import { motion } from "framer-motion";
 
 function ProjectDetail() {
 	const { projectId } = useParams<{ projectId: string }>();
@@ -59,9 +60,28 @@ function ProjectDetail() {
 	};
 
 	return (
-		<div className="project-detail relative min-h-screen flex flex-col items-center gap-6 sm:gap-8 md:gap-10 px-4 sm:px-6 md:px-8">
-			<div className="w-full max-w-4xl mt-14 sm:mt-8 md:mt-14 mb-6 sm:mb-8 md:mb-10 flex flex-col gap-6 sm:gap-8 md:gap-10">
-				<div className="flex flex-col gap-4">
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			transition={{ duration: 0.2 }}
+			className="project-detail justify-center relative min-h-screen flex flex-col items-center gap-6 sm:gap-8 md:gap-10 px-4 sm:px-6 md:px-8"
+		>
+			<motion.div
+				layoutId={`card-container-${projectId}`}
+				transition={{
+					type: "spring",
+					stiffness: 300,
+					damping: 30,
+				}}
+				className="w-fit max-w-4xl mt-10 sm:mt-6 md:mt-6 mb-6 sm:mb-8 md:mb-10 flex flex-col gap-6 sm:gap-8 md:gap-10 bg-secondary-bg rounded-2xl p-8 shadow-lg"
+			>
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.2, duration: 0.3 }}
+					className="flex flex-col gap-4"
+				>
 					<div className="flex flex-row justify-between items-center gap-2">
 						{/* back button */}
 						<div
@@ -108,16 +128,32 @@ function ProjectDetail() {
 							))}
 						</div>
 					</div>
-				</div>
+				</motion.div>
 
 				{/* gallery */}
-				<Gallery projectId={projectId} />
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.3, duration: 0.3 }}
+				>
+					<Gallery projectId={projectId} />
+				</motion.div>
 
-				<p className="text-sm sm:text-base leading-relaxed">
+				<motion.p
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.4, duration: 0.3 }}
+					className="text-sm sm:text-base leading-relaxed"
+				>
 					{project.longDescription}
-				</p>
+				</motion.p>
 
-				<div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-4">
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.5, duration: 0.3 }}
+					className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-4"
+				>
 					{/* tech */}
 					<div className="flex flex-col gap-2">
 						<h3 className="text-primary-accent font-bold text-base sm:text-lg">
@@ -153,9 +189,9 @@ function ProjectDetail() {
 							))}
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
+				</motion.div>
+			</motion.div>
+		</motion.div>
 	);
 }
 

@@ -1,9 +1,12 @@
 import React from "react";
 import Sidebar from "../components/navigation/Sidebar.js";
 import ThemeSwitcher from "../components/ThemeSwitcher.js";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 const Layout = () => {
+	const location = useLocation();
+
 	return (
 		<div className="flex min-h-screen">
 			<Sidebar />
@@ -11,7 +14,9 @@ const Layout = () => {
 				<div className="fixed top-4 right-4 z-60 pointer-events-auto">
 					<ThemeSwitcher />
 				</div>
-				<Outlet />
+				<AnimatePresence mode="wait">
+					<Outlet key={location.pathname} />
+				</AnimatePresence>
 			</div>
 		</div>
 	);
