@@ -163,19 +163,20 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 				</div>
 			)}
 
-			{/* custom cursor */}
-			{isHoveringVideo && !isPlaying && (
-				<div
-					className="fixed pointer-events-none z-50 flex items-center gap-2 bg-white text-black px-4 py-2 border-2 border-gray-300 rounded-full shadow-lg -translate-x-1/2 -translate-y-1/2"
-					style={{
-						left: `${cursorPosition.x}px`,
-						top: `${cursorPosition.y}px`,
-					}}
-				>
-					<Icon icon={icons.play.outline} height={24} />
-					<p className="text-sm font-medium whitespace-nowrap">Play video</p>
-				</div>
-			)}
+			<div
+				className={`fixed pointer-events-none z-50 flex items-center gap-2 bg-white text-black px-4 py-2 border-2 border-gray-300 rounded-full shadow-lg -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-out ${
+					isHoveringVideo && !isPlaying
+						? "scale-100 opacity-100"
+						: "scale-50 opacity-0"
+				}`}
+				style={{
+					left: `${cursorPosition.x}px`,
+					top: `${cursorPosition.y}px`,
+				}}
+			>
+				<Icon icon={icons.play.outline} height={24} />
+				<p className="text-sm font-medium whitespace-nowrap">Play video</p>
+			</div>
 		</div>
 	);
 };
