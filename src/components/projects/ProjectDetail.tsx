@@ -59,10 +59,10 @@ function ProjectDetail() {
 	};
 
 	return (
-		<div className="project-detail relative min-h-screen flex flex-col items-center gap-10">
-			<div className="w-4xl mt-10 mb-10 flex flex-col gap-10">
+		<div className="project-detail relative min-h-screen flex flex-col items-center gap-6 sm:gap-8 md:gap-10 px-4 sm:px-6 md:px-8">
+			<div className="w-full max-w-6xl mt-14 sm:mt-8 md:mt-10 mb-6 sm:mb-8 md:mb-10 flex flex-col gap-6 sm:gap-8 md:gap-10">
 				<div className="flex flex-col gap-4">
-					<div className="flex flex-row justify-between">
+					<div className="flex flex-row justify-between items-center gap-2">
 						{/* back button */}
 						<div
 							onClick={() => navigate("/projects")}
@@ -73,7 +73,7 @@ function ProjectDetail() {
 								height={24}
 								className="transition-transform duration-300 ease-in-out group-hover:-translate-x-1"
 							/>
-							<p>Back to projects</p>
+							<p className="text-sm sm:text-base">Back to projects</p>
 						</div>
 
 						<Button
@@ -84,19 +84,25 @@ function ProjectDetail() {
 					</div>
 
 					{/* header */}
-					<div className="flex flex-row w-4xl justify-between items-end">
+					<div className="flex flex-col lg:flex-row w-full justify-between items-start lg:items-end gap-4">
 						<div
-							className={`flex gap-3 text-primary-accent cursor-default ${useColumnLayout ? "flex-col items-start" : "flex-row items-end"}`}
+							className={`flex gap-2 sm:gap-3 text-primary-accent cursor-default ${useColumnLayout ? "flex-col items-start" : "flex-col sm:flex-row items-start sm:items-end"}`}
 						>
-							<h1 ref={titleRef} className="text-6xl font-black">
+							<h1
+								ref={titleRef}
+								className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black"
+							>
 								{project.title}
 							</h1>
-							<h2 ref={descRef} className="text-3xl font-light">
+							<h2
+								ref={descRef}
+								className="text-xl sm:text-2xl md:text-3xl font-light"
+							>
 								{project.description}
 							</h2>
 						</div>
 
-						<div className="flex flex-row gap-2">
+						<div className="flex flex-row flex-wrap gap-2">
 							{project.tags.map((tag, index) => (
 								<Tag key={index} text={tag} />
 							))}
@@ -107,15 +113,17 @@ function ProjectDetail() {
 				{/* gallery */}
 				<Gallery projectId={projectId} />
 
-				<p>{project.longDescription}</p>
+				<p className="text-sm sm:text-base leading-relaxed">
+					{project.longDescription}
+				</p>
 
-				<div className="flex flex-row justify-between">
+				<div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-4">
 					{/* tech */}
 					<div className="flex flex-col gap-2">
-						<h3 className="text-primary-accent font-bold text-lg">
+						<h3 className="text-primary-accent font-bold text-base sm:text-lg">
 							Tech Stack
 						</h3>
-						<div className="flex flex-row gap-3">
+						<div className="flex flex-row flex-wrap gap-2 sm:gap-3">
 							{project.tech.map((t, index) => (
 								<img
 									key={index}
@@ -123,6 +131,7 @@ function ProjectDetail() {
 									alt={t}
 									width="60"
 									height="60"
+									className="w-12 h-12 sm:w-14 sm:h-14 md:w-[60px] md:h-[60px]"
 								/>
 							))}
 						</div>
@@ -130,10 +139,10 @@ function ProjectDetail() {
 
 					{/* team */}
 					<div className="flex flex-col gap-2">
-						<h3 className="text-primary-accent font-bold text-lg">
+						<h3 className="text-primary-accent font-bold text-base sm:text-lg">
 							Development Team
 						</h3>
-						<div className="flex flex-row gap-3">
+						<div className="flex flex-row flex-wrap gap-2 sm:gap-3">
 							{project.team.map((t, index) => (
 								<CircleFlip
 									key={index}
