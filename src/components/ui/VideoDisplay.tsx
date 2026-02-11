@@ -21,6 +21,7 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 	const [showControls, setShowControls] = useState(true);
 	const [isMuted, setIsMuted] = useState(false);
 	const [isFullscreen, setIsFullscreen] = useState(false);
+	const [isHoveringControls, setIsHoveringControls] = useState(false);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 
@@ -96,7 +97,7 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 	return (
 		<div
 			ref={containerRef}
-			className={`relative ${isHoveringVideo && !isPlaying ? "cursor-none" : ""} ${className} rounded-lg overflow-hidden`}
+			className={`relative ${isHoveringVideo && !isPlaying && !isHoveringControls ? "cursor-none" : ""} ${className} rounded-lg overflow-hidden`}
 			onMouseMove={handleMouseMove}
 			onMouseEnter={() => setIsHoveringVideo(true)}
 			onMouseLeave={() => {
@@ -120,7 +121,11 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 
 			{/* custom controls */}
 			{showControls && isHoveringVideo && (
-				<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+				<div
+					className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4"
+					onMouseEnter={() => setIsHoveringControls(true)}
+					onMouseLeave={() => setIsHoveringControls(false)}
+				>
 					<ProgressBar
 						currentTime={currentTime}
 						duration={duration}
@@ -165,7 +170,7 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 
 			<div
 				className={`fixed pointer-events-none z-50 flex items-center gap-2 bg-white text-black px-4 py-2 border-2 border-gray-300 rounded-full shadow-lg -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-out ${
-					isHoveringVideo && !isPlaying
+					isHoveringVideo && !isPlaying && !isHoveringControls
 						? "scale-100 opacity-100"
 						: "scale-50 opacity-0"
 				}`}
