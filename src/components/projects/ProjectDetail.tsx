@@ -72,7 +72,7 @@ function ProjectDetail() {
 				transition={{
 					type: "spring",
 					stiffness: 300,
-					damping: 30,
+					damping: 40,
 				}}
 				className="w-fit max-w-5xl mt-10 sm:mt-6 md:mt-6 mb-6 sm:mb-8 md:mb-10 flex flex-col gap-6 sm:gap-8 md:gap-10 bg-secondary-bg rounded-2xl p-8 shadow-lg"
 			>

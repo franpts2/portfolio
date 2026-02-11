@@ -35,7 +35,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 				transition={{
 					type: "spring",
 					stiffness: 300,
-					damping: 30,
+					damping: 40,
 				}}
 				whileHover={{ scale: 1.05 }}
 				className="bg-secondary-bg rounded-2xl p-8 flex flex-col w-xs h-full gap-3 cursor-pointer shadow-lg"
