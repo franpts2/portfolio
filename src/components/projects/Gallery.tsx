@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { icons } from "../../assets/icons.ts";
+import { Icon } from "@iconify/react";
 import IconButton from "../ui/IconButton.tsx";
 import PaginationDots from "../ui/PaginationDots.tsx";
 import VideoDisplay from "../ui/VideoDisplay.tsx";
@@ -14,9 +15,44 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	const [videoPath, setVideoPath] = useState<string | null>(null);
 	const [touchStart, setTouchStart] = useState<number | null>(null);
 	const [touchEnd, setTouchEnd] = useState<number | null>(null);
+	const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+	const [isHoveringGallery, setIsHoveringGallery] = useState(false);
+	const [isLeftSide, setIsLeftSide] = useState(false);
+	const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
 	// min swipe distance (in px) to trigger navigation
 	const minSwipeDistance = 50;
+
+	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+		if (!isMobileOrTablet) {
+			const rect = e.currentTarget.getBoundingClientRect();
+			const relativeX = e.clientX - rect.left;
+			setCursorPosition({ x: e.clientX, y: e.clientY });
+			setIsLeftSide(relativeX < rect.width / 2);
+		}
+	};
+
+	const handleImageClick = () => {
+		if (isLeftSide) {
+			handlePrevious();
+		} else {
+			handleNext();
+		}
+	};
+
+	useEffect(() => {
+		const updateSettings = () => {
+			const isMobile = window.innerWidth < 1024;
+			setIsMobileOrTablet(isMobile);
+		};
+
+		updateSettings();
+		window.addEventListener("resize", updateSettings);
+
+		return () => {
+			window.removeEventListener("resize", updateSettings);
+		};
+	}, []);
 
 	const normalizeProjectId = (id: string) => {
 		return id
@@ -123,30 +159,42 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 			) : (
 				/* image gallery */
 				<>
-					<img
-						src={images[currentIndex]}
-						alt={`Project screenshot ${currentIndex + 1}`}
-						className="w-full h-auto object-cover"
-						onTouchStart={onTouchStart}
-						onTouchMove={onTouchMove}
-						onTouchEnd={onTouchEnd}
-					/>
+					<div
+						className={`relative ${isHoveringGallery && !isMobileOrTablet ? "cursor-none" : ""}`}
+						onMouseMove={handleMouseMove}
+						onMouseEnter={() => setIsHoveringGallery(true)}
+						onMouseLeave={() => setIsHoveringGallery(false)}
+					>
+						<img
+							src={images[currentIndex]}
+							alt={`Project screenshot ${currentIndex + 1}`}
+							className="w-full h-auto object-cover"
+							onTouchStart={onTouchStart}
+							onTouchMove={onTouchMove}
+							onTouchEnd={onTouchEnd}
+							onClick={handleImageClick}
+						/>
+					</div>
 
-					{/* left arrow */}
-					<IconButton
-						icon={icons.arrowLeft.fill}
-						onClick={handlePrevious}
-						hoverDirection="left"
-						className="hidden lg:block absolute left-14 top-1/2 -translate-y-1/2"
-					/>
-
-					{/* right arrow */}
-					<IconButton
-						icon={icons.arrowRight.fill}
-						onClick={handleNext}
-						hoverDirection="right"
-						className="hidden lg:block absolute right-14 top-1/2 -translate-y-1/2"
-					/>
+					{/* custom cursor arrows */}
+					{!isMobileOrTablet && (
+						<div
+							className={`fixed pointer-events-none z-50 flex items-center justify-center bg-secondary-bg text-primary p-3 rounded-full shadow-lg -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-out ${
+								isHoveringGallery
+									? "scale-100 opacity-100"
+									: "scale-50 opacity-0"
+							}`}
+							style={{
+								left: `${cursorPosition.x}px`,
+								top: `${cursorPosition.y}px`,
+							}}
+						>
+							<Icon
+								icon={isLeftSide ? icons.arrowLeft.fill : icons.arrowRight.fill}
+								height={24}
+							/>
+						</div>
+					)}
 
 					<PaginationDots
 						totalDots={images.length}
