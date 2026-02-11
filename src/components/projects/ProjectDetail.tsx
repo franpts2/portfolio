@@ -60,7 +60,7 @@ function ProjectDetail() {
 
 	return (
 		<div className="project-detail relative min-h-screen flex flex-col items-center gap-6 sm:gap-8 md:gap-10 px-4 sm:px-6 md:px-8">
-			<div className="w-full max-w-6xl mt-14 sm:mt-8 md:mt-10 mb-6 sm:mb-8 md:mb-10 flex flex-col gap-6 sm:gap-8 md:gap-10">
+			<div className="w-full max-w-6xl mt-14 sm:mt-8 md:mt-14 mb-6 sm:mb-8 md:mb-10 flex flex-col gap-6 sm:gap-8 md:gap-10">
 				<div className="flex flex-col gap-4">
 					<div className="flex flex-row justify-between items-center gap-2">
 						{/* back button */}

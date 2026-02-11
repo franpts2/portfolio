@@ -69,7 +69,7 @@ const Sidebar = () => {
 								<NavLink
 									key={name}
 									to={to}
-                                    end
+									end
 									className={({ isActive }) => {
 										return `flex flex-col items-center justify-center gap-2 font-family-body text-xl py-2 ${
 											isActive || activeIndex === idx
@@ -98,7 +98,7 @@ const Sidebar = () => {
 			)}
 
 			<button
-				className="fixed top-4 left-4 z-60 px-2 rounded-md sm:hidden text-primary transition-transform duration-300 ease-in-out"
+				className="fixed top-4 left-4 z-60 px-2 rounded-md lg:hidden text-primary transition-transform duration-300 ease-in-out"
 				onClick={() => setMobileOpen((prev) => !prev)}
 			>
 				<Icon
@@ -113,7 +113,7 @@ const Sidebar = () => {
 
 			<div
 				ref={sidebarRef}
-				className={`hidden sm:flex fixed flex-col justify-center h-screen px-3 py-6 z-50 pointer-events-auto`}
+				className={`hidden lg:flex fixed flex-col justify-center h-screen px-3 py-6 z-50 pointer-events-auto`}
 				onMouseEnter={() => setHovered(true)}
 				onMouseLeave={() => setHovered(false)}
 				style={{
@@ -127,7 +127,7 @@ const Sidebar = () => {
 					<NavLink
 						key={name}
 						to={to}
-                        end
+						end
 						className={({ isActive }) => {
 							return `flex items-center gap-1 font-family-body text-lg py-2 ${
 								isActive || activeIndex === idx
