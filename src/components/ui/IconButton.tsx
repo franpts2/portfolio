@@ -7,6 +7,7 @@ interface IconButtonProps {
 	iconHeight?: number;
 	hoverDirection?: "left" | "right" | "up" | "down";
 	className?: string;
+	variant?: "default" | "transparent";
 }
 
 const IconButton: React.FC<IconButtonProps> = ({
@@ -15,6 +16,7 @@ const IconButton: React.FC<IconButtonProps> = ({
 	iconHeight = 24,
 	hoverDirection,
 	className = "",
+	variant = "default",
 }) => {
 	const hoverAnimationClass = hoverDirection
 		? {
@@ -25,11 +27,13 @@ const IconButton: React.FC<IconButtonProps> = ({
 			}[hoverDirection]
 		: "";
 
+	const baseClasses =
+		variant === "transparent"
+			? "hover:scale-110 transition-transform cursor-pointer"
+			: "p-3 rounded-full bg-black text-white hover:bg-grey transition-colors group shadow-lg cursor-pointer";
+
 	return (
-		<button
-			onClick={onClick}
-			className={`p-3 rounded-full bg-black text-white hover:bg-grey transition-colors group shadow-lg cursor-pointer ${className}`}
-		>
+		<button onClick={onClick} className={`${baseClasses} ${className}`}>
 			<Icon
 				icon={icon}
 				height={iconHeight}

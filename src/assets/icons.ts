@@ -41,32 +41,54 @@ export const icons = {
 		outline: "material-symbols:close-outline",
 	},
 
-    code: {
+	code: {
 		fill: "material-symbols:code",
 		outline: "material-symbols:code-outline",
 	},
 
-    group: {
+	group: {
 		fill: "material-symbols:diversity-3",
 		outline: "material-symbols:diversity-3-outline",
 	},
 
-    arrowOutward: {
+	arrowOutward: {
 		fill: "material-symbols:arrow-outward",
 		outline: "material-symbols:arrow-outward-outline",
 	},
-    arrowLeft: {
+	arrowLeft: {
 		fill: "material-symbols:arrow-left-alt",
 		outline: "material-symbols:arrow-left-alt-outline",
 	},
-    arrowRight: {
+	arrowRight: {
 		fill: "material-symbols:arrow-right-alt",
 		outline: "material-symbols:arrow-right-alt-outline",
 	},
 
-    play: {
+	play: {
 		fill: "material-symbols:play-circle",
 		outline: "material-symbols:play-circle-outline",
+	},
+	pause: {
+		fill: "material-symbols:pause-circle",
+		outline: "material-symbols:pause-circle-outline",
+	},
+
+	expand: {
+		fill: "material-symbols:fullscreen",
+		outline: "material-symbols:fullscreen",
+	},
+	collapse: {
+		fill: "material-symbols:fullscreen-exit",
+		outline: "material-symbols:fullscreen-exit",
+	},
+
+	volumeOn: {
+		fill: "material-symbols:volume-up",
+		outline: "material-symbols:volume-up-outline",
+	},
+	volumeOff: {
+		fill: "material-symbols:volume-off",
+		outline: "material-symbols:volume-off-outline",
 	},
 
 	// Social Icons
