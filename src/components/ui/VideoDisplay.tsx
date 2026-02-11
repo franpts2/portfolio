@@ -20,6 +20,7 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 	const [duration, setDuration] = useState(0);
 	const [showControls, setShowControls] = useState(true);
 	const [isMuted, setIsMuted] = useState(false);
+	const [isFullscreen, setIsFullscreen] = useState(false);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 
@@ -27,6 +28,17 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 		setCursorPosition({ x: e.clientX, y: e.clientY });
 		setShowControls(true);
 	};
+
+	React.useEffect(() => {
+		const handleFullscreenChange = () => {
+			setIsFullscreen(!!document.fullscreenElement);
+		};
+
+		document.addEventListener("fullscreenchange", handleFullscreenChange);
+		return () => {
+			document.removeEventListener("fullscreenchange", handleFullscreenChange);
+		};
+	}, []);
 
 	const togglePlayPause = () => {
 		if (videoRef.current) {
@@ -139,7 +151,9 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 								variant="transparent"
 							/>
 							<IconButton
-								icon={icons.expand.outline}
+								icon={
+									isFullscreen ? icons.collapse.outline : icons.expand.outline
+								}
 								onClick={toggleFullscreen}
 								iconHeight={24}
 								variant="transparent"

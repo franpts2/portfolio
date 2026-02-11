@@ -12,8 +12,6 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	const [images, setImages] = useState<string[]>([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [videoPath, setVideoPath] = useState<string | null>(null);
-    const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-    const [isHoveringVideo, setIsHoveringVideo] = useState(false);
 
 	const normalizeProjectId = (id: string) => {
 		return id
@@ -83,10 +81,6 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 		setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 	};
 
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        setCursorPosition({ x: e.clientX, y: e.clientY });
-    };
-
 	if (!videoPath && images.length === 0) {
 		return null;
 	}
@@ -94,7 +88,6 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	return (
 		<div className="w-auto relative overflow-hidden">
 			{videoPath ? (
-				/* video display */
                 <VideoDisplay videoPath={videoPath} />
 			) : (
 				/* image gallery */
@@ -121,7 +114,6 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 						className="absolute right-14 top-1/2 -translate-y-1/2"
 					/>
 
-					{/* Pagination Dots */}
 					<PaginationDots
 						totalDots={images.length}
 						currentIndex={currentIndex}

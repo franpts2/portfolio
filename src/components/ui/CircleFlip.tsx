@@ -31,7 +31,7 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 	return (
 		<div className="w-20 h-20 perspective-1000 cursor-pointer group">
 			<div className="relative w-full h-full transition-transform duration-500 transform-style-3d group-hover:rotate-y-180">
-				{/* Front - Image */}
+				{/* front */}
 				<div className="absolute inset-0 rounded-full overflow-hidden backface-hidden flex items-center justify-center">
 					<img
 						src={imgSrc}
@@ -40,7 +40,7 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 						onError={handleError}
 					/>
 				</div>
-				{/* Back - Text */}
+				{/* back */}
 				<div className="absolute inset-0 rounded-full border border-tertiary-bg bg-tertiary-bg backface-hidden rotate-y-180 flex items-center justify-center">
 					<p className="text-primary text-center text-xs px-2">{alt}</p>
 				</div>
