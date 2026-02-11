@@ -7,7 +7,7 @@ import { Icon } from "@iconify/react";
 import { ThemeContext } from "../ThemeProvider.tsx";
 import Tag from "../ui/Tag.tsx";
 import CircleFlip from "../ui/CircleFlip.tsx";
-import Gallery from "../ui/Gallery.tsx";
+import Gallery from "./Gallery.tsx";
 
 function ProjectDetail() {
 	const { projectId } = useParams<{ projectId: string }>();
@@ -112,7 +112,9 @@ function ProjectDetail() {
 				<div className="flex flex-row justify-between">
 					{/* tech */}
 					<div className="flex flex-col gap-2">
-						<h3 className="text-primary-accent font-bold text-lg">Tech Stack</h3>
+						<h3 className="text-primary-accent font-bold text-lg">
+							Tech Stack
+						</h3>
 						<div className="flex flex-row gap-3">
 							{project.tech.map((t, index) => (
 								<img

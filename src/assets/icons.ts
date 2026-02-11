@@ -64,6 +64,11 @@ export const icons = {
 		outline: "material-symbols:arrow-right-alt-outline",
 	},
 
+    play: {
+		fill: "material-symbols:play-circle",
+		outline: "material-symbols:play-circle-outline",
+	},
+
 	// Social Icons
 	github: {
 		outline: "mdi:github",
