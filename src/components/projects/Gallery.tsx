@@ -19,6 +19,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	const [isHoveringGallery, setIsHoveringGallery] = useState(false);
 	const [isLeftSide, setIsLeftSide] = useState(false);
 	const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+	const [isHoveringPagination, setIsHoveringPagination] = useState(false);
 
 	// min swipe distance (in px) to trigger navigation
 	const minSwipeDistance = 50;
@@ -180,7 +181,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 					{!isMobileOrTablet && (
 						<div
 							className={`fixed pointer-events-none z-50 flex items-center justify-center bg-secondary-bg text-primary p-3 rounded-full shadow-lg -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-out ${
-								isHoveringGallery
+								isHoveringGallery && !isHoveringPagination
 									? "scale-100 opacity-100"
 									: "scale-50 opacity-0"
 							}`}
@@ -196,12 +197,17 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 						</div>
 					)}
 
-					<PaginationDots
-						totalDots={images.length}
-						currentIndex={currentIndex}
-						onDotClick={setCurrentIndex}
-						className="absolute bottom-4 left-1/2 -translate-x-1/2"
-					/>
+					<div
+						onMouseEnter={() => setIsHoveringPagination(true)}
+						onMouseLeave={() => setIsHoveringPagination(false)}
+						className="absolute bottom-4 left-1/2 -translate-x-1/2 p-2"
+					>
+						<PaginationDots
+							totalDots={images.length}
+							currentIndex={currentIndex}
+							onDotClick={setCurrentIndex}
+						/>
+					</div>
 				</>
 			)}
 		</div>
