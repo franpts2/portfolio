@@ -14,6 +14,7 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 	className = "",
 }) => {
 	const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+	const [hasMouseMoved, setHasMouseMoved] = useState(false);
 	const [isHoveringVideo, setIsHoveringVideo] = useState(false);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [currentTime, setCurrentTime] = useState(0);
@@ -29,6 +30,7 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (!isMobileOrTablet) {
 			setCursorPosition({ x: e.clientX, y: e.clientY });
+			setHasMouseMoved(true);
 		}
 		setShowControls(true);
 	};
@@ -206,7 +208,10 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 			) : (
 				<div
 					className={`fixed pointer-events-none z-50 flex items-center gap-2 bg-white text-black px-4 py-2 border-2 border-gray-300 rounded-full shadow-lg -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-out ${
-						isHoveringVideo && !isPlaying && !isHoveringControls
+						isHoveringVideo &&
+						!isPlaying &&
+						!isHoveringControls &&
+						hasMouseMoved
 							? "scale-100 opacity-100"
 							: "scale-50 opacity-0"
 					}`}

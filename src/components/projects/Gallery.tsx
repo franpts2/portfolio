@@ -16,6 +16,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	const [touchStart, setTouchStart] = useState<number | null>(null);
 	const [touchEnd, setTouchEnd] = useState<number | null>(null);
 	const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+	const [hasMouseMoved, setHasMouseMoved] = useState(false);
 	const [isHoveringGallery, setIsHoveringGallery] = useState(false);
 	const [isLeftSide, setIsLeftSide] = useState(false);
 	const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
@@ -29,6 +30,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 			const rect = e.currentTarget.getBoundingClientRect();
 			const relativeX = e.clientX - rect.left;
 			setCursorPosition({ x: e.clientX, y: e.clientY });
+			setHasMouseMoved(true);
 			setIsLeftSide(relativeX < rect.width / 2);
 		}
 	};
@@ -181,7 +183,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 					{!isMobileOrTablet && (
 						<div
 							className={`fixed pointer-events-none z-50 flex items-center justify-center bg-secondary-bg text-primary p-3 rounded-full shadow-lg -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-out ${
-								isHoveringGallery && !isHoveringPagination
+								isHoveringGallery && !isHoveringPagination && hasMouseMoved
 									? "scale-100 opacity-100"
 									: "scale-50 opacity-0"
 							}`}
