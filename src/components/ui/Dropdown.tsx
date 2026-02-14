@@ -7,12 +7,15 @@ interface DropdownProps {
 	filters: {
 		status: "all" | "done" | "in-progress";
 		tags: string[];
+		tech: string[];
 	};
 	onFilterChange: (filters: {
 		status: "all" | "done" | "in-progress";
 		tags: string[];
+		tech: string[];
 	}) => void;
 	availableTags: string[];
+	availableTech: string[];
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -21,6 +24,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 	filters,
 	onFilterChange,
 	availableTags,
+	availableTech,
 }) => {
 	if (!isOpen) return null;
 
@@ -33,6 +37,13 @@ const Dropdown: React.FC<DropdownProps> = ({
 			? filters.tags.filter((t) => t !== tag)
 			: [...filters.tags, tag];
 		onFilterChange({ ...filters, tags: newTags });
+	};
+
+	const handleTechToggle = (language: string) => {
+		const newTech = filters.tech.includes(language)
+			? filters.tech.filter((l) => l !== language)
+			: [...filters.tech, language];
+		onFilterChange({ ...filters, tech: newTech });
 	};
 
 	return (
@@ -72,7 +83,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 				</div>
 
 				{/* tags */}
-				<div>
+				<div className="mb-4">
 					<h3 className="text-sm font-semibold text-secondary mb-2">Tags</h3>
 					<div className="flex flex-col gap-2">
 						{availableTags.map((tag) => (
@@ -81,6 +92,21 @@ const Dropdown: React.FC<DropdownProps> = ({
 								checked={filters.tags.includes(tag)}
 								onChange={() => handleTagToggle(tag)}
 								label={tag}
+							/>
+						))}
+					</div>
+				</div>
+
+				{/* tech */}
+				<div>
+					<h3 className="text-sm font-semibold text-secondary mb-2">Technologies</h3>
+					<div className="flex flex-col gap-2">
+						{availableTech.map((language) => (
+							<Checkbox
+								key={language}
+								checked={filters.tech.includes(language)}
+								onChange={() => handleTechToggle(language)}
+								label={language}
 							/>
 						))}
 					</div>

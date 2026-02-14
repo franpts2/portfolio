@@ -10,36 +10,43 @@ const ProjectsPage = () => {
 	const [filters, setFilters] = useState<{
 		status: "all" | "done" | "in-progress";
 		tags: string[];
-	}>({ status: "all", tags: [] });
+		tech: string[];
+	}>({ status: "all", tags: [], tech: [] });
 
 	// all unique tags from projects
 	const availableTags = Array.from(
 		new Set(projectsData.flatMap((project) => project.tags)),
 	);
 
+	// all unique tech from projects
+	const availableTech = Array.from(
+		new Set(projectsData.flatMap((project) => project.tech)),
+	);
+
 	return (
 		<div className="relative min-h-screen flex flex-col items-center gap-10">
-            <div className="w-full max-w-337.5 px-5 mt-10 flex items-center justify-between">
-                <h1 className="font-black text-4xl text-primary-accent">Projects</h1>
-                <div className="relative">
-                    <IconButton
-                        icon={icons.filters.fill}
-                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        iconHeight={36}
-                        variant="transparent"
-                        className="text-primary-accent"
-                    />
-                    <Dropdown
-                        isOpen={isDropdownOpen}
-                        onClose={() => setIsDropdownOpen(false)}
-                        filters={filters}
-                        onFilterChange={setFilters}
-                        availableTags={availableTags}
-                    />
-                </div>
-            </div>
-            <ProjectCardList filters={filters} />
-        </div>
+			<div className="w-full max-w-337.5 px-5 mt-10 flex items-center justify-between">
+				<h1 className="font-black text-4xl text-primary-accent">Projects</h1>
+				<div className="relative">
+					<IconButton
+						icon={icons.filters.fill}
+						onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+						iconHeight={36}
+						variant="transparent"
+						className="text-primary-accent"
+					/>
+					<Dropdown
+						isOpen={isDropdownOpen}
+						onClose={() => setIsDropdownOpen(false)}
+						filters={filters}
+						onFilterChange={setFilters}
+						availableTags={availableTags}
+						availableTech={availableTech}
+					/>
+				</div>
+			</div>
+			<ProjectCardList filters={filters} />
+		</div>
 	);
 };
 

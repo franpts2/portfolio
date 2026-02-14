@@ -6,6 +6,7 @@ interface ProjectCardListProps {
 	filters?: {
 		status: "all" | "done" | "in-progress";
 		tags: string[];
+		tech: string[];
 	};
 }
 
@@ -21,24 +22,31 @@ const ProjectCardList: React.FC<ProjectCardListProps> = ({ filters }) => {
 			) {
 				return false;
 			}
+
+			if (
+				filters.tech.length > 0 &&
+				!filters.tech.some((lang) => project.tech.includes(lang))
+			) {
+				return false;
+			}
 		}
-        return true;
+		return true;
 	});
 
 	return (
 		<div className="flex flex-col gap-8 items-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                {filteredProjects.map((project) => (
-                    <ProjectCard key={project.id} project={project} />
-                ))}
-            </div>
-            {filteredProjects.length === 0 && (
-                <p className="text-secondary mb-4">No projects match the filters</p>
-            )}
-            {filteredProjects.length > 0 && (
-                <p className="text-secondary mb-4">& many more to come...</p>
-            )}
-        </div>
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+				{filteredProjects.map((project) => (
+					<ProjectCard key={project.id} project={project} />
+				))}
+			</div>
+			{filteredProjects.length === 0 && (
+				<p className="text-secondary mb-4">No projects match the filters</p>
+			)}
+			{filteredProjects.length > 0 && (
+				<p className="text-secondary mb-4">& many more to come...</p>
+			)}
+		</div>
 	);
 };
 
