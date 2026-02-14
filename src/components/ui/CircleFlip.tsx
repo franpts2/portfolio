@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "motion/react";
 
 interface CircleFlipProps {
 	src: string;
@@ -9,6 +10,9 @@ interface CircleFlipProps {
 const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 	const [imgSrc, setImgSrc] = useState(src);
 	const [isError, setIsError] = useState(false);
+	const [rotation, setRotation] = useState(0);
+	const [isAnimating, setIsAnimating] = useState(false);
+	const [shouldContinue, setShouldContinue] = useState(false);
 
 	useEffect(() => {
 		setImgSrc(src);
@@ -28,11 +32,52 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 		}
 	};
 
+	const handleHoverStart = () => {
+		if (!isAnimating) {
+			setIsAnimating(true);
+			setShouldContinue(false);
+			setRotation((prev) => prev + 180);
+		} else {
+			// if already animating, mark to continue for full 360
+			setShouldContinue(true);
+		}
+	};
+
+	const handleHoverEnd = () => {
+		if (!isAnimating) {
+			setIsAnimating(true);
+			setShouldContinue(false);
+			setRotation((prev) => prev + 180);
+		} else {
+			setShouldContinue(true);
+		}
+	};
+
+	const handleAnimationComplete = () => {
+		if (shouldContinue) {
+			setShouldContinue(false);
+			setRotation((prev) => prev + 180);
+		} else {
+			setIsAnimating(false);
+		}
+	};
+
 	return (
-		<div className="w-20 h-20 perspective-1000 cursor-pointer group">
-			<div className="relative w-full h-full transition-transform duration-500 transform-style-3d group-hover:rotate-y-180">
+		<div className="w-20 h-20 cursor-pointer" style={{ perspective: "1000px" }}>
+			<motion.div
+				className="relative w-full h-full"
+				style={{ transformStyle: "preserve-3d" }}
+				animate={{ rotateY: rotation }}
+				onHoverStart={handleHoverStart}
+				onHoverEnd={handleHoverEnd}
+				onAnimationComplete={handleAnimationComplete}
+				transition={{ duration: 0.5, ease: "easeInOut" }}
+			>
 				{/* front */}
-				<div className="absolute inset-0 rounded-full overflow-hidden backface-hidden flex items-center justify-center">
+				<div
+					className="absolute inset-0 rounded-full overflow-hidden flex items-center justify-center"
+					style={{ backfaceVisibility: "hidden" }}
+				>
 					<img
 						src={imgSrc}
 						alt={alt}
@@ -41,10 +86,13 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 					/>
 				</div>
 				{/* back */}
-				<div className="absolute inset-0 rounded-full border border-tertiary-bg bg-tertiary-bg backface-hidden rotate-y-180 flex items-center justify-center">
+				<div
+					className="absolute inset-0 rounded-full border border-tertiary-bg bg-tertiary-bg flex items-center justify-center"
+					style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+				>
 					<p className="text-primary text-center text-xs px-2">{alt}</p>
 				</div>
-			</div>
+			</motion.div>
 		</div>
 	);
 };
