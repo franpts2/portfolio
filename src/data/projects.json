@@ -1,0 +1,195 @@
+[
+	{
+		"id": "focusly",
+		"title": "focusly",
+		"description": "all-in-one study app",
+		"longDescription": "Focusly transforms the way you study by combining essential tools into one seamless experience. Create personalized quizzes and flashcards, boost focus with a built-in Pomodoro timer, and collaborate with peers through an interactive forum. Whether you're preparing for exams or just reviewing concepts, this app makes studying smarter, not harder. Join a community of learners and take your productivity to the next level!",
+		"tech": ["flutter", "dart", "firebase"],
+		"tags": ["university", "collaborative"],
+		"team": [
+			"Francisca Portugal",
+			"Gabriela de Mattos",
+			"Maria Luiza Vieira",
+			"Sara García"
+		],
+		"codeLink": "https://github.com/franpts2/focusly",
+		"isDone": true,
+		"date": "2025/05/31"
+	},
+	{
+		"id": "junto",
+		"title": "junto.",
+		"description": "discuss movies, books and music",
+		"longDescription": "Junto is a full-featured social media platform designed to bring people together through shared cultural interests. The platform combines traditional social networking features with media discovery, allowing users to connect, share, and discuss their favorite movies, books, and music.",
+		"tech": ["laravel", "php", "js", "tailwind", "postgres", "docker"],
+		"tags": ["university", "collaborative"],
+		"team": [
+			"Francisca Portugal",
+			"Francisco Bandeira",
+			"Maria Luiza Vieira",
+			"Pedro Lunet"
+		],
+		"codeLink": "https://github.com/franpts2/junto.",
+		"isDone": true,
+		"date": "2025/12/31"
+	},
+	{
+		"id": "artflow",
+		"title": "artflow",
+		"description": "freelancing website for artists",
+		"longDescription": "In an era where artificial intelligence is rapidly transforming creative industries, many fear that AI-generated art will overshadow human creativity. 'artflow' was created as a response to these concerns—a platform that celebrates and empowers human creativity rather than replacing it. Our mission is to create a marketplace where artists can: showcase their unique talents and creative services; connect directly with clients who value authentic, human-made art; maintain control over their work, pricing, and client interactions; build sustainable careers in the creative economy.",
+		"tech": ["html", "css", "php", "js", "sqlite"],
+		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "Gabriela de Mattos", "Maria Luiza Vieira"],
+		"codeLink": "https://github.com/franpts2/artflow",
+		"isDone": true,
+		"date": "2025/05/25"
+	},
+	{
+		"id": "portfolio",
+		"title": "portfolio",
+		"description": "this website!",
+		"longDescription": "This portfolio is a digital reflection of my dual nature as an engineer and an observer of the world. I designed it to be more than just a list of repositories and experiences; it is a direct reflection of my approach to Frontend Engineering. Built with React, TypeScript, and Tailwind CSS, the site is centered around two distinct visual moods that represent the places where I find my greatest inspiration: a warm, high-clarity Beach Light Mode and an immersive, Starry Sky Dark Mode. Beyond the aesthetics, this project is a playground for the core principles I bring to every interface: clean architecture, type-safety, and performance-first responsiveness.",
+		"tech": ["react", "tailwind", "ts"],
+		"tags": ["personal"],
+		"team": ["Francisca Portugal"],
+		"codeLink": "https://github.com/franpts2/portfolio",
+		"isDone": false
+	},
+	{
+		"id": "tix",
+		"title": "tix",
+		"description": "social media for concert tracking",
+		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
+		"tech": ["react", "tailwind", "js"],
+		"tags": ["personal"],
+		"team": ["Francisca Portugal"],
+		"codeLink": "https://github.com/franpts2/tix",
+		"isDone": false
+	},
+	{
+		"id": "space-wars",
+		"title": "space wars",
+		"description": "a Space Invaders game using Lanterna",
+		"longDescription": "Space Wars takes you on a nostalgic journey. Test your skills as you dodge enemy fire and strategize to take down waves of relentless spaceships. Try not to die with your 3 lives. Push your limits to achieve a new high score in this highly addictive arcade-style game!",
+		"tech": ["java"],
+		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "João Lopes", "Pedro Monteiro"],
+		"codeLink": "https://github.com/franpts2/space-wars",
+		"isDone": true,
+		"date": "2024/12/24"
+	},
+	{
+		"id": "fernando-oceano-quest",
+		"title": "fernando oceano's quest",
+		"description": "2D adventure game with collectibles and time-tracking",
+		"longDescription": "A Java 2D tile-based game built with Gradle. This project implements a simple top-down tile world with a controllable player, interactive objects (keys, doors, chests, boots), basic collision detection, sounds and a custom UI.",
+		"tech": ["java"],
+		"tags": ["personal"],
+		"team": ["Francisca Portugal"],
+		"codeLink": "https://github.com/franpts2/fernando-oceano-quest",
+		"isDone": true,
+		"date": "2025/03/24"
+	},
+	{
+		"id": "whack-a-diglett",
+		"title": "whack-a-diglett",
+		"description": "Whack-a-Mole inspired game in Minix",
+		"longDescription": "Whack'a Diglett is a 2D game built from scratch for the Minix operating system, featuring real-time graphics, user input handling, and smooth animations. The game challenges players to whack appearing Diglett characters within a time limit to achieve the highest score possible.",
+		"tech": ["c"],
+		"tags": ["university", "collaborative"],
+		"team": [
+			"Francisca Portugal",
+			"Gabriela de Mattos",
+			"Maria Luiza Vieira",
+			"Sara García"
+		],
+		"codeLink": "https://github.com/franpts2/whack-a-diglett",
+		"isDone": true,
+		"date": "2025/05/30"
+	},
+	{
+		"id": "olympics-db",
+		"title": "'24 olympics db",
+		"description": "2024 Olympics Database",
+		"longDescription": "This project features a robust SQLite-based relational database designed to model the intricate data ecosystem of the '24 Olympic Games. By implementing advanced relational concepts—such as entity specialization for athletes and coaches and complex multi-stage result tracking—the schema ensures high data integrity and normalization. The result is a scalable system that manages everything from National Committees and venues to world records and medal counts, all accessible through optimized SQL queries.",
+		"tech": ["sqlite"],
+		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "João Lopes", "Pedro Monteiro"],
+		"codeLink": "https://github.com/franpts2/24olympics-db",
+		"isDone": true,
+		"date": "2024/12/09"
+	},
+	{
+		"id": "route-planner",
+		"title": "route planner",
+		"description": "collection of several route-planning algorithms",
+		"longDescription": "This C++ route-planning engine leverages Graph Theory to solve complex navigation challenges, with a specific focus on sustainability. By processing real-world road network data, the tool computes shortest and environmentally-friendly paths using a custom-built graph architecture. The project demonstrates a sophisticated approach to algorithm design, featuring multi-mode routing (Best, Restricted, and Green), automated batch processing, and a high-performance data parsing engine.",
+		"tech": ["cpp"],
+		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "Gabriela de Mattos", "Maria Luiza Vieira"],
+		"codeLink": "https://github.com/franpts2/route-planner",
+		"isDone": true,
+		"date": "2025/03/30"
+	},
+	{
+		"id": "knaptruck",
+		"title": "knaptruck",
+		"description": "solver for a packing/knapsack-style problem",
+		"longDescription": "Knaptruck is a high-performance C++ optimization engine designed to solve the complex logistical challenge of delivery truck pallet packing. By implementing and comparing Greedy, Dynamic Programming, and Backtracking algorithms, the project explores the trade-offs between execution speed and global optimality. The system features a modular architecture, a Python-based Integer Linear Programming (ILP) solver for verification, and a rigorous benchmarking suite that demonstrates a deep understanding of computational complexity and efficient algorithm design.",
+		"tech": ["cpp"],
+		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "Gabriela de Mattos", "Maria Luiza Vieira"],
+		"codeLink": "https://github.com/franpts2/knaptruck",
+		"isDone": true,
+		"date": "2025/05/25"
+	},
+	{
+		"id": "serial-link",
+		"title": "serial link",
+		"description": "serial-port-based file transfer protocol",
+		"longDescription": "Developed for the Computer Networks (RCOM) course at FEUP, this project involved implementing the critical reliability components of a layered file transfer protocol. Working within a C-based architecture provided by the faculty, I focused on developing the Data Link Layer's core logic, including framing, byte stuffing, and robust error-control mechanisms. The project centered on ensuring absolute data integrity through custom-built retransmission and timeout strategies. To prove the protocol's resilience, we stress-tested the implementation using a virtual cable simulation to inject real-time signal noise and physical disconnections, successfully demonstrating the system's ability to recover and deliver bit-perfect files under unstable network conditions.",
+		"tech": ["c"],
+		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "Maria Luiza Vieira"],
+		"codeLink": "https://github.com/franpts2/serial-link",
+		"isDone": true,
+		"date": "2025/11/07"
+	},
+	{
+		"id": "netfetch",
+		"title": "netfetch",
+		"description": "file-download client",
+		"longDescription": "This custom-built C utility serves as a high-performance download client that interacts directly with FTP servers via low-level POSIX sockets. Built from scratch, the tool handles the entire network lifecycle: from parsing complex FTP URLs and resolving hostnames via DNS to managing synchronized control and data connections. By manually implementing authentication and Passive Mode (PASV) negotiation, the client demonstrates a deep understanding of the application-layer protocols that power the modern internet.",
+		"tech": ["c"],
+		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "Maria Luiza Vieira"],
+		"codeLink": "https://github.com/franpts2/netfetch",
+		"isDone": true,
+		"date": "2025/12/19"
+	},
+	{
+		"id": "svgtopng",
+		"title": "svgtopng",
+		"description": "parser of SVG to PNG",
+		"longDescription": "This high-performance C++ utility serves as a lightweight bridge between vector data and raster images, specifically designed to parse SVG files and render them into crisp PNGs. The core engineering challenge involved building a custom rasterizer from scratch to handle complex shapes and coordinate transforms—deliberately avoiding the overhead of massive external engines in favor of a more surgical, self-contained approach. By leveraging tinyxml2 for XML traversal and the stb library for image encoding, the result is a portable, CLI-based tool that efficiently transforms intricate vector geometry into clean, production-ready raster output.",
+		"tech": ["cpp"],
+		"tags": ["university", "collaborative"],
+		"team": ["Francisca Portugal", "Iara Brás", "João Loução"],
+		"codeLink": "https://github.com/franpts2/svgtopng",
+		"isDone": true,
+		"date": "2024/05/17"
+	},
+	{
+		"id": "haskell-prolog",
+		"title": "haskell & prolog",
+		"description": "collection of exs and projects",
+		"longDescription": "A comprehensive repository of functional and logical programming solutions developed in Haskell and Prolog. Highlights: Haskell: Built a robust expression calculator and parser, emphasizing lazy evaluation and strong static typing; Prolog: Solved complex logic puzzles and data relationship problems using declarative predicates. This project highlights my ability to adapt to diverse programming mindsets beyond standard OOP.",
+		"tech": ["haskell", "prolog"],
+		"tags": ["university", "personal"],
+		"team": ["Francisca Portugal"],
+		"codeLink": "https://github.com/franpts2/Y3S1_PFL",
+		"isDone": true,
+		"date": "2026/01/14"
+	}
+]

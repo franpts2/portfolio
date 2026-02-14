@@ -23,7 +23,11 @@ const Sidebar = () => {
 	// keyboard shortcuts (ctrl+arrowUp and ctrl+arrowDown to move between pages)
 	React.useEffect(() => {
 		const idx = navItems.findIndex((item) => item.to === location.pathname);
-		if (idx !== -1) setActiveIndex(idx);
+		if (idx !== -1) {
+			setActiveIndex(idx);
+		} else {
+			setActiveIndex(-1);
+		}
 
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.ctrlKey && e.key === "ArrowUp") {
@@ -49,7 +53,7 @@ const Sidebar = () => {
 		};
 		window.addEventListener("keydown", handleKeyDown);
 		return () => window.removeEventListener("keydown", handleKeyDown);
-	}, []);
+	}, [location.pathname, navigate]);
 
 	return (
 		<>
@@ -65,6 +69,7 @@ const Sidebar = () => {
 								<NavLink
 									key={name}
 									to={to}
+									end
 									className={({ isActive }) => {
 										return `flex flex-col items-center justify-center gap-2 font-family-body text-xl py-2 ${
 											isActive || activeIndex === idx
@@ -93,7 +98,7 @@ const Sidebar = () => {
 			)}
 
 			<button
-				className="fixed top-4 left-4 z-60 px-2 rounded-md sm:hidden text-primary transition-transform duration-300 ease-in-out"
+				className="fixed top-4 left-4 z-60 px-2 rounded-md lg:hidden text-primary transition-transform duration-300 ease-in-out"
 				onClick={() => setMobileOpen((prev) => !prev)}
 			>
 				<Icon
@@ -108,7 +113,7 @@ const Sidebar = () => {
 
 			<div
 				ref={sidebarRef}
-				className={`hidden sm:flex fixed flex-col justify-center h-screen px-3 py-6 z-50 pointer-events-auto`}
+				className={`hidden lg:flex fixed flex-col justify-center h-screen px-3 py-6 z-50 pointer-events-auto`}
 				onMouseEnter={() => setHovered(true)}
 				onMouseLeave={() => setHovered(false)}
 				style={{
@@ -122,6 +127,7 @@ const Sidebar = () => {
 					<NavLink
 						key={name}
 						to={to}
+						end
 						className={({ isActive }) => {
 							return `flex items-center gap-1 font-family-body text-lg py-2 ${
 								isActive || activeIndex === idx

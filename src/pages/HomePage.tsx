@@ -36,7 +36,7 @@ const HomePage = () => {
 					href="https://github.com/franpts2"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="hover:scale-110"
+					className="transition-transform duration-200 ease-in-out hover:scale-110"
 				>
 					<Icon icon={icons.github.outline} height={30} />
 				</a>
@@ -44,7 +44,7 @@ const HomePage = () => {
 					href="https://linkedin.com/in/franciscaportugal"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="hover:scale-110"
+					className="transition-transform duration-200 ease-in-out hover:scale-110"
 				>
 					<Icon icon={icons.linkedin.outline} height={30} />
 				</a>
@@ -52,7 +52,7 @@ const HomePage = () => {
 					href="https://instagram.com/francisca._.portugal19"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="hover:scale-110"
+					className="transition-transform duration-200 ease-in-out hover:scale-110"
 				>
 					<Icon icon={icons.instagram.outline} height={30} />
 				</a>
