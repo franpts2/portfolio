@@ -16,12 +16,12 @@ const ProjectsPage = () => {
 	// all unique tags from projects
 	const availableTags = Array.from(
 		new Set(projectsData.flatMap((project) => project.tags)),
-	);
+	).sort();
 
 	// all unique tech from projects
 	const availableTech = Array.from(
 		new Set(projectsData.flatMap((project) => project.tech)),
-	);
+	).sort();
 
 	return (
 		<div className="relative min-h-screen flex flex-col items-center gap-10">
