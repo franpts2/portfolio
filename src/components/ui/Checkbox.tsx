@@ -22,14 +22,22 @@ const Checkbox: React.FC<CheckboxProps> = ({
 	return (
 		<button
 			onClick={onChange}
-			className={`flex items-center gap-2 text-left hover:text-primary-accent transition-colors ${className}`}
+			className={`flex items-center gap-3 text-left cursor-pointer hover:opacity-80 transition-opacity ${className}`}
 		>
 			<Icon
 				icon={checked ? iconSet.checked : iconSet.unchecked}
 				height={20}
-				className="text-primary-accent"
+				className={
+					checked ? "text-primary-accent" : "text-secondary opacity-40"
+				}
 			/>
-			{label && <span className="text-sm">{label}</span>}
+			{label && (
+				<span
+					className={`text-sm ${checked ? "text-primary" : "text-primary opacity-70"}`}
+				>
+					{label}
+				</span>
+			)}
 		</button>
 	);
 };

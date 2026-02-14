@@ -57,11 +57,13 @@ const Dropdown: React.FC<DropdownProps> = ({
 			/>
 
 			{/* dropdown */}
-			<div className="absolute right-0 top-12 z-50 bg-secondary-bg border border-primary-bg rounded-lg shadow-xl p-4 min-w-50 max-w-62.5">
+			<div className="absolute right-0 top-12 z-50 bg-secondary-bg border border-primary-bg rounded-lg shadow-xl p-5 min-w-50 max-w-62.5">
 				{/* status */}
-				<div className="mb-4">
-					<h3 className="text-sm font-semibold text-secondary mb-2">Status</h3>
-					<div className="flex flex-col gap-2">
+				<div className="mb-5">
+					<h3 className="text-xs font-semibold text-secondary mb-3 uppercase tracking-wider">
+						Status
+					</h3>
+					<div className="flex flex-col gap-1.5">
 						<Checkbox
 							checked={filters.status === "all"}
 							onChange={() => handleStatusChange("all")}
@@ -84,9 +86,11 @@ const Dropdown: React.FC<DropdownProps> = ({
 				</div>
 
 				{/* tags */}
-				<div className="mb-4">
-					<h3 className="text-sm font-semibold text-secondary mb-2">Tags</h3>
-					<div className="flex flex-col gap-2">
+				<div className="mb-5">
+					<h3 className="text-xs font-semibold text-secondary mb-3 uppercase tracking-wider">
+						Tags
+					</h3>
+					<div className="flex flex-col gap-1.5">
 						{availableTags.map((tag) => (
 							<Checkbox
 								key={tag}
@@ -100,10 +104,10 @@ const Dropdown: React.FC<DropdownProps> = ({
 
 				{/* tech */}
 				<div>
-					<h3 className="text-sm font-semibold text-secondary mb-2">
+					<h3 className="text-xs font-semibold text-secondary mb-3 uppercase tracking-wider">
 						Technologies
 					</h3>
-					<div className="flex flex-col gap-2">
+					<div className="flex flex-col gap-1.5">
 						{availableTech.map((language) => (
 							<Checkbox
 								key={language}

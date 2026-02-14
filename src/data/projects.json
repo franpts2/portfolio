@@ -173,7 +173,7 @@
 		"title": "haskell & prolog",
 		"description": "collection of exs and projects",
 		"longDescription": "A comprehensive repository of functional and logical programming solutions developed in Haskell and Prolog. Highlights: Haskell: Built a robust expression calculator and parser, emphasizing lazy evaluation and strong static typing; Prolog: Solved complex logic puzzles and data relationship problems using declarative predicates. This project highlights my ability to adapt to diverse programming mindsets beyond standard OOP.",
-		"tech": ["haskell"],
+		"tech": ["haskell", "prolog"],
 		"tags": ["university", "personal"],
 		"team": ["Francisca Portugal"],
 		"codeLink": "https://github.com/franpts2/Y3S1_PFL",
