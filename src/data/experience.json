@@ -1,0 +1,24 @@
+[
+    {
+        "id": "robotair",
+        "position": "Frontend Summer Intern",
+        "company": "Robotair",
+        "monthYearFrom": "2025/07",
+        "monthYearTo": "2025/07",
+        "description": "During my internship at Robotair, I played a central role in the UI/UX redesign of the company’s web application, modernizing major sections such as Robots, Pipelines, and Secrets. This work significantly improved usability, consistency, and responsiveness across the platform. In parallel, I also implemented new features, including the Rigel testing system, optional ROS deployments, and a configurable interface for unit testing, as well as fixing critical bugs. This experience strengthened my skills in React, interface design, and agile development, while contributing to a production-level product used by real clients."
+    },
+    {
+        "id": "niafeup",
+        "position": "Recruit",
+        "company": "Niaefeup",
+        "monthYearFrom": "2025/11",
+        "description": "I contribute to a suite of high-impact open-source projects designed for the University of Porto community. My work involves developing the Uni mobile application using Flutter to enhance student academic management, developing the new NIAEFEUP website with SvelteKit and TailwindCSS, and optimizing the TTS (Time Table Selector) platform to ensure a seamless schedule simulation experience. By working across these diverse platforms, I help build and scale essential digital tools while applying professional development standards in a collaborative Agile environment."
+    },
+    {
+        "id": "vou",
+        "position": "Volunteer Staff",
+        "company": "VO.U. - Associação de Voluntariado Universitário",
+        "monthYearFrom": "2024/09",
+        "description": "Actively contribute to animal care, welfare and related activities and assist in events, raising awareness."
+    }
+]
