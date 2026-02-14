@@ -74,10 +74,8 @@ const ProjectCardList: React.FC<ProjectCardListProps> = ({
 							exit={{ opacity: 0, scale: 0.8 }}
 							transition={{
 								layout: { duration: 0.5, ease: "easeInOut" },
-
-								opacity: { duration: 0.25 },
-
-								scale: { duration: 0.25 },
+								opacity: { duration: 0.6 },
+								scale: { duration: 0.6 },
 							}}
 						>
 							<ProjectCard key={project.id} project={project} />

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "motion/react";
 import ProjectCardList from "../components/projects/ProjectCardList.tsx";
 import IconButton from "../components/ui/IconButton.tsx";
 import { icons } from "../assets/icons.js";
@@ -34,9 +35,26 @@ const ProjectsPage = () => {
 
 	return (
 		<div className="relative min-h-screen flex flex-col items-center gap-10">
-			<div className="w-full max-w-337.5 px-5 mt-10 flex items-center justify-between">
-				<h1 className="font-black text-4xl text-primary-accent">Projects</h1>
-				<div className="flex items-center gap-8">
+			<motion.div
+				className="w-full max-w-337.5 px-5 mt-10 flex items-center justify-between"
+				initial={{ opacity: 0, y: -20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.6 }}
+			>
+				<motion.h1
+					className="font-black text-4xl text-primary-accent"
+					initial={{ opacity: 0, x: -20 }}
+					animate={{ opacity: 1, x: 0 }}
+					transition={{ duration: 0.6, delay: 0.1 }}
+				>
+					Projects
+				</motion.h1>
+				<motion.div
+					className="flex items-center gap-8"
+					initial={{ opacity: 0, x: 20 }}
+					animate={{ opacity: 1, x: 0 }}
+					transition={{ duration: 0.6, delay: 0.2 }}
+				>
 					<div className="flex items-center gap-3">
 						<span className="text-xs font-medium text-secondary uppercase tracking-wide">
 							Sort By
@@ -91,8 +109,8 @@ const ProjectsPage = () => {
 							availableTech={availableTech}
 						/>
 					</div>
-				</div>
-			</div>
+				</motion.div>
+			</motion.div>
 			<ProjectCardList
 				filters={filters}
 				sortBy={sortBy}
