@@ -11,8 +11,10 @@ import { capitalize } from "../utils/formatTech.ts";
 const ProjectsPage = () => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 	const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
-	const [sortBy, setSortBy] = useState<"date" | "name" | "relevance">("date");
-	const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+	const [sortBy, setSortBy] = useState<"date" | "name" | "relevance">(
+		"relevance",
+	);
+	const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 	const [filters, setFilters] = useState<{
 		status: "all" | "done" | "in-progress";
 		tags: string[];
@@ -90,7 +92,11 @@ const ProjectsPage = () => {
 					</div>
 				</div>
 			</div>
-			<ProjectCardList filters={filters} />
+			<ProjectCardList
+				filters={filters}
+				sortBy={sortBy}
+				sortOrder={sortOrder}
+			/>
 		</div>
 	);
 };
