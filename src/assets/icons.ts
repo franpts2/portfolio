@@ -91,6 +91,11 @@ export const icons = {
 		outline: "material-symbols:volume-off-outline",
 	},
 
+    filters: {
+		fill: "material-symbols:filter-list",
+		outline: "material-symbols:filter-list-outline",
+	},
+
 	// Social Icons
 	github: {
 		outline: "mdi:github",
