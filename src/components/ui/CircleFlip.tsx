@@ -13,6 +13,7 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 	const [rotation, setRotation] = useState(0);
 	const [isAnimating, setIsAnimating] = useState(false);
 	const [shouldContinue, setShouldContinue] = useState(false);
+	const [isHovering, setIsHovering] = useState(false);
 
 	useEffect(() => {
 		setImgSrc(src);
@@ -33,6 +34,7 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 	};
 
 	const handleHoverStart = () => {
+		setIsHovering(true);
 		if (!isAnimating) {
 			setIsAnimating(true);
 			setShouldContinue(false);
@@ -44,6 +46,7 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 	};
 
 	const handleHoverEnd = () => {
+		setIsHovering(false);
 		if (!isAnimating) {
 			setIsAnimating(true);
 			setShouldContinue(false);
@@ -62,7 +65,8 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 
 			// normalize rotation to check if it's divisible by 360
 			const normalizedRotation = rotation % 360;
-			if (normalizedRotation === 180) {
+			// only auto-flip to front if back is showing & user is not hovering
+			if (normalizedRotation === 180 && !isHovering) {
 				// back is facing front, flip one more time
 				setTimeout(() => {
 					setIsAnimating(true);
