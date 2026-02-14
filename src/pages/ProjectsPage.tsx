@@ -6,7 +6,7 @@ import projectsData from "../data/projects.json" with { type: "json" };
 import Dropdown from "../components/ui/Dropdown.tsx";
 import SortDropdown from "../components/ui/SortDropdown.tsx";
 import Button from "../components/ui/Button.tsx";
-import { capitalize } from "../utils/formatTech.ts";
+import { capitalize } from "../utils/format.ts";
 
 const ProjectsPage = () => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -15,11 +15,6 @@ const ProjectsPage = () => {
 		"relevance",
 	);
 	const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-	const [filters, setFilters] = useState<{
-		status: "all" | "done" | "in-progress";
-		tags: string[];
-		tech: string[];
-	}>({ status: "all", tags: [], tech: [] });
 
 	// all unique tags from projects
 	const availableTags = Array.from(
@@ -30,6 +25,12 @@ const ProjectsPage = () => {
 	const availableTech = Array.from(
 		new Set(projectsData.flatMap((project) => project.tech)),
 	).sort();
+
+	const [filters, setFilters] = useState<{
+		status: "all" | "done" | "in-progress";
+		tags: string[];
+		tech: string[];
+	}>({ status: "all", tags: availableTags, tech: availableTech });
 
 	return (
 		<div className="relative min-h-screen flex flex-col items-center gap-10">

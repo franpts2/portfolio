@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { icons } from "../../assets/icons.ts";
 import { Icon } from "@iconify/react";
-import IconButton from "../ui/IconButton.tsx";
 import PaginationDots from "../ui/PaginationDots.tsx";
 import VideoDisplay from "../ui/VideoDisplay.tsx";
+import { slugify } from "../../utils/format.ts";
 
 interface GalleryProps {
 	projectId: string;
@@ -57,18 +57,9 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 		};
 	}, []);
 
-	const normalizeProjectId = (id: string) => {
-		return id
-			.toLowerCase()
-			.normalize("NFD")
-			.replace(/[\u0300-\u036f]/g, "")
-			.replace(/ç/g, "c")
-			.replace(/\s+/g, "-");
-	};
-
 	useEffect(() => {
 		const loadMedia = async () => {
-			const normalizedId = normalizeProjectId(projectId);
+			const normalizedId = slugify(projectId);
 
 			// Check for video first
 			const videoFilePath = `/images/projects/${normalizedId}/video.mp4`;

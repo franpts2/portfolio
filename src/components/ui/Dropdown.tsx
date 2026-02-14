@@ -1,6 +1,6 @@
 import React from "react";
-import Checkbox from "./Checkbox.tsx";
-import { formatTechName, capitalize } from "../../utils/formatTech.ts";
+import FilterGroup from "./FilterGroup.tsx";
+import { formatTechName, capitalize, normalize } from "../../utils/format.ts";
 
 interface DropdownProps {
 	isOpen: Boolean;
@@ -29,10 +29,6 @@ const Dropdown: React.FC<DropdownProps> = ({
 }) => {
 	if (!isOpen) return null;
 
-	const handleStatusChange = (status: "all" | "done" | "in-progress") => {
-		onFilterChange({ ...filters, status });
-	};
-
 	const handleTagToggle = (tag: string) => {
 		const newTags = filters.tags.includes(tag)
 			? filters.tags.filter((t) => t !== tag)
@@ -47,6 +43,22 @@ const Dropdown: React.FC<DropdownProps> = ({
 		onFilterChange({ ...filters, tech: newTech });
 	};
 
+	const handleClearTags = () => {
+		onFilterChange({ ...filters, tags: [] });
+	};
+
+	const handleClearTech = () => {
+		onFilterChange({ ...filters, tech: [] });
+	};
+
+	const handleSelectAllTags = () => {
+		onFilterChange({ ...filters, tags: availableTags });
+	};
+
+	const handleSelectAllTech = () => {
+		onFilterChange({ ...filters, tech: availableTech });
+	};
+
 	return (
 		<>
 			{/* backdrop */}
@@ -58,66 +70,41 @@ const Dropdown: React.FC<DropdownProps> = ({
 
 			{/* dropdown */}
 			<div className="absolute right-0 top-12 z-50 bg-secondary-bg border border-primary-bg rounded-lg shadow-xl p-5 min-w-50 max-w-62.5">
-				{/* status */}
-				<div className="mb-5">
-					<h3 className="text-xs font-semibold text-secondary mb-3 uppercase tracking-wider">
-						Status
-					</h3>
-					<div className="flex flex-col gap-1.5">
-						<Checkbox
-							checked={filters.status === "all"}
-							onChange={() => handleStatusChange("all")}
-							label="All"
-							variant="radio"
-						/>
-						<Checkbox
-							checked={filters.status === "done"}
-							onChange={() => handleStatusChange("done")}
-							label="Done"
-							variant="radio"
-						/>
-						<Checkbox
-							checked={filters.status === "in-progress"}
-							onChange={() => handleStatusChange("in-progress")}
-							label="In Progress"
-							variant="radio"
-						/>
-					</div>
-				</div>
+				<FilterGroup
+					title="Status"
+					items={["all", "done", "in-progress"]}
+					selectedItems={[filters.status]}
+					onItemToggle={(status) =>
+						onFilterChange({
+							...filters,
+							status: status as "all" | "done" | "in-progress",
+						})
+					}
+					variant="radio"
+					formatLabel={normalize}
+					className="mb-5"
+				/>
 
-				{/* tags */}
-				<div className="mb-5">
-					<h3 className="text-xs font-semibold text-secondary mb-3 uppercase tracking-wider">
-						Tags
-					</h3>
-					<div className="flex flex-col gap-1.5">
-						{availableTags.map((tag) => (
-							<Checkbox
-								key={tag}
-								checked={filters.tags.includes(tag)}
-								onChange={() => handleTagToggle(tag)}
-								label={capitalize(tag)}
-							/>
-						))}
-					</div>
-				</div>
+				<FilterGroup
+					title="Tags"
+					items={availableTags}
+					selectedItems={filters.tags}
+					onItemToggle={handleTagToggle}
+					onSelectAll={handleSelectAllTags}
+					onClear={handleClearTags}
+					formatLabel={capitalize}
+					className="mb-5"
+				/>
 
-				{/* tech */}
-				<div>
-					<h3 className="text-xs font-semibold text-secondary mb-3 uppercase tracking-wider">
-						Technologies
-					</h3>
-					<div className="flex flex-col gap-1.5">
-						{availableTech.map((language) => (
-							<Checkbox
-								key={language}
-								checked={filters.tech.includes(language)}
-								onChange={() => handleTechToggle(language)}
-								label={formatTechName(language)}
-							/>
-						))}
-					</div>
-				</div>
+				<FilterGroup
+					title="Technologies"
+					items={availableTech}
+					selectedItems={filters.tech}
+					onItemToggle={handleTechToggle}
+					onSelectAll={handleSelectAllTech}
+					onClear={handleClearTech}
+					formatLabel={formatTechName}
+				/>
 			</div>
 		</>
 	);

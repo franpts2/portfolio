@@ -41,6 +41,11 @@ export const icons = {
 		outline: "material-symbols:close-outline",
 	},
 
+    check: {
+		fill: "material-symbols:check",
+		outline: "material-symbols:check-outline",
+	},
+
 	code: {
 		fill: "material-symbols:code",
 		outline: "material-symbols:code-outline",

@@ -25,17 +25,17 @@ const ProjectCardList: React.FC<ProjectCardListProps> = ({
 				if (filters.status == "done" && !project.isDone) return false;
 				if (filters.status === "in-progress" && project.isDone) return false;
 
-				if (
-					filters.tags.length > 0 &&
-					!filters.tags.some((tag) => project.tags.includes(tag))
-				) {
+				// If no tags selected, show nothing
+				if (filters.tags.length === 0) return false;
+				// If tags selected, check if project has at least one
+				if (!filters.tags.some((tag) => project.tags.includes(tag))) {
 					return false;
 				}
 
-				if (
-					filters.tech.length > 0 &&
-					!filters.tech.some((lang) => project.tech.includes(lang))
-				) {
+				// If no tech selected, show nothing
+				if (filters.tech.length === 0) return false;
+				// If tech selected, check if project has at least one
+				if (!filters.tech.some((lang) => project.tech.includes(lang))) {
 					return false;
 				}
 			}
@@ -74,11 +74,13 @@ const ProjectCardList: React.FC<ProjectCardListProps> = ({
 							exit={{ opacity: 0, scale: 0.8 }}
 							transition={{
 								layout: { duration: 0.5, ease: "easeInOut" },
+
 								opacity: { duration: 0.25 },
+
 								scale: { duration: 0.25 },
 							}}
 						>
-							<ProjectCard project={project} />
+							<ProjectCard key={project.id} project={project} />
 						</motion.div>
 					))}
 				</AnimatePresence>
