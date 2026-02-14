@@ -73,12 +73,12 @@ const ProjectCardList: React.FC<ProjectCardListProps> = ({
 							animate={{ opacity: 1, scale: 1 }}
 							exit={{ opacity: 0, scale: 0.8 }}
 							transition={{
-								layout: { duration: 0.6, ease: "easeInOut" },
-								opacity: { duration: 0.25 },
-								scale: { duration: 0.25 },
+								layout: { duration: 0.5, ease: "easeInOut" },
+								opacity: { duration: 0.6 },
+								scale: { duration: 0.6 },
 							}}
 						>
-							<ProjectCard project={project} />
+							<ProjectCard key={project.id} project={project} />
 						</motion.div>
 					))}
 				</AnimatePresence>

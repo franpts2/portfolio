@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "motion/react";
 
 interface CircleFlipProps {
 	src: string;
@@ -9,6 +10,19 @@ interface CircleFlipProps {
 const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 	const [imgSrc, setImgSrc] = useState(src);
 	const [isError, setIsError] = useState(false);
+	const [rotation, setRotation] = useState(0);
+	const [isAnimating, setIsAnimating] = useState(false);
+	const [shouldContinue, setShouldContinue] = useState(false);
+	const [isHovering, setIsHovering] = useState(false);
+	const [isInitialSpin, setIsInitialSpin] = useState(true);
+
+	// initial 360 spin on mount
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setRotation(360);
+		}, 800); // wait for ProjectDetail load animations to complete
+		return () => clearTimeout(timer);
+	}, []);
 
 	useEffect(() => {
 		setImgSrc(src);
@@ -28,11 +42,78 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 		}
 	};
 
+	const handleHoverStart = () => {
+		setIsHovering(true);
+		if (!isAnimating) {
+			setIsAnimating(true);
+			setShouldContinue(false);
+			setRotation((prev) => prev + 180);
+		} else {
+			// if already animating, mark to continue for full 360
+			setShouldContinue(true);
+		}
+	};
+
+	const handleHoverEnd = () => {
+		setIsHovering(false);
+		if (!isAnimating) {
+			setIsAnimating(true);
+			setShouldContinue(false);
+			setRotation((prev) => prev + 180);
+		} else {
+			setShouldContinue(true);
+		}
+	};
+
+	const handleAnimationComplete = () => {
+		if (isInitialSpin) {
+			setIsInitialSpin(false);
+			return;
+		}
+
+		if (shouldContinue) {
+			setShouldContinue(false);
+			setRotation((prev) => prev + 180);
+		} else {
+			setIsAnimating(false);
+
+			// normalize rotation to check if it's divisible by 360
+			const normalizedRotation = rotation % 360;
+			// only auto-flip to front if back is showing & user is not hovering
+			if (normalizedRotation === 180 && !isHovering) {
+				// back is facing front, flip one more time
+				setTimeout(() => {
+					setIsAnimating(true);
+					setRotation((prev) => prev + 180);
+				}, 100);
+			}
+		}
+	};
+
 	return (
-		<div className="w-20 h-20 perspective-1000 cursor-pointer group">
-			<div className="relative w-full h-full transition-transform duration-500 transform-style-3d group-hover:rotate-y-180">
+		<div className="w-20 h-20 cursor-pointer" style={{ perspective: "1000px" }}>
+			<motion.div
+				className="relative w-full h-full"
+				style={{ transformStyle: "preserve-3d" }}
+				initial={{ rotateY: 0 }}
+				animate={{ rotateY: rotation }}
+				onHoverStart={handleHoverStart}
+				onHoverEnd={handleHoverEnd}
+				onAnimationComplete={handleAnimationComplete}
+				transition={{
+					duration: rotation === 360 ? 1 : 0.5,
+					ease: "easeInOut",
+				}}
+			>
 				{/* front */}
-				<div className="absolute inset-0 rounded-full overflow-hidden backface-hidden flex items-center justify-center">
+				<div
+					className="absolute inset-0 rounded-full overflow-hidden flex items-center justify-center"
+					style={{
+						backfaceVisibility: "hidden",
+						WebkitBackfaceVisibility: "hidden",
+						transform: "rotateY(0deg)",
+					}}
+				>
 					<img
 						src={imgSrc}
 						alt={alt}
@@ -41,10 +122,17 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 					/>
 				</div>
 				{/* back */}
-				<div className="absolute inset-0 rounded-full border border-tertiary-bg bg-tertiary-bg backface-hidden rotate-y-180 flex items-center justify-center">
+				<div
+					className="absolute inset-0 rounded-full border border-tertiary-bg bg-tertiary-bg flex items-center justify-center"
+					style={{
+						backfaceVisibility: "hidden",
+						WebkitBackfaceVisibility: "hidden",
+						transform: "rotateY(180deg)",
+					}}
+				>
 					<p className="text-primary text-center text-xs px-2">{alt}</p>
 				</div>
-			</div>
+			</motion.div>
 		</div>
 	);
 };
