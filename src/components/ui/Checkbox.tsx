@@ -29,7 +29,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 				height={20}
 				className="text-primary-accent"
 			/>
-			{label && <span className="text-sm capitalize">{label}</span>}
+			{label && <span className="text-sm">{label}</span>}
 		</button>
 	);
 };

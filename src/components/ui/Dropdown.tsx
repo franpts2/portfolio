@@ -1,5 +1,6 @@
 import React from "react";
 import Checkbox from "./Checkbox.tsx";
+import { formatTechName, capitalize } from "../../utils/formatTech.ts";
 
 interface DropdownProps {
 	isOpen: Boolean;
@@ -64,19 +65,19 @@ const Dropdown: React.FC<DropdownProps> = ({
 						<Checkbox
 							checked={filters.status === "all"}
 							onChange={() => handleStatusChange("all")}
-							label="all"
+							label="All"
 							variant="radio"
 						/>
 						<Checkbox
 							checked={filters.status === "done"}
 							onChange={() => handleStatusChange("done")}
-							label="done"
+							label="Done"
 							variant="radio"
 						/>
 						<Checkbox
 							checked={filters.status === "in-progress"}
 							onChange={() => handleStatusChange("in-progress")}
-							label="in progress"
+							label="In Progress"
 							variant="radio"
 						/>
 					</div>
@@ -91,7 +92,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 								key={tag}
 								checked={filters.tags.includes(tag)}
 								onChange={() => handleTagToggle(tag)}
-								label={tag}
+								label={capitalize(tag)}
 							/>
 						))}
 					</div>
@@ -99,14 +100,16 @@ const Dropdown: React.FC<DropdownProps> = ({
 
 				{/* tech */}
 				<div>
-					<h3 className="text-sm font-semibold text-secondary mb-2">Technologies</h3>
+					<h3 className="text-sm font-semibold text-secondary mb-2">
+						Technologies
+					</h3>
 					<div className="flex flex-col gap-2">
 						{availableTech.map((language) => (
 							<Checkbox
 								key={language}
 								checked={filters.tech.includes(language)}
 								onChange={() => handleTechToggle(language)}
-								label={language}
+								label={formatTechName(language)}
 							/>
 						))}
 					</div>
