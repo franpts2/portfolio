@@ -14,6 +14,15 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 	const [isAnimating, setIsAnimating] = useState(false);
 	const [shouldContinue, setShouldContinue] = useState(false);
 	const [isHovering, setIsHovering] = useState(false);
+	const [isInitialSpin, setIsInitialSpin] = useState(true);
+
+	// initial 360 spin on mount
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setRotation(360);
+		}, 800); // wait for ProjectDetail load animations to complete
+		return () => clearTimeout(timer);
+	}, []);
 
 	useEffect(() => {
 		setImgSrc(src);
@@ -57,6 +66,11 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 	};
 
 	const handleAnimationComplete = () => {
+		if (isInitialSpin) {
+			setIsInitialSpin(false);
+			return;
+		}
+
 		if (shouldContinue) {
 			setShouldContinue(false);
 			setRotation((prev) => prev + 180);
@@ -81,11 +95,15 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 			<motion.div
 				className="relative w-full h-full"
 				style={{ transformStyle: "preserve-3d" }}
+				initial={{ rotateY: 0 }}
 				animate={{ rotateY: rotation }}
 				onHoverStart={handleHoverStart}
 				onHoverEnd={handleHoverEnd}
 				onAnimationComplete={handleAnimationComplete}
-				transition={{ duration: 0.5, ease: "easeInOut" }}
+				transition={{
+					duration: rotation === 360 ? 1.2 : 0.5,
+					ease: "easeInOut",
+				}}
 			>
 				{/* front */}
 				<div

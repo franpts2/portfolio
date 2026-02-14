@@ -1,5 +1,6 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { motion } from "motion/react";
 import projectsData from "../../data/projects.json" with { type: "json" };
 import Button from "../ui/Button.tsx";
 import { icons } from "../../assets/icons.ts";
@@ -54,7 +55,12 @@ function ProjectDetail() {
 		<div className="project-detail relative min-h-screen flex flex-col items-center gap-6 sm:gap-8 md:gap-10 px-4 sm:px-6 md:px-8">
 			<div className="w-full max-w-4xl mt-14 sm:mt-8 md:mt-14 mb-6 sm:mb-8 md:mb-10 flex flex-col gap-6 sm:gap-8 md:gap-10">
 				<div className="flex flex-col gap-4">
-					<div className="flex flex-row justify-between items-center gap-2">
+					<motion.div
+						className="flex flex-row justify-between items-center gap-2"
+						initial={{ opacity: 0, y: -20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.6 }}
+					>
 						{/* back button */}
 						<div
 							onClick={() => navigate("/projects")}
@@ -73,10 +79,15 @@ function ProjectDetail() {
 							icon={icons.arrowOutward.fill}
 							onClick={() => window.open(project.codeLink, "_blank")}
 						/>
-					</div>
+					</motion.div>
 
 					{/* header */}
-					<div className="flex flex-col lg:flex-row w-full justify-between items-start lg:items-end gap-4">
+					<motion.div
+						className="flex flex-col lg:flex-row w-full justify-between items-start lg:items-end gap-4"
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.6, delay: 0.1 }}
+					>
 						<div
 							className={`flex gap-2 sm:gap-3 text-primary-accent cursor-default ${useColumnLayout ? "flex-col items-start" : "flex-col sm:flex-row items-start sm:items-end"}`}
 						>
@@ -99,17 +110,33 @@ function ProjectDetail() {
 								<Tag key={index} text={tag} />
 							))}
 						</div>
-					</div>
+					</motion.div>
 				</div>
 
 				{/* gallery */}
-				<Gallery projectId={projectId} />
+				<motion.div
+					initial={{ opacity: 0, scale: 0.95 }}
+					animate={{ opacity: 1, scale: 1 }}
+					transition={{ duration: 0.6, delay: 0.2 }}
+				>
+					<Gallery projectId={projectId} />
+				</motion.div>
 
-				<p className="text-sm sm:text-base leading-relaxed">
+				<motion.p
+					className="text-sm sm:text-base leading-relaxed"
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6, delay: 0.3 }}
+				>
 					{project.longDescription}
-				</p>
+				</motion.p>
 
-				<div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-4">
+				<motion.div
+					className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-4"
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6, delay: 0.4 }}
+				>
 					{/* tech */}
 					<div className="flex flex-col gap-2">
 						<h3 className="text-primary-accent font-bold text-base sm:text-lg">
@@ -145,7 +172,7 @@ function ProjectDetail() {
 							))}
 						</div>
 					</div>
-				</div>
+				</motion.div>
 			</div>
 		</div>
 	);
