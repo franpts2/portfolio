@@ -1,7 +1,6 @@
 import React from "react";
 import { Icon } from "@iconify/react";
-import { icons } from "../../assets/icons.ts";
-import { capitalize } from "../../utils/formatTech.ts";
+import { capitalize } from "../../utils/format.ts";
 
 interface SortDropdownProps {
 	isOpen: boolean;

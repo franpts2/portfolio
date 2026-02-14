@@ -23,3 +23,19 @@ export const formatTechName = (tech: string): string => {
 export const capitalize = (str: string): string => {
 	return str.charAt(0).toUpperCase() + str.slice(1);
 };
+
+export const normalize = (str: string): string => {
+	return str
+		.split("-")
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(" ");
+};
+
+export const slugify = (str: string): string => {
+	return str
+		.toLowerCase()
+		.normalize("NFD")
+		.replace(/[\u0300-\u036f]/g, "")
+		.replace(/ç/g, "c")
+		.replace(/\s+/g, "-");
+};

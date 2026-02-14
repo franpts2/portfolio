@@ -1,6 +1,6 @@
 import React from "react";
 import FilterGroup from "./FilterGroup.tsx";
-import { formatTechName, capitalize } from "../../utils/formatTech.ts";
+import { formatTechName, capitalize, normalize } from "../../utils/format.ts";
 
 interface DropdownProps {
 	isOpen: Boolean;
@@ -81,12 +81,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 						})
 					}
 					variant="radio"
-					formatLabel={(item) => {
-						if (item === "all") return "All";
-						if (item === "done") return "Done";
-						if (item === "in-progress") return "In Progress";
-						return item;
-					}}
+					formatLabel={normalize}
 					className="mb-5"
 				/>
 

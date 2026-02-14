@@ -8,6 +8,7 @@ import { ThemeContext } from "../ThemeProvider.tsx";
 import Tag from "../ui/Tag.tsx";
 import CircleFlip from "../ui/CircleFlip.tsx";
 import Gallery from "./Gallery.tsx";
+import { slugify } from "../../utils/format.ts";
 
 function ProjectDetail() {
 	const { projectId } = useParams<{ projectId: string }>();
@@ -48,15 +49,6 @@ function ProjectDetail() {
 
 		return () => window.removeEventListener("resize", checkTextWrapping);
 	}, [project?.title, project?.description]);
-
-	const normalizeName = (name: string) => {
-		return name
-			.toLowerCase()
-			.normalize("NFD")
-			.replace(/[\u0300-\u036f]/g, "")
-			.replace(/ç/g, "c")
-			.replace(/\s+/g, "-");
-	};
 
 	return (
 		<div className="project-detail relative min-h-screen flex flex-col items-center gap-6 sm:gap-8 md:gap-10 px-4 sm:px-6 md:px-8">
@@ -146,7 +138,7 @@ function ProjectDetail() {
 							{project.team.map((t, index) => (
 								<CircleFlip
 									key={index}
-									src={`/images/people/${normalizeName(t)}.png`}
+									src={`/images/people/${slugify(t)}.png`}
 									alt={t}
 									fallbackSrc={`/images/people/default-${isDark ? "dark" : "light"}.png`}
 								/>

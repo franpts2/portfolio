@@ -6,7 +6,7 @@ import projectsData from "../data/projects.json" with { type: "json" };
 import Dropdown from "../components/ui/Dropdown.tsx";
 import SortDropdown from "../components/ui/SortDropdown.tsx";
 import Button from "../components/ui/Button.tsx";
-import { capitalize } from "../utils/formatTech.ts";
+import { capitalize } from "../utils/format.ts";
 
 const ProjectsPage = () => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
