@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { icons } from "../../assets/icons.ts";
 import { Icon } from "@iconify/react";
 import PaginationDots from "../ui/PaginationDots.tsx";
@@ -12,6 +13,7 @@ interface GalleryProps {
 const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	const [images, setImages] = useState<string[]>([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const [direction, setDirection] = useState(0);
 	const [videoPath, setVideoPath] = useState<string | null>(null);
 	const [touchStart, setTouchStart] = useState<number | null>(null);
 	const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -109,10 +111,12 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	}, [projectId]);
 
 	const handlePrevious = () => {
+		setDirection(-1);
 		setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
 	};
 
 	const handleNext = () => {
+		setDirection(1);
 		setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 	};
 
@@ -146,6 +150,21 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 		return null;
 	}
 
+	const slideVariants = {
+		enter: (direction: number) => ({
+			x: direction > 0 ? "100%" : "-100%",
+			opacity: 0.8,
+		}),
+		center: {
+			x: 0,
+			opacity: 1,
+		},
+		exit: (direction: number) => ({
+			x: direction > 0 ? "-100%" : "100%",
+			opacity: 0.8,
+		}),
+	};
+
 	return (
 		<div className="w-auto relative overflow-hidden">
 			{videoPath ? (
@@ -154,19 +173,49 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 				/* image gallery */
 				<>
 					<div
-						className={`relative ${isHoveringGallery && !isMobileOrTablet ? "cursor-none" : ""}`}
+						className={`relative ${isHoveringGallery && !isMobileOrTablet ? "cursor-none" : ""} overflow-hidden`}
 						onMouseMove={handleMouseMove}
 						onMouseEnter={() => setIsHoveringGallery(true)}
 						onMouseLeave={() => setIsHoveringGallery(false)}
 					>
+						<AnimatePresence initial={false} custom={direction}>
+							<motion.img
+								key={currentIndex}
+								src={images[currentIndex]}
+								alt={`Project screenshot ${currentIndex + 1}`}
+								className="w-full h-auto object-cover absolute top-0 left-0"
+								custom={direction}
+								variants={slideVariants}
+								initial="enter"
+								animate="center"
+								exit="exit"
+								transition={{
+									x: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
+									opacity: { duration: 0.6 },
+								}}
+								onTouchStart={onTouchStart}
+								onTouchMove={onTouchMove}
+								onTouchEnd={onTouchEnd}
+								onClick={handleImageClick}
+								drag="x"
+								dragConstraints={{ left: 0, right: 0 }}
+								dragElastic={1}
+								onDragEnd={(e, { offset, velocity }) => {
+									const swipe = Math.abs(offset.x) * velocity.x;
+									if (swipe < -10000) {
+										handleNext();
+									} else if (swipe > 10000) {
+										handlePrevious();
+									}
+								}}
+							/>
+						</AnimatePresence>
+						{/* Invisible placeholder to maintain height */}
 						<img
 							src={images[currentIndex]}
-							alt={`Project screenshot ${currentIndex + 1}`}
-							className="w-full h-auto object-cover"
-							onTouchStart={onTouchStart}
-							onTouchMove={onTouchMove}
-							onTouchEnd={onTouchEnd}
-							onClick={handleImageClick}
+							alt=""
+							className="w-full h-auto object-cover invisible"
+							aria-hidden="true"
 						/>
 					</div>
 
@@ -198,7 +247,10 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 						<PaginationDots
 							totalDots={images.length}
 							currentIndex={currentIndex}
-							onDotClick={setCurrentIndex}
+							onDotClick={(index) => {
+								setDirection(index > currentIndex ? 1 : -1);
+								setCurrentIndex(index);
+							}}
 						/>
 					</div>
 				</>
