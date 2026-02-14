@@ -1,6 +1,8 @@
 import React from "react";
 import Checkbox from "./Checkbox.tsx";
+import IconButton from "./IconButton.tsx";
 import { formatTechName, capitalize } from "../../utils/formatTech.ts";
+import { icons } from "../../assets/icons.ts";
 
 interface DropdownProps {
 	isOpen: Boolean;
@@ -47,6 +49,22 @@ const Dropdown: React.FC<DropdownProps> = ({
 		onFilterChange({ ...filters, tech: newTech });
 	};
 
+	const handleClearTags = () => {
+		onFilterChange({ ...filters, tags: [] });
+	};
+
+	const handleClearTech = () => {
+		onFilterChange({ ...filters, tech: [] });
+	};
+
+	const handleSelectAllTags = () => {
+		onFilterChange({ ...filters, tags: availableTags });
+	};
+
+	const handleSelectAllTech = () => {
+		onFilterChange({ ...filters, tech: availableTech });
+	};
+
 	return (
 		<>
 			{/* backdrop */}
@@ -87,9 +105,25 @@ const Dropdown: React.FC<DropdownProps> = ({
 
 				{/* tags */}
 				<div className="mb-5">
-					<h3 className="text-xs font-semibold text-secondary mb-3 uppercase tracking-wider">
-						Tags
-					</h3>
+					<div className="flex items-center justify-between mb-3">
+						<h3 className="text-xs font-semibold text-secondary uppercase tracking-wider">
+							Tags
+						</h3>
+						<div className="flex items-center gap-2">
+							<IconButton
+								icon={icons.check.fill}
+								onClick={handleSelectAllTags}
+								iconHeight={16}
+								variant="minimal"
+							/>
+							<IconButton
+								icon={icons.close.fill}
+								onClick={handleClearTags}
+								iconHeight={16}
+								variant="minimal"
+							/>
+						</div>
+					</div>
 					<div className="flex flex-col gap-1.5">
 						{availableTags.map((tag) => (
 							<Checkbox
@@ -104,9 +138,25 @@ const Dropdown: React.FC<DropdownProps> = ({
 
 				{/* tech */}
 				<div>
-					<h3 className="text-xs font-semibold text-secondary mb-3 uppercase tracking-wider">
-						Technologies
-					</h3>
+					<div className="flex items-center justify-between mb-3">
+						<h3 className="text-xs font-semibold text-secondary uppercase tracking-wider">
+							Technologies
+						</h3>
+						<div className="flex items-center gap-2">
+							<IconButton
+								icon={icons.check.fill}
+								onClick={handleSelectAllTech}
+								iconHeight={16}
+								variant="minimal"
+							/>
+							<IconButton
+								icon={icons.close.fill}
+								onClick={handleClearTech}
+								iconHeight={16}
+								variant="minimal"
+							/>
+						</div>
+					</div>
 					<div className="flex flex-col gap-1.5">
 						{availableTech.map((language) => (
 							<Checkbox

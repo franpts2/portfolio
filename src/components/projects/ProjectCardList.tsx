@@ -1,4 +1,5 @@
 import React from "react";
+import { motion, AnimatePresence } from "motion/react";
 import ProjectCard from "./ProjectCard.tsx";
 import projectsData from "../../data/projects.json" with { type: "json" };
 
@@ -24,17 +25,17 @@ const ProjectCardList: React.FC<ProjectCardListProps> = ({
 				if (filters.status == "done" && !project.isDone) return false;
 				if (filters.status === "in-progress" && project.isDone) return false;
 
-				if (
-					filters.tags.length > 0 &&
-					!filters.tags.some((tag) => project.tags.includes(tag))
-				) {
+				// If no tags selected, show nothing
+				if (filters.tags.length === 0) return false;
+				// If tags selected, check if project has at least one
+				if (!filters.tags.some((tag) => project.tags.includes(tag))) {
 					return false;
 				}
 
-				if (
-					filters.tech.length > 0 &&
-					!filters.tech.some((lang) => project.tech.includes(lang))
-				) {
+				// If no tech selected, show nothing
+				if (filters.tech.length === 0) return false;
+				// If tech selected, check if project has at least one
+				if (!filters.tech.some((lang) => project.tech.includes(lang))) {
 					return false;
 				}
 			}
@@ -63,9 +64,24 @@ const ProjectCardList: React.FC<ProjectCardListProps> = ({
 	return (
 		<div className="flex flex-col gap-8 items-center">
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-				{filteredProjects.map((project) => (
-					<ProjectCard key={project.id} project={project} />
-				))}
+				<AnimatePresence mode="popLayout">
+					{filteredProjects.map((project) => (
+						<motion.div
+							key={project.id}
+							layout
+							initial={{ opacity: 0, scale: 0.8 }}
+							animate={{ opacity: 1, scale: 1 }}
+							exit={{ opacity: 0, scale: 0.8 }}
+							transition={{
+								layout: { duration: 0.6, ease: "easeInOut" },
+								opacity: { duration: 0.25 },
+								scale: { duration: 0.25 },
+							}}
+						>
+							<ProjectCard project={project} />
+						</motion.div>
+					))}
+				</AnimatePresence>
 			</div>
 			{filteredProjects.length === 0 && (
 				<p className="text-secondary mb-4">No projects match the filters</p>
