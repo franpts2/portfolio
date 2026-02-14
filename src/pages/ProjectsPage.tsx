@@ -15,11 +15,6 @@ const ProjectsPage = () => {
 		"relevance",
 	);
 	const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-	const [filters, setFilters] = useState<{
-		status: "all" | "done" | "in-progress";
-		tags: string[];
-		tech: string[];
-	}>({ status: "all", tags: [], tech: [] });
 
 	// all unique tags from projects
 	const availableTags = Array.from(
@@ -30,6 +25,12 @@ const ProjectsPage = () => {
 	const availableTech = Array.from(
 		new Set(projectsData.flatMap((project) => project.tech)),
 	).sort();
+
+	const [filters, setFilters] = useState<{
+		status: "all" | "done" | "in-progress";
+		tags: string[];
+		tech: string[];
+	}>({ status: "all", tags: availableTags, tech: availableTech });
 
 	return (
 		<div className="relative min-h-screen flex flex-col items-center gap-10">
