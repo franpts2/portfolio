@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import { motion } from "motion/react";
 import { ISDARK, _retrieveData, _storeData } from "../utils/localstorage.js";
 
 export type ThemeContextType = {
@@ -41,7 +42,14 @@ const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 
 	return (
 		<ThemeContext.Provider value={{ isDark, toggleTheme }}>
-			{children}
+			<motion.div
+				key={isDark ? "dark" : "light"}
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ duration: 0.3, ease: "easeInOut" }}
+			>
+				{children}
+			</motion.div>
 		</ThemeContext.Provider>
 	);
 };
