@@ -63,6 +63,19 @@ export const icons = {
 		fill: "material-symbols:arrow-right-alt",
 		outline: "material-symbols:arrow-right-alt-outline",
 	},
+    arrowUpward: {
+		fill: "material-symbols:arrow-upward-alt",
+		outline: "material-symbols:arrow-left-upward-outline",
+	},
+	arrowDownward: {
+		fill: "material-symbols:arrow-downward-alt",
+		outline: "material-symbols:arrow-downward-alt-outline",
+	},
+
+    dropdown: {
+		fill: "material-symbols:keyboard-arrow-down",
+		outline: "material-symbols:keyboard-arrow-down-outline",
+	},
 
 	play: {
 		fill: "material-symbols:play-circle",
@@ -95,12 +108,12 @@ export const icons = {
 		fill: "material-symbols:filter-list",
 		outline: "material-symbols:filter-list-outline",
 	},
+    
 
 	checkbox: {
 		checked: "material-symbols:check-box",
 		unchecked: "material-symbols:check-box-outline-blank",
 	},
-
     radioButton: {
 		checked: "material-symbols:radio-button-checked",
 		unchecked: "material-symbols:radio-button-unchecked",

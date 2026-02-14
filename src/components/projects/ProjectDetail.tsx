@@ -131,7 +131,7 @@ function ProjectDetail() {
 									alt={t}
 									width="60"
 									height="60"
-									className="w-12 h-12 sm:w-14 sm:h-14 md:w-[60px] md:h-[60px]"
+									className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15"
 								/>
 							))}
 						</div>
