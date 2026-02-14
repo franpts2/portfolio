@@ -91,9 +91,19 @@ export const icons = {
 		outline: "material-symbols:volume-off-outline",
 	},
 
-    filters: {
+	filters: {
 		fill: "material-symbols:filter-list",
 		outline: "material-symbols:filter-list-outline",
+	},
+
+	checkbox: {
+		checked: "material-symbols:check-box",
+		unchecked: "material-symbols:check-box-outline-blank",
+	},
+
+    radioButton: {
+		checked: "material-symbols:radio-button-checked",
+		unchecked: "material-symbols:radio-button-unchecked",
 	},
 
 	// Social Icons
