@@ -59,6 +59,16 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 			setRotation((prev) => prev + 180);
 		} else {
 			setIsAnimating(false);
+
+			// normalize rotation to check if it's divisible by 360
+			const normalizedRotation = rotation % 360;
+			if (normalizedRotation === 180) {
+				// back is facing front, flip one more time
+				setTimeout(() => {
+					setIsAnimating(true);
+					setRotation((prev) => prev + 180);
+				}, 100);
+			}
 		}
 	};
 
@@ -76,7 +86,11 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 				{/* front */}
 				<div
 					className="absolute inset-0 rounded-full overflow-hidden flex items-center justify-center"
-					style={{ backfaceVisibility: "hidden" }}
+					style={{
+						backfaceVisibility: "hidden",
+						WebkitBackfaceVisibility: "hidden",
+						transform: "rotateY(0deg)",
+					}}
 				>
 					<img
 						src={imgSrc}
@@ -88,7 +102,11 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 				{/* back */}
 				<div
 					className="absolute inset-0 rounded-full border border-tertiary-bg bg-tertiary-bg flex items-center justify-center"
-					style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+					style={{
+						backfaceVisibility: "hidden",
+						WebkitBackfaceVisibility: "hidden",
+						transform: "rotateY(180deg)",
+					}}
 				>
 					<p className="text-primary text-center text-xs px-2">{alt}</p>
 				</div>
