@@ -101,7 +101,7 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 				onHoverEnd={handleHoverEnd}
 				onAnimationComplete={handleAnimationComplete}
 				transition={{
-					duration: rotation === 360 ? 1.2 : 0.5,
+					duration: rotation === 360 ? 1 : 0.5,
 					ease: "easeInOut",
 				}}
 			>
