@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import MagnifiedDock from "../components/ui/dock/MagnifiedDock.tsx";
 import type { DockItemData } from "../components/ui/dock/DockIcon.tsx";
 import TapeFrame from "../components/ui/tape/TapeFrame.tsx";
@@ -11,6 +11,8 @@ const DATA: DockItemData[] = [
 ];
 
 const AboutPage = () => {
+	const [hasDropped, setHasDropped] = useState(false);
+
 	return (
 		<div className="relative min-h-screen flex items-center text-primary">
 			<div className="mx-auto text-center">
@@ -20,8 +22,9 @@ const AboutPage = () => {
 						animate={{ opacity: 1, scale: 1, x: 0 }}
 						transition={{ duration: 0.8, ease: "easeOut" }}
 					>
-						<TapeFrame imageSrc="/public/images/people/francisca-portugal.png" />
+						<TapeFrame imageSrc="/images/people/francisca-portugal.png" />
 					</motion.div>
+
 					<div className="ml-20">
 						<div className="flex flex-col gap-8 mb-10">
 							<motion.h1
@@ -52,7 +55,7 @@ const AboutPage = () => {
 									motivated to build high-caliber tools that are as profoundly
 									important as they are a delight to interact with.
 								</motion.p>
-                                <motion.p
+								<motion.p
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.6, delay: 0.8 }}
