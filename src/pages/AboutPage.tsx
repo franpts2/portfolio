@@ -52,12 +52,19 @@ const AboutPage = () => {
 									motivated to build high-caliber tools that are as profoundly
 									important as they are a delight to interact with.
 								</motion.p>
+                                <motion.p
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.6, delay: 0.8 }}
+								>
+									P.S. Try peeling off the tapes on the photo!
+								</motion.p>
 							</div>
 						</div>
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.6, delay: 0.8 }}
+							transition={{ duration: 0.6, delay: 1 }}
 						>
 							<MagnifiedDock data={DATA} />
 						</motion.div>
