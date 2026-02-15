@@ -1,5 +1,6 @@
 import React from "react";
-import ExperienceCard from "../components/experience/ExperienceCard.tsx";
+import { motion } from "motion/react";
+import ExperienceCardList from "../components/experience/ExperienceCardList.tsx";
 import experienceData from "../data/experience.json" with { type: "json" };
 
 interface Experience {
@@ -16,28 +17,19 @@ const ExperiencePage = () => {
 	const experiences: Experience[] = experienceData;
 
 	return (
-		<div className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8">
-			<div className="max-w-4xl mx-auto">
-				{/* Title */}
-				<h1 className="font-heading font-black text-4xl sm:text-5xl text-primary-accent mb-12 text-center">
+		<div className="relative h-screen overflow-hidden">
+			<div className="sticky top-0 z-10 bg-primary-bg/95 backdrop-blur-sm mt-10 py-8 px-4 sm:px-6 lg:px-8">
+				<motion.h1
+					initial={{ opacity: 0, y: -20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6 }}
+					className="font-heading font-black text-4xl sm:text-5xl text-primary-accent text-center"
+				>
 					Experience
-				</h1>
-
-				{/* Experience Cards List */}
-				<div className="space-y-6">
-					{experiences.map((exp) => (
-						<ExperienceCard
-							key={exp.id}
-							position={exp.position}
-							company={exp.company}
-							{...(exp.location && { location: exp.location })}
-							monthYearFrom={exp.monthYearFrom}
-							{...(exp.monthYearTo && { monthYearTo: exp.monthYearTo })}
-							description={exp.description}
-						/>
-					))}
-				</div>
+				</motion.h1>
 			</div>
+
+			<ExperienceCardList experiences={experiences} />
 		</div>
 	);
 };
