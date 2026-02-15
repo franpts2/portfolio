@@ -58,7 +58,7 @@ const DockIcon: React.FC<DockIconProps> = ({ mouseX, item }) => {
 			)}
 		>
 			{/* tooltip Label */}
-			<span className="absolute -top-10 left-1/2 -translate-x-1/2 rounded-md bg-neutral-900/90 px-2 py-1 text-xs text-neutral-200 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none whitespace-nowrap">
+			<span className="absolute -top-10 left-1/2 -translate-x-1/2 rounded-md bg-neutral-900/90 px-2 py-1 text-sm text-neutral-200 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none whitespace-nowrap">
 				{item.label}
 			</span>
 
