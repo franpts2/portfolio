@@ -19,7 +19,7 @@ const MagnifiedDock: React.FC<MagnifiedDockProps> = ({
 	const mouseX = useMotionValue(Infinity);
 
 	return (
-		<div className="flex min-h-75 w-full items-center justify-center p-8">
+		<div className="flex h-fit w-full items-center justify-center p-8">
 			<motion.div
 				onMouseMove={(e) => mouseX.set(e.pageX)}
 				onMouseLeave={() => mouseX.set(Infinity)}
