@@ -15,7 +15,7 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 }) => {
 	const [attachedTapes, setAttachedTapes] = useState([1, 2, 3, 4]);
 	const [canDrag, setCanDrag] = useState(false);
-	const [isDragging, setIsDragging] = useState(false);
+	const [hasInteracted, setHasInteracted] = useState(false);
 
 	const [spacerHeight, setSpacerHeight] = useState(0);
 
@@ -77,8 +77,7 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 				dragConstraints={{ top: -2000, bottom: 2000, left: -2000, right: 2000 }}
 				dragElastic={0.1}
 				dragMomentum={false}
-				onDragStart={() => setIsDragging(true)}
-				onDragEnd={() => setIsDragging(false)}
+				onDragStart={() => setHasInteracted(true)}
 				whileDrag={{ cursor: "grabbing", scale: 1.05, zIndex: 9999 }}
 				className={`flex items-center justify-center ${canDrag ? "cursor-grab" : ""}`}
 			>
@@ -131,7 +130,7 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 				<motion.span
 					initial={{ opacity: 0, x: -20 }}
 					animate={
-						isFalling && !isDragging
+						isFalling && !hasInteracted
 							? { opacity: 1, x: 0 }
 							: { opacity: 0, x: -10 }
 					}
