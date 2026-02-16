@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import MagnifiedDock from "../components/ui/dock/MagnifiedDock.tsx";
 import type { DockItemData } from "../components/ui/dock/DockIcon.tsx";
 import TapeFrame from "../components/ui/tape/TapeFrame.tsx";
@@ -11,10 +11,8 @@ const DATA: DockItemData[] = [
 ];
 
 const AboutPage = () => {
-	const [hasDropped, setHasDropped] = useState(false);
-
 	return (
-		<div className="relative min-h-screen flex items-center text-primary">
+		<div className="relative min-h-screen flex items-center text-primary overflow-x-hidden">
 			<div className="mx-auto text-center">
 				<div className="flex flex-row gap-2 text-start">
 					<motion.div
