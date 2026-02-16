@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import projectsData from "../../data/projects.json" with { type: "json" };
-import Button from "../ui/Button.tsx";
+import Button from "../ui/buttons/Button.tsx";
 import { icons } from "../../assets/icons.ts";
 import { Icon } from "@iconify/react";
 import { ThemeContext } from "../ThemeProvider.tsx";
@@ -97,12 +97,12 @@ function ProjectDetail() {
 							>
 								{project.title}
 							</h1>
-							<h2
+							<p
 								ref={descRef}
-								className="text-xl sm:text-2xl md:text-3xl font-light"
+								className="text-xl mb-1 sm:text-2xl md:text-3xl font-light"
 							>
 								{project.description}
-							</h2>
+							</p>
 						</div>
 
 						<div className="flex flex-row flex-wrap gap-2">

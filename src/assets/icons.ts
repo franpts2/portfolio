@@ -41,7 +41,7 @@ export const icons = {
 		outline: "material-symbols:close-outline",
 	},
 
-    check: {
+	check: {
 		fill: "material-symbols:check",
 		outline: "material-symbols:check-outline",
 	},
@@ -68,7 +68,7 @@ export const icons = {
 		fill: "material-symbols:arrow-right-alt",
 		outline: "material-symbols:arrow-right-alt-outline",
 	},
-    arrowUpward: {
+	arrowUpward: {
 		fill: "material-symbols:arrow-upward-alt",
 		outline: "material-symbols:arrow-left-upward-outline",
 	},
@@ -77,7 +77,7 @@ export const icons = {
 		outline: "material-symbols:arrow-downward-alt-outline",
 	},
 
-    dropdown: {
+	dropdown: {
 		fill: "material-symbols:keyboard-arrow-down",
 		outline: "material-symbols:keyboard-arrow-down-outline",
 	},
@@ -114,17 +114,16 @@ export const icons = {
 		outline: "material-symbols:filter-list-outline",
 	},
 
-    download: {
+	download: {
 		fill: "material-symbols:download",
 		outline: "material-symbols:download-outline",
 	},
-    
 
 	checkbox: {
 		checked: "material-symbols:check-box",
 		unchecked: "material-symbols:check-box-outline-blank",
 	},
-    radioButton: {
+	radioButton: {
 		checked: "material-symbols:radio-button-checked",
 		unchecked: "material-symbols:radio-button-unchecked",
 	},

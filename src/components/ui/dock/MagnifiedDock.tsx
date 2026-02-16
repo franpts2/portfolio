@@ -1,14 +1,8 @@
 import React, { useContext } from "react";
 import { motion, useMotionValue } from "framer-motion";
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
 import DockIcon from "./DockIcon.tsx";
 import type { DockItemData } from "./DockIcon.tsx";
 import { ThemeContext } from "../../ThemeProvider.tsx";
-
-function cn(...inputs: ClassValue[]) {
-	return twMerge(clsx(inputs));
-}
 
 interface MagnifiedDockProps {
 	data: DockItemData[];
@@ -17,7 +11,9 @@ interface MagnifiedDockProps {
 const MagnifiedDock: React.FC<MagnifiedDockProps> = ({ data }) => {
 	const mouseX = useMotionValue(Infinity);
 	const { isDark } = useContext(ThemeContext);
-    const dockStyle = isDark ? "bg-white/20 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)]" : "bg-black/20 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]";
+	const dockStyle = isDark
+		? "bg-white/20 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)]"
+		: "bg-black/20 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]";
 
 	return (
 		<div className="flex h-fit w-full items-center justify-center py-7 flex-col gap-1">

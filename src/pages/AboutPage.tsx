@@ -4,7 +4,7 @@ import type { DockItemData } from "../components/ui/dock/DockIcon.tsx";
 import TapeFrame from "../components/ui/tape/TapeFrame.tsx";
 import { motion } from "framer-motion";
 import Highlight from "../components/ui/Highlight.tsx";
-import Button from "../components/ui/Button.tsx";
+import Button from "../components/ui/buttons/Button.tsx";
 import { icons } from "../assets/icons.ts";
 
 const DATA: DockItemData[] = [

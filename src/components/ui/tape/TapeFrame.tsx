@@ -49,7 +49,7 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 		if (distance < 150) {
 			setCanDrag(false);
 
-            animate(x, 0, { type: "spring", stiffness: 200, damping: 20 });
+			animate(x, 0, { type: "spring", stiffness: 200, damping: 20 });
 			animate(y, 0, {
 				type: "spring",
 				stiffness: 200,

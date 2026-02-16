@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "motion/react";
-import { capitalize } from "../../utils/format.ts";
+import { capitalize } from "../../../utils/format.ts";
 
 interface SortDropdownProps {
 	isOpen: boolean;

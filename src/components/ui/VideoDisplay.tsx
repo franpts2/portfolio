@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { Icon } from "@iconify/react";
 import { icons } from "../../assets/icons.ts";
 import ProgressBar from "./ProgressBar.tsx";
-import IconButton from "./IconButton.tsx";
+import IconButton from "./buttons/IconButton.tsx";
 
 interface VideoDisplayProps {
 	videoPath: string;
@@ -149,7 +149,7 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 			{/* custom controls */}
 			{(showControls && isHoveringVideo) || isMobileOrTablet ? (
 				<div
-					className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4"
+					className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4"
 					onMouseEnter={() => setIsHoveringControls(true)}
 					onMouseLeave={() => setIsHoveringControls(false)}
 				>
