@@ -17,17 +17,12 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 	const [canDrag, setCanDrag] = useState(false);
 	const [hasInteracted, setHasInteracted] = useState(false);
 
-	const [spacerHeight, setSpacerHeight] = useState(0);
-
 	const y = useMotionValue(0);
 	const isFalling = attachedTapes.length === 0;
 
 	useEffect(() => {
 		if (isFalling) {
 			const dropDistance = window.innerHeight * 0.55;
-
-			// spacer = drop distance + approximate image height (500px)
-			setSpacerHeight(dropDistance + 500);
 
 			animate(y, dropDistance, {
 				type: "spring",
@@ -48,10 +43,19 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 			className={`relative inline-block ${className}`}
 			style={{ perspective: "1000px" }}
 		>
-			{/* ghost: layout preserver */}
-			<div className="opacity-0 pointer-events-none p-4" aria-hidden="true">
-				<div className="bg-transparent">
-					<img src={imageSrc} alt="" className="block max-w-full h-auto" />
+			{/* placeholder for the frame*/}
+			<div className="rotate-1 select-none pointer-events-none p-4">
+				<div className="relative flex items-center justify-center border-2 border-dashed border-secondary-accent rounded-sm">
+					{/* invisible image to make box exact same size as the photo */}
+					<img
+						src={imageSrc}
+						alt=""
+						className="block max-w-full h-auto opacity-0 p-1"
+					/>
+
+					<p className="absolute text-secondary-accent font-bold text-xs uppercase tracking-widest">
+						Photo goes here!
+					</p>
 				</div>
 			</div>
 
@@ -59,7 +63,7 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 			{isFalling && (
 				<div
 					className="absolute top-0 left-0 w-px -z-10 pointer-events-none transition-all duration-500"
-					style={{ height: spacerHeight }}
+					style={{ height: window.innerHeight * 0.55 + 500 }}
 				/>
 			)}
 
@@ -81,7 +85,6 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 				whileDrag={{ cursor: "grabbing", scale: 1.05, zIndex: 9999 }}
 				className={`flex items-center justify-center ${canDrag ? "cursor-grab" : ""}`}
 			>
-				{/* photo frame */}
 				<motion.div
 					animate={isFalling ? { rotate: 12, scale: 0.95 } : { rotate: 1 }}
 					transition={{ type: "spring", stiffness: 40 }}
