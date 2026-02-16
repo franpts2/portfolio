@@ -31,9 +31,9 @@ const Button: React.FC<ButtonProps> = ({
 			onClick={onClick}
 			className={`${baseClasses} ${variantClasses[variant]}`}
 		>
-			<p className="text-sm">{text}</p>
+			<p className="text-sm whitespace-nowrap">{text}</p>
 			{icon && (
-				<Icon icon={icon} height={iconHeight} className="text-secondary" />
+				<Icon icon={icon} height={iconHeight}/>
 			)}
 		</div>
 	);

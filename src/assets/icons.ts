@@ -113,6 +113,11 @@ export const icons = {
 		fill: "material-symbols:filter-list",
 		outline: "material-symbols:filter-list-outline",
 	},
+
+    download: {
+		fill: "material-symbols:download",
+		outline: "material-symbols:download-outline",
+	},
     
 
 	checkbox: {

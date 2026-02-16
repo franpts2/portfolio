@@ -3,6 +3,8 @@ import MagnifiedDock from "../components/ui/dock/MagnifiedDock.tsx";
 import type { DockItemData } from "../components/ui/dock/DockIcon.tsx";
 import TapeFrame from "../components/ui/tape/TapeFrame.tsx";
 import { motion } from "motion/react";
+import Button from "../components/ui/Button.tsx";
+import { icons } from "../assets/icons.ts";
 
 const DATA: DockItemData[] = [
 	{ id: 1, label: "React", tool: "react" },
@@ -25,14 +27,29 @@ const AboutPage = () => {
 
 					<div className="ml-20">
 						<div className="flex flex-col gap-8 mb-10">
-							<motion.h1
-								className="font-black text-4xl text-primary-accent"
-								initial={{ opacity: 0, y: 20 }}
-								animate={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.6, delay: 0.2 }}
-							>
-								About me
-							</motion.h1>
+							<div className="flex flex-row justify-between">
+								<motion.h1
+									className="font-black text-4xl text-primary-accent"
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.6, delay: 0.2 }}
+								>
+									About me
+								</motion.h1>
+								<motion.div
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.6, delay: 0.3 }}
+								>
+									<Button
+										text="Download CV"
+										icon={icons.download.fill}
+										onClick={() => window.open("/CV.pdf", "_blank")}
+										variant="primary"
+									/>
+								</motion.div>
+							</div>
+
 							<div className="max-w-lg flex flex-col gap-4">
 								<motion.p
 									initial={{ opacity: 0, y: 20 }}
@@ -67,7 +84,9 @@ const AboutPage = () => {
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, delay: 1 }}
 						>
-							<MagnifiedDock data={DATA} />
+							<div className="flex flex-row items-center">
+								<MagnifiedDock data={DATA} />
+							</div>
 						</motion.div>
 					</div>
 				</div>
