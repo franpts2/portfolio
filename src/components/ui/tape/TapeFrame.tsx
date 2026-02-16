@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion, useMotionValue, animate } from "framer-motion";
+import { motion, useMotionValue, animate } from "motion/react";
 import TapePiece from "./TapePiece.tsx";
 
 interface TapeFrameProps {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MagnifiedDock from "../components/ui/dock/MagnifiedDock.tsx";
 import type { DockItemData } from "../components/ui/dock/DockIcon.tsx";
 import TapeFrame from "../components/ui/tape/TapeFrame.tsx";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Highlight from "../components/ui/Highlight.tsx";
 import Button from "../components/ui/buttons/Button.tsx";
 import { icons } from "../assets/icons.ts";

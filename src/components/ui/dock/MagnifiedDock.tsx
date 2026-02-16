@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { motion, useMotionValue } from "framer-motion";
+import { motion, useMotionValue } from "motion/react";
 import DockIcon from "./DockIcon.tsx";
 import type { DockItemData } from "./DockIcon.tsx";
 import { ThemeContext } from "../../ThemeProvider.tsx";

@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import { motion, useSpring, useTransform, MotionValue } from "framer-motion";
+import { motion, useSpring, useTransform, MotionValue } from "motion/react";
 import { ThemeContext } from "../../ThemeProvider.tsx";
 
 const BASE_WIDTH = 48; // base width of an icon (in px) when not hovered. (48px = w-12)
