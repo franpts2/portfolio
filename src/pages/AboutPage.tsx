@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import MagnifiedDock from "../components/ui/dock/MagnifiedDock.tsx";
 import type { DockItemData } from "../components/ui/dock/DockIcon.tsx";
 import TapeFrame from "../components/ui/tape/TapeFrame.tsx";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
+import Highlight from "../components/ui/Highlight.tsx";
 import Button from "../components/ui/Button.tsx";
 import { icons } from "../assets/icons.ts";
 
 const DATA: DockItemData[] = [
-	{ id: 1, label: "React", tool: "react", site:"https://react.dev" },
-	{ id: 2, label: "TypeScript", tool: "ts", site:"https://www.typescriptlang.org/" },
-	{ id: 3, label: "Tailwind CSS", tool: "tailwind", site:"https://tailwindcss.com/" },
+	{ id: 1, label: "React", tool: "react", site: "https://react.dev" },
+	{
+		id: 2,
+		label: "TypeScript",
+		tool: "ts",
+		site: "https://www.typescriptlang.org/",
+	},
+	{
+		id: 3,
+		label: "Tailwind CSS",
+		tool: "tailwind",
+		site: "https://tailwindcss.com/",
+	},
 ];
 
 const AboutPage = () => {
+	const [hasHovered, setHasHovered] = useState(false);
+
 	return (
 		<div className="relative min-h-screen flex items-center text-primary overflow-x-hidden">
 			<div className="mx-auto text-center">
@@ -50,16 +63,24 @@ const AboutPage = () => {
 								</motion.div>
 							</div>
 
-							<div className="max-w-lg flex flex-col gap-4">
+							{/* Parent container that triggers all highlights */}
+							<div
+								className="max-w-lg flex flex-col gap-4 cursor-default"
+								onMouseEnter={() => setHasHovered(true)}
+							>
 								<motion.p
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.6, delay: 0.4 }}
 								>
-									I'm a <strong>Frontend Developer </strong> who ventures into
-									Full-stack and Mobile to build products that feel effortless.
-									I thrive on creating interfaces that are technically rigorous
-									under the hood, yet joyful and intuitive for the user.
+									I'm a{" "}
+									<Highlight isHighlighted={hasHovered}>
+										Frontend Developer
+									</Highlight>{" "}
+									who ventures into Full-stack and Mobile to build products that
+									feel effortless. I thrive on creating interfaces that are
+									technically rigorous under the hood, yet joyful and intuitive
+									for the user.
 								</motion.p>
 								<motion.p
 									initial={{ opacity: 0, y: 20 }}
@@ -74,7 +95,7 @@ const AboutPage = () => {
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.6, delay: 0.8 }}
-                                    className="text-secondary"
+									className="text-secondary"
 								>
 									P.S. Try peeling off the tapes on the photo!
 								</motion.p>
