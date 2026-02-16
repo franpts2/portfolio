@@ -22,6 +22,7 @@ export interface DockItemData {
 	id: number;
 	tool: string;
 	label: string;
+    site: string;
 }
 
 interface DockIconProps {
@@ -56,6 +57,7 @@ const DockIcon: React.FC<DockIconProps> = ({ mouseX, item }) => {
 				"shadow-inner",
 				"cursor-pointer group hover:bg-neutral-700 transition-colors duration-200",
 			)}
+            onClick={() => window.open(item.site, "_blank")}
 		>
 			{/* tooltip Label */}
 			<span className="absolute -top-10 left-1/2 -translate-x-1/2 rounded-md bg-neutral-900/90 px-2 py-1 text-sm text-neutral-200 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none whitespace-nowrap">
@@ -66,8 +68,8 @@ const DockIcon: React.FC<DockIconProps> = ({ mouseX, item }) => {
 			<img
 				src={`https://skillicons.dev/icons?i=${item.tool}&theme=${iconTheme}`}
 				alt={item.label}
-				className="h-full w-full object-cover" // Ensure image fills the square
-				draggable={false} // Prevents ghost image while dragging
+				className="h-full w-full object-cover"
+				draggable={false}
 			/>
 		</motion.div>
 	);

@@ -7,9 +7,9 @@ import Button from "../components/ui/Button.tsx";
 import { icons } from "../assets/icons.ts";
 
 const DATA: DockItemData[] = [
-	{ id: 1, label: "React", tool: "react" },
-	{ id: 2, label: "TypeScript", tool: "ts" },
-	{ id: 3, label: "Tailwind CSS", tool: "tailwind" },
+	{ id: 1, label: "React", tool: "react", site:"https://react.dev" },
+	{ id: 2, label: "TypeScript", tool: "ts", site:"https://www.typescriptlang.org/" },
+	{ id: 3, label: "Tailwind CSS", tool: "tailwind", site:"https://tailwindcss.com/" },
 ];
 
 const AboutPage = () => {
@@ -74,6 +74,7 @@ const AboutPage = () => {
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.6, delay: 0.8 }}
+                                    className="text-secondary"
 								>
 									P.S. Try peeling off the tapes on the photo!
 								</motion.p>
