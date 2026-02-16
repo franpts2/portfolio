@@ -25,6 +25,7 @@ const DATA: DockItemData[] = [
 
 const AboutPage = () => {
 	const [hasHovered, setHasHovered] = useState(false);
+	const [tapeCount, setTapeCount] = useState(4);
 
 	return (
 		<div className="relative min-h-screen flex items-center text-primary overflow-x-hidden">
@@ -35,7 +36,10 @@ const AboutPage = () => {
 						animate={{ opacity: 1, scale: 1, x: 0 }}
 						transition={{ duration: 0.8, ease: "easeOut" }}
 					>
-						<TapeFrame imageSrc="/images/people/francisca-portugal.png" />
+						<TapeFrame
+							imageSrc="/images/people/francisca-portugal.png"
+							onTapesChange={(count) => setTapeCount(count)}
+						/>
 					</motion.div>
 
 					<div className="ml-20">
@@ -92,12 +96,15 @@ const AboutPage = () => {
 									important as they are a delight to interact with.
 								</motion.p>
 								<motion.p
+									key={tapeCount === 0 ? "fell" : "fixed"}
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.6, delay: 0.8 }}
 									className="text-secondary"
 								>
-									P.S. Try peeling off the tapes on the photo!
+									{tapeCount === 0
+										? "P.S. Try putting the photo back in its place!"
+										: "P.S. Try peeling off the tapes on the photo!"}
 								</motion.p>
 							</div>
 						</div>

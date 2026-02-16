@@ -6,16 +6,22 @@ interface TapeFrameProps {
 	imageSrc: string;
 	altText?: string;
 	className?: string;
+    onTapesChange?: (count: number) => void;
 }
 
 const TapeFrame: React.FC<TapeFrameProps> = ({
 	imageSrc,
 	altText = "Framed image",
 	className = "",
+    onTapesChange,
 }) => {
 	const [attachedTapes, setAttachedTapes] = useState([1, 2, 3, 4]);
 	const [canDrag, setCanDrag] = useState(false);
 	const [hasInteracted, setHasInteracted] = useState(false);
+
+    useEffect(() => {
+        onTapesChange?.(attachedTapes.length);
+    }, [attachedTapes, onTapesChange]);
 
 	// track X & Y of photo to calculate distance from the placeholder
 	const x = useMotionValue(0);
