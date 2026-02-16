@@ -17,7 +17,10 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 	const [canDrag, setCanDrag] = useState(false);
 	const [hasInteracted, setHasInteracted] = useState(false);
 
+	// track X & Y of photo to calculate distance from the placeholder
+	const x = useMotionValue(0);
 	const y = useMotionValue(0);
+
 	const isFalling = attachedTapes.length === 0;
 
 	useEffect(() => {
@@ -33,6 +36,31 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 			});
 		}
 	}, [isFalling, y]);
+
+	// reset logic
+	const checkReset = () => {
+		const currentX = x.get();
+		const currentY = y.get();
+
+		// distance to the origin (0,0) using pythagorean theorem
+		const distance = Math.sqrt(currentX ** 2 + currentY ** 2);
+
+		// if within 150px of the center, snap back
+		if (distance < 150) {
+			setCanDrag(false);
+
+            animate(x, 0, { type: "spring", stiffness: 200, damping: 20 });
+			animate(y, 0, {
+				type: "spring",
+				stiffness: 200,
+				damping: 20,
+				onComplete: () => {
+					setAttachedTapes([1, 2, 3, 4]);
+					setHasInteracted(false);
+				},
+			});
+		}
+	};
 
 	const handlePeel = (id: number) => {
 		setAttachedTapes((prev) => prev.filter((t) => t !== id));
@@ -69,6 +97,7 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 
 			<motion.div
 				style={{
+					x,
 					y,
 					position: "absolute",
 					top: 0,
@@ -82,11 +111,17 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 				dragElastic={0.1}
 				dragMomentum={false}
 				onDragStart={() => setHasInteracted(true)}
+				onDragEnd={() => {
+					checkReset();
+				}}
 				whileDrag={{ cursor: "grabbing", scale: 1.05, zIndex: 9999 }}
+				whileHover={canDrag ? { scale: 1.02 } : {}}
 				className={`flex items-center justify-center ${canDrag ? "cursor-grab" : ""}`}
 			>
 				<motion.div
-					animate={isFalling ? { rotate: 12, scale: 0.95 } : { rotate: 1 }}
+					animate={
+						isFalling ? { rotate: 12, scale: 0.95 } : { rotate: 1, scale: 1 }
+					}
 					transition={{ type: "spring", stiffness: 40 }}
 					className="relative bg-white p-4 shadow-xl"
 				>
