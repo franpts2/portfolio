@@ -20,30 +20,22 @@ const ExperienceCardList: React.FC<ExperienceCardListProps> = ({
 	experiences,
 }) => {
 	return (
-		<div className="h-[calc(100vh-184px)] overflow-y-scroll snap-y snap-mandatory scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-			{experiences.map((exp, index) => (
-				<div
-					key={exp.id}
-					className="h-[calc(100vh-184px)] snap-start flex items-center justify-center px-4 sm:px-6 lg:px-8"
-				>
+		<div className="relative max-w-4xl mx-auto px-6 py-12">
+			<div className="absolute left-9.5 top-0 bottom-12 w-0.5 bg-primary/30" />
+
+			<div className="flex flex-col gap-4">
+				{experiences.map((exp, index) => (
 					<motion.div
-						initial={{ opacity: 0, y: 50, scale: 0.95 }}
-						whileInView={{ opacity: 1, y: 0, scale: 1 }}
-						viewport={{ once: false, amount: 0.5 }}
-						transition={{ duration: 0.6, ease: "easeOut" }}
-						className="w-full max-w-4xl"
+						key={exp.id}
+						initial={{ opacity: 0, x: -20 }}
+						whileInView={{ opacity: 1, x: 0 }}
+						viewport={{ once: true, amount: 0.2 }}
+						transition={{ duration: 0.5, delay: index * 0.1 }}
 					>
-						<ExperienceCard
-							position={exp.position}
-							company={exp.company}
-							{...(exp.location && { location: exp.location })}
-							monthYearFrom={exp.monthYearFrom}
-							{...(exp.monthYearTo && { monthYearTo: exp.monthYearTo })}
-							description={exp.description}
-						/>
+						<ExperienceCard {...exp} />
 					</motion.div>
-				</div>
-			))}
+				))}
+			</div>
 		</div>
 	);
 };

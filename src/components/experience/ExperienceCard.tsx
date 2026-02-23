@@ -36,32 +36,27 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 		return `${months[parseInt(month ?? "1") - 1]} ${year}`;
 	};
 
-	const isOngoing = !monthYearTo;
-
 	return (
-		<div className="group relative bg-secondary-bg border border-tertiary-bg/30 rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 hover:border-primary-accent/30">
-			{/* Subtle gradient overlay on hover */}
-			<div className="absolute inset-0 rounded-xl bg-linear-to-br from-primary-accent/0 to-primary-accent/0 group-hover:from-primary-accent/5 group-hover:to-transparent transition-all duration-300 pointer-events-none" />
+		<div className="group relative ml-12 pb-12 last:pb-0">
+			<div className="absolute -left-10.25 top-2.5 w-4 h-4 rounded-full border-4 border-secondary-bg/80 bg-secondary-accent group-hover:scale-125 transition-transform duration-300 z-10" />
 
-			<div className="relative">
-				{/* Header with title and date */}
+			<div className="bg-secondary-bg border border-secondary-bg/30 rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 hover:border-secondary-accent/30">
 				<div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
-					<h3 className="font-heading font-semibold text-xl md:text-2xl text-primary group-hover:text-primary-accent transition-colors duration-200">
+					<h3 className="font-heading font-semibold text-xl md:text-2xl text-primary/90 group-hover:text-secondary-accent transition-colors">
 						{position}
 					</h3>
 					<span className="text-xs md:text-sm text-secondary font-medium whitespace-nowrap bg-tertiary-bg/50 px-3 py-1 rounded-full w-fit">
 						{formatDate(monthYearFrom)} -{" "}
-						{isOngoing ? (
-							<span className="font-bold text-primary-accent">Current</span>
+						{!monthYearTo ? (
+							<span className="font-bold text-secondary-accent">Current</span>
 						) : (
 							formatDate(monthYearTo)
 						)}
 					</span>
 				</div>
 
-				{/* Company and location */}
 				<div className="flex items-center gap-2 mb-4">
-					<p className="text-sm md:text-base text-primary/70 font-semibold">
+					<p className="text-sm md:text-base text-secondary-accent/70 font-semibold">
 						{company}
 					</p>
 					{location && (
@@ -74,7 +69,6 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 					)}
 				</div>
 
-				{/* Description */}
 				<p className="text-sm md:text-base text-secondary leading-relaxed whitespace-pre-line">
 					{description}
 				</p>
