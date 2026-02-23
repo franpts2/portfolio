@@ -46,13 +46,12 @@ const ExperienceCardList: React.FC<ExperienceCardListProps> = ({
 			className="relative max-w-4xl mx-auto px-6 py-12"
 			variants={containerVariants}
 			initial="hidden"
-			whileInView="visible"
-			viewport={{ once: true, amount: 0.1 }}
+			animate="visible"
 		>
 			<motion.div
 				variants={lineVariants}
 				style={{ originY: 0 }}
-				className="absolute left-9.5 -top-3 -bottom-3 w-0.5 bg-primary/20"
+				className="absolute left-9.5 -top-8 -bottom-8 w-0.5 bg-primary/20"
 			/>
 
 			<div className="flex flex-col gap-8">

@@ -57,10 +57,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 	};
 
 	return (
-		<motion.div
-			variants={cardVariants}
-			className="group relative ml-12 last:pb-0"
-		>
+		<motion.div variants={cardVariants} className="group relative ml-12">
 			<div className="absolute -left-10.25 top-3 z-10 flex items-center justify-center w-4 h-4">
 				<motion.div
 					variants={dotVariants}
