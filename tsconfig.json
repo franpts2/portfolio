@@ -40,7 +40,9 @@
 		"noUncheckedSideEffectImports": true,
 		"moduleDetection": "force",
         "moduleResolution": "nodenext",
-		"skipLibCheck": true
+		"skipLibCheck": true,
+        "emitDeclarationOnly": true,
+        "allowImportingTsExtensions": true,
 	},
 	"include": ["src", "global.d.ts"]
 }

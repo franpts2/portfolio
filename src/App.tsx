@@ -1,11 +1,13 @@
 import React from "react";
+import ThemeProvider from "./components/ThemeProvider.js";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router/index.js";
 
 const App = () => {
 	return (
-		<>
-			<h1 className="text-2xl font-family-heading">Francisca Portugal</h1>
-			<p className="text-base font-family-body">Web developer!</p>
-		</>
+		<ThemeProvider>
+			<RouterProvider router={router} />
+		</ThemeProvider>
 	);
 };
 
