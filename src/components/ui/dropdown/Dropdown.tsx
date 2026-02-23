@@ -1,7 +1,11 @@
 import React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import FilterGroup from "./FilterGroup.tsx";
-import { formatTechName, capitalize, normalize } from "../../utils/format.ts";
+import {
+	formatTechName,
+	capitalize,
+	normalize,
+} from "../../../utils/format.ts";
 
 interface DropdownProps {
 	isOpen: Boolean;
