@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import ProjectCardList from "../components/projects/ProjectCardList.tsx";
-import IconButton from "../components/ui/IconButton.tsx";
+import IconButton from "../components/ui/buttons/IconButton.tsx";
 import { icons } from "../assets/icons.js";
 import projectsData from "../data/projects.json" with { type: "json" };
-import Dropdown from "../components/ui/Dropdown.tsx";
-import SortDropdown from "../components/ui/SortDropdown.tsx";
-import Button from "../components/ui/Button.tsx";
+import Dropdown from "../components/ui/dropdown/Dropdown.tsx";
+import SortDropdown from "../components/ui/dropdown/SortDropdown.tsx";
+import Button from "../components/ui/buttons/Button.tsx";
 import { capitalize } from "../utils/format.ts";
 
 const ProjectsPage = () => {

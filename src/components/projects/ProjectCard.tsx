@@ -12,7 +12,7 @@ type Project = {
 	longDescription: string;
 	tech: string[];
 	tags: string[];
-    team: string[];
+	team: string[];
 	codeLink: string;
 	isDone: boolean;
 };

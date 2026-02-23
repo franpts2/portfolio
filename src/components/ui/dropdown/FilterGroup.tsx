@@ -1,7 +1,7 @@
 import React from "react";
-import Checkbox from "./Checkbox.tsx";
-import IconButton from "./IconButton.tsx";
-import { icons } from "../../assets/icons.ts";
+import Checkbox from "./../Checkbox.tsx";
+import IconButton from "./../buttons/IconButton.tsx";
+import { icons } from "../../../assets/icons.ts";
 
 interface FilterGroupProps {
 	title: string;
