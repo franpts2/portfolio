@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "motion/react";
 
 interface ExperienceCardProps {
 	position: string;
@@ -17,6 +18,8 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 	monthYearTo,
 	description,
 }) => {
+	const isOngoing = !monthYearTo;
+
 	const formatDate = (dateStr: string) => {
 		const [year, month] = dateStr.split("/");
 		const months = [
@@ -37,17 +40,40 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 	};
 
 	return (
-		<div className="group relative ml-12 pb-12 last:pb-0">
-			<div className="absolute -left-10.25 top-2.5 w-4 h-4 rounded-full border-4 border-secondary-bg/80 bg-secondary-accent group-hover:scale-125 transition-transform duration-300 z-10" />
+		<div className="group relative ml-12 pb-16 last:pb-0">
+            
+			{/* timeline point */}
+			<div className="absolute -left-10.25 top-3 z-10 flex items-center justify-center w-4 h-4">
+				{/* main static dot */}
+				<div className="w-full h-full rounded-full bg-secondary-accent shadow-sm z-10" />
 
-			<div className="bg-secondary-bg border border-secondary-bg/30 rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 hover:border-secondary-accent/30">
+				{/* ambient pulse */}
+				{isOngoing && (
+					<motion.div
+						initial={{ scale: 1, opacity: 0.6 }}
+						animate={{
+							scale: [1, 2.2, 1],
+							opacity: [0.6, 0, 0.6],
+						}}
+						transition={{
+							duration: 2,
+							repeat: Infinity,
+							ease: "easeInOut",
+						}}
+						className="absolute inset-0 rounded-full bg-secondary-accent"
+					/>
+				)}
+			</div>
+
+			{/* card content */}
+			<div className="bg-secondary-bg border border-secondary-bg/30 rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 hover:border-secondary-accent/50">
 				<div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
 					<h3 className="font-heading font-semibold text-xl md:text-2xl text-primary/90 group-hover:text-secondary-accent transition-colors">
 						{position}
 					</h3>
 					<span className="text-xs md:text-sm text-secondary font-medium whitespace-nowrap bg-tertiary-bg/50 px-3 py-1 rounded-full w-fit">
 						{formatDate(monthYearFrom)} -{" "}
-						{!monthYearTo ? (
+						{isOngoing ? (
 							<span className="font-bold text-secondary-accent">Current</span>
 						) : (
 							formatDate(monthYearTo)

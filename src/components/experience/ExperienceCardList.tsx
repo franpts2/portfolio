@@ -21,9 +21,10 @@ const ExperienceCardList: React.FC<ExperienceCardListProps> = ({
 }) => {
 	return (
 		<div className="relative max-w-4xl mx-auto px-6 py-12">
-			<div className="absolute left-9.5 top-0 bottom-12 w-0.5 bg-primary/30" />
+			{/* timeline line */}
+			<div className="absolute left-9.5 -top-3 -bottom-3 w-0.5 bg-primary/20" />
 
-			<div className="flex flex-col gap-4">
+			<div className="flex flex-col gap-6">
 				{experiences.map((exp, index) => (
 					<motion.div
 						key={exp.id}
