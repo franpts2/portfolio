@@ -35,7 +35,7 @@ const TapePiece: React.FC<TapePieceProps> = ({
 					}}
 					whileHover={{ scale: 1.05, filter: "brightness(1.1)" }}
 					onClick={() => onPeel(id)}
-					className={`absolute z-20 h-8 w-24 shadow-sm drop-shadow-md mix-blend-multiply cursor-pointer ${positionClass} ${rotation}`}
+					className={`absolute z-20 h-5 w-16 sm:h-6 sm:w-20 lg:h-7 lg:w-24 shadow-sm drop-shadow-md mix-blend-multiply cursor-pointer ${positionClass} ${rotation}`}
 					style={{
 						backgroundColor: tapeColor,
 						transformOrigin: "center",

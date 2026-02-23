@@ -28,13 +28,14 @@ const AboutPage = () => {
 	const [tapeCount, setTapeCount] = useState(4);
 
 	return (
-		<div className="relative min-h-screen flex items-center text-primary overflow-x-hidden">
-			<div className="mx-auto text-center">
-				<div className="flex flex-row gap-2 text-start">
+		<div className="relative min-h-screen flex items-center justify-center text-primary overflow-x-hidden px-6 py-16 lg:py-0">
+			<div className="mx-auto w-full max-w-6xl">
+				<div className="flex flex-col lg:flex-row items-center lg:items-center justify-center gap-12 lg:gap-0">
 					<motion.div
 						initial={{ opacity: 0, scale: 0.8, x: -40 }}
 						animate={{ opacity: 1, scale: 1, x: 0 }}
 						transition={{ duration: 0.8, ease: "easeOut" }}
+						className="shrink-0"
 					>
 						<TapeFrame
 							imageSrc="/images/people/francisca-portugal.png"
@@ -42,9 +43,13 @@ const AboutPage = () => {
 						/>
 					</motion.div>
 
-					<div className="ml-20">
-						<div className="flex flex-col gap-8 mb-10">
-							<div className="flex flex-row justify-between">
+					{/* Content Section: max-w-lg ensures title/button width matches the text */}
+					<div className="lg:ml-20 flex flex-col items-center lg:items-start w-full max-w-lg">
+						<div className="flex flex-col gap-8 mb-10 w-full">
+							{/* Header: Title and CV Button
+                                Now restricted to the same max-width as the bio text below it
+                            */}
+							<div className="flex flex-row justify-between items-center w-full">
 								<motion.h1
 									className="font-black text-4xl text-primary-accent"
 									initial={{ opacity: 0, y: 20 }}
@@ -67,9 +72,8 @@ const AboutPage = () => {
 								</motion.div>
 							</div>
 
-							{/* Parent container that triggers all highlights */}
 							<div
-								className="max-w-lg flex flex-col gap-4 cursor-default"
+								className="flex flex-col gap-4 cursor-default text-start"
 								onMouseEnter={() => setHasHovered(true)}
 							>
 								<motion.p
@@ -100,7 +104,7 @@ const AboutPage = () => {
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{ duration: 0.6, delay: 0.8 }}
-									className="text-secondary"
+									className="text-secondary font-medium"
 								>
 									{tapeCount === 0
 										? "P.S. Try putting the photo back in its place!"
@@ -108,14 +112,14 @@ const AboutPage = () => {
 								</motion.p>
 							</div>
 						</div>
+
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, delay: 1 }}
+							className="w-full flex justify-center"
 						>
-							<div className="flex flex-row items-center">
-								<MagnifiedDock data={DATA} />
-							</div>
+							<MagnifiedDock data={DATA} />
 						</motion.div>
 					</div>
 				</div>

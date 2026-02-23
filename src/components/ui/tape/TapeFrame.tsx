@@ -6,33 +6,30 @@ interface TapeFrameProps {
 	imageSrc: string;
 	altText?: string;
 	className?: string;
-    onTapesChange?: (count: number) => void;
+	onTapesChange?: (count: number) => void;
 }
 
 const TapeFrame: React.FC<TapeFrameProps> = ({
 	imageSrc,
 	altText = "Framed image",
 	className = "",
-    onTapesChange,
+	onTapesChange,
 }) => {
 	const [attachedTapes, setAttachedTapes] = useState([1, 2, 3, 4]);
 	const [canDrag, setCanDrag] = useState(false);
 	const [hasInteracted, setHasInteracted] = useState(false);
 
-    useEffect(() => {
-        onTapesChange?.(attachedTapes.length);
-    }, [attachedTapes, onTapesChange]);
+	useEffect(() => {
+		onTapesChange?.(attachedTapes.length);
+	}, [attachedTapes, onTapesChange]);
 
-	// track X & Y of photo to calculate distance from the placeholder
 	const x = useMotionValue(0);
 	const y = useMotionValue(0);
-
 	const isFalling = attachedTapes.length === 0;
 
 	useEffect(() => {
 		if (isFalling) {
 			const dropDistance = window.innerHeight * 0.55;
-
 			animate(y, dropDistance, {
 				type: "spring",
 				stiffness: 40,
@@ -43,18 +40,14 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 		}
 	}, [isFalling, y]);
 
-	// reset logic
+    const handlePeel = (id: number) => {
+		setAttachedTapes((prev) => prev.filter((t) => t !== id));
+	};
+
 	const checkReset = () => {
-		const currentX = x.get();
-		const currentY = y.get();
-
-		// distance to the origin (0,0) using pythagorean theorem
-		const distance = Math.sqrt(currentX ** 2 + currentY ** 2);
-
-		// if within 150px of the center, snap back
+		const distance = Math.sqrt(x.get() ** 2 + y.get() ** 2);
 		if (distance < 150) {
 			setCanDrag(false);
-
 			animate(x, 0, { type: "spring", stiffness: 200, damping: 20 });
 			animate(y, 0, {
 				type: "spring",
@@ -68,10 +61,6 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 		}
 	};
 
-	const handlePeel = (id: number) => {
-		setAttachedTapes((prev) => prev.filter((t) => t !== id));
-	};
-
 	return (
 		<div
 			className={`relative inline-block ${className}`}
@@ -80,14 +69,12 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 			{/* placeholder for the frame*/}
 			<div className="rotate-1 select-none pointer-events-none p-4">
 				<div className="relative flex items-center justify-center border-2 border-dashed border-secondary-accent rounded-sm">
-					{/* invisible image to make box exact same size as the photo */}
 					<img
 						src={imageSrc}
 						alt=""
-						className="block max-w-full h-auto opacity-0 p-1"
+						className="block w-48 sm:w-64 lg:w-112.5 h-auto opacity-0 p-1"
 					/>
-
-					<p className="absolute text-secondary-accent font-bold text-xs uppercase tracking-widest">
+					<p className="absolute text-secondary-accent font-bold text-xs uppercase tracking-widest text-center px-4">
 						Photo goes here!
 					</p>
 				</div>
@@ -117,11 +104,8 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 				dragElastic={0.1}
 				dragMomentum={false}
 				onDragStart={() => setHasInteracted(true)}
-				onDragEnd={() => {
-					checkReset();
-				}}
+				onDragEnd={checkReset}
 				whileDrag={{ cursor: "grabbing", scale: 1.05, zIndex: 9999 }}
-				whileHover={canDrag ? { scale: 1.02 } : {}}
 				className={`flex items-center justify-center ${canDrag ? "cursor-grab" : ""}`}
 			>
 				<motion.div
@@ -135,28 +119,28 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 						id={1}
 						isVisible={attachedTapes.includes(1)}
 						onPeel={handlePeel}
-						positionClass="-top-3 -left-8"
+						positionClass="-top-2 -left-7"
 						rotation="-rotate-[25deg]"
 					/>
 					<TapePiece
 						id={2}
 						isVisible={attachedTapes.includes(2)}
 						onPeel={handlePeel}
-						positionClass="-top-4 -right-6"
+						positionClass="-top-3 -right-5"
 						rotation="rotate-[15deg]"
 					/>
 					<TapePiece
 						id={3}
 						isVisible={attachedTapes.includes(3)}
 						onPeel={handlePeel}
-						positionClass="-bottom-3 -left-6"
+						positionClass="-bottom-2 -left-5"
 						rotation="rotate-[10deg]"
 					/>
 					<TapePiece
 						id={4}
 						isVisible={attachedTapes.includes(4)}
 						onPeel={handlePeel}
-						positionClass="-bottom-4 -right-8"
+						positionClass="-bottom-3 -right-7"
 						rotation="-rotate-[30deg]"
 					/>
 
@@ -164,7 +148,7 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 						<img
 							src={imageSrc}
 							alt={altText}
-							className="block max-w-full h-auto object-cover grayscale-[0.2] pointer-events-none select-none"
+							className="block w-48 sm:w-64 lg:w-112.5 h-auto object-cover grayscale-[0.2] pointer-events-none select-none"
 							draggable={false}
 						/>
 					</div>
@@ -178,11 +162,7 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 							? { opacity: 1, x: 0 }
 							: { opacity: 0, x: -10 }
 					}
-					transition={{
-						duration: 0.3,
-						delay: isFalling && !canDrag ? 0.7 : 0,
-					}}
-					className="absolute left-full ml-6 text-secondary font-medium whitespace-nowrap pointer-events-none select-none"
+					className="hidden lg:block absolute left-full ml-6 text-secondary font-medium whitespace-nowrap pointer-events-none select-none"
 				>
 					Oops! Dropped me!
 				</motion.span>
