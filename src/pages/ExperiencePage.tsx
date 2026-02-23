@@ -15,13 +15,25 @@ const ExperiencePage = () => {
 				>
 					Experience
 				</motion.h1>
-				<p className="text-secondary max-w-2xl">
+
+				<motion.p
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6, delay: 0.2 }}
+					className="text-secondary max-w-2xl"
+				>
 					A timeline of my professional journey, focusing on frontend excellence
 					and product-driven development.
-				</p>
+				</motion.p>
 			</div>
 
-			<ExperienceCardList experiences={experienceData} />
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ duration: 0.8, delay: 0.4 }}
+			>
+				<ExperienceCardList experiences={experienceData} />
+			</motion.div>
 		</div>
 	);
 };

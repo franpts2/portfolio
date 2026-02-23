@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 
 interface ExperienceCardProps {
 	position: string;
@@ -19,6 +19,23 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 	description,
 }) => {
 	const isOngoing = !monthYearTo;
+
+	const cardVariants: Variants = {
+		hidden: { opacity: 0, x: -20 },
+		visible: {
+			opacity: 1,
+			x: 0,
+			transition: { duration: 0.7, ease: "easeOut" },
+		},
+	};
+
+	const dotVariants: Variants = {
+		hidden: { scale: 0 },
+		visible: {
+			scale: 1,
+			transition: { type: "spring", stiffness: 300, damping: 20, delay: 0.1 },
+		},
+	};
 
 	const formatDate = (dateStr: string) => {
 		const [year, month] = dateStr.split("/");
@@ -40,14 +57,16 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 	};
 
 	return (
-		<div className="group relative ml-12 pb-16 last:pb-0">
-            
-			{/* timeline point */}
+		<motion.div
+			variants={cardVariants}
+			className="group relative ml-12 last:pb-0"
+		>
 			<div className="absolute -left-10.25 top-3 z-10 flex items-center justify-center w-4 h-4">
-				{/* main static dot */}
-				<div className="w-full h-full rounded-full bg-secondary-accent shadow-sm z-10" />
+				<motion.div
+					variants={dotVariants}
+					className="w-full h-full rounded-full bg-secondary-accent shadow-sm z-10"
+				/>
 
-				{/* ambient pulse */}
 				{isOngoing && (
 					<motion.div
 						initial={{ scale: 1, opacity: 0.6 }}
@@ -65,7 +84,6 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 				)}
 			</div>
 
-			{/* card content */}
 			<div className="bg-secondary-bg border border-secondary-bg/30 rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 hover:border-secondary-accent/50">
 				<div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
 					<h3 className="font-heading font-semibold text-xl md:text-2xl text-primary/90 group-hover:text-secondary-accent transition-colors">
@@ -99,7 +117,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 					{description}
 				</p>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 
