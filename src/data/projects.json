@@ -57,14 +57,14 @@
 		"isDone": false
 	},
 	{
-		"id": "tix",
-		"title": "tix",
-		"description": "social media for concert tracking",
-		"longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et  vestibulum justo. Nulla sed vulputate augue. Aliquam erat volutpat. Duis quis odio sed tortor cursus pulvinar. Ut faucibus nisl eget turpis  ornare, nec lacinia ligula mollis. In rutrum purus placerat augue  pellentesque ultrices. Proin non iaculis lacus. Donec suscipit  sollicitudin felis, ut elementum tortor efficitur sed. Suspendisse  fermentum mauris odio, ut dictum lacus pretium eget. Nulla porta sed  ligula id placerat.",
-		"tech": ["react", "tailwind", "js"],
+		"id": "bookwish",
+		"title": "bookwish",
+		"description": "platform to keep track of all the books you want to read",
+		"longDescription": "Currently in development, this platform serves as a dedicated digital home for the books you've yet to start. It replaces scattered notes with a flexible, customizable library, allowing you to track and organize your To-Be-Read list exactly how you wish.",
+		"tech": ["svelte", "typescript"],
 		"tags": ["personal"],
 		"team": ["Francisca Portugal"],
-		"codeLink": "https://github.com/franpts2/tix",
+		"codeLink": "https://github.com/franpts2/bookwish",
 		"isDone": false
 	},
 	{
