@@ -17,12 +17,9 @@ const ProjectsPage = () => {
 	);
 	const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
-	// all unique tags from projects
 	const availableTags = Array.from(
 		new Set(projectsData.flatMap((project) => project.tags)),
 	).sort();
-
-	// all unique tech from projects
 	const availableTech = Array.from(
 		new Set(projectsData.flatMap((project) => project.tech)),
 	).sort();
@@ -34,29 +31,30 @@ const ProjectsPage = () => {
 	}>({ status: "all", tags: availableTags, tech: availableTech });
 
 	return (
-		<div className="relative min-h-screen flex flex-col items-center gap-10">
+		<div className="relative min-h-screen flex flex-col items-center gap-6 md:gap-10">
 			<motion.div
-				className="w-full max-w-337.5 px-5 mt-10 flex items-center justify-between"
+				className="w-full max-w-7xl mt-10 flex flex-col sm:flex-row items-center justify-between gap-6"
 				initial={{ opacity: 0, y: -20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.6 }}
 			>
 				<motion.h1
-					className="font-black text-4xl text-primary-accent"
+					className="font-black text-4xl sm:text-5xl text-primary-accent text-center sm:text-left"
 					initial={{ opacity: 0, x: -20 }}
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ duration: 0.6, delay: 0.1 }}
 				>
 					Projects
 				</motion.h1>
+
 				<motion.div
-					className="flex items-center gap-8"
+					className="flex flex-wrap items-center justify-center sm:justify-end gap-4 md:gap-8"
 					initial={{ opacity: 0, x: 20 }}
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ duration: 0.6, delay: 0.2 }}
 				>
 					<div className="flex items-center gap-3">
-						<span className="text-xs font-medium text-secondary uppercase tracking-wide">
+						<span className="hidden xs:block text-xs font-medium text-secondary uppercase tracking-wide">
 							Sort By
 						</span>
 						<div className="flex items-center gap-2">
@@ -92,11 +90,12 @@ const ProjectsPage = () => {
 							/>
 						</div>
 					</div>
+
 					<div className="relative">
 						<IconButton
 							icon={icons.filters.fill}
 							onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-							iconHeight={36}
+							iconHeight={32} // Slightly smaller for mobile comfort
 							variant="transparent"
 							className="text-primary-accent"
 						/>
@@ -111,6 +110,7 @@ const ProjectsPage = () => {
 					</div>
 				</motion.div>
 			</motion.div>
+
 			<ProjectCardList
 				filters={filters}
 				sortBy={sortBy}
