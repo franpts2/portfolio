@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { icons } from "../../assets/icons.ts";
 import { Icon } from "@iconify/react";
@@ -23,6 +23,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	const [isLeftSide, setIsLeftSide] = useState(false);
 	const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 	const [isHoveringPagination, setIsHoveringPagination] = useState(false);
+	const [isAnimating, setIsAnimating] = useState(false);
 
 	// min swipe distance (in px) to trigger navigation
 	const minSwipeDistance = 50;
@@ -38,6 +39,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	};
 
 	const handleImageClick = () => {
+		if (isAnimating) return; // Block clicks during animation
 		if (isLeftSide) {
 			handlePrevious();
 		} else {
@@ -110,17 +112,22 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 		loadMedia();
 	}, [projectId]);
 
-	const handlePrevious = () => {
+	const handlePrevious = useCallback(() => {
+		if (isAnimating) return;
+		setIsAnimating(true);
 		setDirection(-1);
 		setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-	};
+	}, [isAnimating, images.length]);
 
-	const handleNext = () => {
+	const handleNext = useCallback(() => {
+		if (isAnimating) return;
+		setIsAnimating(true);
 		setDirection(1);
 		setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-	};
+	}, [isAnimating, images.length]);
 
 	const onTouchStart = (e: React.TouchEvent) => {
+		if (isAnimating) return;
 		setTouchEnd(null);
 		if (e.targetTouches[0]) {
 			setTouchStart(e.targetTouches[0].clientX);
@@ -128,13 +135,14 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	};
 
 	const onTouchMove = (e: React.TouchEvent) => {
+		if (isAnimating) return;
 		if (e.targetTouches[0]) {
 			setTouchEnd(e.targetTouches[0].clientX);
 		}
 	};
 
 	const onTouchEnd = () => {
-		if (!touchStart || !touchEnd) return;
+		if (!touchStart || !touchEnd || isAnimating) return;
 		const distance = touchStart - touchEnd;
 		const isLeftSwipe = distance > minSwipeDistance;
 		const isRightSwipe = distance < -minSwipeDistance;
@@ -145,6 +153,11 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 			handlePrevious();
 		}
 	};
+
+	// Handle animation completion
+	const handleAnimationComplete = useCallback(() => {
+		setIsAnimating(false);
+	}, []);
 
 	if (!videoPath && images.length === 0) {
 		return null;
@@ -193,14 +206,16 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 									x: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
 									opacity: { duration: 0.6 },
 								}}
+								onAnimationComplete={handleAnimationComplete}
 								onTouchStart={onTouchStart}
 								onTouchMove={onTouchMove}
 								onTouchEnd={onTouchEnd}
 								onClick={handleImageClick}
-								drag="x"
+								drag={isAnimating ? false : "x"}
 								dragConstraints={{ left: 0, right: 0 }}
 								dragElastic={1}
 								onDragEnd={(e, { offset, velocity }) => {
+									if (isAnimating) return; // Block drag navigation during animation
 									const swipe = Math.abs(offset.x) * velocity.x;
 									if (swipe < -10000) {
 										handleNext();
@@ -248,6 +263,8 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 							totalDots={images.length}
 							currentIndex={currentIndex}
 							onDotClick={(index) => {
+								if (isAnimating) return; // Block pagination navigation during animation
+								setIsAnimating(true);
 								setDirection(index > currentIndex ? 1 : -1);
 								setCurrentIndex(index);
 							}}
