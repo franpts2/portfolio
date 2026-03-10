@@ -28,8 +28,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 	const isCollab = tags.includes("collaborative");
 
 	return (
-		<Link to={`/projects/${id}`} className="project-card block h-full">
-			<div className="bg-secondary-bg rounded-2xl p-8 flex flex-col w-full h-full gap-3 cursor-pointer shadow-lg transition-transform duration-300 ease-in-out hover:scale-105">
+		<Link
+			to={`/projects/${id}`}
+			className="project-card block h-full focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2 rounded-2xl"
+			aria-label={`View details for ${title} project`}
+		>
+			<div className="bg-secondary-bg rounded-2xl p-8 flex flex-col w-full h-full gap-3 cursor-pointer shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 focus-within:scale-105">
 				{/* header */}
 				<div className="flex flex-row justify-between items-center">
 					<h1 className="text-2xl text-primary-accent">{title}</h1>
@@ -41,7 +45,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
 				{/* icons */}
 				<div className="flex flex-row justify-between items-center mt-auto">
-					<div className="flex flex-row gap-1">
+					<div className="flex flex-row gap-1" aria-label="Technologies used">
 						{tech.map((t, index) => (
 							<img
 								key={index}
@@ -55,6 +59,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 					<Icon
 						icon={isCollab ? icons.group.fill : icons.about.fill}
 						height={24}
+						aria-label={isCollab ? "Collaborative project" : "Personal project"}
 					/>
 				</div>
 			</div>

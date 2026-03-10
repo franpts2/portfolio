@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import FilterGroup from "./FilterGroup.tsx";
 import {
@@ -32,6 +32,36 @@ const Dropdown: React.FC<DropdownProps> = ({
 	availableTags,
 	availableTech,
 }) => {
+	const dropdownRef = useRef<HTMLDivElement>(null);
+
+	// Handle keyboard events
+	useEffect(() => {
+		if (!isOpen) return;
+
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === "Escape") {
+				e.preventDefault();
+				onClose();
+			}
+		};
+
+		document.addEventListener("keydown", handleKeyDown);
+		return () => document.removeEventListener("keydown", handleKeyDown);
+	}, [isOpen, onClose]);
+
+	// Focus management
+	useEffect(() => {
+		if (isOpen && dropdownRef.current) {
+			// Focus first focusable element inside dropdown
+			const firstFocusable = dropdownRef.current.querySelector(
+				'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+			) as HTMLElement;
+			if (firstFocusable) {
+				firstFocusable.focus();
+			}
+		}
+	}, [isOpen]);
+
 	const handleTagToggle = (tag: string) => {
 		const newTags = filters.tags.includes(tag)
 			? filters.tags.filter((t) => t !== tag)
@@ -79,11 +109,14 @@ const Dropdown: React.FC<DropdownProps> = ({
 
 					{/* dropdown */}
 					<motion.div
+						ref={dropdownRef}
 						initial={{ opacity: 0, y: -8 }}
 						animate={{ opacity: 1, y: 0 }}
 						exit={{ opacity: 0, y: -8 }}
 						transition={{ duration: 0.2, ease: "easeOut" }}
 						className="absolute right-0 top-12 z-50 bg-secondary-bg border border-primary-bg rounded-lg shadow-xl p-5 min-w-50 max-w-62.5"
+						role="menu"
+						aria-label="Filter options"
 					>
 						<FilterGroup
 							title="Status"

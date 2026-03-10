@@ -19,10 +19,21 @@ const Checkbox: React.FC<CheckboxProps> = ({
 }) => {
 	const iconSet = variant === "radio" ? icons.radioButton : icons.checkbox;
 
+	const handleKeyDown = (e: React.KeyboardEvent) => {
+		if (e.key === "Enter" || e.key === " ") {
+			e.preventDefault();
+			onChange();
+		}
+	};
+
 	return (
 		<button
 			onClick={onChange}
-			className={`flex items-center gap-3 text-left cursor-pointer hover:opacity-80 transition-opacity ${className}`}
+			onKeyDown={handleKeyDown}
+			className={`flex items-center gap-3 text-left cursor-pointer hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2 rounded ${className}`}
+			role={variant === "radio" ? "radio" : "checkbox"}
+			aria-checked={checked}
+			aria-label={label}
 		>
 			<Icon
 				icon={checked ? iconSet.checked : iconSet.unchecked}
