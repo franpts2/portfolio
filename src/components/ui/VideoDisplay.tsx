@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import { icons } from "../../assets/icons.ts";
 import ProgressBar from "./ProgressBar.tsx";
 import IconButton from "./buttons/IconButton.tsx";
+import SeekIndicator from "./SeekIndicator.tsx";
 
 interface VideoDisplayProps {
 	videoPath: string;
@@ -23,8 +24,12 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 	const [isMuted, setIsMuted] = useState(false);
 	const [isFullscreen, setIsFullscreen] = useState(false);
 	const [isHoveringControls, setIsHoveringControls] = useState(false);
+	const [showForwardIndicator, setShowForwardIndicator] = useState(false);
+	const [showBackwardIndicator, setShowBackwardIndicator] = useState(false);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
+	const forwardTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+	const backwardTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
 	const handleTimeUpdate = () => {
@@ -87,6 +92,12 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 				videoRef.current.currentTime + 10,
 			);
 		}
+		if (forwardTimerRef.current) clearTimeout(forwardTimerRef.current);
+		setShowForwardIndicator(true);
+		forwardTimerRef.current = setTimeout(
+			() => setShowForwardIndicator(false),
+			700,
+		);
 	};
 
 	const backwardTenSeconds = () => {
@@ -96,6 +107,12 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 				videoRef.current.currentTime - 10,
 			);
 		}
+		if (backwardTimerRef.current) clearTimeout(backwardTimerRef.current);
+		setShowBackwardIndicator(true);
+		backwardTimerRef.current = setTimeout(
+			() => setShowBackwardIndicator(false),
+			700,
+		);
 	};
 
 	const volumeUp = () => {
@@ -148,7 +165,7 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 					e.preventDefault();
 					forwardTenSeconds();
 					break;
-                /*
+				/*
 				case "ArrowUp":
 					e.preventDefault();
 					volumeUp();
@@ -263,6 +280,9 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 			>
 				Your browser does not support the video tag.
 			</video>
+
+			<SeekIndicator direction="backward" visible={showBackwardIndicator} />
+			<SeekIndicator direction="forward" visible={showForwardIndicator} />
 
 			{/* custom controls */}
 			{(showControls && isHoveringVideo) || isMobileOrTablet ? (
