@@ -27,57 +27,6 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
-	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-		if (!isMobileOrTablet) {
-			setCursorPosition({ x: e.clientX, y: e.clientY });
-			setHasMouseMoved(true);
-		}
-		setShowControls(true);
-	};
-
-	// Update cursor position to center on mobile/tablet or when hovering
-	React.useEffect(() => {
-		const updateSettings = () => {
-			const isMobile = window.innerWidth < 1024;
-			setIsMobileOrTablet(isMobile);
-		};
-
-		updateSettings();
-		window.addEventListener("resize", updateSettings);
-
-		return () => {
-			window.removeEventListener("resize", updateSettings);
-		};
-	}, []);
-
-	React.useEffect(() => {
-		if (isMobileOrTablet) {
-			// On mobile/tablet, always show controls
-			setShowControls(true);
-		}
-	}, [isMobileOrTablet]);
-
-	React.useEffect(() => {
-		const handleFullscreenChange = () => {
-			setIsFullscreen(!!document.fullscreenElement);
-		};
-
-		document.addEventListener("fullscreenchange", handleFullscreenChange);
-		return () => {
-			document.removeEventListener("fullscreenchange", handleFullscreenChange);
-		};
-	}, []);
-
-	const togglePlayPause = () => {
-		if (videoRef.current) {
-			if (isPlaying) {
-				videoRef.current.pause();
-			} else {
-				videoRef.current.play();
-			}
-		}
-	};
-
 	const handleTimeUpdate = () => {
 		if (videoRef.current) {
 			setCurrentTime(videoRef.current.currentTime);
@@ -121,17 +70,186 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 		}
 	};
 
+	const togglePlayPause = () => {
+		if (videoRef.current) {
+			if (isPlaying) {
+				videoRef.current.pause();
+			} else {
+				videoRef.current.play();
+			}
+		}
+	};
+
+	const forwardTenSeconds = () => {
+		if (videoRef.current) {
+			videoRef.current.currentTime = Math.min(
+				duration,
+				videoRef.current.currentTime + 10,
+			);
+		}
+	};
+
+	const backwardTenSeconds = () => {
+		if (videoRef.current) {
+			videoRef.current.currentTime = Math.max(
+				0,
+				videoRef.current.currentTime - 10,
+			);
+		}
+	};
+
+	const volumeUp = () => {
+		if (videoRef.current) {
+			videoRef.current.volume = Math.min(1, videoRef.current.volume + 0.1);
+		}
+	};
+
+	const volumeDown = () => {
+		if (videoRef.current) {
+			videoRef.current.volume = Math.max(0, videoRef.current.volume - 0.1);
+		}
+	};
+
+	const goToBeginning = () => {
+		if (videoRef.current) {
+			videoRef.current.currentTime = 0;
+		}
+	};
+
+	const goToEnd = () => {
+		if (videoRef.current) {
+			videoRef.current.currentTime = duration - 1;
+		}
+	};
+
+	// handle keyboard events for video controls
+	React.useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (
+				e.target instanceof HTMLInputElement ||
+				e.target instanceof HTMLTextAreaElement
+			) {
+				return; // don't interfere with form inputs
+			}
+
+			if (!videoRef.current || !isHoveringVideo) return;
+
+			switch (e.key) {
+				case " ": // spacebar
+				case "k": // youtube-style play/pause
+					e.preventDefault();
+					togglePlayPause();
+					break;
+				case "ArrowLeft":
+					e.preventDefault();
+					backwardTenSeconds();
+					break;
+				case "ArrowRight":
+					e.preventDefault();
+					forwardTenSeconds();
+					break;
+                /*
+				case "ArrowUp":
+					e.preventDefault();
+					volumeUp();
+					break;
+				case "ArrowDown":
+					e.preventDefault();
+					volumeDown();
+					break;
+                */
+				case "m":
+				case "M":
+					e.preventDefault();
+					toggleMute();
+					break;
+				case "f":
+				case "F":
+					e.preventDefault();
+					toggleFullscreen();
+					break;
+				case "0":
+				case "Home":
+					e.preventDefault();
+					goToBeginning();
+					break;
+				case "End":
+					e.preventDefault();
+					goToEnd();
+					break;
+			}
+		};
+
+		document.addEventListener("keydown", handleKeyDown);
+		return () => document.removeEventListener("keydown", handleKeyDown);
+	}, [
+		isHoveringVideo,
+		duration,
+		togglePlayPause,
+		toggleMute,
+		toggleFullscreen,
+	]);
+
+	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+		if (!isMobileOrTablet) {
+			setCursorPosition({ x: e.clientX, y: e.clientY });
+			setHasMouseMoved(true);
+		}
+		setShowControls(true);
+	};
+
+	// update cursor position to center on mobile/tablet or when hovering
+	React.useEffect(() => {
+		const updateSettings = () => {
+			const isMobile = window.innerWidth < 1024;
+			setIsMobileOrTablet(isMobile);
+		};
+
+		updateSettings();
+		window.addEventListener("resize", updateSettings);
+
+		return () => {
+			window.removeEventListener("resize", updateSettings);
+		};
+	}, []);
+
+	React.useEffect(() => {
+		if (isMobileOrTablet) {
+			setShowControls(true);
+		}
+	}, [isMobileOrTablet]);
+
+	React.useEffect(() => {
+		const handleFullscreenChange = () => {
+			setIsFullscreen(!!document.fullscreenElement);
+		};
+
+		document.addEventListener("fullscreenchange", handleFullscreenChange);
+		return () => {
+			document.removeEventListener("fullscreenchange", handleFullscreenChange);
+		};
+	}, []);
+
 	return (
 		<div
 			ref={containerRef}
-			className={`relative ${isHoveringVideo && !isPlaying && !isHoveringControls ? "cursor-none" : ""} ${className} rounded-lg overflow-hidden`}
+			className={`relative ${isHoveringVideo && !isPlaying && !isHoveringControls ? "cursor-none" : ""} ${className} rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary-accent`}
 			onMouseMove={handleMouseMove}
 			onMouseEnter={() => setIsHoveringVideo(true)}
 			onMouseLeave={() => {
 				setIsHoveringVideo(false);
 				setShowControls(false);
 			}}
+			tabIndex={0}
+			role="application"
+			aria-label="Video player"
+			aria-describedby="video-instructions"
 		>
+			{/* Screen reader instructions */}
+			<div id="video-instructions" className="sr-only">
+				Video controls: Space or K to play/pause, Left/Right arrows to seek, M
+				to mute, F for fullscreen, Up/Down arrows for volume.
+			</div>
 			<video
 				ref={videoRef}
 				src={videoPath}
