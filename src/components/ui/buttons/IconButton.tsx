@@ -29,16 +29,17 @@ const IconButton: React.FC<IconButtonProps> = ({
 
 	const baseClasses =
 		variant === "transparent"
-			? "hover:scale-110 transition-transform cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2 rounded"
+			? "hover:scale-110 transition-transform cursor-pointer rounded"
 			: variant === "secondary"
-				? "p-2 rounded-lg bg-secondary-bg border border-primary-bg shadow-sm hover:bg-tertiary-bg transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2"
+				? "p-2 rounded-lg bg-secondary-bg border border-primary-bg shadow-sm hover:bg-tertiary-bg transition-colors cursor-pointer"
 				: variant === "minimal"
-					? "text-secondary hover:text-primary transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2 rounded"
-					: "p-3 rounded-full bg-black text-white hover:bg-grey transition-colors group shadow-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2";
+					? "text-secondary hover:text-primary transition-colors cursor-pointer rounded"
+					: "p-3 rounded-full bg-black text-white hover:bg-grey transition-colors group shadow-lg cursor-pointer";
 
 	const handleKeyDown = (e: React.KeyboardEvent) => {
 		if (e.key === "Enter" || e.key === " ") {
 			e.preventDefault();
+			(e.currentTarget as HTMLButtonElement).blur();
 			onClick();
 		}
 	};

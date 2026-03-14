@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
 	"aria-controls": ariaControls,
 }) => {
 	const baseClasses =
-		"px-4 py-2 rounded-lg shadow-sm cursor-pointer flex flex-row gap-2 items-center focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2";
+		"px-4 py-2 rounded-lg shadow-sm cursor-pointer flex flex-row gap-2 items-center";
 
 	const variantClasses = {
 		primary:
@@ -34,6 +34,7 @@ const Button: React.FC<ButtonProps> = ({
 		if (e.key === "Enter" || e.key === " ") {
 			e.preventDefault();
 			e.stopPropagation();
+			(e.currentTarget as HTMLButtonElement).blur();
 			onClick?.();
 		}
 	};

@@ -11,13 +11,14 @@ const ThemeSwitcher = () => {
 	const handleKeyDown = (e: React.KeyboardEvent) => {
 		if (e.key === "Enter" || e.key === " ") {
 			e.preventDefault();
+			(e.currentTarget as HTMLButtonElement).blur();
 			toggleTheme();
 		}
 	};
 
 	return (
 		<motion.button
-			className="cursor-pointer mx-1 text-primary focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2 rounded"
+			className="cursor-pointer mx-1 text-primary rounded"
 			onClick={toggleTheme}
 			onKeyDown={handleKeyDown}
 			whileHover={{ scale: 1.15 }}
