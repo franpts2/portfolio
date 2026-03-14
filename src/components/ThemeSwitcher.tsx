@@ -8,13 +8,22 @@ import type { ThemeContextType } from "./ThemeProvider.js";
 const ThemeSwitcher = () => {
 	const { isDark, toggleTheme } = useContext<ThemeContextType>(ThemeContext);
 
+	const handleKeyDown = (e: React.KeyboardEvent) => {
+		if (e.key === "Enter" || e.key === " ") {
+			e.preventDefault();
+			toggleTheme();
+		}
+	};
+
 	return (
-		<motion.div
-			className="cursor-pointer mx-1 text-primary"
+		<motion.button
+			className="cursor-pointer mx-1 text-primary focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2 rounded"
 			onClick={toggleTheme}
+			onKeyDown={handleKeyDown}
 			whileHover={{ scale: 1.15 }}
 			whileTap={{ scale: 0.9, rotate: 360 }}
 			transition={{ duration: 0.3 }}
+			aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
 		>
 			<AnimatePresence mode="wait">
 				{isDark ? (
@@ -39,7 +48,7 @@ const ThemeSwitcher = () => {
 					</motion.div>
 				)}
 			</AnimatePresence>
-		</motion.div>
+		</motion.button>
 	);
 };
 
