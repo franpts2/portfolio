@@ -49,19 +49,6 @@ const Dropdown: React.FC<DropdownProps> = ({
 		return () => document.removeEventListener("keydown", handleKeyDown);
 	}, [isOpen, onClose]);
 
-	// Focus management
-	useEffect(() => {
-		if (isOpen && dropdownRef.current) {
-			// Focus first focusable element inside dropdown
-			const firstFocusable = dropdownRef.current.querySelector(
-				'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-			) as HTMLElement;
-			if (firstFocusable) {
-				firstFocusable.focus();
-			}
-		}
-	}, [isOpen]);
-
 	const handleTagToggle = (tag: string) => {
 		const newTags = filters.tags.includes(tag)
 			? filters.tags.filter((t) => t !== tag)

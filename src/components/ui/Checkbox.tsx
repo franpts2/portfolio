@@ -22,6 +22,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 	const handleKeyDown = (e: React.KeyboardEvent) => {
 		if (e.key === "Enter" || e.key === " ") {
 			e.preventDefault();
+			(e.currentTarget as HTMLButtonElement).blur();
 			onChange();
 		}
 	};
@@ -30,7 +31,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 		<button
 			onClick={onChange}
 			onKeyDown={handleKeyDown}
-			className={`flex items-center gap-3 text-left cursor-pointer hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2 rounded ${className}`}
+			className={`flex items-center gap-3 text-left cursor-pointer hover:opacity-80 transition-opacity ${className}`}
 			role={variant === "radio" ? "radio" : "checkbox"}
 			aria-checked={checked}
 			aria-label={label}
