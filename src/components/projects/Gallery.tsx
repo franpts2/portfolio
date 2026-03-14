@@ -28,6 +28,20 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	// min swipe distance (in px) to trigger navigation
 	const minSwipeDistance = 50;
 
+    const handlePrevious = useCallback(() => {
+		if (isAnimating) return;
+		setIsAnimating(true);
+		setDirection(-1);
+		setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+	}, [isAnimating, images.length]);
+
+	const handleNext = useCallback(() => {
+		if (isAnimating) return;
+		setIsAnimating(true);
+		setDirection(1);
+		setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+	}, [isAnimating, images.length]);
+
 	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (!isMobileOrTablet) {
 			const rect = e.currentTarget.getBoundingClientRect();
@@ -46,6 +60,48 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 			handleNext();
 		}
 	};
+
+	// handle keyboard navigation
+	useEffect(() => {
+		if (images.length <= 1) return; // no navigation needed for single image
+
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (
+				e.target instanceof HTMLInputElement ||
+				e.target instanceof HTMLTextAreaElement
+			) {
+				return; // don't interfere with form inputs
+			}
+
+			switch (e.key) {
+				case "ArrowLeft":
+					e.preventDefault();
+					handlePrevious();
+					break;
+				case "ArrowRight":
+					e.preventDefault();
+					handleNext();
+					break;
+				case "Home":
+					e.preventDefault();
+					if (isAnimating) return;
+					setIsAnimating(true);
+					setDirection(currentIndex > 0 ? -1 : 0);
+					setCurrentIndex(0);
+					break;
+				case "End":
+					e.preventDefault();
+					if (isAnimating) return;
+					setIsAnimating(true);
+					setDirection(currentIndex < images.length - 1 ? 1 : 0);
+					setCurrentIndex(images.length - 1);
+					break;
+			}
+		};
+
+		document.addEventListener("keydown", handleKeyDown);
+		return () => document.removeEventListener("keydown", handleKeyDown);
+	}, [handlePrevious, handleNext, currentIndex, images.length, isAnimating]);
 
 	useEffect(() => {
 		const updateSettings = () => {
@@ -112,20 +168,6 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 		loadMedia();
 	}, [projectId]);
 
-	const handlePrevious = useCallback(() => {
-		if (isAnimating) return;
-		setIsAnimating(true);
-		setDirection(-1);
-		setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-	}, [isAnimating, images.length]);
-
-	const handleNext = useCallback(() => {
-		if (isAnimating) return;
-		setIsAnimating(true);
-		setDirection(1);
-		setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-	}, [isAnimating, images.length]);
-
 	const onTouchStart = (e: React.TouchEvent) => {
 		if (isAnimating) return;
 		setTouchEnd(null);
@@ -186,11 +228,20 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 				/* image gallery */
 				<>
 					<div
-						className={`relative ${isHoveringGallery && !isMobileOrTablet ? "cursor-none" : ""} overflow-hidden`}
+						className={`relative ${isHoveringGallery && !isMobileOrTablet ? "cursor-none" : ""} overflow-hidden focus:outline-none`}
 						onMouseMove={handleMouseMove}
 						onMouseEnter={() => setIsHoveringGallery(true)}
 						onMouseLeave={() => setIsHoveringGallery(false)}
+						tabIndex={0}
+						role="img"
+						aria-label={`Image ${currentIndex + 1} of ${images.length}: Project screenshot`}
+						aria-describedby="gallery-instructions"
 					>
+						{/* Screen reader instructions */}
+						<div id="gallery-instructions" className="sr-only">
+							Use left and right arrow keys to navigate between images. Press
+							Home to go to first image, End to go to last image.
+						</div>
 						<AnimatePresence initial={false} custom={direction}>
 							<motion.img
 								key={currentIndex}

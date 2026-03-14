@@ -23,7 +23,7 @@ const TapePiece: React.FC<TapePieceProps> = ({
 	return (
 		<AnimatePresence>
 			{isVisible && (
-				<motion.div
+				<motion.button
 					initial={{ opacity: 0.9 }}
 					exit={{
 						rotateX: 60,
@@ -35,7 +35,13 @@ const TapePiece: React.FC<TapePieceProps> = ({
 					}}
 					whileHover={{ scale: 1.05, filter: "brightness(1.1)" }}
 					onClick={() => onPeel(id)}
-					className={`absolute z-20 h-5 w-16 sm:h-6 sm:w-20 lg:h-7 lg:w-24 shadow-sm drop-shadow-md mix-blend-multiply cursor-pointer ${positionClass} ${rotation}`}
+					onKeyDown={(e) => {
+						if (e.key === "Enter" || e.key === " ") {
+							e.preventDefault();
+							onPeel(id);
+						}
+					}}
+					className={`absolute z-20 h-5 w-16 sm:h-6 sm:w-20 lg:h-7 lg:w-24 shadow-sm drop-shadow-md mix-blend-multiply cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2 ${positionClass} ${rotation}`}
 					style={{
 						backgroundColor: tapeColor,
 						transformOrigin: "center",
@@ -43,6 +49,7 @@ const TapePiece: React.FC<TapePieceProps> = ({
 							"polygon(0% 10%, 5% 0%, 95% 5%, 100% 0%, 100% 90%, 95% 100%, 5% 95%, 0% 100%)",
 						backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px)`,
 					}}
+					aria-label={`Remove tape piece ${id}`}
 				/>
 			)}
 		</AnimatePresence>
