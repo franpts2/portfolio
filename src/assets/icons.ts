@@ -109,6 +109,15 @@ export const icons = {
 		outline: "material-symbols:volume-off-outline",
 	},
 
+    forward10: {
+		fill: "material-symbols:forward-10",
+		outline: "material-symbols:forward-10-outline",
+	},
+	backward10: {
+		fill: "material-symbols:replay-10",
+		outline: "material-symbols:replay-10-outline",
+	},
+
 	filters: {
 		fill: "material-symbols:filter-list",
 		outline: "material-symbols:filter-list-outline",

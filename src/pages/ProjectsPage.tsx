@@ -66,8 +66,11 @@ const ProjectsPage = () => {
 										icon={icons.dropdown.fill}
 										iconHeight={16}
 										variant="sorter"
+										isExpanded={isSortDropdownOpen}
+										aria-controls="sort-dropdown"
 									/>
 									<SortDropdown
+										id="sort-dropdown"
 										isOpen={isSortDropdownOpen}
 										onClose={() => setIsSortDropdownOpen(false)}
 										sortBy={sortBy}

@@ -93,15 +93,16 @@ const Sidebar = () => {
 											to={to}
 											end
 											className={({ isActive }) => {
-												return `flex flex-col items-center justify-center gap-2 font-family-body text-xl py-2 ${
+												return `flex flex-col items-center justify-center gap-2 font-family-body text-xl py-2 focus-visible:outline-none ${
 													isActive || activeIndex === idx
 														? "text-secondary-accent"
 														: "text-primary"
 												}`;
 											}}
-											onClick={() => {
-												setActiveIndex(idx);
-												navigate(to);
+											onKeyDown={(e) => {
+												if (e.key === "Enter" || e.key === " ") {
+													e.currentTarget.click();
+												}
 											}}
 										>
 											<span
@@ -124,7 +125,7 @@ const Sidebar = () => {
 			<motion.button
 				whileHover={{ scale: 1.1 }}
 				whileTap={{ scale: 0.95 }}
-				className="fixed top-4 left-4 z-60 px-2 rounded-md lg:hidden text-primary transition-transform duration-300 ease-in-out"
+				className="fixed top-4 left-4 z-60 px-2 rounded-md lg:hidden text-primary transition-transform duration-300 ease-in-out focus-visible:outline-none"
 				onClick={() => setMobileOpen((prev) => !prev)}
 			>
 				<motion.div
@@ -177,7 +178,7 @@ const Sidebar = () => {
 							to={to}
 							end
 							className={({ isActive }) => {
-								return `flex items-center gap-1 font-family-body text-lg py-2 ${
+								return `flex items-center gap-1 font-family-body text-lg py-2 focus-visible:outline-none ${
 									isActive || activeIndex === idx
 										? "text-secondary-accent"
 										: "text-primary"
