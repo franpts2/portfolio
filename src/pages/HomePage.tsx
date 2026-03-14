@@ -94,6 +94,8 @@ const HomePage = () => {
 					whileHover={{ scale: 1.2, rotate: 5 }}
 					whileTap={{ scale: 0.9 }}
 					transition={{ duration: 0.2 }}
+					className="focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2 rounded"
+					aria-label="Visit Francisca's GitHub profile"
 				>
 					<Icon icon={icons.github.outline} height={30} />
 				</motion.a>
@@ -104,6 +106,8 @@ const HomePage = () => {
 					whileHover={{ scale: 1.2, rotate: 5 }}
 					whileTap={{ scale: 0.9 }}
 					transition={{ duration: 0.2 }}
+					className="focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2 rounded"
+					aria-label="Visit Francisca's LinkedIn profile"
 				>
 					<Icon icon={icons.linkedin.outline} height={30} />
 				</motion.a>
@@ -114,6 +118,8 @@ const HomePage = () => {
 					whileHover={{ scale: 1.2, rotate: 5 }}
 					whileTap={{ scale: 0.9 }}
 					transition={{ duration: 0.2 }}
+					className="focus:outline-none focus:ring-2 focus:ring-primary-accent focus:ring-offset-2 rounded"
+					aria-label="Visit Francisca's Instagram profile"
 				>
 					<Icon icon={icons.instagram.outline} height={30} />
 				</motion.a>
