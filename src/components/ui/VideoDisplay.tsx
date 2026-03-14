@@ -302,8 +302,20 @@ const VideoDisplay: React.FC<VideoDisplayProps> = ({
 					<div className="flex items-center justify-between text-white">
 						<div className="flex items-center gap-3">
 							<IconButton
+								icon={icons.backward10.fill}
+								onClick={backwardTenSeconds}
+								iconHeight={24}
+								variant="transparent"
+							/>
+							<IconButton
 								icon={isPlaying ? icons.pause.outline : icons.play.outline}
 								onClick={togglePlayPause}
+								iconHeight={24}
+								variant="transparent"
+							/>
+							<IconButton
+								icon={icons.forward10.fill}
+								onClick={forwardTenSeconds}
 								iconHeight={24}
 								variant="transparent"
 							/>
