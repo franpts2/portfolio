@@ -127,6 +127,7 @@ const Sidebar = () => {
 				whileTap={{ scale: 0.95 }}
 				className="fixed top-4 left-4 z-60 px-2 rounded-md lg:hidden text-primary transition-transform duration-300 ease-in-out focus-visible:outline-none"
 				onClick={() => setMobileOpen((prev) => !prev)}
+				aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
 			>
 				<motion.div
 					animate={{ rotate: mobileOpen ? 90 : 0 }}
