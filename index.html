@@ -6,9 +6,31 @@
 		<link rel="icon" href="/logo-1.png" type="image/png" />
 		<title>Francisca Portugal</title>
 
-		<!-- preload critical fonts -->
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://franciscapt.dev/" />
+        <meta property="og:title" content="Francisca Portugal" />
+        <meta property="og:description" content="Frontend Developer" />
+        <meta property="og:image" content="/og-image.png" />
+
+        <!-- Twitter / X -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://franciscapt.dev/" />
+        <meta property="twitter:title" content="Francisca Portugal" />
+        <meta property="twitter:description" content="Frontend Developer" />
+        <meta property="twitter:image" content="/og-image.png" />
+
+        <!-- Additional SEO -->
+        <meta name="description" content="Frontend Developer" />
+
+		<!-- Critical resource hints: establish connections early -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+		<link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+		<!-- Preload critical fonts for faster rendering -->
+		<link rel="preload" as="image" href="/night-colored-me.png" />
+		<link rel="preload" as="image" href="/sand-colored-me.png" />
 		<link
 			rel="preload"
 			as="style"
@@ -20,7 +42,7 @@
 			href="https://api.fontshare.com/v2/css?f[]=clash-display@600&display=swap"
 		/>
 
-		<!-- load fonts asynchronously -->
+		<!-- Load fonts asynchronously to avoid render blocking -->
 		<link
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=Archivo:wght@400&display=swap"
