@@ -32,10 +32,19 @@
 	--color-secondary: light-dark(#9a8c98, #808080);
 }
 
+html,
 body {
 	background-color: var(--color-primary-bg);
 	color: var(--color-primary);
 	font-family: var(--font-family-body);
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow-y: scroll;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+	display: none;
 }
 
 h1,
