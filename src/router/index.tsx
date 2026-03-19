@@ -15,6 +15,7 @@ const ProjectsPage = React.lazy(() => import("../pages/ProjectsPage.tsx"));
 const ProjectDetail = React.lazy(
 	() => import("../components/projects/ProjectDetail.tsx"),
 );
+const NotFoundPage = React.lazy(() => import("../pages/NotFoundPage.tsx"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -63,6 +64,14 @@ export const router = createBrowserRouter(
 				element={
 					<Suspense fallback={<PageLoader />}>
 						<ProjectDetail />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="*"
+				element={
+					<Suspense fallback={<PageLoader />}>
+						<NotFoundPage />
 					</Suspense>
 				}
 			/>
