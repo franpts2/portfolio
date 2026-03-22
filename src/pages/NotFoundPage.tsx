@@ -47,7 +47,7 @@ export default function NotFoundPage() {
 			<div className="flex gap-4 flex-wrap justify-center">
 				<Button
 					onClick={() => navigate("/")}
-					variant="primary"
+					variant="accent"
 					text="Back to Home"
 				/>
 			</div>
