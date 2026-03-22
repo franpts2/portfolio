@@ -28,6 +28,8 @@ const Button: React.FC<ButtonProps> = ({
 			"bg-tertiary-bg text-primary transition-transform duration-300 ease-in-out hover:scale-105",
 		sorter:
 			"bg-secondary-bg border border-primary-bg text-primary justify-between hover:bg-tertiary-bg transition-colors min-w-40",
+        accent:
+            "bg-secondary-accent/30 text-primary transition-transform duration-300 ease-in-out hover:scale-105",
 	};
 
 	const handleKeyDown = (e: React.KeyboardEvent) => {

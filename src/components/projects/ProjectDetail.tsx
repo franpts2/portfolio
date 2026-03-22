@@ -10,6 +10,7 @@ import Tag from "../ui/Tag.tsx";
 import CircleFlip from "../ui/CircleFlip.tsx";
 import Gallery from "./Gallery.tsx";
 import { slugify } from "../../utils/format.ts";
+import NotFoundPage from "../../pages/NotFoundPage.tsx";
 
 function ProjectDetail() {
 	const { projectId } = useParams<{ projectId: string }>();
@@ -23,7 +24,7 @@ function ProjectDetail() {
 	const descRef = useRef<HTMLHeadingElement>(null);
 	const [useColumnLayout, setUseColumnLayout] = useState(false);
 
-	if (!project || !projectId) return <div>Project not found</div>;
+	if (!project || !projectId) return <NotFoundPage />;
 
 	useEffect(() => {
 		const checkTextWrapping = () => {
