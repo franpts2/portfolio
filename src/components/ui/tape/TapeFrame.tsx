@@ -29,13 +29,13 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 
 	useEffect(() => {
 		if (isFalling) {
+			setCanDrag(true);
 			const dropDistance = window.innerHeight * 0.55;
 			animate(y, dropDistance, {
 				type: "spring",
 				stiffness: 40,
 				damping: 10,
 				mass: 2,
-				onComplete: () => setCanDrag(true),
 			});
 		}
 	}, [isFalling, y]);
