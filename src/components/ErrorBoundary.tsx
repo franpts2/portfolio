@@ -2,6 +2,7 @@ import React from "react";
 import type { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./ui/buttons/Button.tsx";
+import { Accordion, AccordionItem } from "./ui/Accordion.tsx";
 
 interface Props {
 	children: ReactNode;
@@ -56,18 +57,26 @@ function ErrorFallback({ error }: { error: Error | null }) {
 
 				{/* Error details in dev mode */}
 				{import.meta.env.DEV && error && (
-					<details className="text-left bg-secondary-bg p-4 rounded mb-8 text-sm overflow-auto max-h-48 border border-secondary">
-						<summary className="cursor-pointer font-bold mb-2">
-							Error Details
-						</summary>
-						<p className="font-mono text-red-400">{error.message}</p>
-					</details>
+					<div className="w-full max-w-md mb-8">
+						<Accordion type="single">
+							<AccordionItem value="error-details" trigger="Error Details">
+								<p className="font-mono text-red-400">{error.message}</p>
+							</AccordionItem>
+						</Accordion>
+					</div>
 				)}
 
 				{/* Action buttons */}
 				<div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-				<Button text="Refresh Page" onClick={() => window.location.reload()} />
-				<Button text="Go Home" variant="primary" onClick={() => navigate("/")} />
+					<Button
+						text="Refresh Page"
+						onClick={() => window.location.reload()}
+					/>
+					<Button
+						text="Go Home"
+						variant="primary"
+						onClick={() => navigate("/")}
+					/>
 				</div>
 			</div>
 		</div>
