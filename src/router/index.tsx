@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import Layout from "../layouts/Layout.tsx";
+import TestError from "../pages/TestError.tsx";
 
 // Lazy load pages to enable code splitting
 const HomePage = React.lazy(() => import("../pages/HomePage.tsx"));
@@ -67,6 +68,7 @@ export const router = createBrowserRouter(
 					</Suspense>
 				}
 			/>
+			<Route path="test-error" element={<TestError />} />
 			<Route
 				path="*"
 				element={
