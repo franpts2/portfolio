@@ -8,7 +8,7 @@ export type ThemeContextType = {
 };
 
 export const ThemeContext = createContext<ThemeContextType>({
-	isDark: true,
+	isDark: false,
 	toggleTheme: () => {},
 });
 
@@ -16,7 +16,7 @@ const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
 	const [isDark, setIsDark] = useState<boolean>(
-		_retrieveData(ISDARK) ? _retrieveData(ISDARK) : true,
+		_retrieveData(ISDARK) !== null ? _retrieveData(ISDARK) : false,
 	);
 
 	const toggleTheme = () => {
@@ -28,9 +28,9 @@ const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 
 	useEffect(() => {
 		if (_retrieveData(ISDARK) === null) {
-			_storeData(ISDARK, true);
-			setIsDark(true);
-			document.documentElement.style.colorScheme = "dark";
+			_storeData(ISDARK, false);
+			setIsDark(false);
+			document.documentElement.style.colorScheme = "light";
 		} else if (_retrieveData(ISDARK)) {
 			setIsDark(true);
 			document.documentElement.style.colorScheme = "dark";
