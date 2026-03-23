@@ -38,10 +38,13 @@ const HomePage = () => {
 	};
 
 	return (
-		<div
+		<motion.div
 			className="relative min-h-screen flex items-center px-4 sm:px-6"
 			onMouseMove={handleMouseMove}
 			onMouseLeave={handleMouseLeave}
+			initial={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			transition={{ duration: 0.4 }}
 		>
 			<div className="mx-auto text-center max-w-3xl relative">
 				<motion.img
@@ -124,7 +127,7 @@ const HomePage = () => {
 					<Icon icon={icons.instagram.outline} height={30} />
 				</motion.a>
 			</motion.div>
-		</div>
+		</motion.div>
 	);
 };
 

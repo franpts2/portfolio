@@ -31,7 +31,12 @@ const ProjectsPage = () => {
 	}>({ status: "all", tags: availableTags, tech: availableTech });
 
 	return (
-		<div className="relative min-h-screen flex flex-col items-center py-10">
+		<motion.div
+			className="relative min-h-screen flex flex-col items-center py-10"
+			initial={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			transition={{ duration: 0.4 }}
+		>
 			<div className="w-full max-w-7xl px-6 sm:px-10 flex flex-col gap-10">
 				<motion.div
 					className="flex flex-col sm:flex-row items-center justify-between gap-6"
@@ -121,7 +126,7 @@ const ProjectsPage = () => {
 					sortOrder={sortOrder}
 				/>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 

@@ -2,13 +2,19 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../components/ThemeProvider.tsx";
 import Button from "../components/ui/buttons/Button.tsx";
+import { motion } from "motion/react";
 
 export default function NotFoundPage() {
 	const navigate = useNavigate();
 	const { isDark } = useContext(ThemeContext);
 
 	return (
-		<div className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-primary-bg text-primary">
+		<motion.div
+			className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-primary-bg text-primary"
+			initial={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			transition={{ duration: 0.4 }}
+		>
 			{/* Main 404 display */}
 			<div className="flex items-center justify-center gap-4 md:gap-8 mb-16">
 				{/* First 4 */}
@@ -51,6 +57,6 @@ export default function NotFoundPage() {
 					text="Back to Home"
 				/>
 			</div>
-		</div>
+		</motion.div>
 	);
 }

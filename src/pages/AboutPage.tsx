@@ -28,7 +28,12 @@ const AboutPage = () => {
 	const [tapeCount, setTapeCount] = useState(4);
 
 	return (
-		<div className="relative min-h-screen flex items-center justify-center text-primary overflow-x-hidden px-6 py-16 lg:py-0">
+		<motion.div
+			className="relative min-h-screen flex items-center justify-center text-primary overflow-x-hidden px-6 py-16 lg:py-0"
+			initial={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			transition={{ duration: 0.4 }}
+		>
 			<div className="mx-auto w-full max-w-6xl">
 				<div className="flex flex-col lg:flex-row items-center lg:items-center justify-center gap-12 lg:gap-0">
 					<motion.div
@@ -124,7 +129,7 @@ const AboutPage = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 
