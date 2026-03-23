@@ -40,7 +40,9 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 	);
 
 	const backContent = (
-		<p className="text-primary text-center text-xs px-2">{alt}</p>
+		<p className="text-primary text-center text-[1rem] sm:text-xs px-2 wrap-break-word max-w-full">
+			{alt}
+		</p>
 	);
 
 	return (

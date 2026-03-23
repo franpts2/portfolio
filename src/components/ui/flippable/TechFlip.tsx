@@ -47,7 +47,9 @@ const TechFlip: React.FC<TechFlipProps> = ({
 	);
 
 	const backContent = (
-		<p className="text-primary text-center text-xs px-2 font-semibold">{alt}</p>
+		<p className="text-primary text-center text-[1rem] sm:text-xs px-2 font-semibold wrap-break-word max-w-full">
+			{alt}
+		</p>
 	);
 
 	return (
