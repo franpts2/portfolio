@@ -286,7 +286,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 					</div>
 
 					{/* custom cursor arrows */}
-					{!isMobileOrTablet && (
+					{!isMobileOrTablet && (images.length > 1) && (
 						<div
 							className={`fixed pointer-events-none z-50 flex items-center justify-center bg-secondary-bg text-primary p-3 rounded-full shadow-lg -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-out ${
 								isHoveringGallery && !isHoveringPagination && hasMouseMoved
