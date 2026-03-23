@@ -40,7 +40,7 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 		}
 	}, [isFalling, y]);
 
-    const handlePeel = (id: number) => {
+	const handlePeel = (id: number) => {
 		setAttachedTapes((prev) => prev.filter((t) => t !== id));
 	};
 
@@ -72,7 +72,7 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 					<img
 						src={imageSrc}
 						alt=""
-						className="block w-48 sm:w-64 lg:w-112.5 h-auto opacity-0 p-1"
+						className="block w-48 sm:w-64 md:w-80 lg:w-112.5 h-auto opacity-0 p-1"
 					/>
 					<p className="absolute text-secondary-accent font-bold text-xs uppercase tracking-widest text-center px-4">
 						Photo goes here!
@@ -96,7 +96,7 @@ const TapeFrame: React.FC<TapeFrameProps> = ({
 					top: 0,
 					left: 0,
 					width: "100%",
-					zIndex: 50,
+					zIndex: isFalling ? 9999 : 50,
 					touchAction: "none",
 				}}
 				drag={canDrag}
