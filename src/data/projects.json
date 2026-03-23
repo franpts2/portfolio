@@ -79,6 +79,17 @@
 		"isDone": true,
 		"date": "2024/12/24"
 	},
+    {
+        "id": "atla",
+        "title": "atla",
+        "description": "Hand tracking bending simulator",
+        "longDescription": "ATLA is an interactive hand tracking project that transforms your gestures into elemental bending moves, inspired by Avatar: The Last Airbender. Using Python, OpenCV, and MediaPipe, it recognizes and interprets hand gestures for bending fire, with plans to add earth, water, and air. The project aims to provide an immersive, gesture-based experience for fans.",
+        "tech": ["python", "opencv", "mediapipe"],
+        "tags": ["personal"],
+        "team": ["Francisca Portugal"],
+        "codeLink": "https://github.com/franpts2/atla",
+        "isDone": false
+    },
 	{
 		"id": "fernando-oceano-quest",
 		"title": "fernando oceano's quest",
