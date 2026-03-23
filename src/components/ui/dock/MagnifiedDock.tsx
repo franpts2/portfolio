@@ -20,6 +20,12 @@ const MagnifiedDock: React.FC<MagnifiedDockProps> = ({ data }) => {
 			<motion.div
 				onMouseMove={(e) => mouseX.set(e.pageX)}
 				onMouseLeave={() => mouseX.set(Infinity)}
+				onTouchMove={(e) => {
+					if (e.touches[0]) {
+						mouseX.set(e.touches[0].pageX);
+					}
+				}}
+				onTouchEnd={() => mouseX.set(Infinity)}
 				className={`flex items-end gap-4 h-18 px-4 pb-3 rounded-3xl backdrop-blur-xl ${dockStyle}`}
 			>
 				{data.map((item) => (
