@@ -7,10 +7,11 @@ import { icons } from "../../assets/icons.ts";
 import { Icon } from "@iconify/react";
 import { ThemeContext } from "../ThemeProvider.tsx";
 import Tag from "../ui/Tag.tsx";
-import CircleFlip from "../ui/CircleFlip.tsx";
+import CircleFlip from "../ui/flippable/CircleFlip.tsx";
 import Gallery from "./Gallery.tsx";
-import { slugify } from "../../utils/format.ts";
+import { formatTechName, slugify } from "../../utils/format.ts";
 import NotFoundPage from "../../pages/NotFoundPage.tsx";
+import TechFlip from "../ui/flippable/TechFlip.tsx";
 
 function ProjectDetail() {
 	const { projectId } = useParams<{ projectId: string }>();
@@ -158,12 +159,9 @@ function ProjectDetail() {
 						</h3>
 						<div className="flex flex-row flex-wrap gap-2 sm:gap-3">
 							{project.tech.map((t, index) => (
-								<img
-									key={index}
+								<TechFlip
 									src={`https://skillicons.dev/icons?i=${t}&theme=${iconTheme}`}
-									alt={t}
-									width="60"
-									height="60"
+									alt={formatTechName(t)}
 									className="w-12 h-12 sm:w-14 sm:h-14 md:w-15 md:h-15"
 								/>
 							))}
