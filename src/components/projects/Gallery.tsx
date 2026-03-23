@@ -228,7 +228,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 				/* image gallery */
 				<>
 					<div
-						className={`relative ${isHoveringGallery && !isMobileOrTablet ? "cursor-none" : ""} overflow-hidden focus:outline-none`}
+						className={`relative ${isHoveringGallery && !isMobileOrTablet && (images.length > 1) ? "cursor-none" : ""} overflow-hidden focus:outline-none`}
 						onMouseMove={handleMouseMove}
 						onMouseEnter={() => setIsHoveringGallery(true)}
 						onMouseLeave={() => setIsHoveringGallery(false)}
