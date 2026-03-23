@@ -1,20 +1,43 @@
 import React, { useState, useEffect } from "react";
+import type { ReactNode } from "react";
 import { motion } from "motion/react";
 
-interface CircleFlipProps {
-	src: string;
-	alt: string;
-	fallbackSrc?: string;
+interface FlipCardProps {
+	frontContent: ReactNode;
+	backContent: ReactNode;
+	containerClassName?: string;
+	innerContainerStyle?: React.CSSProperties;
+	frontClassName?: string;
+	backClassName?: string;
+	duration?: number;
 }
 
-const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
-	const [imgSrc, setImgSrc] = useState(src);
-	const [isError, setIsError] = useState(false);
+const FlipCard: React.FC<FlipCardProps> = ({
+	frontContent,
+	backContent,
+	containerClassName = "w-20 h-20 cursor-pointer",
+	innerContainerStyle = { perspective: "1000px" },
+	frontClassName = "absolute inset-0 rounded-full overflow-hidden flex items-center justify-center",
+	backClassName = "absolute inset-0 rounded-full border border-tertiary-bg bg-tertiary-bg flex items-center justify-center",
+}) => {
 	const [rotation, setRotation] = useState(0);
 	const [isAnimating, setIsAnimating] = useState(false);
 	const [shouldContinue, setShouldContinue] = useState(false);
 	const [isHovering, setIsHovering] = useState(false);
 	const [isInitialSpin, setIsInitialSpin] = useState(true);
+	const [isMobile, setIsMobile] = useState(false);
+
+	// detect if device is mobile on mount
+	useEffect(() => {
+		const checkMobile = () => {
+			setIsMobile(
+				window.innerWidth < 768 || window.matchMedia("(hover: none)").matches,
+			);
+		};
+		checkMobile();
+		window.addEventListener("resize", checkMobile);
+		return () => window.removeEventListener("resize", checkMobile);
+	}, []);
 
 	// initial 360 spin on mount
 	useEffect(() => {
@@ -24,37 +47,20 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 		return () => clearTimeout(timer);
 	}, []);
 
-	useEffect(() => {
-		setImgSrc(src);
-		setIsError(false);
-	}, [src]);
-
-	useEffect(() => {
-		if (isError && fallbackSrc) {
-			setImgSrc(fallbackSrc);
-		}
-	}, [fallbackSrc, isError]);
-
-	const handleError = () => {
-		if (fallbackSrc && imgSrc !== fallbackSrc) {
-			setIsError(true);
-			setImgSrc(fallbackSrc);
-		}
-	};
-
 	const handleHoverStart = () => {
+		if (isMobile) return; // disable hover on mobile
 		setIsHovering(true);
 		if (!isAnimating) {
 			setIsAnimating(true);
 			setShouldContinue(false);
 			setRotation((prev) => prev + 180);
 		} else {
-			// if already animating, mark to continue for full 360
 			setShouldContinue(true);
 		}
 	};
 
 	const handleHoverEnd = () => {
+		if (isMobile) return; // disable hover on mobile
 		setIsHovering(false);
 		if (!isAnimating) {
 			setIsAnimating(true);
@@ -90,8 +96,16 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 		}
 	};
 
+	const handleClick = () => {
+		if (isMobile && !isAnimating) {
+			setIsAnimating(true);
+			setShouldContinue(false);
+			setRotation((prev) => prev + 180);
+		}
+	};
+
 	return (
-		<div className="w-20 h-20 cursor-pointer" style={{ perspective: "1000px" }}>
+		<div className={containerClassName} style={innerContainerStyle}>
 			<motion.div
 				className="relative w-full h-full"
 				style={{ transformStyle: "preserve-3d" }}
@@ -99,6 +113,7 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 				animate={{ rotateY: rotation }}
 				onHoverStart={handleHoverStart}
 				onHoverEnd={handleHoverEnd}
+				onClick={handleClick}
 				onAnimationComplete={handleAnimationComplete}
 				transition={{
 					duration: rotation === 360 ? 1 : 0.5,
@@ -107,34 +122,29 @@ const CircleFlip: React.FC<CircleFlipProps> = ({ src, alt, fallbackSrc }) => {
 			>
 				{/* front */}
 				<div
-					className="absolute inset-0 rounded-full overflow-hidden flex items-center justify-center"
+					className={frontClassName}
 					style={{
 						backfaceVisibility: "hidden",
 						WebkitBackfaceVisibility: "hidden",
 						transform: "rotateY(0deg)",
 					}}
 				>
-					<img
-						src={imgSrc}
-						alt={alt}
-						className="w-full h-full object-cover"
-						onError={handleError}
-					/>
+					{frontContent}
 				</div>
 				{/* back */}
 				<div
-					className="absolute inset-0 rounded-full border border-tertiary-bg bg-tertiary-bg flex items-center justify-center"
+					className={backClassName}
 					style={{
 						backfaceVisibility: "hidden",
 						WebkitBackfaceVisibility: "hidden",
 						transform: "rotateY(180deg)",
 					}}
 				>
-					<p className="text-primary text-center text-xs px-2">{alt}</p>
+					{backContent}
 				</div>
 			</motion.div>
 		</div>
 	);
 };
 
-export default CircleFlip;
+export default FlipCard;

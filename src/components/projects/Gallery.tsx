@@ -28,7 +28,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 	// min swipe distance (in px) to trigger navigation
 	const minSwipeDistance = 50;
 
-    const handlePrevious = useCallback(() => {
+	const handlePrevious = useCallback(() => {
 		if (isAnimating) return;
 		setIsAnimating(true);
 		setDirection(-1);
@@ -228,7 +228,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 				/* image gallery */
 				<>
 					<div
-						className={`relative ${isHoveringGallery && !isMobileOrTablet ? "cursor-none" : ""} overflow-hidden focus:outline-none`}
+						className={`relative ${isHoveringGallery && !isMobileOrTablet && (images.length > 1) ? "cursor-none" : ""} overflow-hidden focus:outline-none`}
 						onMouseMove={handleMouseMove}
 						onMouseEnter={() => setIsHoveringGallery(true)}
 						onMouseLeave={() => setIsHoveringGallery(false)}
@@ -286,7 +286,7 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 					</div>
 
 					{/* custom cursor arrows */}
-					{!isMobileOrTablet && (
+					{!isMobileOrTablet && images.length > 1 && (
 						<div
 							className={`fixed pointer-events-none z-50 flex items-center justify-center bg-secondary-bg text-primary p-3 rounded-full shadow-lg -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-out ${
 								isHoveringGallery && !isHoveringPagination && hasMouseMoved
@@ -305,22 +305,24 @@ const Gallery: React.FC<GalleryProps> = ({ projectId }) => {
 						</div>
 					)}
 
-					<div
-						onMouseEnter={() => setIsHoveringPagination(true)}
-						onMouseLeave={() => setIsHoveringPagination(false)}
-						className="absolute bottom-4 left-1/2 -translate-x-1/2 p-2"
-					>
-						<PaginationDots
-							totalDots={images.length}
-							currentIndex={currentIndex}
-							onDotClick={(index) => {
-								if (isAnimating) return; // Block pagination navigation during animation
-								setIsAnimating(true);
-								setDirection(index > currentIndex ? 1 : -1);
-								setCurrentIndex(index);
-							}}
-						/>
-					</div>
+					{images.length > 1 && (
+						<div
+							onMouseEnter={() => setIsHoveringPagination(true)}
+							onMouseLeave={() => setIsHoveringPagination(false)}
+							className="absolute bottom-4 left-1/2 -translate-x-1/2 p-2"
+						>
+							<PaginationDots
+								totalDots={images.length}
+								currentIndex={currentIndex}
+								onDotClick={(index) => {
+									if (isAnimating) return; // Block pagination navigation during animation
+									setIsAnimating(true);
+									setDirection(index > currentIndex ? 1 : -1);
+									setCurrentIndex(index);
+								}}
+							/>
+						</div>
+					)}
 				</>
 			)}
 		</div>

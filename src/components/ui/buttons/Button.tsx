@@ -6,7 +6,7 @@ interface ButtonProps {
 	icon?: string;
 	iconHeight?: number;
 	onClick?: () => void;
-	variant?: "primary" | "sorter";
+	variant?: "primary" | "sorter" | "accent";
 	isExpanded?: boolean;
 	"aria-controls"?: string;
 }
