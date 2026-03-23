@@ -25,6 +25,19 @@ const FlipCard: React.FC<FlipCardProps> = ({
 	const [shouldContinue, setShouldContinue] = useState(false);
 	const [isHovering, setIsHovering] = useState(false);
 	const [isInitialSpin, setIsInitialSpin] = useState(true);
+	const [isMobile, setIsMobile] = useState(false);
+
+	// detect if device is mobile on mount
+	useEffect(() => {
+		const checkMobile = () => {
+			setIsMobile(
+				window.innerWidth < 768 || window.matchMedia("(hover: none)").matches,
+			);
+		};
+		checkMobile();
+		window.addEventListener("resize", checkMobile);
+		return () => window.removeEventListener("resize", checkMobile);
+	}, []);
 
 	// initial 360 spin on mount
 	useEffect(() => {
@@ -35,6 +48,7 @@ const FlipCard: React.FC<FlipCardProps> = ({
 	}, []);
 
 	const handleHoverStart = () => {
+		if (isMobile) return; // disable hover on mobile
 		setIsHovering(true);
 		if (!isAnimating) {
 			setIsAnimating(true);
@@ -46,6 +60,7 @@ const FlipCard: React.FC<FlipCardProps> = ({
 	};
 
 	const handleHoverEnd = () => {
+		if (isMobile) return; // disable hover on mobile
 		setIsHovering(false);
 		if (!isAnimating) {
 			setIsAnimating(true);
@@ -81,6 +96,14 @@ const FlipCard: React.FC<FlipCardProps> = ({
 		}
 	};
 
+	const handleClick = () => {
+		if (isMobile && !isAnimating) {
+			setIsAnimating(true);
+			setShouldContinue(false);
+			setRotation((prev) => prev + 180);
+		}
+	};
+
 	return (
 		<div className={containerClassName} style={innerContainerStyle}>
 			<motion.div
@@ -90,6 +113,7 @@ const FlipCard: React.FC<FlipCardProps> = ({
 				animate={{ rotateY: rotation }}
 				onHoverStart={handleHoverStart}
 				onHoverEnd={handleHoverEnd}
+				onClick={handleClick}
 				onAnimationComplete={handleAnimationComplete}
 				transition={{
 					duration: rotation === 360 ? 1 : 0.5,
