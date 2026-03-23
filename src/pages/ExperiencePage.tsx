@@ -5,7 +5,12 @@ import experienceData from "../data/experience.json" with { type: "json" };
 
 const ExperiencePage = () => {
 	return (
-		<div className="min-h-screen py-20">
+		<motion.div
+			className="min-h-screen py-20"
+			initial={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			transition={{ duration: 0.4 }}
+		>
 			<div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 flex flex-col gap-4 items-center text-center">
 				<motion.h1
 					initial={{ opacity: 0, y: -20 }}
@@ -33,7 +38,7 @@ const ExperiencePage = () => {
 			>
 				<ExperienceCardList experiences={experienceData} />
 			</motion.div>
-		</div>
+		</motion.div>
 	);
 };
 

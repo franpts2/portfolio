@@ -101,7 +101,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 						animate={{ opacity: 1, y: 0 }}
 						exit={{ opacity: 0, y: -8 }}
 						transition={{ duration: 0.2, ease: "easeOut" }}
-						className="absolute right-0 top-12 z-50 bg-secondary-bg border border-primary-bg rounded-lg shadow-xl p-5 min-w-50 max-w-62.5"
+						className="fixed bottom-0 left-0 right-0 md:absolute md:right-0 md:bottom-auto md:left-auto md:top-12 z-50 bg-secondary-bg border border-primary-bg rounded-lg shadow-xl p-5 md:min-w-50 md:max-w-62.5 max-h-[70vh] md:max-h-none overflow-y-auto md:overflow-visible rounded-b-none md:rounded-b-lg"
 						role="menu"
 						aria-label="Filter options"
 					>

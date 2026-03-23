@@ -3,6 +3,7 @@ import Sidebar from "../components/navigation/Sidebar.js";
 import ThemeSwitcher from "../components/ThemeSwitcher.js";
 import ErrorBoundary from "../components/ErrorBoundary.tsx";
 import { Outlet } from "react-router-dom";
+import { AnimatePresence } from "motion/react";
 
 const Layout = () => {
 	return (
@@ -13,7 +14,9 @@ const Layout = () => {
 					<ThemeSwitcher />
 				</div>
 				<ErrorBoundary>
-					<Outlet />
+					<AnimatePresence mode="wait">
+						<Outlet />
+					</AnimatePresence>
 				</ErrorBoundary>
 			</main>
 		</div>
