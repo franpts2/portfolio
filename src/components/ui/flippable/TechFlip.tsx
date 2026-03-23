@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import FlipCard from "./FlipCard.tsx";
 
 interface TechFlipProps {
 	src: string;
@@ -18,126 +18,46 @@ const TechFlip: React.FC<TechFlipProps> = ({
 }) => {
 	const [imgSrc, setImgSrc] = useState(src);
 	const [isError, setIsError] = useState(false);
-	const [rotation, setRotation] = useState(0);
-	const [isAnimating, setIsAnimating] = useState(false);
-	const [shouldContinue, setShouldContinue] = useState(false);
-	const [isHovering, setIsHovering] = useState(false);
-	const [isInitialSpin, setIsInitialSpin] = useState(true);
-
-	// initial 360 spin on mount
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setRotation(360);
-		}, 800); // wait for ProjectDetail load animations to complete
-		return () => clearTimeout(timer);
-	}, []);
 
 	useEffect(() => {
 		setImgSrc(src);
 		setIsError(false);
 	}, [src]);
 
-	const handleError = () => {
-		// no fallback for tech icons
+	const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+		console.log("Image load error for:", alt);
 		setIsError(true);
 	};
 
-	const handleHoverStart = () => {
-		setIsHovering(true);
-		if (!isAnimating) {
-			setIsAnimating(true);
-			setShouldContinue(false);
-			setRotation((prev) => prev + 180);
-		} else {
-			// if already animating, mark to continue for full 360
-			setShouldContinue(true);
-		}
-	};
+	const frontContent = isError ? (
+		<div className="w-full h-full border border-tertiary-bg bg-tertiary-bg flex items-center justify-center rounded-2xl">
+			<p className="text-primary text-center font-bold">
+				{alt.charAt(0).toUpperCase()}
+			</p>
+		</div>
+	) : (
+		<img
+			src={imgSrc}
+			alt={alt}
+			width={width}
+			height={height}
+			className="w-full h-full object-contain"
+			onError={handleError}
+		/>
+	);
 
-	const handleHoverEnd = () => {
-		setIsHovering(false);
-		if (!isAnimating) {
-			setIsAnimating(true);
-			setShouldContinue(false);
-			setRotation((prev) => prev + 180);
-		} else {
-			setShouldContinue(true);
-		}
-	};
-
-	const handleAnimationComplete = () => {
-		if (isInitialSpin) {
-			setIsInitialSpin(false);
-			return;
-		}
-
-		if (shouldContinue) {
-			setShouldContinue(false);
-			setRotation((prev) => prev + 180);
-		} else {
-			setIsAnimating(false);
-
-			// normalize rotation to check if it's divisible by 360
-			const normalizedRotation = rotation % 360;
-			// only auto-flip to front if back is showing & user is not hovering
-			if (normalizedRotation === 180 && !isHovering) {
-				// back is facing front, flip one more time
-				setTimeout(() => {
-					setIsAnimating(true);
-					setRotation((prev) => prev + 180);
-				}, 100);
-			}
-		}
-	};
+	const backContent = (
+		<p className="text-primary text-center text-xs px-2 font-semibold">{alt}</p>
+	);
 
 	return (
-		<div className={`cursor-pointer ${className}`} style={{ perspective: "1000px" }}>
-			<motion.div
-				className="relative w-full h-full"
-				style={{ transformStyle: "preserve-3d" }}
-				initial={{ rotateY: 0 }}
-				animate={{ rotateY: rotation }}
-				onHoverStart={handleHoverStart}
-				onHoverEnd={handleHoverEnd}
-				onAnimationComplete={handleAnimationComplete}
-				transition={{
-					duration: rotation === 360 ? 1 : 0.5,
-					ease: "easeInOut",
-				}}
-			>
-				{/* front */}
-				<div
-					className="absolute inset-0 flex items-center justify-center"
-					style={{
-						backfaceVisibility: "hidden",
-						WebkitBackfaceVisibility: "hidden",
-						transform: "rotateY(0deg)",
-					}}
-				>
-					<img
-						src={imgSrc}
-						alt={alt}
-						width={width}
-						height={height}
-						className="w-full h-full object-contain"
-						onError={handleError}
-					/>
-				</div>
-				{/* back */}
-				<div
-					className="absolute inset-0 bg-tertiary-bg flex items-center justify-center rounded-2xl"
-					style={{
-						backfaceVisibility: "hidden",
-						WebkitBackfaceVisibility: "hidden",
-						transform: "rotateY(180deg)",
-					}}
-				>
-					<p className="text-primary text-center text-xs px-2 font-semibold">
-						{alt}
-					</p>
-				</div>
-			</motion.div>
-		</div>
+		<FlipCard
+			frontContent={frontContent}
+			backContent={backContent}
+			containerClassName={className}
+			frontClassName="absolute inset-0 flex items-center justify-center"
+			backClassName="absolute inset-0 bg-tertiary-bg flex items-center justify-center rounded-2xl"
+		/>
 	);
 };
 
