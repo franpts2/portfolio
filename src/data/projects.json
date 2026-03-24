@@ -1,22 +1,17 @@
 [
 	{
-		"id": "focusly",
-		"title": "focusly",
-		"description": "all-in-one study app",
-		"longDescription": "Focusly transforms the way you study by combining essential tools into one seamless experience. Create personalized quizzes and flashcards, boost focus with a built-in Pomodoro timer, and collaborate with peers through an interactive forum. Whether you're preparing for exams or just reviewing concepts, this app makes studying smarter, not harder. Join a community of learners and take your productivity to the next level!",
-		"tech": ["flutter", "dart", "firebase"],
-		"tags": ["university", "collaborative"],
-		"team": [
-			"Francisca Portugal",
-			"Gabriela de Mattos",
-			"Maria Luiza Vieira",
-			"Sara García"
-		],
-		"codeLink": "https://github.com/franpts2/focusly",
+		"id": "portfolio",
+		"title": "portfolio",
+		"description": "this website!",
+		"longDescription": "This portfolio is a digital reflection of my dual nature as an engineer and an observer of the world. I designed it to be more than just a list of repositories and experiences; it is a direct reflection of my approach to Frontend Engineering. Built with React, TypeScript, and Tailwind CSS, the site is centered around two distinct visual moods that represent the places where I find my greatest inspiration: a warm, high-clarity Beach Light Mode and an immersive, Starry Sky Dark Mode. Beyond the aesthetics, this project is a playground for the core principles I bring to every interface: clean architecture, type-safety, and performance-first responsiveness.",
+		"tech": ["react", "tailwind", "ts"],
+		"tags": ["personal"],
+		"team": ["Francisca Portugal"],
+		"codeLink": "https://github.com/franpts2/portfolio",
 		"isDone": true,
-		"date": "2025/05/31"
+		"date": "2026/03/23"
 	},
-	{
+    {
 		"id": "junto",
 		"title": "junto.",
 		"description": "discuss movies, books and music",
@@ -34,6 +29,23 @@
 		"date": "2025/12/31"
 	},
 	{
+		"id": "focusly",
+		"title": "focusly",
+		"description": "all-in-one study app",
+		"longDescription": "Focusly transforms the way you study by combining essential tools into one seamless experience. Create personalized quizzes and flashcards, boost focus with a built-in Pomodoro timer, and collaborate with peers through an interactive forum. Whether you're preparing for exams or just reviewing concepts, this app makes studying smarter, not harder. Join a community of learners and take your productivity to the next level!",
+		"tech": ["flutter", "dart", "firebase"],
+		"tags": ["university", "collaborative"],
+		"team": [
+			"Francisca Portugal",
+			"Gabriela de Mattos",
+			"Maria Luiza Vieira",
+			"Sara García"
+		],
+		"codeLink": "https://github.com/franpts2/focusly",
+		"isDone": true,
+		"date": "2025/05/31"
+	},
+	{
 		"id": "artflow",
 		"title": "artflow",
 		"description": "freelancing website for artists",
@@ -44,17 +56,6 @@
 		"codeLink": "https://github.com/franpts2/artflow",
 		"isDone": true,
 		"date": "2025/05/25"
-	},
-	{
-		"id": "portfolio",
-		"title": "portfolio",
-		"description": "this website!",
-		"longDescription": "This portfolio is a digital reflection of my dual nature as an engineer and an observer of the world. I designed it to be more than just a list of repositories and experiences; it is a direct reflection of my approach to Frontend Engineering. Built with React, TypeScript, and Tailwind CSS, the site is centered around two distinct visual moods that represent the places where I find my greatest inspiration: a warm, high-clarity Beach Light Mode and an immersive, Starry Sky Dark Mode. Beyond the aesthetics, this project is a playground for the core principles I bring to every interface: clean architecture, type-safety, and performance-first responsiveness.",
-		"tech": ["react", "tailwind", "ts"],
-		"tags": ["personal"],
-		"team": ["Francisca Portugal"],
-		"codeLink": "https://github.com/franpts2/portfolio",
-		"isDone": false
 	},
 	{
 		"id": "bookwish",
@@ -79,17 +80,17 @@
 		"isDone": true,
 		"date": "2024/12/24"
 	},
-    {
-        "id": "atla",
-        "title": "atla",
-        "description": "Hand tracking bending simulator",
-        "longDescription": "ATLA is an interactive hand tracking project that transforms your gestures into elemental bending moves, inspired by Avatar: The Last Airbender. Using Python, OpenCV, and MediaPipe, it recognizes and interprets hand gestures for bending fire, with plans to add earth, water, and air. The project aims to provide an immersive, gesture-based experience for fans.",
-        "tech": ["python", "opencv"],
-        "tags": ["personal"],
-        "team": ["Francisca Portugal"],
-        "codeLink": "https://github.com/franpts2/atla",
-        "isDone": false
-    },
+	{
+		"id": "atla",
+		"title": "atla",
+		"description": "Hand tracking bending simulator",
+		"longDescription": "ATLA is an interactive hand tracking project that transforms your gestures into elemental bending moves, inspired by Avatar: The Last Airbender. Using Python, OpenCV, and MediaPipe, it recognizes and interprets hand gestures for bending fire, with plans to add earth, water, and air. The project aims to provide an immersive, gesture-based experience for fans.",
+		"tech": ["python", "opencv"],
+		"tags": ["personal"],
+		"team": ["Francisca Portugal"],
+		"codeLink": "https://github.com/franpts2/atla",
+		"isDone": false
+	},
 	{
 		"id": "fernando-oceano-quest",
 		"title": "fernando oceano's quest",
