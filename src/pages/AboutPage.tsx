@@ -87,9 +87,12 @@ const AboutPage = () => {
 									transition={{ duration: 0.6, delay: 0.4 }}
 								>
 									I'm a{" "}
-									<Highlight isHighlighted={hasHovered}>
-										Frontend Developer
-									</Highlight>{" "}
+									<span className="md:hidden">Frontend Developer</span>
+									<span className="hidden md:inline-block">
+										<Highlight isHighlighted={hasHovered}>
+											Frontend Developer
+										</Highlight>
+									</span>{" "}
 									who ventures into Full-stack and Mobile to build products that
 									feel effortless. I thrive on creating interfaces that are
 									technically rigorous under the hood, yet joyful and intuitive
