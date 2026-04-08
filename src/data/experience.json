@@ -3,9 +3,18 @@
 		"id": "niafeup",
 		"position": "Member",
 		"company": "NIAEFEUP",
-		"monthYearFrom": "2025/11",
+		"monthYearFrom": "2026/03",
 		"location": "Porto, Portugal",
-		"description": "I contribute to a suite of high-impact open-source projects designed for the University of Porto community. My work involves developing the Uni mobile application using Flutter to enhance student academic management, developing the new NIAEFEUP website with SvelteKit and TailwindCSS, and optimizing the TTS (Time Table Selector) platform to ensure a seamless schedule simulation experience. By working across these diverse platforms, I help build and scale essential digital tools while applying professional development standards in a collaborative Agile environment."
+		"description": "Contributing to open-source projects for the University of Porto: Uni mobile app (Flutter), NIAEFEUP website (SvelteKit/TailwindCSS), and TTS platform optimization."
+	},
+	{
+		"id": "niafeup",
+		"position": "Recruit",
+		"company": "NIAEFEUP",
+		"monthYearFrom": "2025/11",
+		"monthYearTo": "2026/03",
+		"location": "Porto, Portugal",
+		"description": "Contributing to open-source projects for the University of Porto: Uni mobile app (Flutter), NIAEFEUP website (SvelteKit/TailwindCSS), and TTS platform optimization."
 	},
 	{
 		"id": "vou",
