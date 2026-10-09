@@ -1,8 +1,6 @@
 import { motion, useReducedMotion } from "motion/react";
-import { Icon } from "@iconify/react";
 import { profile } from "../../data/profile.js";
 import { SquishyPortrait } from "../SquishyPortrait.js";
-import { icons } from "../../assets/icons.js";
 
 export function HeroSection() {
 	const reducedMotion = useReducedMotion();
@@ -83,24 +81,6 @@ export function HeroSection() {
 				</div>
 			</div>
 
-			{/* Scroll hint */}
-			<motion.a
-				href="#about"
-				className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-(--color-ink-muted) hover:text-(--color-accent) transition-colors"
-				initial={{ opacity: 0, y: 12 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.6, delay: 0.7 }}
-				aria-label="Scroll to About section"
-			>
-				<span className="t-label text-inherit">Scroll</span>
-				<motion.span
-					className="text-inherit"
-					animate={reducedMotion ? {} : { y: [0, 6, 0] }}
-					transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-				>
-					<Icon icon={icons.arrowDownward.outline} height={20} />
-				</motion.span>
-			</motion.a>
 		</section>
 	);
 }

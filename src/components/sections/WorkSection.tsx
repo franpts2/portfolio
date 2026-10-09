@@ -17,20 +17,14 @@ export function WorkSection() {
 			aria-labelledby="work-heading"
 		>
 			<div className="container-main">
-				<Reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
-					<div>
-						<span className="t-label">Selected Work</span>
-						<h2
-							id="work-heading"
-							className="t-headline text-4xl sm:text-5xl mt-3 accent-dot"
-						>
-							Projects worth sharing
-						</h2>
-					</div>
-					<p className="t-body max-w-xs text-balance">
-						Three builds that mix full-stack thinking, frontend craft, and
-						design intuition.
-					</p>
+				<Reveal className="mb-12">
+					<span className="t-label">Selected Work</span>
+					<h2
+						id="work-heading"
+						className="t-headline text-4xl sm:text-5xl mt-3 accent-dot"
+					>
+						Projects worth sharing
+					</h2>
 				</Reveal>
 
 				<div className="flex flex-col">
