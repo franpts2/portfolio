@@ -54,26 +54,29 @@ function ChatRow({ from, text, isTyping, isVisible, delay }: ChatRowProps) {
 			transition={{ duration: 0.35, delay, ease: [0.16, 1, 0.3, 1] }}
 		>
 			{isTyping ? (
-				<div
-					className="inline-flex items-center justify-center gap-[0.45rem] min-w-[4.5rem] min-h-[2.85rem] px-5 py-[0.85rem] rounded-[1.25rem] rounded-br-[0.25rem] w-fit bg-(--color-accent)"
+				<motion.div
+					className="inline-flex items-center justify-center gap-[0.5rem] min-w-[4.75rem] min-h-[3rem] px-5 py-[0.85rem] rounded-[1.25rem] rounded-br-sm w-fit bg-(--color-accent)"
+					initial={{ opacity: 0, scale: 0.92 }}
+					animate={{ opacity: 1, scale: 1 }}
+					transition={{ duration: 0.2 }}
 					aria-label="Typing"
 				>
-					<span className="w-2 h-2 rounded-full bg-white/75 animate-[typingBounce_1.3s_infinite_ease-in-out]" />
+					<span className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]" />
 					<span
-						className="w-2 h-2 rounded-full bg-white/75 animate-[typingBounce_1.3s_infinite_ease-in-out]"
-						style={{ animationDelay: "0.15s" }}
+						className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
+						style={{ animationDelay: "0.12s" }}
 					/>
 					<span
-						className="w-2 h-2 rounded-full bg-white/75 animate-[typingBounce_1.3s_infinite_ease-in-out]"
-						style={{ animationDelay: "0.3s" }}
+						className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
+						style={{ animationDelay: "0.24s" }}
 					/>
-				</div>
+				</motion.div>
 			) : (
 				<motion.div
 					className={`max-w-[min(80%,460px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed whitespace-pre-wrap ${
 						isMe
-							? "bg-(--color-accent) text-white rounded-br-[0.25rem]"
-							: "bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-[0.25rem]"
+							? "bg-(--color-accent) text-white rounded-br-sm"
+							: "bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm"
 					}`}
 					initial={{ opacity: 0, scale: 0.96, y: 6 }}
 					animate={
@@ -103,7 +106,7 @@ export function BeyondTheCodeSection() {
 		const totalSteps = 1 + (messages.length - 1) * 2;
 
 		for (let i = 1; i <= totalSteps; i++) {
-			timers.push(window.setTimeout(() => setStep(i), i * 800));
+			timers.push(window.setTimeout(() => setStep(i), i * 1200));
 		}
 
 		return () => timers.forEach(clearTimeout);
@@ -156,8 +159,8 @@ export function BeyondTheCodeSection() {
 
 			<style>{`
 				@keyframes typingBounce {
-					0%, 60%, 100% { transform: translateY(0); opacity: 0.7; }
-					30% { transform: translateY(-5px); opacity: 1; }
+					0%, 60%, 100% { transform: translateY(0); }
+					30% { transform: translateY(-6px); }
 				}
 			`}</style>
 		</section>
