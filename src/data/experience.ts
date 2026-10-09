@@ -29,7 +29,7 @@ export const experience: readonly Role[] = [
     start: "2026-05",
     end: null,
     description:
-      "Lead development and continuous improvement of Time Table Selector, a React app streamlining class exchanges and academic schedule planning for university students. Progressed from Recruit (Nov 2025 – Mar 2026) to Member (Mar – May 2026), contributing to uni with Flutter and NIAEFEUP's new website with Svelte.",
+      "I lead Time Table Selector, an open-source React project that makes class exchanges and academic scheduling simpler for university students. I set the roadmap, coordinate contributors, and turn student feedback into product and engineering priorities. Previously progressed from Recruit (Nov 2025 – Mar 2026) to Member (Mar – May 2026), contributing to uni with Flutter and NIAEFEUP's new website with Svelte.",
     kind: "work",
   },
   {
