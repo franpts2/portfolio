@@ -34,7 +34,14 @@ const messages = [
 	},
 ] as const;
 
-const totalSteps = 1 + (messages.length - 1) * 2;
+const ctaMessage = {
+	id: "cta",
+	from: "them" as const,
+	text: "want to keep talking?",
+};
+
+// prompt (1) + 5 replies with typing+visible (10) + cta (1)
+const totalSteps = 1 + (messages.length - 1) * 2 + 1;
 
 export function BeyondTheCodeSection() {
 	const sectionRef = useRef<HTMLElement>(null);
@@ -64,7 +71,7 @@ export function BeyondTheCodeSection() {
 			ref={sectionRef}
 			id="beyond-the-code"
 			className="relative bg-(--color-bg)"
-			style={{ height: "400vh" }}
+			style={{ height: "460vh" }}
 			aria-labelledby="beyond-heading"
 		>
 			<div className="sticky top-0 h-screen flex flex-col justify-center py-16">
@@ -141,6 +148,23 @@ export function BeyondTheCodeSection() {
 									</motion.div>
 								);
 							})}
+
+							<motion.a
+								href="#contact"
+								className="flex justify-start group"
+								initial={false}
+								animate={
+									step >= totalSteps
+										? { opacity: 1, y: 0 }
+										: { opacity: 0, y: 14 }
+								}
+								transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+							>
+								<span className="max-w-[min(80%,460px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm hover:border-(--color-accent) hover:text-(--color-accent) transition-colors">
+									{ctaMessage.text}
+									<span className="inline-block ml-1 group-hover:translate-x-0.5 transition-transform">→</span>
+								</span>
+							</motion.a>
 						</div>
 					</div>
 				</div>
