@@ -33,9 +33,9 @@ export function ExperienceSection() {
 					</h2>
 				</Reveal>
 
-				<div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+				<div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
 					{/* Work */}
-					<div>
+					<div className="lg:col-span-8">
 						<Reveal delay={0.1}>
 							<h3 className="t-label mb-6">Work</h3>
 						</Reveal>
@@ -54,17 +54,9 @@ export function ExperienceSection() {
 										<p className="mt-1 text-sm text-(--color-ink-muted)">
 											{role.org} · {role.location}
 										</p>
-										{Array.isArray(role.description) ? (
-											<ul className="mt-3 flex flex-col gap-1.5 list-disc list-inside t-body text-sm text-balance marker:text-(--color-ink-faint)">
-												{role.description.map((item, i) => (
-													<li key={i}>{item}</li>
-												))}
-											</ul>
-										) : (
-											<p className="mt-3 t-body text-sm text-balance">
-												{role.description}
-											</p>
-										)}
+										<p className="mt-3 t-body text-sm">
+											{role.description}
+										</p>
 									</article>
 								</Reveal>
 							))}
@@ -72,7 +64,7 @@ export function ExperienceSection() {
 					</div>
 
 					{/* Community */}
-					<div>
+					<div className="lg:col-span-4">
 						<Reveal delay={0.2}>
 							<h3 className="t-label mb-6">Community</h3>
 						</Reveal>
@@ -91,17 +83,9 @@ export function ExperienceSection() {
 										<p className="mt-1 text-sm text-(--color-ink-muted)">
 											{role.org} · {role.location}
 										</p>
-										{Array.isArray(role.description) ? (
-											<ul className="mt-3 flex flex-col gap-1.5 list-disc list-inside t-body text-sm text-balance marker:text-(--color-ink-faint)">
-												{role.description.map((item, i) => (
-													<li key={i}>{item}</li>
-												))}
-											</ul>
-										) : (
-											<p className="mt-3 t-body text-sm text-balance">
-												{role.description}
-											</p>
-										)}
+										<p className="mt-3 t-body text-sm">
+											{role.description}
+										</p>
 									</article>
 								</Reveal>
 							))}
