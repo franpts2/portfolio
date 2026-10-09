@@ -22,9 +22,9 @@ export const socials = [
 		href: "https://linkedin.com/in/franciscaportugal",
 	},
 	{
-		label: "Instagram",
-		handle: "francisca._.portugal19",
-		href: "https://instagram.com/francisca._.portugal19",
+		label: "X",
+		handle: "franpts2",
+		href: "https://x.com/franpts2",
 	},
 ] as const;
 

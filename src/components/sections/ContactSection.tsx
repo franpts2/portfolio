@@ -6,7 +6,7 @@ import { icons } from "../../assets/icons.js";
 const socialIcons: Record<string, string> = {
 	GitHub: icons.github.outline,
 	LinkedIn: icons.linkedin.outline,
-	Instagram: icons.instagram.outline,
+	X: icons.x.outline,
 };
 
 export function ContactSection() {

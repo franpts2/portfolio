@@ -144,7 +144,7 @@ export const icons = {
 	linkedin: {
 		outline: "mdi:linkedin",
 	},
-	instagram: {
-		outline: "mdi:instagram",
+	x: {
+		outline: "mdi:twitter-x",
 	},
 };
