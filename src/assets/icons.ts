@@ -145,6 +145,6 @@ export const icons = {
 		outline: "mdi:linkedin",
 	},
 	x: {
-		outline: "mdi:twitter-x",
+		outline: "simple-icons:x",
 	},
 };
