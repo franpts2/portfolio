@@ -16,7 +16,7 @@ export const experience: readonly Role[] = [
     org: "Cloudflare",
     location: "Lisbon",
     start: "2026-07",
-    end: null,
+    end: "2026-09",
     description:
       "Built and shipped a feature-gated Workflows Timeline in the Cloudflare Dashboard with React, TypeScript, Kumo, and ECharts, visualizing live step timing, retries, waits, errors, and concurrency. Migrated the Workflows list to Kumo and fixed search and cache race conditions while preserving server-side search, pagination, metrics, sorting, and workflow actions.",
     kind: "work",
@@ -49,7 +49,7 @@ export const experience: readonly Role[] = [
     org: "Mentoria UP",
     location: "Porto",
     start: "2025-09",
-    end: null,
+    end: "2026-07",
     description:
       "Guiding first-year students through academic and social integration at the university.",
     kind: "community",
