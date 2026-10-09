@@ -53,19 +53,12 @@ export function WorkSection() {
 												</p>
 											</div>
 
-											<div className="sm:col-span-3 sm:col-start-7">
-												<span className="t-label block mb-1">Role</span>
-												<p className="text-sm text-(--color-ink-muted)">
-													{project.role}
-												</p>
-											</div>
-
-											<div className="sm:col-span-2">
-												<span className="t-label block mb-1">Year</span>
-												<p className="text-sm text-(--color-ink-muted)">
-													{project.year ?? "—"}
-												</p>
-											</div>
+											<div className="sm:col-span-5 sm:col-start-7">
+										<span className="t-label block mb-1">Stack</span>
+										<p className="text-sm text-(--color-ink-muted)">
+											{project.tech.join(" · ")}
+										</p>
+									</div>
 
 											<div className="sm:col-span-1 flex justify-end">
 												<Icon
