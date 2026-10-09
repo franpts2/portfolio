@@ -76,7 +76,7 @@ export function BeyondTheCodeSection() {
 		>
 			<div className="sticky top-0 h-screen flex flex-col justify-center py-16">
 				<div className="container-main">
-					<div className="max-w-[720px] mx-auto">
+					<div className="mb-10">
 						<span className="t-label">Beyond the code</span>
 						<h2
 							id="beyond-heading"
@@ -87,8 +87,9 @@ export function BeyondTheCodeSection() {
 						<p className="t-body mt-4 max-w-[50ch]">
 							Keep scrolling — the conversation unfolds as you go.
 						</p>
+					</div>
 
-						<div className="mt-10 flex flex-col gap-3 min-h-[320px]">
+					<div className="flex flex-col gap-3 min-h-[320px]">
 							{messages.map((msg, idx) => {
 								const isPrompt = msg.from === "them";
 								const typingStep = isPrompt ? 1 : idx * 2;
@@ -126,7 +127,7 @@ export function BeyondTheCodeSection() {
 											</div>
 										) : (
 											<motion.div
-												className={`max-w-[min(80%,460px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed whitespace-pre-wrap ${
+												className={`max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed whitespace-pre-wrap ${
 													isMe
 														? "bg-(--color-accent) text-white rounded-br-sm"
 														: "bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm"
@@ -160,12 +161,11 @@ export function BeyondTheCodeSection() {
 								}
 								transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
 							>
-								<span className="max-w-[min(80%,460px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm hover:border-(--color-accent) hover:text-(--color-accent) transition-colors">
+								<span className="max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm hover:border-(--color-accent) hover:text-(--color-accent) transition-colors">
 									{ctaMessage.text}
 									<span className="inline-block ml-1 group-hover:translate-x-0.5 transition-transform">→</span>
 								</span>
 							</motion.a>
-						</div>
 					</div>
 				</div>
 			</div>
