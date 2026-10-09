@@ -8,9 +8,16 @@ const formatDate = (date: string | null) => {
 	return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
 };
 
-const formatRange = (start: string, end: string | null) => {
-	return `${formatDate(start)} — ${formatDate(end)}`;
-};
+function DateRange({ start, end }: { start: string; end: string | null }) {
+	return (
+		<span className="t-label text-(--color-ink-faint)">
+			{formatDate(start)} —{" "}
+			{end ? formatDate(end) : (
+				<span className="text-(--color-accent)">Present</span>
+			)}
+		</span>
+	);
+}
 
 export function ExperienceSection() {
 	const work = experience.filter((r) => r.kind === "work");
@@ -48,7 +55,7 @@ export function ExperienceSection() {
 												{role.title}
 											</h4>
 											<span className="t-label text-(--color-ink-faint)">
-												{formatRange(role.start, role.end)}
+												<DateRange start={role.start} end={role.end} />
 											</span>
 										</div>
 										<p className="mt-1 text-sm text-(--color-ink-muted)">
@@ -77,7 +84,7 @@ export function ExperienceSection() {
 												{role.title}
 											</h4>
 											<span className="t-label text-(--color-ink-faint)">
-												{formatRange(role.start, role.end)}
+												<DateRange start={role.start} end={role.end} />
 											</span>
 										</div>
 										<p className="mt-1 text-sm text-(--color-ink-muted)">
