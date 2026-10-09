@@ -1,6 +1,5 @@
-import { useRef, useEffect, useState } from "react";
-import { motion, useInView } from "motion/react";
-import { Reveal } from "../Reveal.js";
+import { useRef, useState } from "react";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
 
 const messages = [
 	{
@@ -35,125 +34,115 @@ const messages = [
 	},
 ] as const;
 
-interface ChatRowProps {
-	readonly from: "me" | "them";
-	readonly text: string;
-	readonly isTyping: boolean;
-	readonly isVisible: boolean;
-	readonly delay: number;
-}
-
-function ChatRow({ from, text, isTyping, isVisible, delay }: ChatRowProps) {
-	const isMe = from === "me";
-
-	return (
-		<motion.div
-			className={`flex ${isMe ? "justify-end" : "justify-start"}`}
-			initial={{ opacity: 0, y: 14 }}
-			animate={isVisible || isTyping ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-			transition={{ duration: 0.35, delay, ease: [0.16, 1, 0.3, 1] }}
-		>
-			{isTyping ? (
-				<motion.div
-					className="inline-flex items-center justify-center gap-[0.5rem] min-w-[4.75rem] min-h-[3rem] px-5 py-[0.85rem] rounded-[1.25rem] rounded-br-sm w-fit bg-(--color-accent)"
-					initial={{ opacity: 0, scale: 0.92 }}
-					animate={{ opacity: 1, scale: 1 }}
-					transition={{ duration: 0.2 }}
-					aria-label="Typing"
-				>
-					<span className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]" />
-					<span
-						className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
-						style={{ animationDelay: "0.12s" }}
-					/>
-					<span
-						className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
-						style={{ animationDelay: "0.24s" }}
-					/>
-				</motion.div>
-			) : (
-				<motion.div
-					className={`max-w-[min(80%,460px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed whitespace-pre-wrap ${
-						isMe
-							? "bg-(--color-accent) text-white rounded-br-sm"
-							: "bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm"
-					}`}
-					initial={{ opacity: 0, scale: 0.96, y: 6 }}
-					animate={
-						isVisible
-							? { opacity: 1, scale: 1, y: 0 }
-							: { opacity: 0, scale: 0.96, y: 6 }
-					}
-					transition={{ duration: 0.25, delay, ease: [0.16, 1, 0.3, 1] }}
-				>
-					{text}
-				</motion.div>
-			)}
-		</motion.div>
-	);
-}
+const totalSteps = 1 + (messages.length - 1) * 2;
 
 export function BeyondTheCodeSection() {
-	const ref = useRef<HTMLElement>(null);
-	const isInView = useInView(ref, { once: true, amount: 0.35 });
+	const sectionRef = useRef<HTMLElement>(null);
 	const [step, setStep] = useState(0);
+	const [direction, setDirection] = useState<"up" | "down">("down");
+	const prevProgress = useRef(0);
 
-	useEffect(() => {
-		if (!isInView) return;
+	const { scrollYProgress } = useScroll({
+		target: sectionRef,
+		offset: ["start start", "end end"],
+	});
 
-		const timers: number[] = [];
-		// Total steps: prompt visible (1), then typing+visible pairs for each me message
-		const totalSteps = 1 + (messages.length - 1) * 2;
+	useMotionValueEvent(scrollYProgress, "change", (latest) => {
+		const dir = latest > prevProgress.current ? "down" : "up";
+		setDirection(dir);
+		prevProgress.current = latest;
 
-		for (let i = 1; i <= totalSteps; i++) {
-			timers.push(window.setTimeout(() => setStep(i), i * 1200));
-		}
-
-		return () => timers.forEach(clearTimeout);
-	}, [isInView]);
+		const newStep = Math.min(
+			totalSteps,
+			Math.max(0, Math.floor(latest * totalSteps) + 1),
+		);
+		setStep(newStep);
+	});
 
 	return (
 		<section
-			ref={ref}
+			ref={sectionRef}
 			id="beyond-the-code"
-			className="section"
+			className="relative bg-(--color-bg)"
+			style={{ height: "400vh" }}
 			aria-labelledby="beyond-heading"
 		>
-			<div className="container-main">
-				<Reveal>
-					<span className="label">Beyond the code</span>
-					<h2
-						id="beyond-heading"
-						className="t-headline text-4xl sm:text-5xl mt-3 accent-dot"
-					>
-						If we were texting
-					</h2>
-					<p className="t-body mt-5 max-w-[50ch]">
-						Scroll down and watch the messages come in.
-					</p>
-				</Reveal>
+			<div className="sticky top-0 h-screen flex flex-col justify-center py-16">
+				<div className="container-main">
+					<div className="max-w-[720px] mx-auto">
+						<span className="t-label">Beyond the code</span>
+						<h2
+							id="beyond-heading"
+							className="t-headline text-4xl sm:text-5xl mt-3 accent-dot"
+						>
+							If we were texting
+						</h2>
+						<p className="t-body mt-4 max-w-[50ch]">
+							Keep scrolling — the conversation unfolds as you go.
+						</p>
 
-				<div className="mt-16 max-w-[720px] mx-auto flex flex-col gap-3 pb-16">
-					{messages.map((msg, idx) => {
-						const isPrompt = msg.from === "them";
-						// prompt: visible at step >= 1
-						// me messages: typing at step === (idx) * 2, visible at step >= (idx) * 2 + 1
-						const typingStep = isPrompt ? 1 : idx * 2;
-						const visibleStep = isPrompt ? 1 : idx * 2 + 1;
-						const isTyping = step === typingStep && !isPrompt;
-						const isVisible = step >= visibleStep;
+						<div className="mt-10 flex flex-col gap-3 min-h-[320px]">
+							{messages.map((msg, idx) => {
+								const isPrompt = msg.from === "them";
+								const typingStep = isPrompt ? 1 : idx * 2;
+								const visibleStep = isPrompt ? 1 : idx * 2 + 1;
+								const isTyping = step === typingStep && !isPrompt && direction === "down";
+								const isVisible = step >= visibleStep;
+								const isMe = msg.from === "me";
 
-						return (
-							<ChatRow
-								key={msg.id}
-								from={msg.from}
-								text={msg.text}
-								isTyping={isTyping}
-								isVisible={isVisible}
-								delay={0}
-							/>
-						);
-									})}
+								return (
+									<motion.div
+										key={msg.id}
+										className={`flex ${isMe ? "justify-end" : "justify-start"}`}
+										initial={false}
+										animate={
+											isVisible || isTyping
+												? { opacity: 1, y: 0 }
+												: { opacity: 0, y: 14 }
+										}
+										transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+									>
+										{isTyping ? (
+											<div
+												className="inline-flex items-center justify-center gap-[0.5rem] min-w-[4.75rem] min-h-[3rem] px-5 py-[0.85rem] rounded-[1.25rem] rounded-br-sm w-fit bg-(--color-accent)"
+												aria-label="Typing"
+											>
+												<span className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]" />
+												<span
+													className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
+													style={{ animationDelay: "0.12s" }}
+												/>
+												<span
+													className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
+													style={{ animationDelay: "0.24s" }}
+												/>
+											</div>
+										) : (
+											<motion.div
+												className={`max-w-[min(80%,460px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed whitespace-pre-wrap ${
+													isMe
+														? "bg-(--color-accent) text-white rounded-br-sm"
+														: "bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm"
+												}`}
+												initial={false}
+												animate={
+													isVisible
+														? { opacity: 1, scale: 1 }
+														: { opacity: 0, scale: 0.96 }
+												}
+												transition={{
+													duration: 0.25,
+													ease: [0.16, 1, 0.3, 1],
+												}}
+											>
+												{msg.text}
+											</motion.div>
+										)}
+									</motion.div>
+								);
+							})}
+						</div>
+					</div>
 				</div>
 			</div>
 
