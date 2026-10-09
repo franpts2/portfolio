@@ -5,42 +5,48 @@ export interface Role {
 	readonly location: string;
 	readonly start: string;
 	readonly end: string | null;
-	readonly description: string;
+	readonly description: string | readonly string[];
 	readonly kind: "work" | "community";
 }
 
 export const experience: readonly Role[] = [
 	{
+		id: "cloudflare",
+		title: "Software Engineer Intern",
+		org: "Cloudflare",
+		location: "Lisbon",
+		start: "2026-07",
+		end: null,
+		description: [
+			"Built and shipped a feature-gated Workflows Timeline in the Cloudflare Dashboard with React, TypeScript, Kumo, and ECharts, visualizing live step timing, retries, waits, errors, and concurrency.",
+			"Migrated the Workflows list to Kumo and fixed search and cache race conditions while preserving server-side search, pagination, metrics, sorting, and workflow actions.",
+		],
+		kind: "work",
+	},
+	{
 		id: "niaefeup-pm-tts",
-		title: "Project Manager, Time Table Selector",
+		title: "Project Manager – TTS",
 		org: "NIAEFEUP",
 		location: "Porto",
 		start: "2026-05",
 		end: null,
-		description:
-			"Coordinator for the Time Table Selector, the official FEUP platform for class exchanges and schedule planning. I set priorities, review contributions and push the scheduling experience forward in React.",
+		description: [
+			"Lead development and continuous improvement of Time Table Selector, a React app streamlining class exchanges and academic schedule planning for university students.",
+			"Progressed from Recruit (Nov 2025 – Mar 2026) to Member (Mar – May 2026), contributing to uni with Flutter and NIAEFEUP's new website with Svelte.",
+		],
 		kind: "work",
 	},
 	{
 		id: "robotair",
-		title: "Frontend Intern",
-		org: "Robotair — INESC TEC",
+		title: "Frontend Summer Intern",
+		org: "Robotair",
 		location: "Porto",
 		start: "2025-07",
-		end: "2025-09",
-		description:
-			"Led roughly 60% of a UI/UX redesign in React and Tailwind, modernising the Robots, Pipelines and Secrets modules. Shipped the Rigel testing system, optional ROS deployments and a configurable unit-testing interface.",
-		kind: "work",
-	},
-	{
-		id: "niaefeup-member",
-		title: "Member",
-		org: "NIAEFEUP",
-		location: "Porto",
-		start: "2026-03",
-		end: "2026-05",
-		description:
-			"Contributed to open-source projects for the University of Porto: the uni mobile app in Flutter, the NIAEFEUP website in SvelteKit and Tailwind, and performance work on the Time Table Selector.",
+		end: "2025-08",
+		description: [
+			"Played a central role in the UI/UX redesign of the company's web app, modernizing Robots, Pipelines, and Secrets with React and Tailwind CSS.",
+			"Implemented Rigel testing, optional ROS deployments, unit-testing configuration, and critical bug fixes for a production product used by real clients.",
+		],
 		kind: "work",
 	},
 	{
