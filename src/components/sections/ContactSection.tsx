@@ -66,7 +66,7 @@ export function ContactSection() {
 												<span className="flex items-center gap-3 font-medium text-(--color-ink)">
 													<Icon
 														icon={socialIcons[social.label] ?? icons.arrowOutward.outline}
-														height={22}
+														height={social.label === "X" ? 18 : 22}
 														className="text-(--color-ink-faint) group-hover:text-(--color-accent) transition-colors"
 													/>
 													{social.label}
