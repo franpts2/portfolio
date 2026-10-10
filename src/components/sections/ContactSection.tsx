@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import { Reveal } from "../Reveal.js";
 import { ContactForm } from "../ContactForm.js";
-import { profile, socials } from "../../data/profile.js";
+import { socials } from "../../data/profile.js";
 import { icons } from "../../assets/icons.js";
 
 const socialIcons: Record<string, string> = {
@@ -55,15 +55,6 @@ export function ContactSection() {
 									</a>
 								))}
 							</div>
-
-							<a
-								href={profile.cv}
-								download
-								className="mt-8 inline-flex items-center justify-center gap-2 px-5 py-3 bg-(--color-ink) text-(--color-bg) rounded-full font-medium text-sm hover:bg-(--color-accent) transition-colors"
-							>
-								<Icon icon={icons.download.outline} height={18} />
-								Download CV
-							</a>
 						</Reveal>
 					</div>
 

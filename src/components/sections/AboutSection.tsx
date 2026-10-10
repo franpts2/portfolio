@@ -1,5 +1,7 @@
+import { Icon } from "@iconify/react";
 import { Reveal } from "../Reveal.js";
 import { profile } from "../../data/profile.js";
+import { icons } from "../../assets/icons.js";
 
 export function AboutSection() {
 	return (
@@ -33,10 +35,23 @@ export function AboutSection() {
 
 						<Reveal delay={0.3}>
 							<div className="mt-10 pt-8 hairline">
-								<span className="t-label block mb-4">Location</span>
-								<p className="text-(--color-ink) font-medium">
-									{profile.location}
-								</p>
+								<div className="flex flex-wrap items-end justify-between gap-6">
+									<div>
+										<span className="t-label block mb-4">Location</span>
+										<p className="text-(--color-ink) font-medium">
+											{profile.location}
+										</p>
+									</div>
+
+									<a
+										href={profile.cv}
+										download
+										className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-(--color-ink) text-(--color-bg) rounded-full font-medium text-sm hover:bg-(--color-accent) transition-colors"
+									>
+										<Icon icon={icons.download.outline} height={18} />
+										Download CV
+									</a>
+								</div>
 							</div>
 						</Reveal>
 					</div>
