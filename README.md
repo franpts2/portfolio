@@ -85,9 +85,6 @@ portfolio/
 - Accessibility best practices
 - Contact form that delivers messages via Resend
 
-See [functions/README.md](functions/README.md) for how to configure the contact
-form's email delivery.
-
 
 ---
 

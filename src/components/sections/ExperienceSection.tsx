@@ -11,7 +11,7 @@ const formatDate = (date: string | null) => {
 function DateRange({ start, end }: { start: string; end: string | null }) {
 	return (
 		<span className="t-label text-(--color-ink-faint)">
-			{formatDate(start)} —{" "}
+			{formatDate(start)} ·{" "}
 			{end ? formatDate(end) : (
 				<span className="text-(--color-accent)">Present</span>
 			)}

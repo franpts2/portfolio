@@ -24,7 +24,7 @@ export function Header() {
 					<a
 						href="#"
 						className="font-display font-semibold text-lg tracking-tight text-(--color-ink) hover:text-(--color-accent) transition-colors"
-						aria-label="Francisca Portugal — Home"
+						aria-label="Francisca Portugal, Home"
 					>
 						f.pt
 					</a>

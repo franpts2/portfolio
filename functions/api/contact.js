@@ -1,16 +1,16 @@
 /**
- * Contact form endpoint — POST /api/contact
+ * Contact form endpoint: POST /api/contact
  *
  * Runs as a Cloudflare Pages Function (or Worker). It validates the
  * submission and forwards it to Resend, which delivers it to the
  * portfolio owner's inbox. The Resend API key never reaches the browser.
  *
  * Required environment variable:
- *   RESEND_API_KEY       
+ *   RESEND_API_KEY: from https://resend.com/api-keys
  *
  * Optional environment variables:
- *   CONTACT_TO_EMAIL     — destination inbox (default: hello@franciscapt.dev)
- *   CONTACT_FROM_EMAIL   — verified sender (default: Portfolio <hello@franciscapt.dev>)
+ *   CONTACT_TO_EMAIL: destination inbox (default: hello@franciscapt.dev)
+ *   CONTACT_FROM_EMAIL: verified sender (default: Portfolio <hello@franciscapt.dev>)
  *
  * For local development put them in a git-ignored `.dev.vars` file.
  */
@@ -22,7 +22,7 @@ const RATE_LIMIT_MAX_REQUESTS = 5;
 const MAX_FIELD_LENGTHS = { name: 100, email: 254, message: 5000 };
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Best-effort, in-memory rate limiting (per isolate — good enough to stop
+// Best-effort, in-memory rate limiting (per isolate, good enough to stop
 // casual abuse; use Workers KV or a Durable Object for strict guarantees).
 const requestLog = new Map();
 
@@ -73,7 +73,7 @@ async function sendEmail(env, { name, email, message }) {
 	const body = {
 		from,
 		to: [to],
-		subject: `New message from ${safeName} — franciscapt.dev`,
+		subject: `New message from ${safeName} via franciscapt.dev`,
 		text: `Name: ${name}\nEmail: ${email || "(not provided)"}\n\n${message}`,
 		html: `
 				<h2>New message from your portfolio</h2>

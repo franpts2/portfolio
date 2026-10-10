@@ -44,7 +44,7 @@ export function ContactForm() {
 			setMessage("");
 			setStatus("sent");
 			setFeedback(
-				"Thanks! Your message is on its way — I'll get back to you soon.",
+				"Thanks! Your message is on its way. I'll get back to you soon.",
 			);
 		} catch (error) {
 			setStatus("error");

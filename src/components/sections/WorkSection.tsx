@@ -37,7 +37,7 @@ export function WorkSection() {
 										target="_blank"
 										rel="noopener noreferrer"
 										className="block py-8 sm:py-10"
-										aria-label={`${project.title} — ${project.tagline}`}
+										aria-label={`${project.title}: ${project.tagline}`}
 									>
 										<div className="grid sm:grid-cols-12 gap-4 sm:gap-8 items-start">
 											<div className="sm:col-span-1">

@@ -57,12 +57,12 @@ export const experience: readonly Role[] = [
   {
     id: "vou",
     title: "Volunteer Staff",
-    org: "VO.U. — Pelos Animais",
+    org: "VO.U. · Pelos Animais",
     location: "Porto",
     start: "2024-09",
     end: null,
     description:
-      "Animal care and welfare work, plus helping run events that raise awareness and find homes.",
+      "Animal care and welfare work, plus helping in events that raise awareness and find homes.",
     kind: "community",
   },
 ] as const;

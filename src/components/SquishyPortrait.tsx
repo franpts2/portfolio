@@ -149,7 +149,7 @@ export function SquishyPortrait({ src, alt }: SquishyPortraitProps) {
 			onMouseLeave={handleMouseLeave}
 			onClick={handleClick}
 			onKeyDown={handleKeyDown}
-			aria-label={`${alt} — press to squish`}
+			aria-label={`${alt}, press to squish`}
 		>
 			{/* Particle burst layer */}
 			{particles.map((p) => {

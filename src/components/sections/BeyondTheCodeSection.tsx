@@ -10,12 +10,12 @@ const messages = [
 	{
 		id: "music",
 		from: "me" as const,
-		text: "music is a big one — i collect vinyl, build playlists for every mood, and will happily dissect a song’s production for way too long. live music is my happy place.",
+		text: "music is a big one. i collect vinyl, build playlists for every mood, and will happily dissect a song’s production for way too long. live music is my happy place.",
 	},
 	{
 		id: "books",
 		from: "me" as const,
-		text: "also books. i chase the ones that change how i see things — classics for context, contemporary masterpieces for discomfort.",
+		text: "also books. i chase the ones that change how i see things: classics for context, contemporary masterpieces for discomfort.",
 	},
 	{
 		id: "people",
@@ -85,7 +85,7 @@ export function BeyondTheCodeSection() {
 							If we were texting
 						</h2>
 						<p className="t-body mt-4 max-w-[50ch]">
-							Keep scrolling — the conversation unfolds as you go.
+							Keep scrolling. The conversation unfolds as you go.
 						</p>
 					</div>
 
