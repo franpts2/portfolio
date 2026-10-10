@@ -34,6 +34,7 @@ The first version of the site is live at: [https://franciscapt.pages.dev](https:
 - Build Tool: Vite
 - State: React hooks
 - Routing: React Router
+- Contact form: Resend API via Cloudflare Pages Functions
 
 **System Architecture**
 
@@ -50,6 +51,7 @@ The first version of the site is live at: [https://franciscapt.pages.dev](https:
 
 ```
 portfolio/
+├── functions/           ← Cloudflare Pages Functions (contact email API)
 ├── public/
 │   └── images/
 │       ├── people/
@@ -81,6 +83,10 @@ portfolio/
 - Pagination and filtering for projects
 - Local storage for theme preference
 - Accessibility best practices
+- Contact form that delivers messages via Resend
+
+See [functions/README.md](functions/README.md) for how to configure the contact
+form's email delivery.
 
 
 ---

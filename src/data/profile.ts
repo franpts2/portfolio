@@ -3,7 +3,7 @@ export const profile = {
 	mark: "f.pt",
 	role: "Frontend Engineer",
 	location: "Porto, Portugal",
-	email: "franciscaportugal2005@gmail.com",
+	email: "hello@franciscapt.dev",
 	cv: "/CV.pdf",
 	portrait: "/images/people/francisca-portugal.png",
 	statement:
