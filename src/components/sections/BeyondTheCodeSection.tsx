@@ -48,6 +48,15 @@ export function BeyondTheCodeSection() {
 	const [step, setStep] = useState(0);
 	const [direction, setDirection] = useState<"up" | "down">("down");
 	const prevProgress = useRef(0);
+	const stepRef = useRef(0);
+	const dirRef = useRef<"up" | "down">("down");
+
+	// Scroll must travel this far (fraction of section progress) PAST a step
+	// boundary before the step commits. Kills boundary flicker; one step is
+	// 1/12 ≈ 0.083 of progress, so 0.02 is a quarter of a step.
+	const STEP_MARGIN = 0.02;
+	// Direction only flips once scroll has moved at least this far.
+	const DIR_EPSILON = 0.002;
 
 	const { scrollYProgress } = useScroll({
 		target: sectionRef,
@@ -55,15 +64,42 @@ export function BeyondTheCodeSection() {
 	});
 
 	useMotionValueEvent(scrollYProgress, "change", (latest) => {
-		const dir = latest > prevProgress.current ? "down" : "up";
-		setDirection(dir);
+		const delta = latest - prevProgress.current;
 		prevProgress.current = latest;
 
-		const newStep = Math.min(
+		if (Math.abs(delta) > DIR_EPSILON) {
+			const dir = delta > 0 ? "down" : "up";
+			if (dir !== dirRef.current) {
+				dirRef.current = dir;
+				setDirection(dir);
+			}
+		}
+
+		const rawStep = Math.min(
 			totalSteps,
-			Math.max(0, Math.floor(latest * totalSteps) + 1),
+			Math.max(1, Math.floor(latest * totalSteps) + 1),
 		);
-		setStep(newStep);
+		if (rawStep === stepRef.current) return;
+
+		if (stepRef.current === 0) {
+			// First commit after mount: no margin, so the prompt appears as
+			// soon as the section pins (preserves pre-plan behavior).
+			stepRef.current = rawStep;
+			setStep(rawStep);
+			return;
+		}
+
+		const boundary =
+			(rawStep > stepRef.current ? stepRef.current : stepRef.current - 1) /
+			totalSteps;
+		const committed =
+			rawStep > stepRef.current
+				? latest >= boundary + STEP_MARGIN
+				: latest <= boundary - STEP_MARGIN;
+		if (committed) {
+			stepRef.current = rawStep;
+			setStep(rawStep);
+		}
 	});
 
 	return (
