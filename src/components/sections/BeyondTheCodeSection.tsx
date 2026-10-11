@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence, LayoutGroup } from "motion/react";
 
 const messages = [
 	{
@@ -90,6 +90,7 @@ export function BeyondTheCodeSection() {
 					</div>
 
 					<div className="flex flex-col gap-3 min-h-[320px]">
+						<LayoutGroup>
 							{messages.map((msg, idx) => {
 								const isPrompt = msg.from === "them";
 								const typingStep = isPrompt ? 1 : idx * 2;
@@ -157,6 +158,7 @@ export function BeyondTheCodeSection() {
 
 							<motion.a
 								href="#contact"
+								layout="position"
 								className="flex justify-start group"
 								initial={false}
 								animate={
@@ -171,6 +173,7 @@ export function BeyondTheCodeSection() {
 									<span className="inline-block ml-1 group-hover:translate-x-0.5 transition-transform">→</span>
 								</span>
 							</motion.a>
+						</LayoutGroup>
 					</div>
 				</div>
 			</div>
