@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { motion, useScroll, useMotionValueEvent } from "motion/react";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
 
 const messages = [
 	{
@@ -101,7 +101,7 @@ export function BeyondTheCodeSection() {
 								return (
 									<motion.div
 										key={msg.id}
-										className={`flex ${isMe ? "justify-end" : "justify-start"}`}
+										className={`flex relative ${isMe ? "justify-end" : "justify-start"}`}
 										initial={false}
 										animate={
 											isVisible || isTyping
@@ -110,42 +110,47 @@ export function BeyondTheCodeSection() {
 										}
 										transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
 									>
-										{isTyping ? (
-											<div
-												className="inline-flex items-center justify-center gap-[0.5rem] min-w-[4.75rem] min-h-[3rem] px-5 py-[0.85rem] rounded-[1.25rem] rounded-br-sm w-fit bg-(--color-accent)"
-												aria-label="Typing"
-											>
-												<span className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]" />
-												<span
-													className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
-													style={{ animationDelay: "0.12s" }}
-												/>
-												<span
-													className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
-													style={{ animationDelay: "0.24s" }}
-												/>
-											</div>
-										) : (
-											<motion.div
-												className={`max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed whitespace-pre-wrap ${
-													isMe
-														? "bg-(--color-accent) text-white rounded-br-sm"
-														: "bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm"
-												}`}
-												initial={false}
-												animate={
-													isVisible
-														? { opacity: 1, scale: 1 }
-														: { opacity: 0, scale: 0.96 }
-												}
-												transition={{
-													duration: 0.25,
-													ease: [0.16, 1, 0.3, 1],
-												}}
-											>
-												{msg.text}
-											</motion.div>
-										)}
+										<AnimatePresence mode="popLayout" initial={false}>
+											{isTyping ? (
+												<motion.div
+													key="typing"
+													className="inline-flex items-center justify-center gap-[0.5rem] min-w-[4.75rem] min-h-[3rem] px-5 py-[0.85rem] rounded-[1.25rem] rounded-br-sm w-fit bg-(--color-accent)"
+													aria-label="Typing"
+													initial={{ opacity: 0, scale: 0.9 }}
+													animate={{ opacity: 1, scale: 1 }}
+													exit={{ opacity: 0, scale: 0.9 }}
+													transition={{ duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
+													>
+														<span className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]" />
+														<span
+															className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
+															style={{ animationDelay: "0.12s" }}
+														/>
+														<span
+															className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
+															style={{ animationDelay: "0.24s" }}
+														/>
+													</motion.div>
+												) : (
+													<motion.div
+														className={`max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed whitespace-pre-wrap ${
+															isMe
+																? "bg-(--color-accent) text-white rounded-br-sm"
+																: "bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm"
+															}`}
+														initial={{ opacity: 0, scale: 0.96, y: 6 }}
+														animate={
+															isVisible
+																? { opacity: 1, scale: 1, y: 0 }
+																: { opacity: 0, scale: 0.96, y: 6 }
+															}
+														exit={{ opacity: 0, scale: 0.96 }}
+														transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+													>
+														{msg.text}
+													</motion.div>
+												)}
+										</AnimatePresence>
 									</motion.div>
 								);
 							})}
