@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { motion, useScroll, useMotionValueEvent, AnimatePresence, LayoutGroup } from "motion/react";
+import { motion, useScroll, useMotionValueEvent, useReducedMotion, AnimatePresence, LayoutGroup } from "motion/react";
 
 const messages = [
 	{
@@ -47,6 +47,7 @@ export function BeyondTheCodeSection() {
 	const sectionRef = useRef<HTMLElement>(null);
 	const [step, setStep] = useState(0);
 	const [direction, setDirection] = useState<"up" | "down">("down");
+	const reducedMotion = useReducedMotion();
 	const prevProgress = useRef(0);
 	const stepRef = useRef(0);
 	const dirRef = useRef<"up" | "down">("down");
@@ -142,10 +143,18 @@ export function BeyondTheCodeSection() {
 										initial={false}
 										animate={
 											isVisible || isTyping
-												? { opacity: 1, y: 0 }
-												: { opacity: 0, y: 14 }
+												? reducedMotion
+													? { opacity: 1 }
+													: { opacity: 1, y: 0 }
+												: reducedMotion
+													? { opacity: 0 }
+													: { opacity: 0, y: 14 }
 										}
-										transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+										transition={
+											reducedMotion
+												? { duration: 0 }
+												: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+										}
 									>
 										<AnimatePresence mode="popLayout" initial={false}>
 											{isTyping ? (
@@ -153,10 +162,18 @@ export function BeyondTheCodeSection() {
 													key="typing"
 													className="inline-flex items-center justify-center gap-[0.5rem] min-w-[4.75rem] min-h-[3rem] px-5 py-[0.85rem] rounded-[1.25rem] rounded-br-sm w-fit bg-(--color-accent)"
 													aria-label="Typing"
-													initial={{ opacity: 0, scale: 0.9 }}
-													animate={{ opacity: 1, scale: 1 }}
-													exit={{ opacity: 0, scale: 0.9 }}
-													transition={{ duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
+													initial={
+														reducedMotion
+															? { opacity: 0 }
+															: { opacity: 0, scale: 0.9 }
+													}
+													animate={reducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
+													exit={reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9 }}
+													transition={
+														reducedMotion
+															? { duration: 0 }
+															: { duration: 0.14, ease: [0.16, 1, 0.3, 1] }
+													}
 													>
 														<span className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]" />
 														<span
@@ -175,14 +192,26 @@ export function BeyondTheCodeSection() {
 																? "bg-(--color-accent) text-white rounded-br-sm"
 																: "bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm"
 															}`}
-														initial={{ opacity: 0, scale: 0.96, y: 6 }}
-														animate={
-															isVisible
-																? { opacity: 1, scale: 1, y: 0 }
-																: { opacity: 0, scale: 0.96, y: 6 }
-															}
-														exit={{ opacity: 0, scale: 0.96 }}
-														transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+												initial={
+													reducedMotion
+														? { opacity: 0 }
+															: { opacity: 0, scale: 0.96, y: 6 }
+													}
+												animate={
+													isVisible
+														? reducedMotion
+															? { opacity: 1 }
+																: { opacity: 1, scale: 1, y: 0 }
+															: reducedMotion
+																? { opacity: 0 }
+																	: { opacity: 0, scale: 0.96, y: 6 }
+													}
+												exit={reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
+												transition={
+													reducedMotion
+														? { duration: 0 }
+															: { duration: 0.22, ease: [0.16, 1, 0.3, 1] }
+												}
 													>
 														{msg.text}
 													</motion.div>
@@ -194,15 +223,23 @@ export function BeyondTheCodeSection() {
 
 							<motion.a
 								href="#contact"
-								layout="position"
+								layout={reducedMotion ? false : "position"}
 								className="flex justify-start group"
 								initial={false}
 								animate={
 									step >= totalSteps
-										? { opacity: 1, y: 0 }
-										: { opacity: 0, y: 14 }
+										? reducedMotion
+											? { opacity: 1 }
+											: { opacity: 1, y: 0 }
+										: reducedMotion
+											? { opacity: 0 }
+											: { opacity: 0, y: 14 }
 								}
-								transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+								transition={
+									reducedMotion
+										? { duration: 0 }
+										: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+								}
 							>
 								<span className="max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm hover:border-(--color-accent) hover:text-(--color-accent) transition-colors">
 									{ctaMessage.text}
