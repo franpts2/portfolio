@@ -11,6 +11,17 @@ export interface Role {
 
 export const experience: readonly Role[] = [
   {
+    id: "lbaw-ta",
+    title: "Teaching Assistant – LBAW",
+    org: "University of Porto",
+    location: "Porto",
+    start: "2026-09",
+    end: null,
+    description:
+      "Collaborate in the development of course materials (guides, tutorials) and provide student support in weekly sessions, as well as answering doubts asynchronously.",
+    kind: "work",
+  },
+  {
     id: "cloudflare",
     title: "Software Engineer Intern",
     org: "Cloudflare",
