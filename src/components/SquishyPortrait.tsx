@@ -184,7 +184,7 @@ export function SquishyPortrait({ src, alt }: SquishyPortraitProps) {
 			})}
 
 			<motion.div
-				className="w-full h-full rounded-full overflow-hidden shadow-[0_24px_80px_-20px_rgba(26,24,22,0.18)]"
+				className="w-full h-full rounded-full overflow-hidden"
 				style={{
 					rotateX,
 					rotateY,
@@ -203,14 +203,7 @@ export function SquishyPortrait({ src, alt }: SquishyPortraitProps) {
 				/>
 			</motion.div>
 
-			{/* Subtle halo ring */}
-			<motion.div
-				className="absolute inset-0 rounded-full border border-(--color-line) -z-10"
-				aria-hidden="true"
-				initial={{ scale: 1 }}
-				whileHover={reducedMotion ? {} : { scale: 1.08 }}
-				transition={{ type: "spring", stiffness: 200, damping: 20 }}
-			/>
+
 		</button>
 	);
 }
