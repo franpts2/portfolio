@@ -1,24 +1,7 @@
-import { useState, useCallback, useRef } from "react";
-import {
-	motion,
-	useMotionValue,
-	useSpring,
-	useTransform,
-	useReducedMotion,
-	useAnimationControls,
-} from "motion/react";
-
-interface Particle {
-	id: number;
-	x: number;
-	y: number;
-	angle: number;
-	distance: number;
-	size: number;
-	color: string;
-}
-
-const PALETTE = ["#f25c2a", "#ff7a4d", "#ff9b7a", "#ffeee7"];
+import { useRef } from "react";
+import { motion, useAnimationControls } from "motion/react";
+import { useTilt } from "./effects/useTilt.js";
+import { ParticleBurst } from "./effects/ParticleBurst.js";
 
 interface SquishyPortraitProps {
 	readonly src: string;
@@ -26,118 +9,45 @@ interface SquishyPortraitProps {
 }
 
 export function SquishyPortrait({ src, alt }: SquishyPortraitProps) {
-	const reducedMotion = useReducedMotion();
 	const controls = useAnimationControls();
 	const wrapperRef = useRef<HTMLButtonElement>(null);
-	const [particles, setParticles] = useState<readonly Particle[]>([]);
-	const particleId = useRef(0);
 
-	const mouseX = useMotionValue(0);
-	const mouseY = useMotionValue(0);
+	const { rotateX, rotateY, x, y, handleMouseMove, handleMouseLeave } =
+		useTilt();
 
-	const rotateY = useSpring(
-		useTransform(mouseX, [-0.5, 0.5], reducedMotion ? [0, 0] : [10, -10]),
-		{ stiffness: 120, damping: 20 },
-	);
-	const rotateX = useSpring(
-		useTransform(mouseY, [-0.5, 0.5], reducedMotion ? [0, 0] : [-8, 8]),
-		{ stiffness: 120, damping: 20 },
-	);
-	const x = useSpring(
-		useTransform(mouseX, [-0.5, 0.5], reducedMotion ? [0, 0] : [-8, 8]),
-		{ stiffness: 120, damping: 20 },
-	);
-	const y = useSpring(
-		useTransform(mouseY, [-0.5, 0.5], reducedMotion ? [0, 0] : [-8, 8]),
-		{ stiffness: 120, damping: 20 },
-	);
+	const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+		const rect = e.currentTarget.getBoundingClientRect();
+		const originX = e.clientX - rect.left;
+		const originY = e.clientY - rect.top;
 
-	const handleMouseMove = useCallback(
-		(e: React.MouseEvent<HTMLButtonElement>) => {
-			if (reducedMotion || !wrapperRef.current) return;
-			const rect = wrapperRef.current.getBoundingClientRect();
-			mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
-			mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
-		},
-		[mouseX, mouseY, reducedMotion],
-	);
-
-	const handleMouseLeave = useCallback(() => {
-		mouseX.set(0);
-		mouseY.set(0);
-	}, [mouseX, mouseY]);
-
-	const spawnParticles = useCallback((originX: number, originY: number) => {
-		const count = 18;
-		const next: Particle[] = [];
-		for (let i = 0; i < count; i++) {
-			particleId.current += 1;
-			next.push({
-				id: particleId.current,
-				x: originX,
-				y: originY,
-				angle: Math.random() * Math.PI * 2,
-				distance: 40 + Math.random() * 90,
-				size: 5 + Math.random() * 7,
-				color: PALETTE[Math.floor(Math.random() * PALETTE.length)]!,
-			});
-		}
-		setParticles((prev) => [...prev, ...next]);
-		setTimeout(() => {
-			setParticles((prev) =>
-				prev.filter((p) => !next.some((n) => n.id === p.id)),
+		// Access spawnParticles from wrapperRef set by ParticleBurst
+		const spawnFn = wrapperRef.current?.dataset?.["spawnParticles"];
+		if (spawnFn) {
+			// ParticleBurst manages its own state; we trigger via a custom event
+			window.dispatchEvent(
+				new CustomEvent("squishy-spawn", {
+					detail: { originX, originY },
+				}),
 			);
-		}, 900);
-	}, []);
+		}
 
-	const handleClick = useCallback(
-		async (e: React.MouseEvent<HTMLButtonElement>) => {
-			if (reducedMotion) return;
-
-			const rect = e.currentTarget.getBoundingClientRect();
-			const originX = e.clientX - rect.left;
-			const originY = e.clientY - rect.top;
-			spawnParticles(originX, originY);
-
-			await controls.start({
-				scaleX: 1.22,
-				scaleY: 0.72,
-				rotate: (Math.random() - 0.5) * 6,
-				transition: { duration: 0.08, ease: "easeIn" },
-			});
-			controls.start({
-				scaleX: 1,
-				scaleY: 1,
-				rotate: 0,
-				transition: {
-					type: "spring",
-					stiffness: 360,
-					damping: 12,
-				},
-			});
-		},
-		[controls, reducedMotion, spawnParticles],
-	);
-
-	const handleKeyDown = useCallback(
-		(e: React.KeyboardEvent<HTMLButtonElement>) => {
-			if (e.key === "Enter" || e.key === " ") {
-				e.preventDefault();
-				const rect = wrapperRef.current?.getBoundingClientRect();
-				if (rect) {
-					const fakeEvent = {
-						currentTarget: {
-							getBoundingClientRect: () => rect,
-						},
-						clientX: rect.left + rect.width / 2,
-						clientY: rect.top + rect.height / 2,
-					} as React.MouseEvent<HTMLButtonElement>;
-					handleClick(fakeEvent);
-				}
-			}
-		},
-		[handleClick],
-	);
+		await controls.start({
+			scaleX: 1.22,
+			scaleY: 0.72,
+			rotate: (Math.random() - 0.5) * 6,
+			transition: { duration: 0.08, ease: "easeIn" },
+		});
+		controls.start({
+			scaleX: 1,
+			scaleY: 1,
+			rotate: 0,
+			transition: {
+				type: "spring",
+				stiffness: 360,
+				damping: 12,
+			},
+		});
+	};
 
 	return (
 		<button
@@ -148,40 +58,9 @@ export function SquishyPortrait({ src, alt }: SquishyPortraitProps) {
 			onMouseMove={handleMouseMove}
 			onMouseLeave={handleMouseLeave}
 			onClick={handleClick}
-			onKeyDown={handleKeyDown}
 			aria-label={`${alt}, press to squish`}
 		>
-			{/* Particle burst layer */}
-			{particles.map((p) => {
-				const tx = Math.cos(p.angle) * p.distance;
-				const ty = Math.sin(p.angle) * p.distance;
-				return (
-					<motion.span
-						key={p.id}
-						className="absolute rounded-full pointer-events-none"
-						style={{
-							left: p.x,
-							top: p.y,
-							width: p.size,
-							height: p.size,
-							backgroundColor: p.color,
-							translateX: "-50%",
-							translateY: "-50%",
-						}}
-						initial={{ opacity: 1, scale: 1, x: 0, y: 0 }}
-						animate={{
-							opacity: 0,
-							scale: 0,
-							x: tx,
-							y: ty,
-						}}
-						transition={{
-							duration: 0.7 + Math.random() * 0.2,
-							ease: [0.16, 1, 0.3, 1],
-						}}
-					/>
-				);
-			})}
+			<ParticleBurst />
 
 			<motion.div
 				className="w-full h-full rounded-full overflow-hidden"
@@ -198,12 +77,8 @@ export function SquishyPortrait({ src, alt }: SquishyPortraitProps) {
 					src={src}
 					alt={alt}
 					className="w-full h-full object-cover pointer-events-none"
-					whileHover={reducedMotion ? {} : { scale: 1.04 }}
-					transition={{ type: "spring", stiffness: 200, damping: 20 }}
 				/>
 			</motion.div>
-
-
 		</button>
 	);
 }

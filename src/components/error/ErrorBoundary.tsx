@@ -1,4 +1,5 @@
 import React, { type ReactNode } from "react";
+import { Button } from "../ui/Button.js";
 
 interface Props {
 	children: ReactNode;
@@ -50,16 +51,16 @@ function ErrorFallback({ error }: { error: Error | null }) {
 						{error.message}
 					</p>
 				)}
-				<button
-					type="button"
+				<Button
+					variant="accent"
+					className="px-5 py-2.5"
 					onClick={() => window.location.reload()}
-					className="px-5 py-2.5 bg-(--color-accent) text-white rounded-full font-medium text-sm hover:bg-(--color-ink) transition-colors"
 				>
 					Refresh Page
-				</button>
+				</Button>
 			</div>
 		</div>
 	);
 }
 
-export default ErrorBoundary;
+export { ErrorBoundary };

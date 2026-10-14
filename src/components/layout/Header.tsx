@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "motion/react";
-import { icons } from "../assets/icons.js";
+import { icons } from "../../assets/icons.js";
 
 const navItems = [
 	{ label: "About", href: "#about" },

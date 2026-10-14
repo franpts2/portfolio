@@ -9,43 +9,31 @@
 
 ## About
 
-This is my personal portfolio website, built to showcase my work as a web developer and designer. It features a modern, responsive UI, project gallery, experience timeline, and interactive components.
+Personal portfolio website showcasing my work as a frontend engineer. Features a modern, responsive UI, project gallery, experience timeline, and interactive components.
 
 ## Key Features
 
 - Responsive design for all devices
 - Project gallery with detailed views
 - Experience timeline
-- Theme switcher (light/dark)
-- Interactive UI elements (badges, progress bars, dock, dropdowns)
+- Interactive UI elements (squishy portrait, scroll-driven chat animation)
 - Fast performance with Vite
 - Built with accessibility in mind
 
 ## Live Demo
 
-The first version of the site is live at: [https://franciscapt.pages.dev](https://franciscapt.pages.dev)
+Live at: [https://franciscapt.pages.dev](https://franciscapt.pages.dev)
 
 ## Technical Implementation
 
 **Tech Stack**
 
-- Framework: React 18.x (TypeScript)
+- Framework: React 19 (TypeScript)
 - Styling: Tailwind CSS v4
 - Build Tool: Vite
-- State: React hooks
-- Routing: React Router
+- Animation: Motion
+- Icons: Iconify
 - Contact form: Resend API via Cloudflare Pages Functions
-
-**System Architecture**
-
-```
-┌──────────────────────────────┐
-│        Frontend (React)      │
-│  Tailwind CSS + TypeScript   │
-├──────────────────────────────┤
-│        Vite Dev Server       │
-└──────────────────────────────┘
-```
 
 **Folder Structure**
 
@@ -59,12 +47,17 @@ portfolio/
 ├── src/
 │   ├── assets/
 │   ├── components/
+│   │   ├── effects/     ← Animation/interactive components
+│   │   ├── error/       ← Error boundaries
+│   │   ├── forms/       ← Form components
+│   │   ├── layout/      ← Header, Footer
+│   │   ├── sections/    ← Page sections
+│   │   └── ui/          ← Reusable primitives
 │   ├── data/
-│   ├── layouts/
-│   ├── pages/
-│   ├── router/
+│   ├── lib/             ← Shared constants
 │   ├── style/
-│   └── utils/
+│   ├── App.tsx
+│   └── main.tsx
 ├── index.html
 ├── package.json
 ├── tsconfig.json
@@ -72,20 +65,17 @@ portfolio/
 └── README.md
 ```
 
-
 ## Features Implemented
 
 - Responsive layout with Tailwind CSS
 - Project gallery and detail pages
 - Experience timeline
-- Theme switcher (light/dark)
-- Custom UI components (badges, dock, dropdowns, etc.)
-- Pagination and filtering for projects
-- Local storage for theme preference
+- Interactive squishy portrait with particle burst
+- Scroll-driven chat animation
+- Custom UI components (buttons, section headers, reveal animations)
 - Accessibility best practices
 - Contact form that delivers messages via Resend
 
-
 ---
 
-_Portfolio of Francisca Portugal - Web Developer_
+_Portfolio of Francisca Portugal - Frontend Engineer_
