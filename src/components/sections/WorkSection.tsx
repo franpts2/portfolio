@@ -1,7 +1,8 @@
 import { Icon } from "@iconify/react";
-import { Reveal } from "../Reveal.js";
+import { Reveal } from "../ui/Reveal.js";
 import { projects } from "../../data/projects.js";
 import { icons } from "../../assets/icons.js";
+import { SectionHeader } from "../ui/SectionHeader.js";
 
 const selectedSlugs = ["junto", "artflow", "focusly"] as const;
 
@@ -18,13 +19,11 @@ export function WorkSection() {
 		>
 			<div className="container-main">
 				<Reveal className="mb-12">
-					<span className="t-label">Selected Work</span>
-					<h2
+					<SectionHeader
+						label="Selected Work"
+						title="Projects worth sharing"
 						id="work-heading"
-						className="t-headline text-4xl sm:text-5xl mt-3 accent-dot"
-					>
-						Projects worth sharing
-					</h2>
+					/>
 				</Reveal>
 
 				<div className="flex flex-col">
@@ -54,11 +53,11 @@ export function WorkSection() {
 											</div>
 
 											<div className="sm:col-span-5 sm:col-start-7">
-										<span className="t-label block mb-1">Stack</span>
-										<p className="text-sm text-(--color-ink-muted)">
-											{project.tech.join(" · ")}
-										</p>
-									</div>
+												<span className="t-label block mb-1">Stack</span>
+												<p className="text-sm text-(--color-ink-muted)">
+													{project.tech.join(" · ")}
+												</p>
+											</div>
 
 											<div className="sm:col-span-1 flex justify-end">
 												<Icon

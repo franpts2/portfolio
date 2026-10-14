@@ -1,7 +1,8 @@
-import { Icon } from "@iconify/react";
-import { Reveal } from "../Reveal.js";
+import { Reveal } from "../ui/Reveal.js";
 import { profile } from "../../data/profile.js";
 import { icons } from "../../assets/icons.js";
+import { SectionHeader } from "../ui/SectionHeader.js";
+import { PillLink } from "../ui/PillLink.js";
 
 export function AboutSection() {
 	return (
@@ -14,13 +15,11 @@ export function AboutSection() {
 				<div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
 					<div className="lg:col-span-4">
 						<Reveal>
-							<span className="t-label">About</span>
-							<h2
+							<SectionHeader
+								label="About"
+								title="Rigorous underneath, effortless on the surface"
 								id="about-heading"
-								className="t-headline text-4xl sm:text-5xl mt-3 accent-dot"
-							>
-								Rigorous underneath, effortless on the surface
-							</h2>
+							/>
 						</Reveal>
 					</div>
 
@@ -43,14 +42,14 @@ export function AboutSection() {
 										</p>
 									</div>
 
-									<a
+									<PillLink
 										href={profile.cv}
 										download
-										className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-(--color-ink) text-(--color-bg) rounded-full font-medium text-sm hover:bg-(--color-accent) transition-colors"
+										className="px-5 py-3"
+										icon={icons.download.outline}
 									>
-										<Icon icon={icons.download.outline} height={18} />
 										Download CV
-									</a>
+									</PillLink>
 								</div>
 							</div>
 						</Reveal>

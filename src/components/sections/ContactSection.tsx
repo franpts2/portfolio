@@ -1,8 +1,9 @@
 import { Icon } from "@iconify/react";
-import { Reveal } from "../Reveal.js";
-import { ContactForm } from "../ContactForm.js";
+import { Reveal } from "../ui/Reveal.js";
+import { ContactForm } from "../forms/ContactForm.js";
 import { socials } from "../../data/profile.js";
 import { icons } from "../../assets/icons.js";
+import { SectionHeader } from "../ui/SectionHeader.js";
 
 const socialIcons: Record<string, string> = {
 	GitHub: icons.github.outline,
@@ -21,13 +22,11 @@ export function ContactSection() {
 				<div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 					<div className="lg:col-span-6">
 						<Reveal>
-							<span className="t-label">Contact</span>
-							<h2
+							<SectionHeader
+								label="Contact"
+								title="Let&apos;s build something great"
 								id="contact-heading"
-								className="t-headline text-4xl sm:text-5xl mt-3 accent-dot"
-							>
-								Let&apos;s build something great
-							</h2>
+							/>
 							<p className="t-body mt-6 max-w-lg text-balance">
 								Always happy to chat about frontend engineering, product
 								design, or the last great book you read.

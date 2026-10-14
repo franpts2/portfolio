@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { profile } from "../../data/profile.js";
 import { SquishyPortrait } from "../SquishyPortrait.js";
+import { PillLink } from "../ui/PillLink.js";
 
 export function HeroSection() {
 	const reducedMotion = useReducedMotion();
@@ -47,18 +48,12 @@ export function HeroSection() {
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6, delay: 0.5 }}
 					>
-						<a
-							href="#work"
-							className="inline-flex items-center gap-2 px-5 py-2.5 bg-(--color-ink) text-(--color-bg) rounded-full font-medium text-sm hover:bg-(--color-accent) transition-colors"
-						>
+						<PillLink href="#work" className="px-5 py-2.5">
 							See selected work
-						</a>
-						<a
-							href="#contact"
-							className="inline-flex items-center gap-2 px-5 py-2.5 border border-(--color-line) rounded-full font-medium text-sm text-(--color-ink) hover:border-(--color-accent) hover:text-(--color-accent) transition-colors"
-						>
+						</PillLink>
+						<PillLink href="#contact" variant="outline" className="px-5 py-2.5">
 							Get in touch
-						</a>
+						</PillLink>
 					</motion.div>
 				</div>
 

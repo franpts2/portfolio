@@ -28,27 +28,4 @@ export const socials = [
 	},
 ] as const;
 
-export const stack = [
-	{
-		group: "Daily",
-		items: ["React", "TypeScript", "Tailwind CSS", "Motion", "Vite", "Git"],
-	},
-	{
-		group: "Also fluent",
-		items: ["Svelte", "Flutter", "Dart", "Laravel", "PHP", "PostgreSQL", "Firebase", "Docker"],
-	},
-	{
-		group: "Taught me how things work",
-		items: ["C", "C++", "Java", "Python", "Haskell", "Prolog", "SQLite"],
-	},
-	{
-		group: "Design",
-		items: ["Figma", "Type", "Motion design", "Accessibility"],
-	},
-] as const;
 
-export const mediaLoves = [
-	{ medium: "Music", detail: "Always have a playlist running, from indie to soundtracks." },
-	{ medium: "Books", detail: "Fiction, essays, and anything that sits in the to-be-read pile." },
-	{ medium: "Movies", detail: "A good film is my favourite way to unwind." },
-] as const;

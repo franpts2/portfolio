@@ -1,23 +1,7 @@
-import { Reveal } from "../Reveal.js";
+import { Reveal } from "../ui/Reveal.js";
 import { experience } from "../../data/experience.js";
-
-const formatDate = (date: string | null) => {
-	if (!date) return "Present";
-	const [year, month] = date.split("-");
-	const d = new Date(Number(year), Number(month) - 1);
-	return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
-};
-
-function DateRange({ start, end }: { start: string; end: string | null }) {
-	return (
-		<span className="t-label text-(--color-ink-faint)">
-			{formatDate(start)} ·{" "}
-			{end ? formatDate(end) : (
-				<span className="text-(--color-accent)">Present</span>
-			)}
-		</span>
-	);
-}
+import { SectionHeader } from "../ui/SectionHeader.js";
+import { ExperienceItem } from "./experience/ExperienceItem.js";
 
 export function ExperienceSection() {
 	const work = experience.filter((r) => r.kind === "work");
@@ -31,13 +15,11 @@ export function ExperienceSection() {
 		>
 			<div className="container-main">
 				<Reveal className="mb-12">
-					<span className="t-label">Experience</span>
-					<h2
+					<SectionHeader
+						label="Experience"
+						title="Where I&apos;ve put my energy"
 						id="experience-heading"
-						className="t-headline text-4xl sm:text-5xl mt-3 accent-dot"
-					>
-						Where I&apos;ve put my energy
-					</h2>
+					/>
 				</Reveal>
 
 				<div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
@@ -49,22 +31,7 @@ export function ExperienceSection() {
 						<div className="flex flex-col">
 							{work.map((role, idx) => (
 								<Reveal key={role.id} delay={0.1 + idx * 0.08}>
-									<article className="py-5 hairline first:border-t-0">
-										<div className="flex flex-wrap items-baseline justify-between gap-2">
-											<h4 className="font-display font-semibold text-lg text-(--color-ink)">
-												{role.title}
-											</h4>
-											<span className="t-label text-(--color-ink-faint)">
-												<DateRange start={role.start} end={role.end} />
-											</span>
-										</div>
-										<p className="mt-1 text-sm text-(--color-ink-muted)">
-											{role.org} · {role.location}
-										</p>
-										<p className="mt-3 t-body text-sm">
-											{role.description}
-										</p>
-									</article>
+									<ExperienceItem role={role} />
 								</Reveal>
 							))}
 						</div>
@@ -78,22 +45,7 @@ export function ExperienceSection() {
 						<div className="flex flex-col">
 							{community.map((role, idx) => (
 								<Reveal key={role.id} delay={0.2 + idx * 0.08}>
-									<article className="py-5 hairline first:border-t-0">
-										<div className="flex flex-wrap items-baseline justify-between gap-2">
-											<h4 className="font-display font-semibold text-lg text-(--color-ink)">
-												{role.title}
-											</h4>
-											<span className="t-label text-(--color-ink-faint)">
-												<DateRange start={role.start} end={role.end} />
-											</span>
-										</div>
-										<p className="mt-1 text-sm text-(--color-ink-muted)">
-											{role.org} · {role.location}
-										</p>
-										<p className="mt-3 t-body text-sm">
-											{role.description}
-										</p>
-									</article>
+									<ExperienceItem role={role} />
 								</Reveal>
 							))}
 						</div>
