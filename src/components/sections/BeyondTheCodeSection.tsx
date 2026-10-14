@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { motion, useScroll, useMotionValueEvent, useReducedMotion, AnimatePresence, LayoutGroup } from "motion/react";
+import { motion, useScroll, useMotionValueEvent, useReducedMotion, AnimatePresence } from "motion/react";
 
 const messages = [
 	{
@@ -126,41 +126,41 @@ export function BeyondTheCodeSection() {
 						</p>
 					</div>
 
-					<div className="flex flex-col gap-3 min-h-[320px]">
-						<LayoutGroup>
-							{messages.map((msg, idx) => {
-								const isPrompt = msg.from === "them";
-								const typingStep = isPrompt ? 1 : idx * 2;
-								const visibleStep = isPrompt ? 1 : idx * 2 + 1;
-								const isTyping = step === typingStep && !isPrompt && direction === "down";
-								const isVisible = step >= visibleStep;
-								const isMe = msg.from === "me";
+					<div className="flex flex-col gap-3">
+						{messages.map((msg, idx) => {
+							const isPrompt = msg.from === "them";
+							const typingStep = isPrompt ? 1 : idx * 2;
+							const visibleStep = isPrompt ? 1 : idx * 2 + 1;
+							const isTyping = step === typingStep && !isPrompt && direction === "down";
+							const isVisible = step >= visibleStep;
+							const isMe = msg.from === "me";
 
-								return (
-									<motion.div
-										key={msg.id}
-										className={`flex relative ${isMe ? "justify-end" : "justify-start"}`}
-										initial={false}
-										animate={
-											isVisible || isTyping
-												? reducedMotion
-													? { opacity: 1 }
-													: { opacity: 1, y: 0 }
-												: reducedMotion
-													? { opacity: 0 }
-													: { opacity: 0, y: 14 }
-										}
-										transition={
-											reducedMotion
-												? { duration: 0 }
-												: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
-										}
-									>
-										<AnimatePresence mode="popLayout" initial={false}>
-											{isTyping ? (
+							const bubbleClasses = `max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed whitespace-pre-wrap ${
+								isMe
+									? "bg-(--color-accent) text-white rounded-br-sm"
+									: "bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm"
+							}`;
+
+							return (
+								<div
+									key={msg.id}
+									className={`flex relative ${isMe ? "justify-end" : "justify-start"}`}
+								>
+									{/* Placeholder keeps the row height constant so the whole
+									    container never shifts when typing swaps to text. */}
+									<div className={`${bubbleClasses} invisible`} aria-hidden="true">
+										{msg.text}
+									</div>
+
+									{/* Floating layer for typing/text animations. */}
+									<div className="absolute inset-0">
+										<AnimatePresence initial={false}>
+											{isTyping && (
 												<motion.div
 													key="typing"
-													className="inline-flex items-center justify-center gap-[0.5rem] min-w-[4.75rem] min-h-[3rem] px-5 py-[0.85rem] rounded-[1.25rem] rounded-br-sm w-fit bg-(--color-accent)"
+													className={`absolute top-0 ${
+														isMe ? "right-0" : "left-0"
+													} inline-flex items-center justify-center gap-[0.5rem] min-w-[4.75rem] min-h-[3rem] px-5 py-[0.85rem] rounded-[1.25rem] rounded-br-sm w-fit bg-(--color-accent)`}
 													aria-label="Typing"
 													initial={
 														reducedMotion
@@ -174,57 +174,67 @@ export function BeyondTheCodeSection() {
 															? { duration: 0 }
 															: { duration: 0.14, ease: [0.16, 1, 0.3, 1] }
 													}
-													>
-														<span className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]" />
-														<span
-															className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
-															style={{ animationDelay: "0.12s" }}
-														/>
-														<span
-															className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
-															style={{ animationDelay: "0.24s" }}
-														/>
-													</motion.div>
-												) : (
-													<motion.div
-														className={`max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed whitespace-pre-wrap ${
-															isMe
-																? "bg-(--color-accent) text-white rounded-br-sm"
-																: "bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm"
-															}`}
-												initial={
-													reducedMotion
-														? { opacity: 0 }
+												>
+													<span className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]" />
+													<span
+														className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
+														style={{ animationDelay: "0.12s" }}
+													/>
+													<span
+														className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
+														style={{ animationDelay: "0.24s" }}
+													/>
+												</motion.div>
+											)}
+											{isVisible && (
+												<motion.div
+													key="msg"
+													className={`${bubbleClasses} absolute top-0 ${
+														isMe ? "right-0" : "left-0"
+													}`}
+													initial={
+														reducedMotion
+															? { opacity: 0 }
 															: { opacity: 0, scale: 0.96, y: 6 }
 													}
-												animate={
-													isVisible
-														? reducedMotion
+													animate={
+														reducedMotion
 															? { opacity: 1 }
-																: { opacity: 1, scale: 1, y: 0 }
-															: reducedMotion
-																? { opacity: 0 }
-																	: { opacity: 0, scale: 0.96, y: 6 }
+															: { opacity: 1, scale: 1, y: 0 }
 													}
-												exit={reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
-												transition={
-													reducedMotion
-														? { duration: 0 }
+													exit={reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
+													transition={
+														reducedMotion
+															? { duration: 0 }
 															: { duration: 0.22, ease: [0.16, 1, 0.3, 1] }
-												}
-													>
-														{msg.text}
-													</motion.div>
-												)}
+													}
+												>
+													{msg.text}
+												</motion.div>
+											)}
 										</AnimatePresence>
-									</motion.div>
-								);
-							})}
+									</div>
+								</div>
+							);
+						})}
 
+						{/* CTA placeholder reserves final height so the centered block
+						    doesn't jump when the link appears. */}
+						<div className="relative inline-block">
+							<span
+								className="invisible inline-block max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm"
+								aria-hidden="true"
+							>
+								{ctaMessage.text}
+								<span className="inline-block ml-1">→</span>
+							</span>
 							<motion.a
 								href="#contact"
-								layout={reducedMotion ? false : "position"}
-								className="flex justify-start group"
+								className={`absolute inset-0 group ${
+									step >= totalSteps ? "" : "pointer-events-none"
+								}`}
+								aria-hidden={step < totalSteps}
+								tabIndex={step >= totalSteps ? 0 : -1}
 								initial={false}
 								animate={
 									step >= totalSteps
@@ -241,12 +251,12 @@ export function BeyondTheCodeSection() {
 										: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
 								}
 							>
-								<span className="max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm hover:border-(--color-accent) hover:text-(--color-accent) transition-colors">
+								<span className="inline-block max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm hover:border-(--color-accent) hover:text-(--color-accent) transition-colors">
 									{ctaMessage.text}
 									<span className="inline-block ml-1 group-hover:translate-x-0.5 transition-transform">→</span>
 								</span>
 							</motion.a>
-						</LayoutGroup>
+						</div>
 					</div>
 				</div>
 			</div>
