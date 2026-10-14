@@ -132,8 +132,7 @@ export function ContactForm() {
 				<Button
 					type="submit"
 					disabled={sending}
-					className="px-6 py-3"
-					icon={icons.arrowUpward.outline}
+					className="px-6 py-3" 
 				>
 					{sending ? "Sending…" : "Send message"}
 				</Button>
