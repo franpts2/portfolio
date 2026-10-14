@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Icon } from "@iconify/react";
-import { icons } from "../assets/icons.js";
+import { icons } from "../../assets/icons.js";
+import { Button } from "../ui/Button.js";
 
 type FormStatus = "idle" | "sending" | "sent" | "error";
 
@@ -128,14 +129,14 @@ export function ContactForm() {
 			</div>
 
 			<div className="flex flex-col gap-4">
-				<button
+				<Button
 					type="submit"
 					disabled={sending}
-					className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-(--color-ink) text-(--color-bg) rounded-full font-medium text-sm hover:bg-(--color-accent) disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+					className="px-6 py-3"
+					icon={icons.arrowUpward.outline}
 				>
 					{sending ? "Sending…" : "Send message"}
-					<Icon icon={icons.arrowUpward.outline} height={16} />
-				</button>
+				</Button>
 
 				<p
 					role="status"
