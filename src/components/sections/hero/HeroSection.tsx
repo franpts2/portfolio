@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "motion/react";
-import { profile } from "../../data/profile.js";
-import { SquishyPortrait } from "../SquishyPortrait.js";
-import { PillLink } from "../ui/PillLink.js";
+import { profile } from "../../../data/profile.js";
+import { SquishyPortrait } from "../../SquishyPortrait.js";
+import { PillLink } from "../../ui/PillLink.js";
 
 export function HeroSection() {
 	const reducedMotion = useReducedMotion();

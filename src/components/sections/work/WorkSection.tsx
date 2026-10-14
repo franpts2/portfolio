@@ -1,8 +1,8 @@
 import { Icon } from "@iconify/react";
-import { Reveal } from "../ui/Reveal.js";
-import { projects } from "../../data/projects.js";
-import { icons } from "../../assets/icons.js";
-import { SectionHeader } from "../ui/SectionHeader.js";
+import { Reveal } from "../../ui/Reveal.js";
+import { projects } from "../../../data/projects.js";
+import { icons } from "../../../assets/icons.js";
+import { SectionHeader } from "../../ui/SectionHeader.js";
 
 const selectedSlugs = ["junto", "artflow", "focusly"] as const;
 

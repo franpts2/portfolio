@@ -1,7 +1,7 @@
-import { Reveal } from "../ui/Reveal.js";
-import { experience } from "../../data/experience.js";
-import { SectionHeader } from "../ui/SectionHeader.js";
-import { ExperienceItem } from "./experience/ExperienceItem.js";
+import { Reveal } from "../../ui/Reveal.js";
+import { experience } from "../../../data/experience.js";
+import { SectionHeader } from "../../ui/SectionHeader.js";
+import { ExperienceItem } from "./ExperienceItem.js";
 
 export function ExperienceSection() {
 	const work = experience.filter((r) => r.kind === "work");

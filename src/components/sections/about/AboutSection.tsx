@@ -1,8 +1,8 @@
-import { Reveal } from "../ui/Reveal.js";
-import { profile } from "../../data/profile.js";
-import { icons } from "../../assets/icons.js";
-import { SectionHeader } from "../ui/SectionHeader.js";
-import { PillLink } from "../ui/PillLink.js";
+import { Reveal } from "../../ui/Reveal.js";
+import { profile } from "../../../data/profile.js";
+import { icons } from "../../../assets/icons.js";
+import { SectionHeader } from "../../ui/SectionHeader.js";
+import { PillLink } from "../../ui/PillLink.js";
 
 export function AboutSection() {
 	return (

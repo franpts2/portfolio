@@ -1,9 +1,9 @@
 import { Icon } from "@iconify/react";
-import { Reveal } from "../ui/Reveal.js";
-import { ContactForm } from "../forms/ContactForm.js";
-import { socials } from "../../data/profile.js";
-import { icons } from "../../assets/icons.js";
-import { SectionHeader } from "../ui/SectionHeader.js";
+import { Reveal } from "../../ui/Reveal.js";
+import { ContactForm } from "../../forms/ContactForm.js";
+import { socials } from "../../../data/profile.js";
+import { icons } from "../../../assets/icons.js";
+import { SectionHeader } from "../../ui/SectionHeader.js";
 
 const socialIcons: Record<string, string> = {
 	GitHub: icons.github.outline,
