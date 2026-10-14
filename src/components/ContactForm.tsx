@@ -4,8 +4,14 @@ import { icons } from "../assets/icons.js";
 
 type FormStatus = "idle" | "sending" | "sent" | "error";
 
-const fieldClass =
-	"w-full bg-transparent border-0 border-b border-(--color-line) pb-3 text-lg text-(--color-ink) placeholder:text-(--color-ink-faint) focus:border-(--color-accent) focus:outline-none transition-colors";
+const floatingFieldClass =
+	"w-full bg-transparent border-0 border-b border-(--color-line) pt-6 pb-2 text-lg text-(--color-ink) placeholder:text-transparent focus:border-(--color-accent) focus:outline-none transition-colors";
+
+const floatingLabelClass =
+	"absolute left-0 top-1/2 -translate-y-1/2 text-lg text-(--color-ink-faint) transition-all duration-200 pointer-events-none peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-(--color-accent) peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:translate-y-0 peer-not-placeholder-shown:text-xs";
+
+const floatingTextareaLabelClass =
+	"absolute left-0 top-2 text-lg text-(--color-ink-faint) transition-all duration-200 pointer-events-none peer-focus:text-xs peer-focus:text-(--color-accent) peer-not-placeholder-shown:text-xs";
 
 export function ContactForm() {
 	const [name, setName] = useState("");
@@ -72,53 +78,53 @@ export function ContactForm() {
 				/>
 			</div>
 
-			<div>
-				<label htmlFor="contact-name" className="t-label mb-2 block">
-					Name
-				</label>
+			<div className="relative">
 				<input
 					id="contact-name"
 					name="name"
 					type="text"
 					autoComplete="name"
 					required
-					placeholder="Ada Lovelace"
+					placeholder=" "
 					value={name}
 					onChange={(event) => setName(event.target.value)}
-					className={fieldClass}
+					className={`${floatingFieldClass} peer`}
 				/>
+				<label htmlFor="contact-name" className={floatingLabelClass}>
+					Name
+				</label>
 			</div>
 
-			<div>
-				<label htmlFor="contact-email" className="t-label mb-2 block">
-					Email (optional)
-				</label>
+			<div className="relative">
 				<input
 					id="contact-email"
 					name="email"
 					type="email"
 					autoComplete="email"
-					placeholder="ada@example.com"
+					placeholder=" "
 					value={email}
 					onChange={(event) => setEmail(event.target.value)}
-					className={fieldClass}
+					className={`${floatingFieldClass} peer`}
 				/>
+				<label htmlFor="contact-email" className={floatingLabelClass}>
+					Email (optional)
+				</label>
 			</div>
 
-			<div>
-				<label htmlFor="contact-message" className="t-label mb-2 block">
-					Message
-				</label>
+			<div className="relative">
 				<textarea
 					id="contact-message"
 					name="message"
 					rows={5}
 					required
-					placeholder="Tell me about your project, idea, or just say hi"
+					placeholder=" "
 					value={message}
 					onChange={(event) => setMessage(event.target.value)}
-					className={`${fieldClass} resize-none`}
+					className={`${floatingFieldClass} peer resize-none`}
 				/>
+				<label htmlFor="contact-message" className={floatingTextareaLabelClass}>
+					Message
+				</label>
 			</div>
 
 			<div className="flex flex-col gap-4">
