@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { MotionConfig } from "motion/react";
 import { SkipLink } from "./components/ui/SkipLink.js";
 import { Header } from "./components/layout/Header.js";
 import { HeroSection } from "./components/sections/hero/HeroSection.js";
@@ -31,18 +32,22 @@ export function App() {
 	}, []);
 
 	return (
-		<ErrorBoundary>
-			<SkipLink />
-			<Header />
-			<main id="main-content">
-				<HeroSection />
-				<AboutSection />
-				<WorkSection />
-				<ExperienceSection />
-				<BeyondTheCodeSection />
-				<ContactSection />
-			</main>
-			<Footer />
-		</ErrorBoundary>
+		// Honor the OS "reduce motion" setting globally: Motion drops transform
+		// and layout animation for those users while keeping opacity/color.
+		<MotionConfig reducedMotion="user">
+			<ErrorBoundary>
+				<SkipLink />
+				<Header />
+				<main id="main-content">
+					<HeroSection />
+					<AboutSection />
+					<WorkSection />
+					<ExperienceSection />
+					<BeyondTheCodeSection />
+					<ContactSection />
+				</main>
+				<Footer />
+			</ErrorBoundary>
+		</MotionConfig>
 	);
 }
