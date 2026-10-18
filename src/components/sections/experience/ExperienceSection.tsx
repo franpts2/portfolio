@@ -30,7 +30,7 @@ export function ExperienceSection() {
             </Reveal>
             <div className="flex flex-col">
               {work.map((role, idx) => (
-                <Reveal key={role.id} delay={0.1 + idx * 0.08}>
+                <Reveal key={role.id} delay={0.1 + idx * 0.06}>
                   <ExperienceItem role={role} />
                 </Reveal>
               ))}
@@ -44,7 +44,7 @@ export function ExperienceSection() {
             </Reveal>
             <div className="flex flex-col">
               {community.map((role, idx) => (
-                <Reveal key={role.id} delay={0.2 + idx * 0.08}>
+                <Reveal key={role.id} delay={0.2 + idx * 0.06}>
                   <ExperienceItem role={role} />
                 </Reveal>
               ))}

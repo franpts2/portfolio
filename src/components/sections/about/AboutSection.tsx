@@ -22,7 +22,7 @@ export function AboutSection() {
           <div className="lg:col-span-8 lg:col-start-6">
             <div className="flex flex-col gap-6">
               {profile.bio.map((paragraph, idx) => (
-                <Reveal key={idx} delay={idx * 0.1}>
+                <Reveal key={idx} delay={idx * 0.06}>
                   <p className="t-body text-balance">{paragraph}</p>
                 </Reveal>
               ))}

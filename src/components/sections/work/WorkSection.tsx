@@ -25,7 +25,7 @@ export function WorkSection() {
         <div className="flex flex-col">
           {selected.map((project, idx) =>
             project ? (
-              <Reveal key={project.slug} delay={idx * 0.1}>
+              <Reveal key={project.slug} delay={idx * 0.06}>
                 <article className="group hairline first:border-t-0">
                   <a
                     href={project.repo}
