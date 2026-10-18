@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useAnimationControls } from "motion/react";
+import { EASE_OUT_EXPO } from "../../../lib/motion.js";
 import { useTilt } from "../../effects/useTilt.js";
 
 interface SquishyPortraitProps {
@@ -19,9 +20,9 @@ export function SquishyPortrait({ src, alt }: SquishyPortraitProps) {
       scaleX: 1.22,
       scaleY: 0.72,
       rotate: (Math.random() - 0.5) * 6,
-      transition: { duration: 0.08, ease: "easeIn" },
+      transition: { duration: 0.08, ease: EASE_OUT_EXPO },
     });
-    controls.start({
+    await controls.start({
       scaleX: 1,
       scaleY: 1,
       rotate: 0,

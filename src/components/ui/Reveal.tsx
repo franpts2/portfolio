@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { EASE_OUT_EXPO } from "../../lib/motion.js";
 
 interface RevealProps {
   readonly children: ReactNode;
@@ -25,7 +26,7 @@ export function Reveal({
       transition={{
         duration: reducedMotion ? 0 : 0.6,
         delay,
-        ease: [0.16, 1, 0.3, 1],
+        ease: EASE_OUT_EXPO,
       }}
     >
       {children}

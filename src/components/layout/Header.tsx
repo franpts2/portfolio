@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "motion/react";
 import { icons } from "../../assets/icons.js";
+import { EASE_OUT_EXPO } from "../../lib/motion.js";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -68,7 +69,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.25, ease: EASE_OUT_EXPO }}
             className="md:hidden overflow-hidden bg-(--color-bg) hairline"
           >
             <ul className="container-main py-4 flex flex-col gap-3">

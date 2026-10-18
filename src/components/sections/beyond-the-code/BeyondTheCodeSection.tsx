@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { SectionHeader } from "../../ui/SectionHeader.js";
+import { EASE_OUT_EXPO } from "../../../lib/motion.js";
 import { ChatMessage } from "./ChatMessage.js";
 import { useChatAnimation } from "./useChatAnimation.js";
 
@@ -120,7 +121,7 @@ export function BeyondTheCodeSection() {
                 transition={
                   reducedMotion
                     ? { duration: 0 }
-                    : { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+                    : { duration: 0.3, ease: EASE_OUT_EXPO }
                 }
               >
                 <span className="inline-block max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm hover:border-(--color-accent) hover:text-(--color-accent) transition-colors">

@@ -1,4 +1,5 @@
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { EASE_OUT_EXPO } from "../../../lib/motion.js";
 import { ChatBubble } from "./ChatBubble.js";
 
 interface ChatMessageProps {
@@ -47,7 +48,7 @@ export function ChatMessage({
               transition={
                 reducedMotion
                   ? { duration: 0 }
-                  : { duration: 0.14, ease: [0.16, 1, 0.3, 1] }
+                  : { duration: 0.14, ease: EASE_OUT_EXPO }
               }
             >
               <span className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]" />
@@ -81,7 +82,7 @@ export function ChatMessage({
               transition={
                 reducedMotion
                   ? { duration: 0 }
-                  : { duration: 0.22, ease: [0.16, 1, 0.3, 1] }
+                  : { duration: 0.22, ease: EASE_OUT_EXPO }
               }
             >
               {text}

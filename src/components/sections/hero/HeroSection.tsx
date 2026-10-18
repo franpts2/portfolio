@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "motion/react";
 import { profile } from "../../../data/profile.js";
+import { EASE_OUT_EXPO } from "../../../lib/motion.js";
 import { SquishyPortrait } from "./SquishyPortrait.js";
 import { PillLink } from "../../ui/PillLink.js";
 
@@ -19,7 +20,7 @@ export function HeroSection() {
             className="t-label inline-block mb-4"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: EASE_OUT_EXPO }}
           >
             Frontend Engineer
           </motion.span>
@@ -28,7 +29,7 @@ export function HeroSection() {
             className="t-display text-[clamp(2.75rem,10vw,6.5rem)] accent-dot"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: EASE_OUT_EXPO }}
           >
             {profile.name}
           </motion.h1>
@@ -37,7 +38,7 @@ export function HeroSection() {
             className="t-body mt-6 max-w-lg mx-auto lg:mx-0 text-balance"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
+            transition={{ duration: 0.6, delay: 0.35, ease: EASE_OUT_EXPO }}
           >
             {profile.statement}
           </motion.p>
@@ -46,7 +47,7 @@ export function HeroSection() {
             className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: EASE_OUT_EXPO }}
           >
             <PillLink href="#work" className="px-5 py-2.5">
               See selected work
@@ -65,7 +66,7 @@ export function HeroSection() {
             transition={{
               duration: reducedMotion ? 0 : 0.8,
               delay: 0.2,
-              ease: [0.16, 1, 0.3, 1],
+              ease: EASE_OUT_EXPO,
             }}
           >
             <SquishyPortrait
