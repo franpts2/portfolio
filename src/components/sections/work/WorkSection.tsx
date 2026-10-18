@@ -59,7 +59,7 @@ export function WorkSection() {
                         <Icon
                           icon={icons.arrowOutward.outline}
                           height={24}
-                          className="text-(--color-ink-faint) group-hover:text-(--color-accent) transition-colors"
+                          className="text-(--color-ink-faint) group-hover:text-(--color-accent) group-focus-visible:text-(--color-accent) transition-[color,translate] duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-focus-visible:-translate-y-0.5 group-focus-visible:translate-x-0.5"
                         />
                       </div>
                     </div>
