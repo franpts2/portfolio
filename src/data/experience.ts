@@ -49,7 +49,7 @@ export const experience: readonly Role[] = [
     start: "2026-05",
     end: null,
     description:
-      "I lead Time Table Selector, an open-source React project that makes class exchanges and academic scheduling simpler for university students. I set the roadmap, coordinate contributors, and turn student feedback into product and engineering priorities. Previously progressed from Recruit (Nov 2025 – Mar 2026) to Member (Mar – May 2026), contributing to uni with Flutter and NIAEFEUP's new website with Svelte.",
+      "I lead Time Table Selector, an open-source platform where University of Porto students experiment with all the possible combinations of class schedules they can pick at the start of the semester, and the official class exchange platform for L.EIC and M.EIC students. It's a Bun workspace monorepo with a React + Vite + Tailwind frontend and a Bun + Elysia + Prisma backend. Right now I'm coordinating the team on fully remaking the backend, migrating it off the legacy Django service. I set the roadmap, coordinate contributors, and turn student feedback into product and engineering priorities. Previously progressed from Recruit (Nov 2025 – Mar 2026) to Member (Mar – May 2026), contributing to uni with Flutter and NIAEFEUP's new website with Svelte.",
     links: [
       { text: "Time Table Selector", href: "https://tts.niaefeup.pt" },
     ],
