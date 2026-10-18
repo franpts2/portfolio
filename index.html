@@ -4,6 +4,29 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" href="/logo.svg" type="image/svg+xml" />
+
+		<!--
+			Scroll handling: a refresh should open at the top of the page, not on the
+			section whose anchor happens to be in the URL. Runs in <head> so the
+			stale hash is dropped before the browser looks for the target element.
+			Deep links opened normally still land on their section.
+		-->
+		<script>
+			if ("scrollRestoration" in history) {
+				history.scrollRestoration = "manual";
+			}
+			try {
+				var navEntry = performance.getEntriesByType("navigation")[0];
+				var isReload = navEntry
+					? navEntry.type === "reload"
+					: performance.navigation && performance.navigation.type === 1;
+				if (isReload && location.hash) {
+					history.replaceState(null, "", location.pathname + location.search);
+				}
+			} catch (e) {
+				// Older browsers fall back to the reset in App.tsx.
+			}
+		</script>
 		<title>Francisca Portugal · Frontend Engineer</title>
 
 		<!-- Open Graph / Facebook -->

@@ -12,10 +12,22 @@ import { ErrorBoundary } from "./components/error/ErrorBoundary.js";
 
 export function App() {
 	useEffect(() => {
+		// The inline script in index.html does this as early as possible; kept here
+		// as a fallback for browsers where the script could not run.
 		if ("scrollRestoration" in history) {
 			history.scrollRestoration = "manual";
 		}
-		window.scrollTo(0, 0);
+
+		// On refresh, ignore the section hash and land at the top of the page.
+		// A normal (non-reload) visit to /#contact still scrolls to that section.
+		const [entry] = performance.getEntriesByType(
+			"navigation",
+		) as PerformanceNavigationTiming[];
+		if (entry?.type !== "reload") return;
+
+		history.replaceState(null, "", location.pathname + location.search);
+		// Jump, don't animate: `html` has `scroll-behavior: smooth`.
+		window.scrollTo({ top: 0, behavior: "instant" });
 	}, []);
 
 	return (
