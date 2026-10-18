@@ -35,7 +35,7 @@ export const experience: readonly Role[] = [
     start: "2026-07",
     end: "2026-09",
     description:
-      "Built and shipped a feature-gated Workflows Timeline in the Cloudflare Dashboard with React, TypeScript, Kumo, and ECharts, visualizing live step timing, retries, waits, errors, and concurrency. ontributed to overall improvements across the Workflows section of the dashboard.",
+      "Built and shipped a feature-gated Workflows Timeline in the Cloudflare Dashboard with React, TypeScript, Kumo, and ECharts, visualizing live step timing, retries, waits, errors, and concurrency. Contributed to overall improvements across the Workflows section of the dashboard.",
     links: [
       { text: "Cloudflare Dashboard", href: "https://dash.cloudflare.com" },
     ],
