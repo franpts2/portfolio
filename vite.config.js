@@ -31,7 +31,7 @@ export default defineConfig({
 			output: {
 				// Split vendor libraries into separate chunk to improve caching
 				manualChunks: {
-					react: ["react", "react-dom", "react-router-dom"],
+					react: ["react", "react-dom"],
 					ui: ["@iconify/react", "motion"],
 				},
 			},
