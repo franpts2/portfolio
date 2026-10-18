@@ -7,7 +7,7 @@ export const profile = {
   cv: "/CV.pdf",
   portrait: "/images/people/francisca-portugal.png",
   statement:
-    "Francisca Portugal is a frontend engineer who builds interfaces that are rigorous underneath and effortless on the surface.",
+    "I care about the parts you never see, so the parts you do feel effortless.",
   bio: [
     "I'm a frontend engineer who ventures into full-stack and mobile to build products that feel effortless. I thrive on interfaces that are technically rigorous under the hood, yet joyful and intuitive for the person using them.",
     "To me, code is a craft where logic meets creativity. I'm motivated to build high-caliber tools that are as profoundly important as they are a delight to interact with.",
