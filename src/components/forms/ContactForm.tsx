@@ -9,10 +9,10 @@ const floatingFieldClass =
 	"w-full bg-transparent border-0 border-b border-(--color-line) pt-6 pb-2 text-lg text-(--color-ink) placeholder:text-transparent focus:border-(--color-accent) focus:outline-none transition-colors";
 
 const floatingLabelClass =
-	"absolute left-0 top-1/2 -translate-y-1/2 text-lg text-(--color-ink-faint) transition-all duration-200 pointer-events-none peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-(--color-accent) peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:translate-y-0 peer-not-placeholder-shown:text-xs";
+	"absolute left-0 top-1/2 -translate-y-1/2 text-lg text-(--color-ink-faint) transition-[top,translate,font-size,color] duration-200 pointer-events-none peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-(--color-accent) peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:translate-y-0 peer-not-placeholder-shown:text-xs";
 
 const floatingTextareaLabelClass =
-	"absolute left-0 top-2 text-lg text-(--color-ink-faint) transition-all duration-200 pointer-events-none peer-focus:text-xs peer-focus:text-(--color-accent) peer-not-placeholder-shown:text-xs";
+	"absolute left-0 top-2 text-lg text-(--color-ink-faint) transition-[font-size,color] duration-200 pointer-events-none peer-focus:text-xs peer-focus:text-(--color-accent) peer-not-placeholder-shown:text-xs";
 
 export function ContactForm() {
 	const [name, setName] = useState("");
@@ -132,9 +132,19 @@ export function ContactForm() {
 				<Button
 					type="submit"
 					disabled={sending}
-					className="px-6 py-3" 
+					className="px-6 py-3"
 				>
-					{sending ? "Sending…" : "Send message"}
+					{sending ? (
+						<>
+							<span
+								className="h-4 w-4 rounded-full border-2 border-current border-t-transparent animate-spin"
+								aria-hidden="true"
+							/>
+							Sending…
+						</>
+					) : (
+						"Send message"
+					)}
 				</Button>
 
 				<p
