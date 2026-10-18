@@ -32,7 +32,18 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
 	}, []);
 
 	return (
-		<ReactLenis root ref={lenisRef} options={{ autoRaf: false, anchors: true }}>
+		<ReactLenis
+			root
+			ref={lenisRef}
+			options={{
+				autoRaf: false,
+				anchors: true,
+				// Damping intensity: lower glides longer, higher tracks the input more
+				// closely. Lenis's default is 0.1 (τ ≈ 167ms); 0.075 is a softer glide
+				// (τ ≈ 222ms). Try 0.06 → 0.05 for progressively more drift.
+				lerp: 0.075,
+			}}
+		>
 			{children}
 		</ReactLenis>
 	);

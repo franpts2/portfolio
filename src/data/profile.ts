@@ -9,7 +9,7 @@ export const profile = {
   statement:
     "I care about the parts you never see, so the parts you do feel effortless.",
   bio: [
-    "I'm a frontend engineer who ventures into full-stack and mobile to build products that feel effortless. I thrive on interfaces that are technically rigorous under the hood, yet joyful and intuitive for the person using them.",
+    "I'm a frontend engineer who ventures into full-stack to build products that feel effortless. I thrive on interfaces that are technically rigorous under the hood, yet joyful and intuitive for the person using them.",
     "To me, code is a craft where logic meets creativity. I'm motivated to build high-caliber tools that are as profoundly important as they are a delight to interact with.",
   ],
 } as const;
