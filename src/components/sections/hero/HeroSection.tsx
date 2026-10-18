@@ -1,22 +1,33 @@
+import { useRef } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { profile } from "../../../data/profile.js";
 import { EASE_OUT_EXPO } from "../../../lib/motion.js";
 import { SquishyPortrait } from "./SquishyPortrait.js";
 import { PillLink } from "../../ui/PillLink.js";
+import { TulipPatch } from "./TulipPatch.js";
+import { useTulipEgg } from "./useTulipEgg.js";
 
 export function HeroSection() {
   const reducedMotion = useReducedMotion();
+  const eyebrowRef = useRef<HTMLSpanElement | null>(null);
+  const { sectionRef, titleRef, tulips, announcement, handleDotClick } =
+    useTulipEgg(eyebrowRef);
 
   return (
     <section
+      ref={sectionRef}
       id="hero"
       className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-12 px-4"
       aria-label="Introduction"
     >
+      {/* Grows behind the text below, which paints over it. */}
+      <TulipPatch tulips={tulips} />
+
       <div className="container-main grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
         {/* Text */}
-        <div className="order-2 lg:order-1 text-center lg:text-left">
+        <div className="relative z-10 order-2 lg:order-1 text-center lg:text-left">
           <motion.span
+            ref={eyebrowRef}
             className="t-label inline-block mb-4"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -26,12 +37,21 @@ export function HeroSection() {
           </motion.span>
 
           <motion.h1
-            className="t-display text-[clamp(2.75rem,10vw,6.5rem)] accent-dot"
+            ref={titleRef}
+            className="t-display text-[clamp(2.75rem,10vw,6.5rem)]"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: EASE_OUT_EXPO }}
           >
             {profile.name}
+            <button
+              type="button"
+              className="title-dot"
+              onClick={handleDotClick}
+              aria-label="A little surprise"
+            >
+              .
+            </button>
           </motion.h1>
 
           <motion.p
@@ -76,6 +96,10 @@ export function HeroSection() {
           </motion.div>
         </div>
       </div>
+
+      <p className="sr-only" aria-live="polite">
+        {announcement}
+      </p>
     </section>
   );
 }

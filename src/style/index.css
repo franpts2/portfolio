@@ -165,6 +165,33 @@
 		transform-origin: left;
 	}
 
+	/* The full stop after the hero name is also the trigger for the tulip
+	   easter egg. The glyph is only a few pixels wide, so ::before carries the
+	   tap target without shifting the text. */
+	.title-dot {
+		position: relative;
+		display: inline-block;
+		color: var(--color-accent);
+		transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.title-dot::before {
+		content: "";
+		position: absolute;
+		/* Only widen the target: the line box is already tall enough, and
+		   growing upward would swallow clicks on the line above. */
+		inset: 0 -0.42em 0 -0.06em;
+		border-radius: 999px;
+	}
+
+	.title-dot:hover {
+		transform: translateY(-0.06em) scale(1.1);
+	}
+
+	.title-dot:active {
+		transform: translateY(0.02em) scale(1.02);
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.link-underline::after {
 			transition: none;
