@@ -121,6 +121,7 @@ export function ContactForm() {
 					placeholder=" "
 					value={message}
 					onChange={(event) => setMessage(event.target.value)}
+					data-lenis-prevent
 					className={`${floatingFieldClass} peer resize-none`}
 				/>
 				<label htmlFor="contact-message" className={floatingTextareaLabelClass}>

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { MotionConfig } from "motion/react";
 import { SkipLink } from "./components/ui/SkipLink.js";
+import { SmoothScroll } from "./components/effects/SmoothScroll.js";
 import { Header } from "./components/layout/Header.js";
 import { HeroSection } from "./components/sections/hero/HeroSection.js";
 import { AboutSection } from "./components/sections/about/AboutSection.js";
@@ -36,17 +37,19 @@ export function App() {
 		// and layout animation for those users while keeping opacity/color.
 		<MotionConfig reducedMotion="user">
 			<ErrorBoundary>
-				<SkipLink />
-				<Header />
-				<main id="main-content">
-					<HeroSection />
-					<AboutSection />
-					<WorkSection />
-					<ExperienceSection />
-					<BeyondTheCodeSection />
-					<ContactSection />
-				</main>
-				<Footer />
+				<SmoothScroll>
+					<SkipLink />
+					<Header />
+					<main id="main-content">
+						<HeroSection />
+						<AboutSection />
+						<WorkSection />
+						<ExperienceSection />
+						<BeyondTheCodeSection />
+						<ContactSection />
+					</main>
+					<Footer />
+				</SmoothScroll>
 			</ErrorBoundary>
 		</MotionConfig>
 	);
