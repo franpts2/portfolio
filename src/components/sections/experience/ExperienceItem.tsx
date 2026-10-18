@@ -1,5 +1,6 @@
 import type { Role } from "../../../data/experience.js";
 import { DateRange } from "./DateRange.js";
+import { Description } from "./Description.js";
 
 interface ExperienceItemProps {
   readonly role: Role;
@@ -19,7 +20,9 @@ export function ExperienceItem({ role }: ExperienceItemProps) {
       <p className="mt-1 text-sm text-(--color-ink-muted)">
         {role.org} · {role.location}
       </p>
-      <p className="mt-3 t-body text-sm">{role.description}</p>
+      <p className="mt-3 t-body text-sm">
+        <Description text={role.description} links={role.links} />
+      </p>
     </article>
   );
 }

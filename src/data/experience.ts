@@ -1,3 +1,8 @@
+export interface RoleLink {
+  readonly text: string;
+  readonly href: string;
+}
+
 export interface Role {
   readonly id: string;
   readonly title: string;
@@ -6,6 +11,7 @@ export interface Role {
   readonly start: string;
   readonly end: string | null;
   readonly description: string;
+  readonly links?: readonly RoleLink[];
   readonly kind: "work" | "community";
 }
 
@@ -30,6 +36,9 @@ export const experience: readonly Role[] = [
     end: "2026-09",
     description:
       "Built and shipped a feature-gated Workflows Timeline in the Cloudflare Dashboard with React, TypeScript, Kumo, and ECharts, visualizing live step timing, retries, waits, errors, and concurrency. Migrated the Workflows list to Kumo and fixed search and cache race conditions while preserving server-side search, pagination, metrics, sorting, and workflow actions.",
+    links: [
+      { text: "Cloudflare Dashboard", href: "https://dash.cloudflare.com" },
+    ],
     kind: "work",
   },
   {
@@ -41,6 +50,9 @@ export const experience: readonly Role[] = [
     end: null,
     description:
       "I lead Time Table Selector, an open-source React project that makes class exchanges and academic scheduling simpler for university students. I set the roadmap, coordinate contributors, and turn student feedback into product and engineering priorities. Previously progressed from Recruit (Nov 2025 – Mar 2026) to Member (Mar – May 2026), contributing to uni with Flutter and NIAEFEUP's new website with Svelte.",
+    links: [
+      { text: "Time Table Selector", href: "https://tts.niaefeup.pt" },
+    ],
     kind: "work",
   },
   {
