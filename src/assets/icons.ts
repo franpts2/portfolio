@@ -30,6 +30,12 @@ export const icons = {
 		outline: "material-symbols:download-outline",
 	},
 
+	// Status Icons
+	check: {
+		fill: "material-symbols:check",
+		outline: "material-symbols:check-outline",
+	},
+
 	// Social Icons
 	github: {
 		outline: "mdi:github",

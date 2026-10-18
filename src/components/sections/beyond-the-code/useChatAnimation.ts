@@ -21,7 +21,9 @@ export function useChatAnimation({
   const sectionRef = useRef<HTMLElement>(null);
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState<"up" | "down">("down");
-  const reducedMotion = useReducedMotion();
+  // useReducedMotion returns null when the preference can't be determined;
+  // treat that as "no preference" so animations play as normal.
+  const reducedMotion = useReducedMotion() ?? false;
   const prevProgress = useRef(0);
   const stepRef = useRef(0);
   const dirRef = useRef<"up" | "down">("down");
