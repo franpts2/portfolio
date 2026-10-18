@@ -1,6 +1,7 @@
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { EASE_OUT_EXPO } from "../../../lib/motion.js";
 import { ChatBubble } from "./ChatBubble.js";
+import { chatBubbleClass } from "./chatBubbleClass.js";
 
 interface ChatMessageProps {
   readonly from: "me" | "them";
@@ -18,11 +19,7 @@ export function ChatMessage({
   const reducedMotion = useReducedMotion();
   const isMe = from === "me";
 
-  const bubbleClasses = `max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed whitespace-pre-wrap ${
-    isMe
-      ? "bg-(--color-accent) text-white rounded-br-sm"
-      : "bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm"
-  }`;
+  const bubbleClasses = chatBubbleClass(isMe);
 
   return (
     <div className={`flex relative ${isMe ? "justify-end" : "justify-start"}`}>
