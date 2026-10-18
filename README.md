@@ -22,7 +22,7 @@ Personal portfolio website showcasing my work as a frontend engineer. Features a
 
 ## Live Demo
 
-Live at: [https://franciscapt.pages.dev](https://franciscapt.pages.dev)
+Live at: [https://franciscapt.dev](https://franciscapt.dev)
 
 ## Technical Implementation
 
