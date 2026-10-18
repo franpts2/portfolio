@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { motion, useAnimationControls } from "motion/react";
 import { useTilt } from "../../effects/useTilt.js";
-import { ParticleBurst } from "../../effects/ParticleBurst.js";
 
 interface SquishyPortraitProps {
   readonly src: string;
@@ -15,22 +14,7 @@ export function SquishyPortrait({ src, alt }: SquishyPortraitProps) {
   const { rotateX, rotateY, x, y, handleMouseMove, handleMouseLeave } =
     useTilt();
 
-  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const originX = e.clientX - rect.left;
-    const originY = e.clientY - rect.top;
-
-    // Access spawnParticles from wrapperRef set by ParticleBurst
-    const spawnFn = wrapperRef.current?.dataset?.["spawnParticles"];
-    if (spawnFn) {
-      // ParticleBurst manages its own state; we trigger via a custom event
-      window.dispatchEvent(
-        new CustomEvent("squishy-spawn", {
-          detail: { originX, originY },
-        }),
-      );
-    }
-
+  const handleClick = async () => {
     await controls.start({
       scaleX: 1.22,
       scaleY: 0.72,
@@ -60,8 +44,6 @@ export function SquishyPortrait({ src, alt }: SquishyPortraitProps) {
       onClick={handleClick}
       aria-label={`${alt}, press to squish`}
     >
-      <ParticleBurst />
-
       <motion.div
         className="w-full h-full rounded-full overflow-hidden"
         style={{
