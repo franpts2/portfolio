@@ -8,8 +8,6 @@ export interface Project {
   readonly status: "shipped" | "building";
   readonly tech: readonly string[];
   readonly repo: string;
-  readonly media: string;
-  readonly mediaType: "image" | "video";
 }
 
 export const projects: readonly Project[] = [
@@ -25,8 +23,6 @@ export const projects: readonly Project[] = [
     status: "shipped",
     tech: ["Laravel", "PHP", "JavaScript", "Tailwind", "PostgreSQL", "Docker"],
     repo: "https://github.com/franpts2/junto.",
-    media: "/images/projects/junto/video.mp4",
-    mediaType: "video",
   },
   {
     slug: "artflow",
@@ -39,8 +35,6 @@ export const projects: readonly Project[] = [
     status: "shipped",
     tech: ["HTML", "CSS", "PHP", "JavaScript", "SQLite"],
     repo: "https://github.com/franpts2/artflow",
-    media: "/images/projects/artflow/1.png",
-    mediaType: "image",
   },
   {
     slug: "focusly",
@@ -53,7 +47,5 @@ export const projects: readonly Project[] = [
     status: "shipped",
     tech: ["Flutter", "Dart", "Firebase"],
     repo: "https://github.com/franpts2/focusly",
-    media: "/images/projects/focusly/1.png",
-    mediaType: "image",
   },
 ] as const;
