@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "motion/react";
 import { icons } from "../../assets/icons.js";
 import { EASE_OUT_EXPO } from "../../lib/motion.js";
+import { profile } from "../../data/profile.js";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -25,9 +26,9 @@ export function Header() {
           <a
             href="#"
             className="font-display font-semibold text-lg tracking-tight text-(--color-ink) hover:text-(--color-accent) transition-colors"
-            aria-label="Francisca Portugal, Home"
+            aria-label={`${profile.name}, Home`}
           >
-            f.pt
+            {profile.mark}
           </a>
 
           {/* Desktop links */}
