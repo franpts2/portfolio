@@ -20,8 +20,13 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      // Use the full `transform` string, not the `y` shorthand: only the
+      // `transform` property is in Motion's accelerated-values set, so this can
+      // run on the compositor via WAAPI instead of the main thread.
+      initial={
+        reducedMotion ? { opacity: 1 } : { opacity: 0, transform: "translateY(24px)" }
+      }
+      whileInView={{ opacity: 1, transform: "translateY(0px)" }}
       viewport={{ once, margin: "0px 0px -10% 0px" }}
       transition={{
         duration: reducedMotion ? 0 : 0.6,
