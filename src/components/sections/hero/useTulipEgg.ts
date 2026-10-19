@@ -25,6 +25,19 @@ const MAX_TULIPS = 40;
  */
 const HEADROOM_GAP = 0.06;
 
+/**
+ * The dot asks to be clicked by replaying its own click animation: lifted, then
+ * pressed, then settled. The first one waits so the page has a moment to
+ * arrive, and the rest keep coming until someone takes the bait.
+ */
+const NUDGE_WAIT = 5000;
+const NUDGE_EVERY = 3200;
+const NUDGE_LIFT = 320;
+const NUDGE_PRESS = 240;
+
+/** Which half of its click animation the dot is wearing, if any. */
+type DotPose = "lifted" | "pressed" | null;
+
 /** Multiples of the cap height: small enough to sit on a single letter. */
 const TEASE: Timing = {
   heightRange: [0.4, 0.58],
@@ -269,9 +282,10 @@ export function useTulipEgg(ceilingRef?: RefObject<HTMLElement | null>) {
 
   const [tulips, setTulips] = useState<readonly Tulip[]>([]);
   const [announcement, setAnnouncement] = useState("");
-  // Whether the dot should still advertise itself: it stops once the egg has
-  // been found, and people who found it earlier in the session don't need it.
-  const [hinting, setHinting] = useState(false);
+  // Until the egg has been found the dot keeps asking to be clicked, and while
+  // it asks it wears one of the two poses from its click animation.
+  const [found, setFound] = useState(true);
+  const [dotPose, setDotPose] = useState<DotPose>(null);
 
   const clicksRef = useRef(0);
   const seenRef = useRef(false);
@@ -280,15 +294,38 @@ export function useTulipEgg(ceilingRef?: RefObject<HTMLElement | null>) {
 
   // Once someone has found it, a single click fills the name.
   useEffect(() => {
-    let found = false;
+    let alreadySeen = false;
     try {
-      found = sessionStorage.getItem(SEEN_KEY) === "1";
+      alreadySeen = sessionStorage.getItem(SEEN_KEY) === "1";
     } catch {
-      found = false;
+      alreadySeen = false;
     }
-    seenRef.current = found;
-    setHinting(!found);
+    seenRef.current = alreadySeen;
+    setFound(alreadySeen);
   }, []);
+
+  // While the egg is undiscovered, the dot asks to be clicked by replaying the
+  // gesture it makes when clicked: lifted, pressed, settled.
+  useEffect(() => {
+    if (found) return undefined;
+
+    let pose: DotPose = null;
+    let timer = window.setTimeout(function tick() {
+      if (pose === null) {
+        pose = "lifted";
+        timer = window.setTimeout(tick, NUDGE_LIFT);
+      } else if (pose === "lifted") {
+        pose = "pressed";
+        timer = window.setTimeout(tick, NUDGE_PRESS);
+      } else {
+        pose = null;
+        timer = window.setTimeout(tick, NUDGE_EVERY);
+      }
+      setDotPose(pose);
+    }, NUDGE_WAIT);
+
+    return () => window.clearTimeout(timer);
+  }, [found]);
 
   useEffect(
     () => () => {
@@ -343,8 +380,9 @@ export function useTulipEgg(ceilingRef?: RefObject<HTMLElement | null>) {
     );
     if (slots.length === 0) return;
 
-    // Found it: the dot can stop asking to be clicked.
-    setHinting(false);
+    // Found it: the dot can stop asking to be clicked, and settle.
+    setFound(true);
+    setDotPose(null);
 
     let fresh = slots.filter((slot) => !plantedRef.current.has(slot.key));
     if (fresh.length === 0) {
@@ -385,7 +423,7 @@ export function useTulipEgg(ceilingRef?: RefObject<HTMLElement | null>) {
     titleRef,
     tulips,
     announcement,
-    hinting,
+    dotPose,
     handleDotClick,
   } as const;
 }

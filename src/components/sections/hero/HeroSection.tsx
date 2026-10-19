@@ -15,7 +15,7 @@ export function HeroSection() {
     titleRef,
     tulips,
     announcement,
-    hinting,
+    dotPose,
     handleDotClick,
   } = useTulipEgg(eyebrowRef);
 
@@ -52,7 +52,7 @@ export function HeroSection() {
             {profile.name}
             <button
               type="button"
-              className={`title-dot${hinting ? " is-hinting" : ""}`}
+              className={dotPose ? `title-dot is-${dotPose}` : "title-dot"}
               onClick={handleDotClick}
               aria-label="A little surprise"
             >
