@@ -5,6 +5,7 @@ import {
   useState,
   type RefObject,
 } from "react";
+import { useReducedMotion } from "motion/react";
 import {
   createPatch,
   type Tulip,
@@ -28,12 +29,21 @@ const HEADROOM_GAP = 0.06;
 /**
  * The dot asks to be clicked by replaying its own click animation: lifted, then
  * pressed, then settled. The first one waits so the page has a moment to
- * arrive, and the rest keep coming until someone takes the bait.
+ * arrive; the rest keep coming until someone takes the bait, but each wait is
+ * longer than the last so the dot grows quieter the longer it is ignored.
  */
 const NUDGE_WAIT = 5000;
 const NUDGE_EVERY = 3200;
-const NUDGE_LIFT = 320;
-const NUDGE_PRESS = 240;
+/** How much longer each wait is than the one before it. */
+const NUDGE_BACKOFF = 1.7;
+/** The longest the dot will ever wait between asks, so it never goes silent. */
+const NUDGE_EVERY_MAX = 30000;
+/**
+ * Each pose is held longer than its CSS transition (200ms into the lift, 120ms
+ * into the press), so the pose is actually seen at rest before it reverses.
+ */
+const NUDGE_LIFT_HOLD = 440;
+const NUDGE_PRESS_HOLD = 360;
 
 /** Which half of its click animation the dot is wearing, if any. */
 type DotPose = "lifted" | "pressed" | null;
@@ -279,6 +289,9 @@ function pickRandom<T>(items: readonly T[], count: number): T[] {
 export function useTulipEgg(ceilingRef?: RefObject<HTMLElement | null>) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const titleRef = useRef<HTMLHeadingElement | null>(null);
+  // useReducedMotion returns null when the preference can't be determined;
+  // treat that as "no preference".
+  const reducedMotion = useReducedMotion() ?? false;
 
   const [tulips, setTulips] = useState<readonly Tulip[]>([]);
   const [announcement, setAnnouncement] = useState("");
@@ -286,11 +299,17 @@ export function useTulipEgg(ceilingRef?: RefObject<HTMLElement | null>) {
   // it asks it wears one of the two poses from its click animation.
   const [found, setFound] = useState(true);
   const [dotPose, setDotPose] = useState<DotPose>(null);
+  // An invitation nobody can see is just a timer, so it only asks while the
+  // hero is on screen.
+  const [inView, setInView] = useState(true);
 
   const clicksRef = useRef(0);
   const seenRef = useRef(false);
   const plantedRef = useRef(new Set<string>());
   const clearTimerRef = useRef<number | null>(null);
+  // How long the dot waits between asks. It grows as the reader ignores it, and
+  // lives in a ref so scrolling away and back does not reset its patience.
+  const nudgeGapRef = useRef(NUDGE_EVERY);
 
   // Once someone has found it, a single click fills the name.
   useEffect(() => {
@@ -304,28 +323,48 @@ export function useTulipEgg(ceilingRef?: RefObject<HTMLElement | null>) {
     setFound(alreadySeen);
   }, []);
 
-  // While the egg is undiscovered, the dot asks to be clicked by replaying the
-  // gesture it makes when clicked: lifted, pressed, settled.
+  // Stop asking for attention the moment the hero leaves the screen.
   useEffect(() => {
-    if (found) return undefined;
+    const section = sectionRef.current;
+    if (!section) return undefined;
+    const observer = new IntersectionObserver((entries) => {
+      setInView(entries[0]?.isIntersecting ?? true);
+    });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  // While the egg is undiscovered, the dot asks to be clicked by replaying the
+  // gesture it makes when clicked: lifted, pressed, settled. It only asks while
+  // the hero is on screen, and asks less and less often as it is ignored.
+  useEffect(() => {
+    if (found || reducedMotion || !inView) return undefined;
 
     let pose: DotPose = null;
     let timer = window.setTimeout(function tick() {
       if (pose === null) {
         pose = "lifted";
-        timer = window.setTimeout(tick, NUDGE_LIFT);
+        timer = window.setTimeout(tick, NUDGE_LIFT_HOLD);
       } else if (pose === "lifted") {
         pose = "pressed";
-        timer = window.setTimeout(tick, NUDGE_PRESS);
+        timer = window.setTimeout(tick, NUDGE_PRESS_HOLD);
       } else {
         pose = null;
-        timer = window.setTimeout(tick, NUDGE_EVERY);
+        timer = window.setTimeout(tick, nudgeGapRef.current);
+        nudgeGapRef.current = Math.min(
+          nudgeGapRef.current * NUDGE_BACKOFF,
+          NUDGE_EVERY_MAX,
+        );
       }
       setDotPose(pose);
     }, NUDGE_WAIT);
 
-    return () => window.clearTimeout(timer);
-  }, [found]);
+    return () => {
+      window.clearTimeout(timer);
+      // A pause or a click mid-ask must not leave the dot frozen in a pose.
+      setDotPose(null);
+    };
+  }, [found, inView, reducedMotion]);
 
   useEffect(
     () => () => {
