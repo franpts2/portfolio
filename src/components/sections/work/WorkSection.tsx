@@ -4,7 +4,7 @@ import { projects } from "../../../data/projects.js";
 import { icons } from "../../../assets/icons.js";
 import { SectionHeader } from "../../ui/SectionHeader.js";
 
-const selectedSlugs = ["junto", "artflow", "focusly"] as const;
+const selectedSlugs = ["cadence", "junto", "portfolio"] as const;
 
 export function WorkSection() {
   const selected = selectedSlugs
@@ -28,7 +28,7 @@ export function WorkSection() {
               <Reveal key={project.slug} delay={idx * 0.06}>
                 <article className="group hairline first:border-t-0">
                   <a
-                    href={project.repo}
+                    href={project.demo ?? project.repo}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block py-8 sm:py-10"

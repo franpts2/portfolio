@@ -7,7 +7,8 @@ export interface Project {
   readonly year: number | null;
   readonly status: "shipped" | "building";
   readonly tech: readonly string[];
-  readonly repo: string;
+  readonly repo?: string;
+  readonly demo?: string;
 }
 
 export const projects: readonly Project[] = [
@@ -25,27 +26,27 @@ export const projects: readonly Project[] = [
     repo: "https://github.com/franpts2/junto.",
   },
   {
-    slug: "artflow",
-    title: "artflow",
-    tagline: "A freelancing marketplace that puts human artists first",
+    slug: "cadence",
+    title: "cadence",
+    tagline: "A Spotify-connected music journal with a song for every day",
     description:
-      "Built as a response to AI-generated art, artflow is a platform that celebrates human creativity. Artists showcase services, connect with clients and keep control of pricing. I led frontend development and interface design.",
-    role: "Frontend, Interface design",
-    year: 2025,
+      "Cadence turns your listening into a calendar. Connect Spotify, pick one song per day and build an interactive record of your life through music. I designed and built the full-stack app: Spotify OAuth, a drag-and-drop calendar, playlist import and export, and song previews.",
+    role: "Full-stack, Interface design",
+    year: 2026,
     status: "shipped",
-    tech: ["HTML", "CSS", "PHP", "JavaScript", "SQLite"],
-    repo: "https://github.com/franpts2/artflow",
+    tech: ["SvelteKit", "Svelte 5", "TypeScript", "Tailwind", "Cloudflare", "Turso", "Drizzle"],
+    demo: "https://cadence.franciscapt.dev",
   },
   {
-    slug: "focusly",
-    title: "focusly",
-    tagline: "Every study tool a student actually needs, in one app",
+    slug: "portfolio",
+    title: "this portfolio",
+    tagline: "The site you're reading, built from scratch down to the motion",
     description:
-      "Focusly turns studying into a smoother experience: personalised quizzes, flashcards, a Pomodoro timer and a peer forum. I built the mobile app in Flutter and designed the interface.",
-    role: "Mobile, Interface design",
-    year: 2025,
+      "Designed and built from scratch with React 19, TypeScript and Tailwind CSS v4. A custom design system, scroll-driven motion, a squishy portrait interaction and a contact form backed by Cloudflare Pages Functions — with accessibility and performance kept in view throughout.",
+    role: "Design, Frontend",
+    year: 2026,
     status: "shipped",
-    tech: ["Flutter", "Dart", "Firebase"],
-    repo: "https://github.com/franpts2/focusly",
+    tech: ["React", "TypeScript", "Tailwind", "Motion", "Vite", "Cloudflare"],
+    repo: "https://github.com/franpts2/portfolio",
   },
 ] as const;
