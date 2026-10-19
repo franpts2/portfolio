@@ -20,7 +20,7 @@ export function HeroSection() {
       className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-12 px-4"
       aria-label="Introduction"
     >
-      {/* Grows behind the text below, which paints over it. */}
+      {/* Rendered over the text below, so no flower is clipped by a letter. */}
       <TulipPatch tulips={tulips} />
 
       <div className="container-main grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">

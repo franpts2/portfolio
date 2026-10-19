@@ -8,16 +8,18 @@ interface TulipPatchProps {
 }
 
 /**
- * Sits behind the hero text, so each stem is cut off by the letters in front of
- * it. Growth is a scale from the base rather than a move, which is what makes
- * the flowers read as sprouting out from behind the name.
+ * Sits over the hero text, so every flower is drawn whole: petals stay crisp
+ * against the letters and nothing is clipped by a glyph.
+ *
+ * Growth is a scale from the base rather than a move, which is what makes the
+ * flowers read as sprouting up from each letter.
  */
 export function TulipPatch({ tulips }: TulipPatchProps) {
   const reducedMotion = useReducedMotion();
 
   return (
     <div
-      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      className="pointer-events-none absolute inset-0 z-20 overflow-hidden"
       aria-hidden="true"
     >
       {tulips.map((tulip) => (
