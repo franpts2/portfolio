@@ -269,6 +269,9 @@ export function useTulipEgg(ceilingRef?: RefObject<HTMLElement | null>) {
 
   const [tulips, setTulips] = useState<readonly Tulip[]>([]);
   const [announcement, setAnnouncement] = useState("");
+  // Whether the dot should still advertise itself: it stops once the egg has
+  // been found, and people who found it earlier in the session don't need it.
+  const [hinting, setHinting] = useState(false);
 
   const clicksRef = useRef(0);
   const seenRef = useRef(false);
@@ -277,11 +280,14 @@ export function useTulipEgg(ceilingRef?: RefObject<HTMLElement | null>) {
 
   // Once someone has found it, a single click fills the name.
   useEffect(() => {
+    let found = false;
     try {
-      seenRef.current = sessionStorage.getItem(SEEN_KEY) === "1";
+      found = sessionStorage.getItem(SEEN_KEY) === "1";
     } catch {
-      seenRef.current = false;
+      found = false;
     }
+    seenRef.current = found;
+    setHinting(!found);
   }, []);
 
   useEffect(
@@ -337,6 +343,9 @@ export function useTulipEgg(ceilingRef?: RefObject<HTMLElement | null>) {
     );
     if (slots.length === 0) return;
 
+    // Found it: the dot can stop asking to be clicked.
+    setHinting(false);
+
     let fresh = slots.filter((slot) => !plantedRef.current.has(slot.key));
     if (fresh.length === 0) {
       // Every letter already has one: start the bed again from scratch, rather
@@ -376,6 +385,7 @@ export function useTulipEgg(ceilingRef?: RefObject<HTMLElement | null>) {
     titleRef,
     tulips,
     announcement,
+    hinting,
     handleDotClick,
   } as const;
 }

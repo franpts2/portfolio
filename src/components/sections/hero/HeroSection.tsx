@@ -10,8 +10,14 @@ import { useTulipEgg } from "./useTulipEgg.js";
 export function HeroSection() {
   const reducedMotion = useReducedMotion();
   const eyebrowRef = useRef<HTMLSpanElement | null>(null);
-  const { sectionRef, titleRef, tulips, announcement, handleDotClick } =
-    useTulipEgg(eyebrowRef);
+  const {
+    sectionRef,
+    titleRef,
+    tulips,
+    announcement,
+    hinting,
+    handleDotClick,
+  } = useTulipEgg(eyebrowRef);
 
   return (
     <section
@@ -46,7 +52,7 @@ export function HeroSection() {
             {profile.name}
             <button
               type="button"
-              className="title-dot"
+              className={`title-dot${hinting ? " is-hinting" : ""}`}
               onClick={handleDotClick}
               aria-label="A little surprise"
             >
