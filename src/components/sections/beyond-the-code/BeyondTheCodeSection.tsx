@@ -91,19 +91,12 @@ export function BeyondTheCodeSection() {
               );
             })}
 
-            {/* CTA placeholder reserves final height so the centered block
-						    doesn't jump when the link appears. */}
-            <div className="relative inline-block">
-              <span
-                className="invisible inline-block max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm"
-                aria-hidden="true"
-              >
-                {ctaMessage.text}
-                <span className="inline-block ml-1">→</span>
-              </span>
+            {/* The link is always rendered so its height is reserved and the
+                centered block doesn't jump when it appears. */}
+            <div className="flex justify-end">
               <motion.a
                 href="#contact"
-                className={`absolute inset-0 group ${
+                className={`group max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] ${
                   step >= totalSteps ? "" : "pointer-events-none"
                 }`}
                 aria-hidden={step < totalSteps}
@@ -124,7 +117,7 @@ export function BeyondTheCodeSection() {
                     : { duration: 0.3, ease: EASE_OUT_EXPO }
                 }
               >
-                <span className="inline-block max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm hover:border-(--color-accent) hover:text-(--color-accent) transition-colors">
+                <span className="block px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-br-sm hover:border-(--color-accent) hover:text-(--color-accent) transition-colors">
                   {ctaMessage.text}
                 </span>
               </motion.a>
