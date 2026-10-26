@@ -13,27 +13,27 @@ const messages = [
   {
     id: "music",
     from: "me" as const,
-    text: "music is a big one. i collect vinyl, build playlists for every mood, and will happily dissect a song's production for way too long. live music is my happy place.",
+    text: "music!! i collect vynil, have playlists for every mood and absolutely love going to concerts",
   },
   {
     id: "books",
     from: "me" as const,
-    text: "also books. i chase the ones that change how i see things: classics for context, contemporary masterpieces for discomfort.",
+    text: "also books. i've recently been into classics because i want to know why are these books so important? i also love books that make me uncomfortable or change my viewing of the world.",
   },
   {
     id: "people",
     from: "me" as const,
-    text: "people too. good conversations, new friends, old friends. that's the good stuff.",
+    text: "people too. a good conversation is my favorite hang out plan. making new friends and cherishing old ones makes me happy :)",
   },
   {
     id: "animals",
     from: "me" as const,
-    text: "i volunteer with cats and dogs. it's genuinely hard to have a bad day around them.",
+    text: "oh i also love animals! i volunteer with cats and dogs and it's genuinely hard to have a bad day around them.",
   },
   {
     id: "travel",
     from: "me" as const,
-    text: "and the long-term goal: see as much of the world as possible. ideally with good company and a great soundtrack.",
+    text: "and my long-term goal: see as much of the world as possible.",
   },
 ] as const;
 
@@ -91,19 +91,12 @@ export function BeyondTheCodeSection() {
               );
             })}
 
-            {/* CTA placeholder reserves final height so the centered block
-						    doesn't jump when the link appears. */}
-            <div className="relative inline-block">
-              <span
-                className="invisible inline-block max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm"
-                aria-hidden="true"
-              >
-                {ctaMessage.text}
-                <span className="inline-block ml-1">→</span>
-              </span>
+            {/* The link is always rendered so its height is reserved and the
+                centered block doesn't jump when it appears. */}
+            <div className="flex justify-end">
               <motion.a
                 href="#contact"
-                className={`absolute inset-0 group ${
+                className={`group max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] ${
                   step >= totalSteps ? "" : "pointer-events-none"
                 }`}
                 aria-hidden={step < totalSteps}
@@ -124,7 +117,7 @@ export function BeyondTheCodeSection() {
                     : { duration: 0.3, ease: EASE_OUT_EXPO }
                 }
               >
-                <span className="inline-block max-w-[min(88%,460px)] md:max-w-[min(45%,520px)] px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-bl-sm hover:border-(--color-accent) hover:text-(--color-accent) transition-colors">
+                <span className="block px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-accent) text-white rounded-br-sm transition hover:brightness-95">
                   {ctaMessage.text}
                 </span>
               </motion.a>
