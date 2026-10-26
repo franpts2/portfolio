@@ -56,23 +56,29 @@ export function BeyondTheCodeSection() {
       ref={sectionRef}
       id="beyond-the-code"
       className="relative bg-(--color-bg)"
-      style={{ height: "460vh" }}
+      style={{ height: "460svh" }}
+      // SectionSnap reads this: one page per chat step, so each wheel gesture
+      // advances the conversation instead of jumping over several messages.
+      data-snap-steps={totalSteps}
       aria-labelledby="beyond-heading"
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-center py-16">
+      {/* Top-aligned rather than centered: the header then stays put while the
+          conversation grows, instead of drifting upward with every message.
+          Padding clears the fixed site header on each breakpoint. */}
+      <div className="beyond-panel sticky top-0 h-svh flex flex-col justify-start pt-[4.5rem] pb-2 sm:pt-24 sm:pb-2">
         <div className="container-main">
-          <div className="mb-10">
+          <div className="beyond-heading mb-5 sm:mb-10">
             <SectionHeader
               label="Beyond the code"
               title="If we were texting"
               id="beyond-heading"
             />
-            <p className="t-body mt-4 max-w-[50ch]">
+            <p className="beyond-instruction t-body mt-2 sm:mt-4 max-w-[50ch]">
               Keep scrolling. The conversation unfolds as you go.
             </p>
           </div>
 
-          <div className="flex flex-col gap-3">
+          <div className="beyond-messages flex flex-col gap-2 sm:gap-3">
             {messages.map((msg, idx) => {
               const isPrompt = msg.from === "them";
               const typingStep = isPrompt ? 1 : idx * 2;

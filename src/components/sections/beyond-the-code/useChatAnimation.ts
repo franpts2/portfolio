@@ -19,13 +19,15 @@ export function useChatAnimation({
   totalSteps,
 }: UseChatAnimationProps): UseChatAnimationReturn {
   const sectionRef = useRef<HTMLElement>(null);
-  const [step, setStep] = useState(0);
+  // The opening prompt is already on screen when the section arrives. Starting
+  // at step 0 left it invisible on the exact snap position, where progress is 0.
+  const [step, setStep] = useState(1);
   const [direction, setDirection] = useState<"up" | "down">("down");
   // useReducedMotion returns null when the preference can't be determined;
   // treat that as "no preference" so animations play as normal.
   const reducedMotion = useReducedMotion() ?? false;
   const prevProgress = useRef(0);
-  const stepRef = useRef(0);
+  const stepRef = useRef(1);
   const dirRef = useRef<"up" | "down">("down");
 
   const { scrollYProgress } = useScroll({
@@ -50,12 +52,6 @@ export function useChatAnimation({
       Math.max(1, Math.floor(latest * totalSteps) + 1),
     );
     if (rawStep === stepRef.current) return;
-
-    if (stepRef.current === 0) {
-      stepRef.current = rawStep;
-      setStep(rawStep);
-      return;
-    }
 
     const boundary =
       (rawStep > stepRef.current ? stepRef.current : stepRef.current - 1) /
