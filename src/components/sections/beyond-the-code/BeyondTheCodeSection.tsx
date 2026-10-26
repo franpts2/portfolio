@@ -123,7 +123,7 @@ export function BeyondTheCodeSection() {
                     : { duration: 0.3, ease: EASE_OUT_EXPO }
                 }
               >
-                <span className="block px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-accent) text-white rounded-br-sm transition hover:brightness-95">
+                <span className="beyond-bubble block px-4 py-2.5 sm:px-[1.1rem] sm:py-[0.85rem] rounded-[1.25rem] text-[0.875rem] leading-snug sm:text-[0.95rem] sm:leading-relaxed bg-(--color-accent) text-white rounded-br-sm transition hover:brightness-95">
                   {ctaMessage.text}
                 </span>
               </motion.a>
