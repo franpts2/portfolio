@@ -26,7 +26,7 @@ export function ExperienceSection() {
           {/* Work */}
           <div className="lg:col-span-8">
             <Reveal delay={0.1}>
-              <h3 className="t-label mb-6">Work</h3>
+              <h3 className="t-label">Work</h3>
             </Reveal>
             <div className="flex flex-col">
               {work.map((role, idx) => (
@@ -40,7 +40,7 @@ export function ExperienceSection() {
           {/* Community */}
           <div className="lg:col-span-4">
             <Reveal delay={0.2}>
-              <h3 className="t-label mb-6">Community</h3>
+              <h3 className="t-label">Community</h3>
             </Reveal>
             <div className="flex flex-col">
               {community.map((role, idx) => (

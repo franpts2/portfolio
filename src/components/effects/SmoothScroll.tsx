@@ -1,6 +1,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { ReactLenis, type LenisRef } from "lenis/react";
 import { frame, cancelFrame } from "motion/react";
+import { SectionSnap } from "./SectionSnap.js";
 
 type SmoothScrollProps = {
 	children: ReactNode;
@@ -45,6 +46,7 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
 			}}
 		>
 			{children}
+			<SectionSnap />
 		</ReactLenis>
 	);
 }
