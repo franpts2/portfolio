@@ -33,7 +33,7 @@ export function ChatMessage({
               key="typing"
               className={`absolute top-0 ${
                 isMe ? "left-0" : "right-0"
-              } inline-flex items-center justify-center gap-[0.5rem] min-w-[4.75rem] min-h-[3rem] px-5 py-[0.85rem] rounded-[1.25rem] rounded-bl-sm w-fit bg-(--color-accent)`}
+              } inline-flex items-center justify-center gap-[0.5rem] min-w-[4.75rem] min-h-[3rem] px-5 py-[0.85rem] rounded-[1.25rem] rounded-bl-sm w-fit bg-(--color-bg-soft) border border-(--color-line)`}
               aria-label="Typing"
               initial={
                 reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9 }
@@ -48,13 +48,13 @@ export function ChatMessage({
                   : { duration: 0.14, ease: EASE_OUT_EXPO }
               }
             >
-              <span className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-(--color-ink-muted) animate-[typingBounce_1.2s_infinite_ease-in-out]" />
               <span
-                className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
+                className="w-2.5 h-2.5 rounded-full bg-(--color-ink-muted) animate-[typingBounce_1.2s_infinite_ease-in-out]"
                 style={{ animationDelay: "0.12s" }}
               />
               <span
-                className="w-2.5 h-2.5 rounded-full bg-white animate-[typingBounce_1.2s_infinite_ease-in-out]"
+                className="w-2.5 h-2.5 rounded-full bg-(--color-ink-muted) animate-[typingBounce_1.2s_infinite_ease-in-out]"
                 style={{ animationDelay: "0.24s" }}
               />
             </motion.div>
