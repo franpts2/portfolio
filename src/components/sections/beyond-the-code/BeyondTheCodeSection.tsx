@@ -117,7 +117,7 @@ export function BeyondTheCodeSection() {
                     : { duration: 0.3, ease: EASE_OUT_EXPO }
                 }
               >
-                <span className="block px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-bg-soft) text-(--color-ink) border border-(--color-line) rounded-br-sm hover:border-(--color-accent) hover:text-(--color-accent) transition-colors">
+                <span className="block px-[1.1rem] py-[0.85rem] rounded-[1.25rem] text-[0.95rem] leading-relaxed bg-(--color-accent) text-white rounded-br-sm transition hover:brightness-95">
                   {ctaMessage.text}
                 </span>
               </motion.a>
