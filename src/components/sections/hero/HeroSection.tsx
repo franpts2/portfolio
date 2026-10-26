@@ -23,7 +23,7 @@ export function HeroSection() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-12 px-4"
+      className="relative min-h-svh flex flex-col items-center justify-center pt-20 pb-12 px-4"
       aria-label="Introduction"
     >
       {/* Rendered over the text below, so no flower is clipped by a letter. */}

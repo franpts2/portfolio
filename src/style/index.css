@@ -130,7 +130,14 @@
 		color: var(--color-ink-muted);
 	}
 
+	/* One section = one screen of the strict pager. `min-height` (not `height`)
+	   lets unusually tall content grow into a second page instead of being
+	   clipped; SectionSnap adds a bottom-aligned stop for those. */
 	.section {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		min-height: 100svh;
 		padding-block: var(--spacing-section);
 	}
 
