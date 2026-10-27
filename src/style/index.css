@@ -145,6 +145,19 @@
 		border-top: 1px solid var(--color-line);
 	}
 
+	/* The pinned conversation clears the fixed header on each breakpoint. */
+	.beyond-panel {
+		padding-top: 4.5rem;
+		padding-bottom: 0.5rem;
+	}
+
+	@media (min-width: 40rem) {
+		.beyond-panel {
+			padding-top: 6rem;
+			padding-bottom: 0.5rem;
+		}
+	}
+
 	.hairline-v {
 		border-left: 1px solid var(--color-line);
 	}
@@ -261,37 +274,5 @@
 	.accent-dot::after {
 		content: ".";
 		color: var(--color-accent);
-	}
-
-	/* Short viewports: the chat panel is pinned under the fixed header, so it
-	   gives back its breathing room instead of clipping the last messages. */
-	@media (max-height: 700px) {
-		.beyond-panel {
-			padding-top: 5.5rem;
-			padding-bottom: 0.5rem;
-		}
-
-		.beyond-heading {
-			margin-bottom: 0.25rem;
-		}
-
-		.beyond-instruction {
-			display: none;
-		}
-
-		.beyond-messages {
-			gap: 0.125rem;
-		}
-
-		.beyond-bubble {
-			padding-block: 0.5rem;
-		}
-	}
-
-	/* The mobile header is shorter, so the panel needs less clearance. */
-	@media (max-height: 700px) and (max-width: 47.999rem) {
-		.beyond-panel {
-			padding-top: 4.5rem;
-		}
 	}
 }
