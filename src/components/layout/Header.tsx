@@ -76,7 +76,7 @@ export function Header() {
         >
           <a
             href="#"
-            className="inline-flex min-h-11 items-center font-display font-semibold text-lg tracking-tight text-(--color-ink) hover:text-(--color-accent) transition-colors"
+            className="inline-flex min-h-11 min-w-11 items-center font-display font-semibold text-lg tracking-tight text-(--color-ink) hover:text-(--color-accent) transition-colors"
             aria-label={`${profile.name}, Home`}
           >
             {profile.mark}

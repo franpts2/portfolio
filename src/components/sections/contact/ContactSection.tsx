@@ -37,7 +37,7 @@ export function ContactSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex min-h-11 items-center gap-2 text-sm font-medium text-(--color-ink-muted) hover:text-(--color-accent) transition-colors"
+                    className="group inline-flex min-h-11 min-w-11 items-center gap-2 text-sm font-medium text-(--color-ink-muted) hover:text-(--color-accent) transition-colors"
                   >
                     <Icon
                       icon={
