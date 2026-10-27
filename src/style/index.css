@@ -30,6 +30,7 @@
 		scroll-behavior: smooth;
 		scroll-padding-top: calc(0.75rem + env(safe-area-inset-top, 0px));
 		-webkit-text-size-adjust: 100%;
+		overscroll-behavior-y: none;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -53,6 +54,7 @@
 		font-family: var(--font-sans);
 		font-size: 16px;
 		line-height: 1.55;
+		overscroll-behavior-y: none;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
@@ -78,6 +80,22 @@
 		background: none;
 		border: none;
 		cursor: pointer;
+	}
+
+	button,
+	a,
+	[role="button"],
+	input,
+	textarea,
+	select {
+		touch-action: manipulation;
+	}
+
+	button,
+	[role="button"] {
+		user-select: none;
+		-webkit-user-select: none;
+		-webkit-touch-callout: none;
 	}
 
 	img {
