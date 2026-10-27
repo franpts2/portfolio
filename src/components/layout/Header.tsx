@@ -25,7 +25,7 @@ export function Header() {
         >
           <a
             href="#"
-            className="font-display font-semibold text-lg tracking-tight text-(--color-ink) hover:text-(--color-accent) transition-colors"
+            className="inline-flex min-h-11 items-center font-display font-semibold text-lg tracking-tight text-(--color-ink) hover:text-(--color-accent) transition-colors"
             aria-label={`${profile.name}, Home`}
           >
             {profile.mark}
@@ -37,7 +37,7 @@ export function Header() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="t-label hover:text-(--color-accent) transition-colors"
+                  className="t-label inline-flex min-h-11 items-center hover:text-(--color-accent) transition-colors"
                 >
                   {item.label}
                 </a>

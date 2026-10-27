@@ -8,7 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const baseClass =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium text-sm transition-[color,background-color,border-color,scale] duration-150 active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100";
+  "inline-flex min-h-11 select-none items-center justify-center gap-2 rounded-full font-medium text-sm transition-[color,background-color,border-color,scale] duration-150 active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100";
 
 const variantClass = {
   primary: "bg-(--color-ink) text-(--color-bg) hover:bg-(--color-accent)",

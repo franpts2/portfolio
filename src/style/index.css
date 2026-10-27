@@ -244,9 +244,9 @@
 	.title-dot::before {
 		content: "";
 		position: absolute;
-		/* Only widen the target: the line box is already tall enough, and
-		   growing upward would swallow clicks on the line above. */
-		inset: 0 -0.42em 0 -0.06em;
+		/* Carry a real touch target around the glyph without shifting the text.
+		   The horizontal reach is generous because the stop is only a few px wide. */
+		inset: -0.35rem -0.8em -0.35rem -0.15em;
 		border-radius: 999px;
 	}
 
