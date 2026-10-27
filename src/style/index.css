@@ -215,9 +215,11 @@
 		transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
-	.link-underline:hover::after {
-		transform: scaleX(1);
-		transform-origin: left;
+	@media (hover: hover) and (pointer: fine) {
+		.link-underline:hover::after {
+			transform: scaleX(1);
+			transform-origin: left;
+		}
 	}
 
 	/* The full stop after the hero name is also the trigger for the tulip
@@ -265,9 +267,12 @@
 		transition: transform 120ms var(--dot-ease);
 	}
 
-	/* Kept last so a real hover or click always beats the invitation. */
-	.title-dot:hover {
-		transform: var(--dot-lift);
+	/* Kept last so a real hover or click always beats the invitation. Touch
+	   has no hover: without the capability query the lift sticks after a tap. */
+	@media (hover: hover) and (pointer: fine) {
+		.title-dot:hover {
+			transform: var(--dot-lift);
+		}
 	}
 
 	.title-dot:active {
@@ -288,8 +293,14 @@
 		}
 
 		/* Direct pointer feedback survives, as a dim rather than movement. */
-		.title-dot:hover,
 		.title-dot:active {
+			transform: none;
+			opacity: 0.7;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) and (hover: hover) and (pointer: fine) {
+		.title-dot:hover {
 			transform: none;
 			opacity: 0.7;
 		}
