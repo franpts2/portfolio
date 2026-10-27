@@ -29,12 +29,12 @@ export function HeroSection() {
       {/* Rendered over the text below, so no flower is clipped by a letter. */}
       <TulipPatch tulips={tulips} />
 
-      <div className="container-main grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+      <div className="hero-grid container-main grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
         {/* Text */}
-        <div className="relative z-10 order-2 lg:order-1 text-center lg:text-left">
+        <div className="hero-copy relative z-10 order-2 lg:order-1 text-center lg:text-left">
           <motion.span
             ref={eyebrowRef}
-            className="t-label inline-block mb-4"
+            className="hero-eyebrow t-label inline-block mb-4"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: EASE_OUT_EXPO }}
@@ -61,7 +61,7 @@ export function HeroSection() {
           </motion.h1>
 
           <motion.p
-            className="t-body mt-6 max-w-lg mx-auto lg:mx-0 text-balance"
+            className="hero-statement t-body mt-6 max-w-lg mx-auto lg:mx-0 text-balance"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35, ease: EASE_OUT_EXPO }}
@@ -70,7 +70,7 @@ export function HeroSection() {
           </motion.p>
 
           <motion.div
-            className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4"
+            className="hero-actions mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: EASE_OUT_EXPO }}
@@ -85,7 +85,7 @@ export function HeroSection() {
         </div>
 
         {/* Portrait */}
-        <div className="order-1 lg:order-2 flex justify-center">
+        <div className="hero-portrait-wrap order-1 lg:order-2 flex justify-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -98,6 +98,7 @@ export function HeroSection() {
             <SquishyPortrait
               src={profile.portrait}
               alt={`Portrait of ${profile.name}`}
+              className="hero-portrait"
             />
           </motion.div>
         </div>
