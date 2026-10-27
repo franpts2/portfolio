@@ -6,6 +6,13 @@ import {
   useReducedMotion,
 } from "motion/react";
 
+/**
+ * Pointer-following tilt for the portrait.
+ *
+ * Only real mouse input tilts: browsers synthesise mouse events after a tap,
+ * which used to leave the portrait frozen at a random 3D angle. Pointer events
+ * carry the device type, so touch and pen simply do not move it.
+ */
 export function useTilt() {
   const reducedMotion = useReducedMotion();
 
@@ -29,9 +36,9 @@ export function useTilt() {
     { stiffness: 120, damping: 20 },
   );
 
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      if (reducedMotion) return;
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent<HTMLButtonElement>) => {
+      if (e.pointerType !== "mouse" || reducedMotion) return;
       const rect = e.currentTarget.getBoundingClientRect();
       mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
       mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
@@ -39,10 +46,10 @@ export function useTilt() {
     [mouseX, mouseY, reducedMotion],
   );
 
-  const handleMouseLeave = useCallback(() => {
+  const handlePointerLeave = useCallback(() => {
     mouseX.set(0);
     mouseY.set(0);
   }, [mouseX, mouseY]);
 
-  return { rotateX, rotateY, x, y, handleMouseMove, handleMouseLeave };
+  return { rotateX, rotateY, x, y, handlePointerMove, handlePointerLeave };
 }
