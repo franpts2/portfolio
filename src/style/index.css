@@ -119,6 +119,18 @@
 		padding-top: env(safe-area-inset-top, 0px);
 	}
 
+	/* Both sit below the fixed header, whose height includes the safe-area inset.
+	   Absolute rather than fixed: the header's backdrop blur makes it the
+	   containing block for fixed children, collapsing their viewport height. */
+	.mobile-menu-scrim {
+		top: 100%;
+		height: calc(100dvh - 4rem - env(safe-area-inset-top, 0px));
+	}
+
+	.mobile-menu-panel {
+		max-height: calc(100svh - 4rem - env(safe-area-inset-top, 0px));
+	}
+
 	.site-footer {
 		padding-block: 2rem;
 		padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
