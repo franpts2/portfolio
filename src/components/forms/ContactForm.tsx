@@ -64,7 +64,7 @@ export function ContactForm() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className="flex flex-col gap-8" noValidate>
+		<form onSubmit={handleSubmit} className="flex flex-col gap-8">
 			{/* Honeypot: hidden from humans, tempting for bots */}
 			<div aria-hidden="true" className="hidden">
 				<label htmlFor="contact-company">Company</label>
@@ -85,6 +85,8 @@ export function ContactForm() {
 					name="name"
 					type="text"
 					autoComplete="name"
+					autoCapitalize="words"
+					enterKeyHint="next"
 					required
 					placeholder=" "
 					value={name}
@@ -102,6 +104,10 @@ export function ContactForm() {
 					name="email"
 					type="email"
 					autoComplete="email"
+					autoCapitalize="none"
+					inputMode="email"
+					spellCheck={false}
+					enterKeyHint="next"
 					placeholder=" "
 					value={email}
 					onChange={(event) => setEmail(event.target.value)}
@@ -117,6 +123,8 @@ export function ContactForm() {
 					id="contact-message"
 					name="message"
 					rows={5}
+					autoComplete="off"
+					enterKeyHint="send"
 					required
 					placeholder=" "
 					value={message}

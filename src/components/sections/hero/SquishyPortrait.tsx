@@ -6,13 +6,18 @@ import { useTilt } from "../../effects/useTilt.js";
 interface SquishyPortraitProps {
   readonly src: string;
   readonly alt: string;
+  readonly className?: string;
 }
 
-export function SquishyPortrait({ src, alt }: SquishyPortraitProps) {
+export function SquishyPortrait({
+  src,
+  alt,
+  className,
+}: SquishyPortraitProps) {
   const controls = useAnimationControls();
   const wrapperRef = useRef<HTMLButtonElement>(null);
 
-  const { rotateX, rotateY, x, y, handleMouseMove, handleMouseLeave } =
+  const { rotateX, rotateY, x, y, handlePointerMove, handlePointerLeave } =
     useTilt();
 
   const handleClick = async () => {
@@ -38,10 +43,10 @@ export function SquishyPortrait({ src, alt }: SquishyPortraitProps) {
     <button
       type="button"
       ref={wrapperRef}
-      className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 cursor-pointer select-none bg-transparent p-0 rounded-full"
+      className={`relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 cursor-pointer select-none bg-transparent p-0 rounded-full ${className ?? ""}`}
       style={{ perspective: 1000 }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
       onClick={handleClick}
       aria-label={`${alt}, press to squish`}
     >

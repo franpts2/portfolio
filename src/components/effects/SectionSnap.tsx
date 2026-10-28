@@ -102,6 +102,12 @@ export function SectionSnap() {
 		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
 		let pages = buildPages();
+		// Paging is a mouse/trackpad affordance. On phones, and on narrow
+		// windows where sections are several screens tall, one wheel gesture
+		// would otherwise skip most of the content.
+		const canPage = window.matchMedia(
+			"(min-width: 72rem) and (min-height: 53.5rem) and (hover: hover) and (pointer: fine)",
+		);
 		let busy = false;
 		// True from the moment a page is triggered until the wheel goes quiet.
 		// This is what stops a trackpad flick from turning several pages.
@@ -169,6 +175,7 @@ export function SectionSnap() {
 			// Ctrl+wheel is pinch-zoom, not scrolling.
 			if (event instanceof WheelEvent && event.ctrlKey) return;
 			if (deltaY === 0) return;
+			if (!canPage.matches) return;
 
 			// Every wheel event postpones "settled"; only a real pause in the
 			// input re-arms the pager.

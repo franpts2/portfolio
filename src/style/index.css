@@ -28,7 +28,9 @@
 
 	html {
 		scroll-behavior: smooth;
+		scroll-padding-top: calc(0.75rem + env(safe-area-inset-top, 0px));
 		-webkit-text-size-adjust: 100%;
+		overscroll-behavior-y: none;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -52,6 +54,7 @@
 		font-family: var(--font-sans);
 		font-size: 16px;
 		line-height: 1.55;
+		overscroll-behavior-y: none;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
@@ -79,6 +82,22 @@
 		cursor: pointer;
 	}
 
+	button,
+	a,
+	[role="button"],
+	input,
+	textarea,
+	select {
+		touch-action: manipulation;
+	}
+
+	button,
+	[role="button"] {
+		user-select: none;
+		-webkit-user-select: none;
+		-webkit-touch-callout: none;
+	}
+
 	img {
 		display: block;
 		max-width: 100%;
@@ -96,6 +115,35 @@
 }
 
 @layer components {
+	.site-header {
+		padding-top: env(safe-area-inset-top, 0px);
+	}
+
+	/* Both sit below the fixed header, whose height includes the safe-area inset.
+	   Absolute rather than fixed: the header's backdrop blur makes it the
+	   containing block for fixed children, collapsing their viewport height. */
+	.mobile-menu-scrim {
+		top: 100%;
+		height: calc(100dvh - 4rem - env(safe-area-inset-top, 0px));
+	}
+
+	.mobile-menu-panel {
+		max-height: calc(100svh - 4rem - env(safe-area-inset-top, 0px));
+	}
+
+	.site-footer {
+		padding-block: 2rem;
+		padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+	}
+
+	.hero-section {
+		padding-top: calc(5rem + env(safe-area-inset-top, 0px));
+		padding-bottom: 3rem;
+		/* The name's dot carries an oversized, invisible tap target. Clip only
+		   horizontally so that target cannot widen the page on small phones. */
+		overflow-x: clip;
+	}
+
 	.container-main {
 		width: min(92vw, 72rem);
 		margin-inline: auto;
@@ -137,12 +185,27 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		min-height: 100vh;
 		min-height: 100svh;
-		padding-block: var(--spacing-section);
+		padding-block: calc(var(--spacing-section) + env(safe-area-inset-top, 0px))
+			var(--spacing-section);
 	}
 
 	.hairline {
 		border-top: 1px solid var(--color-line);
+	}
+
+	/* The pinned conversation clears the fixed header on each breakpoint. */
+	.beyond-panel {
+		padding-top: calc(4.5rem + env(safe-area-inset-top, 0px));
+		padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+	}
+
+	@media (min-width: 40rem) {
+		.beyond-panel {
+			padding-top: calc(6rem + env(safe-area-inset-top, 0px));
+			padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+		}
 	}
 
 	.hairline-v {
@@ -167,9 +230,11 @@
 		transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
-	.link-underline:hover::after {
-		transform: scaleX(1);
-		transform-origin: left;
+	@media (hover: hover) and (pointer: fine) {
+		.link-underline:hover::after {
+			transform: scaleX(1);
+			transform-origin: left;
+		}
 	}
 
 	/* The full stop after the hero name is also the trigger for the tulip
@@ -194,9 +259,9 @@
 	.title-dot::before {
 		content: "";
 		position: absolute;
-		/* Only widen the target: the line box is already tall enough, and
-		   growing upward would swallow clicks on the line above. */
-		inset: 0 -0.42em 0 -0.06em;
+		/* Carry a real touch target around the glyph without shifting the text.
+		   The horizontal reach is generous because the stop is only a few px wide. */
+		inset: -0.35rem -0.8em -0.35rem -0.15em;
 		border-radius: 999px;
 	}
 
@@ -217,9 +282,12 @@
 		transition: transform 120ms var(--dot-ease);
 	}
 
-	/* Kept last so a real hover or click always beats the invitation. */
-	.title-dot:hover {
-		transform: var(--dot-lift);
+	/* Kept last so a real hover or click always beats the invitation. Touch
+	   has no hover: without the capability query the lift sticks after a tap. */
+	@media (hover: hover) and (pointer: fine) {
+		.title-dot:hover {
+			transform: var(--dot-lift);
+		}
 	}
 
 	.title-dot:active {
@@ -240,8 +308,14 @@
 		}
 
 		/* Direct pointer feedback survives, as a dim rather than movement. */
-		.title-dot:hover,
 		.title-dot:active {
+			transform: none;
+			opacity: 0.7;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) and (hover: hover) and (pointer: fine) {
+		.title-dot:hover {
 			transform: none;
 			opacity: 0.7;
 		}
@@ -262,36 +336,78 @@
 		content: ".";
 		color: var(--color-accent);
 	}
+}
 
-	/* Short viewports: the chat panel is pinned under the fixed header, so it
-	   gives back its breathing room instead of clipping the last messages. */
-	@media (max-height: 700px) {
-		.beyond-panel {
-			padding-top: 5.5rem;
-			padding-bottom: 0.5rem;
-		}
-
-		.beyond-heading {
-			margin-bottom: 0.25rem;
-		}
-
-		.beyond-instruction {
-			display: none;
-		}
-
-		.beyond-messages {
-			gap: 0.125rem;
-		}
-
-		.beyond-bubble {
-			padding-block: 0.5rem;
-		}
+/* Short viewports: the hero is the first screen, so the portrait and spacing
+   contract until the name, statement and both calls to action fit above the
+   fold. Left unlayered so these sizes win over the Tailwind utilities on the
+   portrait, which would otherwise keep their w-64/sm:w-80 sizes. */
+@media (max-height: 43.75rem) {
+	.hero-section {
+		padding-top: calc(4.5rem + env(safe-area-inset-top, 0px));
+		padding-bottom: 1rem;
 	}
 
-	/* The mobile header is shorter, so the panel needs less clearance. */
-	@media (max-height: 700px) and (max-width: 47.999rem) {
-		.beyond-panel {
-			padding-top: 4.5rem;
-		}
+	.hero-grid {
+		gap: 1rem;
+	}
+
+	.hero-eyebrow {
+		margin-bottom: 0.25rem;
+	}
+
+	.hero-copy h1 {
+		font-size: clamp(2rem, 9vw, 3.5rem);
+	}
+
+	.hero-statement {
+		margin-top: 0.75rem;
+		font-size: 0.9375rem;
+		line-height: 1.5;
+	}
+
+	.hero-actions {
+		margin-top: 1rem;
+		gap: 0.75rem;
+	}
+
+	.hero-portrait {
+		width: 9.5rem;
+		height: 9.5rem;
+	}
+}
+
+/* Landscape phones: put the portrait beside the copy instead of above it.
+   Stacked, the hero would need well over a screen even after contraction. */
+@media (max-height: 43.75rem) and (min-width: 40rem) {
+	/* The header grows to 5rem at this width, so give it more clearance. */
+	.hero-section {
+		padding-top: calc(6rem + env(safe-area-inset-top, 0px));
+	}
+
+	.hero-grid {
+		grid-template-columns: minmax(0, 1fr) auto;
+	}
+
+	.hero-copy {
+		order: 1;
+		text-align: left;
+	}
+
+	.hero-statement {
+		margin-inline: 0;
+	}
+
+	.hero-actions {
+		justify-content: flex-start;
+	}
+
+	.hero-portrait-wrap {
+		order: 2;
+	}
+
+	.hero-portrait {
+		width: 11rem;
+		height: 11rem;
 	}
 }
