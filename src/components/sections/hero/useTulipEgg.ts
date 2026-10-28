@@ -13,7 +13,6 @@ import {
 } from "../../../lib/tulipPatch.js";
 import { TULIP_COLORS } from "./Tulip.js";
 
-const SEEN_KEY = "hero-egg-seen";
 /** Third click is the payoff, so it plants whatever is left. */
 const CLICKS_TO_REVEAL = 3;
 const LETTERS_PER_CLICK = [3, 6];
@@ -297,31 +296,21 @@ export function useTulipEgg(ceilingRef?: RefObject<HTMLElement | null>) {
   const [announcement, setAnnouncement] = useState("");
   // Until the egg has been found the dot keeps asking to be clicked, and while
   // it asks it wears one of the two poses from its click animation.
-  const [found, setFound] = useState(true);
+  const [found, setFound] = useState(false);
   const [dotPose, setDotPose] = useState<DotPose>(null);
   // An invitation nobody can see is just a timer, so it only asks while the
   // hero is on screen.
   const [inView, setInView] = useState(true);
 
   const clicksRef = useRef(0);
+  // Once the egg has been revealed, every later click fills the whole name at
+  // once instead of teasing three letters at a time.
   const seenRef = useRef(false);
   const plantedRef = useRef(new Set<string>());
   const clearTimerRef = useRef<number | null>(null);
   // How long the dot waits between asks. It grows as the reader ignores it, and
   // lives in a ref so scrolling away and back does not reset its patience.
   const nudgeGapRef = useRef(NUDGE_EVERY);
-
-  // Once someone has found it, a single click fills the name.
-  useEffect(() => {
-    let alreadySeen = false;
-    try {
-      alreadySeen = sessionStorage.getItem(SEEN_KEY) === "1";
-    } catch {
-      alreadySeen = false;
-    }
-    seenRef.current = alreadySeen;
-    setFound(alreadySeen);
-  }, []);
 
   // Stop asking for attention the moment the hero leaves the screen.
   useEffect(() => {
@@ -443,11 +432,6 @@ export function useTulipEgg(ceilingRef?: RefObject<HTMLElement | null>) {
     if (revealing) {
       clicksRef.current = 0;
       seenRef.current = true;
-      try {
-        sessionStorage.setItem(SEEN_KEY, "1");
-      } catch {
-        // Private mode: the egg just won't be remembered.
-      }
       setAnnouncement("A tulip comes up behind every letter of the title.");
       launch(chosen, REVEAL);
       return;
