@@ -136,6 +136,20 @@
 		padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
 	}
 
+	/* The footer is the bottom strip of the contact screen, not a screen of its
+	   own. On the paged breakpoint the contact section gives up exactly the
+	   footer's height — 2rem top padding + 2rem bottom padding + one 1.25rem
+	   text row + the hairline — so the two together fill one viewport and the
+	   pager only needs a single stop. SectionSnap measures the real footer and
+	   merges the stops if this estimate ever drifts. */
+	@media (min-width: 72rem) and (min-height: 53.5rem) {
+		#contact.section {
+			min-height: calc(
+				100svh - 5.3125rem - env(safe-area-inset-bottom, 0px)
+			);
+		}
+	}
+
 	.hero-section {
 		padding-top: calc(5rem + env(safe-area-inset-top, 0px));
 		padding-bottom: 3rem;

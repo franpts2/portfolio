@@ -38,7 +38,7 @@ function buildPages(): number[] {
 	const sections = document.querySelectorAll<HTMLElement>(
 		"#main-content > section",
 	);
-	const pages: number[] = [];
+	let pages: number[] = [];
 
 	for (const section of sections) {
 		const start = section.getBoundingClientRect().top + window.scrollY;
@@ -79,7 +79,29 @@ function buildPages(): number[] {
 		}
 	}
 
-	// The footer lives outside <main>; the document end is its own last page.
+	// The footer sits outside <main>. When it is a short strip that fits below
+	// the last section's content, the two share one screen: land on the
+	// document end so the footer is visible, and drop the near-duplicate stop
+	// at the section top. A tall footer still earns its own page.
+	const lastSection = sections[sections.length - 1];
+	const footer =
+		document.querySelector<HTMLElement>(".site-footer") ?? undefined;
+	const footerHeight = footer?.offsetHeight ?? 0;
+	const lastStart = lastSection
+		? lastSection.getBoundingClientRect().top + window.scrollY
+		: 0;
+
+	const footerSharesLastPage =
+		lastSection !== undefined &&
+		footerHeight > 0 &&
+		footerHeight <= viewport * 0.3 &&
+		maxScroll > lastStart &&
+		maxScroll - lastStart <= footerHeight + MIN_CONTENT_OVERFLOW;
+
+	if (footerSharesLastPage) {
+		// Replace the section-top stop with the document end.
+		pages = pages.filter((page) => page < lastStart - MIN_PAGE_GAP);
+	}
 	pages.push(maxScroll);
 
 	const clamped = pages.map((page) =>
