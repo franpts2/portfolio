@@ -28,9 +28,9 @@ export const projects: readonly Project[] = [
   {
     slug: "cadence",
     title: "cadence",
-    tagline: "A Spotify-connected music journal with a song for every day",
+    tagline: "A daily music journal with a song for every day",
     description:
-      "Cadence turns your listening into a calendar. Connect Spotify, pick one song per day and build an interactive record of your life through music. I designed and built the full-stack app: Spotify OAuth, a drag-and-drop calendar, playlist import and export, and song previews.",
+      "Cadence turns your days into a calendar of music. Sign in with Google, pick one song per day, and build an interactive record of your life through music. I designed and built the full-stack app: Auth.js sign-in, Spotify search through an app-only API token, a drag-and-drop calendar with touch support, song previews, and shareable month images.",
     role: "Full-stack, Interface design",
     year: 2026,
     status: "shipped",
