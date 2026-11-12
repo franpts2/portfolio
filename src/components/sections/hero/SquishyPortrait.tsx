@@ -2,17 +2,21 @@ import { useRef } from "react";
 import { motion, useAnimationControls } from "motion/react";
 import { EASE_OUT_EXPO } from "../../../lib/motion.js";
 import { useTilt } from "../../effects/useTilt.js";
+import type { Season } from "../../../lib/season.js";
+import { SantaHat } from "./SantaHat.js";
 
 interface SquishyPortraitProps {
   readonly src: string;
   readonly alt: string;
   readonly className?: string;
+  readonly season: Season;
 }
 
 export function SquishyPortrait({
   src,
   alt,
   className,
+  season,
 }: SquishyPortraitProps) {
   const controls = useAnimationControls();
   const wrapperRef = useRef<HTMLButtonElement>(null);
@@ -70,6 +74,10 @@ export function SquishyPortrait({
             className="w-full h-full object-cover pointer-events-none"
           />
         </div>
+
+        {season === "winter" && (
+          <SantaHat className="pointer-events-none absolute left-[62%] top-[12%] z-10 w-[54%] -translate-x-1/2 -translate-y-1/2 rotate-24 scale-[0.85] drop-shadow-[0_10px_18px_rgba(0,0,0,0.22)]" />
+        )}
       </motion.div>
     </button>
   );

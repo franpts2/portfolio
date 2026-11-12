@@ -49,7 +49,7 @@ export function App() {
 					<SkipLink />
 					<Header />
 					<main id="main-content">
-						<HeroSection />
+						<HeroSection season={season} />
 						<AboutSection />
 						<WorkSection />
 						<ExperienceSection />
