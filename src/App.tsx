@@ -11,8 +11,16 @@ import { BeyondTheCodeSection } from "./components/sections/beyond-the-code/Beyo
 import { ContactSection } from "./components/sections/contact/ContactSection.js";
 import { Footer } from "./components/layout/Footer.js";
 import { ErrorBoundary } from "./components/error/ErrorBoundary.js";
+import { useSeason } from "./lib/season.js";
 
 export function App() {
+	const season = useSeason();
+
+	useEffect(() => {
+		// exposed for CSS and DevTools; the season also drives the hero directly.
+		document.documentElement.dataset.season = season;
+	}, [season]);
+
 	useEffect(() => {
 		// The inline script in index.html does this as early as possible; kept here
 		// as a fallback for browsers where the script could not run.
@@ -41,7 +49,7 @@ export function App() {
 					<SkipLink />
 					<Header />
 					<main id="main-content">
-						<HeroSection />
+						<HeroSection season={season} />
 						<AboutSection />
 						<WorkSection />
 						<ExperienceSection />
