@@ -50,8 +50,10 @@ export function SquishyPortrait({
       onClick={handleClick}
       aria-label={`${alt}, press to squish`}
     >
+      {/* The crop lives on an inner layer so decoration can sit outside the
+          circle while still following its tilt and squish. */}
       <motion.div
-        className="w-full h-full rounded-full overflow-hidden"
+        className="relative w-full h-full"
         style={{
           rotateX,
           rotateY,
@@ -61,11 +63,13 @@ export function SquishyPortrait({
         }}
         animate={controls}
       >
-        <motion.img
-          src={src}
-          alt={alt}
-          className="w-full h-full object-cover pointer-events-none"
-        />
+        <div className="w-full h-full rounded-full overflow-hidden">
+          <motion.img
+            src={src}
+            alt={alt}
+            className="w-full h-full object-cover pointer-events-none"
+          />
+        </div>
       </motion.div>
     </button>
   );
