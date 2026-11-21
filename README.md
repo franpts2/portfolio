@@ -1,17 +1,30 @@
-# Francisca Portugal - Portfolio
+# Francisca Portugal — Portfolio
 
-<div align="left">
-	<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"/>
-	<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
-	<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS"/>
-	<img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite"/>
-</div>
+A personal portfolio for frontend work: a project gallery, experience timeline, and interactive details.
+
+<p align="left">
+  <a href="https://franciscapt.dev"><img src="https://img.shields.io/badge/live-franciscapt.dev-FF3D81?style=flat-square" alt="Live site"></a>
+</p>
+
+<p align="left">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/Cloudflare%20Pages-F38020?style=for-the-badge&logo=Cloudflare%20Pages&logoColor=white" alt="Cloudflare Pages">
+</p>
 
 ## About
 
 Personal portfolio website showcasing my work as a frontend engineer. Features a modern, responsive UI, project gallery, experience timeline, and interactive components.
 
-## Key Features
+**Live:** [franciscapt.dev](https://franciscapt.dev)
+
+## Screenshot
+
+![Portfolio home page](docs/screenshots/home.jpg)
+
+## Features
 
 - Responsive design for all devices
 - Project gallery with detailed views
@@ -20,20 +33,11 @@ Personal portfolio website showcasing my work as a frontend engineer. Features a
 - Fast performance with Vite
 - Built with accessibility in mind
 
-## Live Demo
+## How It Works
 
-Live at: [https://franciscapt.dev](https://franciscapt.dev)
-
-## Technical Implementation
-
-**Tech Stack**
-
-- Framework: React 19 (TypeScript)
-- Styling: Tailwind CSS v4
-- Build Tool: Vite
-- Animation: Motion
-- Icons: Iconify
-- Contact form: Resend API via Cloudflare Pages Functions
+The site is a React 19 single-page application built with Vite and Tailwind CSS v4. The
+contact form posts to a Cloudflare Pages Function, which sends the message through Resend;
+everything else is static.
 
 **Folder Structure**
 
@@ -65,17 +69,10 @@ portfolio/
 └── README.md
 ```
 
-## Features Implemented
+## License
 
-- Responsive layout with Tailwind CSS
-- Project gallery and detail pages
-- Experience timeline
-- Interactive squishy portrait with particle burst
-- Scroll-driven chat animation
-- Custom UI components (buttons, section headers, reveal animations)
-- Accessibility best practices
-- Contact form that delivers messages via Resend
+No license file is included. The source is public for reference; all rights reserved.
 
 ---
 
-_Portfolio of Francisca Portugal - Frontend Engineer_
+_Portfolio — built to show the work, not just list it._
