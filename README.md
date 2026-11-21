@@ -1,6 +1,6 @@
 # Francisca Portugal — Portfolio
 
-A personal portfolio for frontend work: a project gallery, experience timeline, and interactive details.
+A personal portfolio for my work: learn more about me, checkout my experience timeline and interactive details.
 
 <p align="left">
   <a href="https://franciscapt.dev"><img src="https://img.shields.io/badge/live-franciscapt.dev-FF3D81?style=flat-square" alt="Live site"></a>
