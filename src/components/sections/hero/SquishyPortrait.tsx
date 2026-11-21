@@ -76,7 +76,7 @@ export function SquishyPortrait({
         </div>
 
         {season === "winter" && (
-          <SantaHat className="pointer-events-none absolute left-[62%] top-[12%] z-10 w-[54%] -translate-x-1/2 -translate-y-1/2 rotate-24 scale-[0.85] drop-shadow-[0_10px_18px_rgba(0,0,0,0.22)]" />
+          <SantaHat className="pointer-events-none absolute left-[62%] top-[12%] z-10 w-[52%] -translate-x-1/2 -translate-y-1/2 rotate-24 scale-[0.85] drop-shadow-[0_10px_18px_rgba(0,0,0,0.22)]" />
         )}
       </motion.div>
     </button>
