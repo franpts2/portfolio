@@ -6,8 +6,13 @@ import { SquishyPortrait } from "./SquishyPortrait.js";
 import { PillLink } from "../../ui/PillLink.js";
 import { TulipPatch } from "./TulipPatch.js";
 import { useTulipEgg } from "./useTulipEgg.js";
+import type { Season } from "../../../lib/season.js";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  readonly season: Season;
+}
+
+export function HeroSection({ season }: HeroSectionProps) {
   const reducedMotion = useReducedMotion();
   const eyebrowRef = useRef<HTMLSpanElement | null>(null);
   const {
@@ -99,6 +104,7 @@ export function HeroSection() {
               src={profile.portrait}
               alt={`Portrait of ${profile.name}`}
               className="hero-portrait"
+              season={season}
             />
           </motion.div>
         </div>
